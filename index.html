@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Khizar Hayat — Brand Identity &amp; Packaging Designer</title>
+<meta name="description" content="Khizar Hayat designs brand identity and packaging systems for startups and product businesses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="home" id="top">
+
+<div id="scrollProgress"></div>
+
+<header>
+  <nav class="wrap" id="site-nav"></nav>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap" id="hero-content">
+      <p class="eyebrow" style="margin-bottom:24px;"></p>
+      <div class="hero-grid">
+        <h1></h1>
+        <div class="hero-side">
+          <p></p>
+          <a href="#contact" class="btn solid"><span class="arrow">→</span></a>
+        </div>
+      </div>
+      <div class="hero-meta" id="hero-meta"></div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-strip">
+    <div class="marquee-track" id="marquee-track"></div>
+  </div>
+
+  <!-- WORK PREVIEW -->
+  <section id="work">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow" style="margin-bottom:14px;">Selected Work</p>
+          <h2>A few identities<br>worth a second look.</h2>
+        </div>
+        <p>Logo systems, brand guidelines and packaging built for startups and product companies — from first sketch to final files.</p>
+      </div>
+
+      <div class="work-grid reveal" id="work-preview-grid"></div>
+
+      <div class="work-more reveal">
+        <a href="work.html" class="btn">View all work <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES PREVIEW -->
+  <section id="services" class="section-alt">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow" style="margin-bottom:14px;">Services</p>
+          <h2>Four ways to<br>work together.</h2>
+        </div>
+        <p>Every engagement starts with the same question: what does this brand need to say, and to whom.</p>
+      </div>
+
+      <div class="service-list reveal" id="services-preview-list"></div>
+      <div class="work-more reveal">
+        <a href="services.html" class="btn">See full service details <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT TEASER -->
+  <section id="about">
+    <div class="wrap about-grid">
+      <div class="reveal">
+        <p class="eyebrow" style="margin-bottom:14px;">About</p>
+        <h2>Design that gives your brand permission to be confident.</h2>
+      </div>
+      <div class="about-copy reveal" id="about-teaser-copy">
+        <div class="avail-badge"></div>
+        <p></p>
+        <p></p>
+        <div class="stat-row" data-config-stats></div>
+        <div style="margin-top:36px;">
+          <a href="about.html" class="btn">More about me <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process section-alt">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow" style="margin-bottom:14px;">How We'd Work</p>
+          <h2>A clear process,<br>start to finish.</h2>
+        </div>
+      </div>
+      <div class="process-grid reveal" data-config-process></div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS (hidden automatically if config.testimonials is empty) -->
+  <section class="section-alt" id="testimonials-section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow" style="margin-bottom:14px;">What Clients Say</p>
+          <h2>Kind words from<br>past collaborators.</h2>
+        </div>
+      </div>
+      <div class="testimonials-grid reveal" id="testimonials-grid"></div>
+    </div>
+  </section>
+
+  <!-- CLIENTS TYPE STRIP -->
+  <section class="clients">
+    <div class="wrap reveal">
+      <p class="eyebrow">Built for</p>
+      <div class="client-marks" id="client-marks" style="margin-top:22px;"></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <p class="eyebrow">Start a Project</p>
+      <h2>Tell me about your brand — I'll reply with <em>next steps.</em></h2>
+
+      <div class="contact-grid">
+        <form id="contactForm">
+          <div class="field">
+            <label for="name">Your name</label>
+            <input id="name" type="text" placeholder="Jordan Smith" required>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="jordan@company.com" required>
+          </div>
+          <div class="field">
+            <label for="project">What are you looking for?</label>
+            <input id="project" type="text" placeholder="Brand identity, packaging, refresh...">
+          </div>
+          <div class="field">
+            <label for="details">Project details</label>
+            <textarea id="details" rows="3" placeholder="A little about your business and timeline"></textarea>
+          </div>
+          <button type="submit" class="btn">Send message <span class="arrow">→</span></button>
+        </form>
+
+        <div class="contact-side reveal" id="contact-side"></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap" id="site-footer"></div>
+</footer>
+
+<button id="backToTop" aria-label="Back to top" type="button">↑</button>
+
+<script src="js/config.js"></script>
+<script src="js/render.js"></script>
+<script src="js/cursor.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
