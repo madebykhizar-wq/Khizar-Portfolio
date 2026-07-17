@@ -62,7 +62,8 @@ window.SITE_CONFIG = {
   // ===========================================================
   // PERSONAL INFO
   // ===========================================================
- personal: {photo: "assets/your-photo.jpg",
+ personal: {
+    photo: "assets/your-photo.jpg",
     name: "Khizar Hayat",
     firstName: "Khizar",
     title: "Brand Identity & Packaging Designer",
