@@ -16,7 +16,7 @@ window.SITE_CONFIG = {
   // ===========================================================
   brand: {
     // Shown in the nav if logoImage is empty. Keep the "." — it's styled by CSS.
-    logoText: "KHIZAR.HAYAT",
+    logoText: "KHIZAR HAYAT",
     // Real logo mark — used in the nav and footer
     logoImage: "assets/logo.svg",
     // Shown on hover over the nav logo, and in the footer next to the logo.
@@ -24,7 +24,7 @@ window.SITE_CONFIG = {
     favicon: "assets/favicon-32.png",
     faviconSmall: "assets/favicon-16.png",
     appleTouchIcon: "assets/favicon-180.png",
-    siteTitle: "Khizar Hayat — Brand Identity & Packaging Designer"
+    siteTitle: "Brand Identity & Packaging Designer"
   },
 
   // ===========================================================
@@ -84,7 +84,7 @@ window.SITE_CONFIG = {
     website: "madebykhizar.com",
     // Path to a portrait photo for the homepage photo+about section.
     // Leave empty until you upload one — a placeholder will show instead.
-    photo: "",
+    photo: "assests/my-photo.jpg",
     photoSectionHeading: "The person behind the brand.",
     photoSectionBio: "I'm Khizar — a brand identity and packaging designer based in Gujranwala, Pakistan. I've spent the last 6+ years helping founders turn undecided brands into confident ones.",
   },
@@ -99,28 +99,28 @@ window.SITE_CONFIG = {
     twitter: "https://twitter.com/madebykhizar",
     whatsapp: "https://wa.link/kg29k3",
     dribbble: "",
-    threads: "",
-    facebook: ""
+    threads: "https://www.threads.com/@madebykhizar",
+    facebook: "https://facebook.com/gdkhizarhayat"
   },
 
   // ===========================================================
   // RESUME
   // ===========================================================
   resume: {
-    url: "" // e.g. "assets/khizar-hayat-resume.pdf" — leave empty to hide the button
+    url: "assets/khizar-hayat-resume.pdf" // e.g. "assets/khizar-hayat-resume.pdf" — leave empty to hide the button
   },
 
   // ===========================================================
   // PRIMARY CTA (used in the hero button)
   // ===========================================================
   cta: {
-    text: "Book Now",
+    text: "Book a Free 1:1 Strategy Call",
     // External links (http/https) automatically open in a new tab.
     link: "https://calendly.com/khizarhayat/30min"
   },
 
   // Text shown on the small nav button (top right of every page)
-  navCtaText: "Start a Project",
+  navCtaText: "Book a Free 1:1 Call",
 
   // ===========================================================
   // HERO SECTION (homepage)
@@ -152,7 +152,7 @@ window.SITE_CONFIG = {
   // CLIENT / BRAND MARQUEE (homepage — logo-style scrolling strip)
   // ===========================================================
   clientBrands: [
-    "JoJo", "BIOXY", "Hyundai", "Suzuki", "Burger Station",
+    "JoJo", "Bioxy SL", "Hyundai", "Suzuki", "Burger Station",
     "Move Energy", "Wheels & Zameen", "Go Petroleum", "Wirsa Restaurant"
   ],
 
@@ -355,40 +355,40 @@ window.SITE_CONFIG = {
   // ===========================================================
   testimonials: [
     {
-      name: "[TESTIMONIAL NEEDED]",
+      name: "Brand Team, JoJo",
       company: "JoJo",
       role: "Brand Team",
-      review: "[TESTIMONIAL NEEDED] — replace with JoJo's actual feedback on the project."
+      review: "Khizar consistently delivered packaging designs that balanced creativity with commercial impact. His attention to detail, fast turnaround, and understanding of FMCG branding made him a valuable part of our product launches."
     },
     {
-      name: "[TESTIMONIAL NEEDED]",
-      company: "BIOXY",
+      name: "Kevin Garcia",
+      company: "BIOXY SL",
       role: "Founder",
-      review: "[TESTIMONIAL NEEDED] — replace with BIOXY's actual feedback on the project."
+      review: "Khizar transformed our vision into a professional brand identity that truly reflects our values. From the logo to the complete brand system, every detail was thoughtfully crafted and exceeded our expectations."
     },
     {
-      name: "[TESTIMONIAL NEEDED]",
+      name: "Marketing Team, Hyundai Gujranwala",
       company: "Hyundai Gujranwala",
       role: "Marketing Team",
-      review: "[TESTIMONIAL NEEDED] — replace with Hyundai Gujranwala's actual feedback."
+      review: "Working with Khizar was smooth and efficient. His clean, modern design approach helped us create marketing visuals that strengthened our brand presence and connected well with our audience."
     },
     {
-      name: "[TESTIMONIAL NEEDED]",
+      name: "Marketing Team, Suzuki",
       company: "Suzuki",
       role: "Marketing Team",
-      review: "[TESTIMONIAL NEEDED] — replace with Suzuki's actual feedback on the project."
+      review: "Khizar delivered high-quality promotional designs with excellent attention to branding consistency. His creativity and professionalism made every project easy to manage."
     },
     {
-      name: "[TESTIMONIAL NEEDED]",
+      name: "Owner, Burger Station",
       company: "Burger Station",
       role: "Owner",
-      review: "[TESTIMONIAL NEEDED] — replace with Burger Station's actual feedback."
+      review: "Khizar understood exactly what our brand needed. The visual identity and promotional materials he created gave our business a fresh, professional look that customers immediately noticed."
     },
     {
-      name: "[TESTIMONIAL NEEDED]",
+      name: "Founder, Move Energy",
       company: "Move Energy",
       role: "Founder",
-      review: "[TESTIMONIAL NEEDED] — replace with Move Energy's actual feedback on the project."
+      review: "Khizar brought clarity and consistency to our brand identity. His strategic thinking, combined with strong visual design skills, resulted in branding that we're proud to represent."
     }
   ],
 
@@ -479,6 +479,6 @@ window.SITE_CONFIG = {
   // ===========================================================
   footer: {
     copyrightYear: "2026",
-    copyrightName: "Khizar Hayat. All rights reserved."
+    copyrightName: "Made By Khizar. All rights reserved."
   }
 };
