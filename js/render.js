@@ -211,6 +211,28 @@
       </a>`;
   }
 
+  /* ---------- before/after expandable (only for projects with beforeAfter data) ---------- */
+  function workCardWithBeforeAfter(p, tagOverride) {
+    const card = projectCard(p, tagOverride);
+    if (!p.beforeAfter) return card;
+    const ba = p.beforeAfter;
+    const beforeImg = ba.before
+      ? `<img src="${esc(ba.before)}" alt="${esc(p.title)} — before" loading="lazy">`
+      : `<div class="ba-placeholder">Before image needed</div>`;
+    const afterImg = ba.after
+      ? `<img src="${esc(ba.after)}" alt="${esc(p.title)} — after" loading="lazy">`
+      : `<div class="ba-placeholder">After image needed</div>`;
+    return `
+      <div class="work-card-wrap">
+        ${card}
+        <button type="button" class="before-after-toggle" aria-expanded="false">Compare before / after</button>
+        <div class="before-after-panel" hidden>
+          <div class="ba-pane"><span class="ba-label">Before</span>${beforeImg}</div>
+          <div class="ba-pane"><span class="ba-label">After</span>${afterImg}</div>
+        </div>
+      </div>`;
+  }
+
   /* ---------- homepage work preview (first 3 projects) ---------- */
   function renderWorkPreview() {
     const grid = $("#work-preview-grid");
@@ -234,9 +256,20 @@
       const items = filter && filter !== "All"
         ? cfg.projects.filter(p => p.category === filter)
         : cfg.projects;
-      grid.innerHTML = items.map(p => projectCard(p)).join("\n");
+      grid.innerHTML = items.map(p => workCardWithBeforeAfter(p)).join("\n");
     }
     draw();
+
+    grid.addEventListener("click", (e) => {
+      const btn = e.target.closest(".before-after-toggle");
+      if (!btn) return;
+      e.preventDefault();
+      const panel = btn.nextElementSibling;
+      const open = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!open));
+      btn.textContent = open ? "Compare before / after" : "Hide comparison";
+      if (panel) panel.hidden = open;
+    });
 
     const filterBar = $("#work-filters");
     if (filterBar) {
@@ -396,13 +429,19 @@
       return;
     }
     const grid = $("#testimonials-grid", section);
-    grid.innerHTML = cfg.testimonials.map(t => `
+    grid.innerHTML = cfg.testimonials.map(t => {
+      const initials = (t.company || t.name || "?").trim().charAt(0).toUpperCase();
+      const avatar = t.photo
+        ? `<img src="${esc(t.photo)}" alt="${esc(t.name)}" loading="lazy">`
+        : `<div class="avatar-fallback">${esc(initials)}</div>`;
+      return `
       <div class="testimonial-card reveal">
-        ${t.photo ? `<img src="${esc(t.photo)}" alt="${esc(t.name)}" loading="lazy">` : ""}
+        ${avatar}
         <p>&ldquo;${esc(t.review)}&rdquo;</p>
         <strong>${esc(t.name)}</strong>
         <span>${esc(t.role)}${t.company ? ", " + esc(t.company) : ""}</span>
-      </div>`).join("\n");
+      </div>`;
+    }).join("\n");
   }
 
   /* ---------- page-header (about/services/work) small helpers ---------- */
@@ -450,10 +489,20 @@
 
     imgWrap.innerHTML = cfg.personal.photo
       ? `<img src="${esc(cfg.personal.photo)}" alt="${esc(cfg.personal.name)}" loading="lazy">`
-      : `<div class="photo-placeholder">Add your photo — set personal.photo in config.js to<br>"assets/your-photo.jpg"</div>`;
+      : `<div class="photo-placeholder">Photo needed — a professional three-quarter portrait, plain dark backdrop.<br>Set personal.photo in config.js to "assets/your-photo.jpg"</div>`;
 
     copy.querySelector("h2").textContent = cfg.personal.photoSectionHeading;
     copy.querySelector("p").textContent = cfg.personal.photoSectionBio;
+
+    const socialsRow = $("#photo-about-socials", copy);
+    if (socialsRow) {
+      const keys = ["behance", "linkedin", "instagram", "twitter"];
+      const labels = { behance: "Behance", linkedin: "LinkedIn", instagram: "Instagram", twitter: "X" };
+      socialsRow.innerHTML = keys
+        .filter(k => cfg.social[k])
+        .map(k => `<a href="${esc(cfg.social[k])}" target="_blank" rel="noopener" aria-label="${labels[k]}">${SOCIAL_ICONS[k] || ""}<span>${labels[k]}</span></a>`)
+        .join("\n");
+    }
   }
 
   /* ---------- run everything ---------- */

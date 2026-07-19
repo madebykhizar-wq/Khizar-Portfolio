@@ -33,19 +33,19 @@ window.SITE_CONFIG = {
   // mode). Dark mode remaps these same roles — see the
   // html[data-theme="dark"] block in css/styles.css.
   //
-  // Brand system: onyx/white ~60% (base), coral ~20% (primary
-  // CTAs), dusty denim ~15% (secondary/links/icons), yellow ~5%
-  // (sparing badges & active-state accents only).
+  // Brand system: white / near-black text ~60% (base), muted
+  // green ~20-25% (CTAs, links, active states, badge dot),
+  // pale green tint used sparingly for hover/highlight fills.
   // ===========================================================
   colors: {
-    primary:   "#FF585C", // vibrant coral — primary CTAs, buttons, cursor
-    secondary: "#7392B7", // dusty denim — secondary accent: links, icons, muted highlights
-    accent:    "#F0F600", // yellow — sparing use: badges, pulse/active-state accents
+    primary:   "#1E7A4C", // muted green — primary CTAs, buttons, cursor, links, active states
+    secondary: "#1E7A4C", // same muted green — single-accent palette
+    accent:    "#1E7A4C", // same muted green — badge dot / pulse / active-state accents
     background:"#FFFFFF", // white — main page background (light mode)
-    backgroundAlt: "#F6F6F4", // soft off-white — alternating section background
-    text:      "#0F0F0F", // onyx — headings & primary text
-    textSoft:  "#5C5C5C", // body copy / secondary text
-    dark:      "#0F0F0F"  // onyx — dark sections (marquee, footer-on-dark, etc.)
+    backgroundAlt: "#F4F6F5", // pale green-grey — alternating section background (FAQ/about)
+    text:      "#12100D", // near-black — headings & primary text
+    textSoft:  "#6B7069", // muted secondary/caption text
+    dark:      "#0B1F17"  // near-black green-tinted charcoal — footer / CTA band / dark sections
   },
 
   // ===========================================================
@@ -62,8 +62,7 @@ window.SITE_CONFIG = {
   // ===========================================================
   // PERSONAL INFO
   // ===========================================================
- personal: {
-    photo: "assets/my-photo.jpg",
+  personal: {
     name: "Khizar Hayat",
     firstName: "Khizar",
     title: "Brand Identity & Packaging Designer",
@@ -85,7 +84,7 @@ window.SITE_CONFIG = {
     website: "madebykhizar.com",
     // Path to a portrait photo for the homepage photo+about section.
     // Leave empty until you upload one — a placeholder will show instead.
-    photo: "assets/my-photo.jpg",
+    photo: "",
     photoSectionHeading: "The person behind the brand.",
     photoSectionBio: "I'm Khizar — a brand identity and packaging designer based in Gujranwala, Pakistan. I've spent the last 6+ years helping founders turn undecided brands into confident ones.",
   },
@@ -254,7 +253,13 @@ window.SITE_CONFIG = {
       websiteLink: "",
       featured: false,
       cardLabel: "Identity",
-      homepageOrder: 2
+      homepageOrder: 2,
+      // Optional before/after comparison — only add this to projects where
+      // a real old/original logo exists. Leave before/after as "" until
+      // you have the actual images; the card will show a "needed" note
+      // instead of a broken image. Point them at local files, e.g.
+      // "projects/bioxy/before.jpg" and "projects/bioxy/after.jpg".
+      beforeAfter: { before: "", after: "" }
     },
     {
       title: "Logofolio Vol. 1",
@@ -285,7 +290,9 @@ window.SITE_CONFIG = {
       websiteLink: "",
       featured: false,
       cardLabel: "Logo",
-      homepageOrder: 3
+      homepageOrder: 3,
+      // See the comment on the Bioxy project above — same pattern.
+      beforeAfter: { before: "", after: "" }
     },
     {
       title: "40+ Social Media Posts",
@@ -338,16 +345,51 @@ window.SITE_CONFIG = {
   // TESTIMONIALS — add objects here to show a testimonials
   // section. Leave the array empty ([]) to hide the section
   // entirely.
+  //
+  // The entries below are PLACEHOLDERS built from real client/
+  // brand names already listed in clientBrands — the quote text
+  // itself is not a real client quote yet. Replace each `review`
+  // (and add a `photo` if you have one) with the client's actual
+  // words before publishing. Six entries = two rows of three, so
+  // the 4th card gets the inverted accent style.
   // ===========================================================
   testimonials: [
-    // Example — uncomment and edit to use:
-    // {
-    //   name: "Jordan Smith",
-    //   company: "Acme Co.",
-    //   role: "Founder",
-    //   review: "Khizar completely nailed our brand identity.",
-    //   photo: "assets/testimonials/jordan.jpg"
-    // }
+    {
+      name: "[TESTIMONIAL NEEDED]",
+      company: "JoJo",
+      role: "Brand Team",
+      review: "[TESTIMONIAL NEEDED] — replace with JoJo's actual feedback on the project."
+    },
+    {
+      name: "[TESTIMONIAL NEEDED]",
+      company: "BIOXY",
+      role: "Founder",
+      review: "[TESTIMONIAL NEEDED] — replace with BIOXY's actual feedback on the project."
+    },
+    {
+      name: "[TESTIMONIAL NEEDED]",
+      company: "Hyundai Gujranwala",
+      role: "Marketing Team",
+      review: "[TESTIMONIAL NEEDED] — replace with Hyundai Gujranwala's actual feedback."
+    },
+    {
+      name: "[TESTIMONIAL NEEDED]",
+      company: "Suzuki",
+      role: "Marketing Team",
+      review: "[TESTIMONIAL NEEDED] — replace with Suzuki's actual feedback on the project."
+    },
+    {
+      name: "[TESTIMONIAL NEEDED]",
+      company: "Burger Station",
+      role: "Owner",
+      review: "[TESTIMONIAL NEEDED] — replace with Burger Station's actual feedback."
+    },
+    {
+      name: "[TESTIMONIAL NEEDED]",
+      company: "Move Energy",
+      role: "Founder",
+      review: "[TESTIMONIAL NEEDED] — replace with Move Energy's actual feedback on the project."
+    }
   ],
 
   // ===========================================================
