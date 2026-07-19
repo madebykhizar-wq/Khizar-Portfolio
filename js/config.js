@@ -71,7 +71,7 @@ window.SITE_CONFIG = {
     focus: "Startups & product businesses",
     availabilityNote: "Freelance & select retainers",
     availabilityBadge: "Available for freelance & fulltime",
-    shortBio: "<strong>Logo systems, identity and packaging</strong> for founders who want to be taken seriously.",
+    shortBio: "<strong>I help startups, small businesses, and growing brands</strong> create professional identities through logo design, visual identity, and packaging that build trust and stand out.",
     // teaserBio: short version shown on the homepage About teaser
     teaserBio: "a brand identity and packaging designer helping founders build brands with clarity and confidence.",
     // longBioIntro is the sentence that follows "I'm <Name>, " on the About page — don't repeat the name here
@@ -86,7 +86,7 @@ window.SITE_CONFIG = {
     // Leave empty until you upload one — a placeholder will show instead.
     photo: "assets/my-photo.jpg",
     photoSectionHeading: "The person behind the brand.",
-    photoSectionBio: "I'm Khizar — a brand identity and packaging designer based in Gujranwala, Pakistan. I've spent the last 6+ years helping founders turn undecided brands into confident ones.",
+    photoSectionBio: "I'm Khizar, a Brand Identity & Packaging Designer based in Pakistan. Over the past 6+ years, I've helped businesses create professional brands through logo design, packaging, and visual identity systems.",
   },
 
   // ===========================================================
@@ -114,7 +114,7 @@ window.SITE_CONFIG = {
   // PRIMARY CTA (used in the hero button)
   // ===========================================================
   cta: {
-    text: "Book a Free 1:1 Strategy Call",
+    text: "Book a Free Discovery Call",
     // External links (http/https) automatically open in a new tab.
     link: "https://calendly.com/khizarhayat/30min"
   },
@@ -135,9 +135,9 @@ window.SITE_CONFIG = {
   // ===========================================================
   stats: [
     { value: "6+",   label: "Years Experience" },
-    { value: "450+", label: "Packaging Designs" },
+    { value: "80+", label: "Projects Completed" },
     { value: "25+",  label: "Brand Identities" },
-    { value: "3",    label: "Regions Served" }
+    { value: "3",    label: "Working Worldwide" }
   ],
 
   // ===========================================================
@@ -163,7 +163,7 @@ window.SITE_CONFIG = {
   services: [
     {
       title: "Logo & Identity",
-      description: "A logo system and visual language built to work everywhere your brand shows up.",
+      description: "Professional logo systems, color palettes, typography, and visual identities built to help your business stand out consistently.",
       tags: ["Logo", "Colour", "Type", "Iconography"],
       deliverables: [
         "Primary logo + secondary marks & favicon",
@@ -174,7 +174,7 @@ window.SITE_CONFIG = {
     },
     {
       title: "Brand Guidelines",
-      description: "A complete brand book so your team never has to guess how the brand should look.",
+      description: "A practical brand guide that keeps your visuals consistent across every platform.",
       tags: ["Guidelines", "Assets", "Handoff"],
       deliverables: [
         "Logo usage rules & clear space guidance",
@@ -185,7 +185,7 @@ window.SITE_CONFIG = {
     },
     {
       title: "Packaging Design",
-      description: "Shelf-ready packaging systems, built to hold up at production scale.",
+      description: "Packaging designed to attract attention, communicate clearly, and support your product on the shelf.",
       tags: ["Structure", "Print", "Artwork"],
       deliverables: [
         "Packaging structure & dieline setup",
@@ -196,7 +196,7 @@ window.SITE_CONFIG = {
     },
     {
       title: "Brand Collateral",
-      description: "Social templates and marketing collateral that keep everything on-brand.",
+      description: "Business cards, social media graphics, presentations, and marketing materials designed to keep your brand consistent.",
       tags: ["Social", "Decks", "Templates"],
       deliverables: [
         "Social media templates & post kits",
@@ -397,7 +397,7 @@ window.SITE_CONFIG = {
   // ===========================================================
   process: [
     { title: "Discovery", description: "Understanding your business and where the brand falls short." },
-    { title: "Strategy",  description: "Direction agreed before a single pixel is designed." },
+    { title: "Planning",  description: "Direction agreed before a single pixel is designed." },
     { title: "Design",    description: "Concepts and a focused round of refinement." },
     { title: "Handoff",   description: "Final files and guidelines, ready to use." }
   ],
@@ -432,6 +432,7 @@ window.SITE_CONFIG = {
   // FAQ — shown as an accordion on the homepage.
   // ===========================================================
   faq: [
+    { question: "Do you work with startups?", answer: "Absolutely. Whether you're launching your first business or rebranding an existing one, I'm happy to help." },
     { question: "How long does a project take?", answer: "Most logo and identity projects take 2–3 weeks. Packaging and full brand guideline projects usually run 3–5 weeks, depending on scope and revision rounds." },
     { question: "What's included in a brand identity package?", answer: "A primary logo with secondary marks, a colour and typography system, supporting iconography, and source files in AI, EPS, SVG and PNG — plus guidelines on how to use it all." },
     { question: "How many revisions do I get?", answer: "Every package includes a set number of focused revision rounds, agreed before we start. Strategy gets locked in early so revisions stay small and fast, not a redesign from scratch." },
@@ -461,7 +462,7 @@ window.SITE_CONFIG = {
       },
       about: {
         title: "About — Khizar Hayat",
-        description: "Khizar Hayat is a brand identity and packaging designer based in Gujranwala, Pakistan, working with founders and product teams internationally."
+        description: "I'm Khizar Hayat, a Brand Identity & Packaging Designer helping startups and growing businesses create memorable brands through thoughtful strategy and clean visual design."
       },
       services: {
         title: "Services — Khizar Hayat",
