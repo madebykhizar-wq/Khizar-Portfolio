@@ -120,7 +120,7 @@ window.SITE_CONFIG = {
   },
 
   // Text shown on the small nav button (top right of every page)
-  navCtaText: "Book a Free 1:1 Call",
+  navCtaText: "Star a Project",
 
   // ===========================================================
   // HERO SECTION (homepage)
