@@ -84,7 +84,7 @@ window.SITE_CONFIG = {
     website: "madebykhizar.com",
     // Path to a portrait photo for the homepage photo+about section.
     // Leave empty until you upload one — a placeholder will show instead.
-    photo: "assests/my-photo.jpg",
+    photo: "assets/my-photo.jpg",
     photoSectionHeading: "The person behind the brand.",
     photoSectionBio: "I'm Khizar — a brand identity and packaging designer based in Gujranwala, Pakistan. I've spent the last 6+ years helping founders turn undecided brands into confident ones.",
   },
