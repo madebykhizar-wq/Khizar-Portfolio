@@ -16,7 +16,7 @@ window.SITE_CONFIG = {
   // ===========================================================
   brand: {
     // Shown in the nav if logoImage is empty. Keep the "." — it's styled by CSS.
-    logoText: "KHIZAR HAYAT",
+    logoText: "KHIZAR.HAYAT",
     // Real logo mark — used in the nav and footer
     logoImage: "assets/logo.svg",
     // Shown on hover over the nav logo, and in the footer next to the logo.
@@ -24,7 +24,7 @@ window.SITE_CONFIG = {
     favicon: "assets/favicon-32.png",
     faviconSmall: "assets/favicon-16.png",
     appleTouchIcon: "assets/favicon-180.png",
-    siteTitle: "Brand Identity & Packaging Designer"
+    siteTitle: "Khizar Hayat — Brand Identity & Packaging Designer"
   },
 
   // ===========================================================
@@ -70,8 +70,8 @@ window.SITE_CONFIG = {
     workingWith: "US · UK · Middle East",
     focus: "Startups & product businesses",
     availabilityNote: "Freelance & select retainers",
-    availabilityBadge: "Available for freelance & fulltime",
-    shortBio: "<strong>I help startups, small businesses, and growing brands</strong> create professional identities through logo design, visual identity, and packaging that build trust and stand out.",
+    availabilityBadge: "Available for Freelance & Full-time",
+    shortBio: "I design strategic logos, visual identities, and packaging that make your business look professional, memorable, and trusted.",
     // teaserBio: short version shown on the homepage About teaser
     teaserBio: "a brand identity and packaging designer helping founders build brands with clarity and confidence.",
     // longBioIntro is the sentence that follows "I'm <Name>, " on the About page — don't repeat the name here
@@ -84,9 +84,9 @@ window.SITE_CONFIG = {
     website: "madebykhizar.com",
     // Path to a portrait photo for the homepage photo+about section.
     // Leave empty until you upload one — a placeholder will show instead.
-    photo: "assets/my-photo.jpg",
+    photo: "",
     photoSectionHeading: "The person behind the brand.",
-    photoSectionBio: "I'm Khizar, a Brand Identity & Packaging Designer based in Pakistan. Over the past 6+ years, I've helped businesses create professional brands through logo design, packaging, and visual identity systems.",
+    photoSectionBio: "I'm Khizar — a brand identity and packaging designer based in Gujranwala, Pakistan. I've spent the last 6+ years helping founders turn undecided brands into confident ones.",
   },
 
   // ===========================================================
@@ -99,15 +99,15 @@ window.SITE_CONFIG = {
     twitter: "https://twitter.com/madebykhizar",
     whatsapp: "https://wa.link/kg29k3",
     dribbble: "",
-    threads: "https://www.threads.com/@madebykhizar",
-    facebook: "https://facebook.com/gdkhizarhayat"
+    threads: "",
+    facebook: ""
   },
 
   // ===========================================================
   // RESUME
   // ===========================================================
   resume: {
-    url: "assets/khizar-hayat-resume.pdf" // e.g. "assets/khizar-hayat-resume.pdf" — leave empty to hide the button
+    url: "" // e.g. "assets/khizar-hayat-resume.pdf" — leave empty to hide the button
   },
 
   // ===========================================================
@@ -120,14 +120,27 @@ window.SITE_CONFIG = {
   },
 
   // Text shown on the small nav button (top right of every page)
-  navCtaText: "Star a Project",
+  navCtaText: "Start a Project",
 
   // ===========================================================
   // HERO SECTION (homepage)
   // ===========================================================
   hero: {
     eyebrow: "Brand Identity & Packaging Design",
-    headline: "Brand identity for businesses<br><em>that need to be taken seriously.</em>"
+    headline: "Brand identity that helps<br><em>businesses grow with confidence.</em>",
+    // Hero-only badge — deliberately separate from personal.availabilityBadge
+    // (which still says "Available for Freelance & Full-time" on the About
+    // page). Edit this line any time you want to change the trust signal.
+    badge: "Trusted by 25+ brands worldwide",
+    // Bottom stats row shown under the hero CTA. Each needs an icon key
+    // (star / target / calendar / package — see ICONS in render.js) and
+    // a label. Add/remove entries freely; the row wraps automatically.
+    chips: [
+      { icon: "star",     label: "6+ Years Experience" },
+      { icon: "target",   label: "100+ Projects Delivered" },
+      { icon: "calendar", label: "Startups & Growing Businesses" },
+      { icon: "package",  label: "Brand Identity & Packaging" }
+    ]
   },
 
   // ===========================================================
@@ -135,9 +148,9 @@ window.SITE_CONFIG = {
   // ===========================================================
   stats: [
     { value: "6+",   label: "Years Experience" },
-    { value: "80+", label: "Projects Completed" },
+    { value: "450+", label: "Packaging Designs" },
     { value: "25+",  label: "Brand Identities" },
-    { value: "3",    label: "Working Worldwide" }
+    { value: "3",    label: "Regions Served" }
   ],
 
   // ===========================================================
@@ -152,7 +165,7 @@ window.SITE_CONFIG = {
   // CLIENT / BRAND MARQUEE (homepage — logo-style scrolling strip)
   // ===========================================================
   clientBrands: [
-    "JoJo", "Bioxy SL", "Hyundai", "Suzuki", "Burger Station",
+    "JoJo", "BIOXY", "Hyundai", "Suzuki", "Burger Station",
     "Move Energy", "Wheels & Zameen", "Go Petroleum", "Wirsa Restaurant"
   ],
 
@@ -163,7 +176,7 @@ window.SITE_CONFIG = {
   services: [
     {
       title: "Logo & Identity",
-      description: "Professional logo systems, color palettes, typography, and visual identities built to help your business stand out consistently.",
+      description: "A logo system and visual language built to work everywhere your brand shows up.",
       tags: ["Logo", "Colour", "Type", "Iconography"],
       deliverables: [
         "Primary logo + secondary marks & favicon",
@@ -174,7 +187,7 @@ window.SITE_CONFIG = {
     },
     {
       title: "Brand Guidelines",
-      description: "A practical brand guide that keeps your visuals consistent across every platform.",
+      description: "A complete brand book so your team never has to guess how the brand should look.",
       tags: ["Guidelines", "Assets", "Handoff"],
       deliverables: [
         "Logo usage rules & clear space guidance",
@@ -185,7 +198,7 @@ window.SITE_CONFIG = {
     },
     {
       title: "Packaging Design",
-      description: "Packaging designed to attract attention, communicate clearly, and support your product on the shelf.",
+      description: "Shelf-ready packaging systems, built to hold up at production scale.",
       tags: ["Structure", "Print", "Artwork"],
       deliverables: [
         "Packaging structure & dieline setup",
@@ -196,7 +209,7 @@ window.SITE_CONFIG = {
     },
     {
       title: "Brand Collateral",
-      description: "Business cards, social media graphics, presentations, and marketing materials designed to keep your brand consistent.",
+      description: "Social templates and marketing collateral that keep everything on-brand.",
       tags: ["Social", "Decks", "Templates"],
       deliverables: [
         "Social media templates & post kits",
@@ -355,40 +368,40 @@ window.SITE_CONFIG = {
   // ===========================================================
   testimonials: [
     {
-      name: "Brand Team, JoJo",
+      name: "[TESTIMONIAL NEEDED]",
       company: "JoJo",
       role: "Brand Team",
-      review: "Khizar consistently delivered packaging designs that balanced creativity with commercial impact. His attention to detail, fast turnaround, and understanding of FMCG branding made him a valuable part of our product launches."
+      review: "[TESTIMONIAL NEEDED] — replace with JoJo's actual feedback on the project."
     },
     {
-      name: "Kevin Garcia",
-      company: "BIOXY SL",
+      name: "[TESTIMONIAL NEEDED]",
+      company: "BIOXY",
       role: "Founder",
-      review: "Khizar transformed our vision into a professional brand identity that truly reflects our values. From the logo to the complete brand system, every detail was thoughtfully crafted and exceeded our expectations."
+      review: "[TESTIMONIAL NEEDED] — replace with BIOXY's actual feedback on the project."
     },
     {
-      name: "Marketing Team, Hyundai Gujranwala",
+      name: "[TESTIMONIAL NEEDED]",
       company: "Hyundai Gujranwala",
       role: "Marketing Team",
-      review: "Working with Khizar was smooth and efficient. His clean, modern design approach helped us create marketing visuals that strengthened our brand presence and connected well with our audience."
+      review: "[TESTIMONIAL NEEDED] — replace with Hyundai Gujranwala's actual feedback."
     },
     {
-      name: "Marketing Team, Suzuki",
+      name: "[TESTIMONIAL NEEDED]",
       company: "Suzuki",
       role: "Marketing Team",
-      review: "Khizar delivered high-quality promotional designs with excellent attention to branding consistency. His creativity and professionalism made every project easy to manage."
+      review: "[TESTIMONIAL NEEDED] — replace with Suzuki's actual feedback on the project."
     },
     {
-      name: "Owner, Burger Station",
+      name: "[TESTIMONIAL NEEDED]",
       company: "Burger Station",
       role: "Owner",
-      review: "Khizar understood exactly what our brand needed. The visual identity and promotional materials he created gave our business a fresh, professional look that customers immediately noticed."
+      review: "[TESTIMONIAL NEEDED] — replace with Burger Station's actual feedback."
     },
     {
-      name: "Founder, Move Energy",
+      name: "[TESTIMONIAL NEEDED]",
       company: "Move Energy",
       role: "Founder",
-      review: "Khizar brought clarity and consistency to our brand identity. His strategic thinking, combined with strong visual design skills, resulted in branding that we're proud to represent."
+      review: "[TESTIMONIAL NEEDED] — replace with Move Energy's actual feedback on the project."
     }
   ],
 
@@ -397,7 +410,7 @@ window.SITE_CONFIG = {
   // ===========================================================
   process: [
     { title: "Discovery", description: "Understanding your business and where the brand falls short." },
-    { title: "Planning",  description: "Direction agreed before a single pixel is designed." },
+    { title: "Strategy",  description: "Direction agreed before a single pixel is designed." },
     { title: "Design",    description: "Concepts and a focused round of refinement." },
     { title: "Handoff",   description: "Final files and guidelines, ready to use." }
   ],
@@ -432,7 +445,6 @@ window.SITE_CONFIG = {
   // FAQ — shown as an accordion on the homepage.
   // ===========================================================
   faq: [
-    { question: "Do you work with startups?", answer: "Absolutely. Whether you're launching your first business or rebranding an existing one, I'm happy to help." },
     { question: "How long does a project take?", answer: "Most logo and identity projects take 2–3 weeks. Packaging and full brand guideline projects usually run 3–5 weeks, depending on scope and revision rounds." },
     { question: "What's included in a brand identity package?", answer: "A primary logo with secondary marks, a colour and typography system, supporting iconography, and source files in AI, EPS, SVG and PNG — plus guidelines on how to use it all." },
     { question: "How many revisions do I get?", answer: "Every package includes a set number of focused revision rounds, agreed before we start. Strategy gets locked in early so revisions stay small and fast, not a redesign from scratch." },
@@ -462,7 +474,7 @@ window.SITE_CONFIG = {
       },
       about: {
         title: "About — Khizar Hayat",
-        description: "I'm Khizar Hayat, a Brand Identity & Packaging Designer helping startups and growing businesses create memorable brands through thoughtful strategy and clean visual design."
+        description: "Khizar Hayat is a brand identity and packaging designer based in Gujranwala, Pakistan, working with founders and product teams internationally."
       },
       services: {
         title: "Services — Khizar Hayat",
@@ -480,6 +492,6 @@ window.SITE_CONFIG = {
   // ===========================================================
   footer: {
     copyrightYear: "2026",
-    copyrightName: "Made By Khizar. All rights reserved."
+    copyrightName: "Khizar Hayat. All rights reserved."
   }
 };

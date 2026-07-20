@@ -155,7 +155,7 @@
     if (!el) return;
 
     const badge = $("#hero-badge");
-    badge.querySelector("span:last-child").textContent = cfg.personal.availabilityBadge;
+    badge.querySelector("span:last-child").textContent = cfg.hero.badge || cfg.personal.availabilityBadge;
 
     el.querySelector("h1").innerHTML = cfg.hero.headline;
     el.querySelector(".hero-side p").innerHTML = cfg.personal.shortBio;
@@ -168,15 +168,14 @@
       cta.rel = "noopener";
     }
 
-    const iconStar = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"/></svg>`;
-    const iconTarget = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/></svg>`;
-    const iconCalendar = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M8.5 15l2 2 4-4"/></svg>`;
+    const HERO_ICONS = {
+      star: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"/></svg>`,
+      target: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/></svg>`,
+      calendar: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M8.5 15l2 2 4-4"/></svg>`,
+      package: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg>`
+    };
 
-    const chips = [
-      { icon: iconStar, label: cfg.stats[0] ? `${cfg.stats[0].value} ${cfg.stats[0].label}` : "" },
-      { icon: iconTarget, label: cfg.personal.focus },
-      { icon: iconCalendar, label: cfg.personal.availabilityNote }
-    ];
+    const chips = (cfg.hero.chips || []).map(c => ({ icon: HERO_ICONS[c.icon] || "", label: c.label }));
     $("#hero-chips").innerHTML = chips.map(c => `
       <div class="hero-chip"><span class="chip-icon">${c.icon}</span><span>${esc(c.label)}</span></div>`).join("");
   }
