@@ -16,7 +16,7 @@ window.SITE_CONFIG = {
   // ===========================================================
   brand: {
     // Shown in the nav if logoImage is empty. Keep the "." — it's styled by CSS.
-    logoText: "MADE BY KHIZAR",
+    logoText: "MadebyKhizar",
     // Real logo mark — used in the nav and footer
     logoImage: "assets/logo.svg",
     // Shown on hover over the nav logo, and in the footer next to the logo.
@@ -94,7 +94,7 @@ window.SITE_CONFIG = {
   // ===========================================================
   social: {
     behance: "https://www.behance.net/gdkhizarhayat",
-    linkedin: "https://linkedin.com/in/gdkhizarhayat",
+    linkedin: "https://www.linkedin.com/in/madebykhizar/",
     instagram: "https://instagram.com/madebykhizar",
     twitter: "https://twitter.com/madebykhizar",
     whatsapp: "https://wa.link/kg29k3",
@@ -127,19 +127,18 @@ window.SITE_CONFIG = {
   // ===========================================================
   hero: {
     eyebrow: "Brand Identity & Packaging Design",
-    headline: "Brand identity that helps<br><em>businesses grow with confidence.</em>",
+    headline: "Helping Brands Look Premium,<br>Clear & <em>Memorable.</em>",
     // Hero-only badge — deliberately separate from personal.availabilityBadge
     // (which still says "Available for Freelance & Full-time" on the About
     // page). Edit this line any time you want to change the trust signal.
     badge: "Trusted by 25+ brands worldwide",
-    // Bottom stats row shown under the hero CTA. Each needs an icon key
+    // Service labels shown above the hero headline. Each needs an icon key
     // (star / target / calendar / package — see ICONS in render.js) and
     // a label. Add/remove entries freely; the row wraps automatically.
     chips: [
-      { icon: "star",     label: "6+ Years Experience" },
-      { icon: "target",   label: "100+ Projects Delivered" },
-      { icon: "calendar", label: "Startups & Growing Businesses" },
-      { icon: "package",  label: "Brand Identity & Packaging" }
+      { icon: "target", label: "Brand Identity" },
+      { icon: "package", label: "Packaging Design" },
+      { icon: "star",    label: "Visual Systems" }
     ]
   },
 
@@ -171,7 +170,7 @@ window.SITE_CONFIG = {
 
   // ===========================================================
   // SERVICES — shown as a short list on the homepage and in full
-  // detail on services.html. Add/remove/edit freely.
+  // details in the homepage Services section. Add/remove/edit freely.
   // ===========================================================
   services: [
     {
@@ -221,7 +220,7 @@ window.SITE_CONFIG = {
   ],
 
   // ===========================================================
-  // PROJECTS — every project card on the homepage & work page
+  // PROJECTS — every project card in the homepage work showcase
   // is generated from this list. Add a new object to add a
   // project; delete one to remove it; set featured:true for the
   // large highlighted card.
@@ -230,10 +229,7 @@ window.SITE_CONFIG = {
   // "projects/bioxy/thumbnail.jpg") once you add one to the
   // /projects folder, or stay pointed at an external URL.
   //
-  // homepageOrder (optional, 1/2/3): controls which 3 projects
-  // show in the homepage preview grid, and in what order. Leave
-  // it off a project to keep it off the homepage (it still shows
-  // on the full Work page).
+  // Projects appear in this order in the homepage showcase.
   // ===========================================================
   projects: [
     {
@@ -250,7 +246,6 @@ window.SITE_CONFIG = {
       websiteLink: "",
       featured: true,
       cardLabel: "Featured",
-      homepageOrder: 1
     },
     {
       title: "Bioxy S.L.",
@@ -266,13 +261,6 @@ window.SITE_CONFIG = {
       websiteLink: "",
       featured: false,
       cardLabel: "Identity",
-      homepageOrder: 2,
-      // Optional before/after comparison — only add this to projects where
-      // a real old/original logo exists. Leave before/after as "" until
-      // you have the actual images; the card will show a "needed" note
-      // instead of a broken image. Point them at local files, e.g.
-      // "projects/bioxy/before.jpg" and "projects/bioxy/after.jpg".
-      beforeAfter: { before: "", after: "" }
     },
     {
       title: "Logofolio Vol. 1",
@@ -303,9 +291,6 @@ window.SITE_CONFIG = {
       websiteLink: "",
       featured: false,
       cardLabel: "Logo",
-      homepageOrder: 3,
-      // See the comment on the Bioxy project above — same pattern.
-      beforeAfter: { before: "", after: "" }
     },
     {
       title: "40+ Social Media Posts",
@@ -456,9 +441,9 @@ window.SITE_CONFIG = {
   // NAVIGATION
   // ===========================================================
   nav: [
-    { label: "Work", href: "work.html", key: "work" },
-    { label: "Services", href: "services.html", key: "services" },
-    { label: "About", href: "about.html", key: "about" }
+    { label: "Work", href: "#work", key: "work" },
+    { label: "Services", href: "#services", key: "services" },
+    { label: "About me", href: "#about", key: "about" }
   ],
 
   // ===========================================================

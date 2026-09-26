@@ -103,6 +103,7 @@
 
     const wordmark = (() => {
       const parts = cfg.brand.logoText.split(".");
+      if (parts.length === 1) return esc(parts[0]);
       return `${esc(parts[0])}<span>.</span>${esc(parts.slice(1).join("."))}`;
     })();
     const iconHtml = cfg.brand.logoImage
@@ -113,21 +114,37 @@
       : "";
     const logoHtml = iconHtml + wordmark + revealHtml;
 
-    const homeHref = page === "home" ? "index.html" : "index.html";
+    const homeHref = page === "home" ? "#top" : "index.html#top";
     const contactHref = page === "home" ? "#contact" : "index.html#contact";
 
     const links = cfg.nav.map(item => {
-      const isActive = page === item.key ? " active" : "";
-      return `<a href="${esc(item.href)}" class="${isActive.trim()}">${esc(item.label)}</a>`;
+      const isActive = page === "home" ? "" : page === item.key ? " active" : "";
+      const href = page === "home" ? item.href : `index.html${item.href}`;
+      return `<a href="${esc(href)}" class="${isActive.trim()}">${esc(item.label)}</a>`;
     }).join("\n");
 
     nav.innerHTML = `
       <a href="${homeHref}" class="logo">${logoHtml}</a>
       <button class="navtoggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">Menu</button>
       <div class="navlinks" id="navLinks">
-        ${links}
-        <a href="${contactHref}" class="cta">${esc(cfg.navCtaText || "Start a Project")}</a>
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" type="button">🌙</button>
+        <div class="nav-menu" aria-label="Main navigation">${links}</div>
+        <div class="nav-actions">
+          <a href="${contactHref}" class="cta">${esc(cfg.navCtaText || "Start a Project")}</a>
+          <label class="language-control">
+            <span class="sr-only">Language</span>
+            <select id="languageSelect" aria-label="Choose language">
+              <option value="en">EN</option>
+              <option value="es">ES</option>
+              <option value="fr">FR</option>
+              <option value="de">DE</option>
+            </select>
+          </label>
+          <a href="#" data-social-link="whatsapp" target="_blank" rel="noopener" class="whatsapp-nav" aria-label="Message on WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.4-1.5-.9-.8-1.5-1.8-1.6-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.2-.6-.4ZM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2Zm0 18.1c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.1 8.1 0 0 1 3.9 12c0-4.5 3.6-8.1 8.1-8.1s8.1 3.6 8.1 8.1-3.6 8.1-8.1 8.1Z"/></svg>
+            <span>WhatsApp</span>
+          </a>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" type="button">🌙</button>
+        </div>
       </div>`;
   }
 
@@ -198,10 +215,15 @@
 
   /* ---------- project card markup ---------- */
   function projectCard(p, tagOverride) {
+    const thumbnail = esc(p.thumbnail);
+    const featuredBackdrop = p.featured
+      ? `<img class="work-card-backdrop" src="${thumbnail}" alt="" aria-hidden="true" loading="lazy">`
+      : "";
     return `
       <a class="work-card reveal${p.featured ? " feature" : ""}" href="${esc(p.behanceLink || p.websiteLink || "#")}" target="_blank" rel="noopener">
         <span class="work-tag">${esc(tagOverride || p.cardLabel)}</span>
-        <img src="${esc(p.thumbnail)}" alt="${esc(p.title)}" loading="lazy">
+        ${featuredBackdrop}
+        <img src="${thumbnail}" alt="${esc(p.title)}" loading="lazy">
         <div class="work-overlay">
           <div class="cat">${esc(p.category)} — ${esc(p.tag)}</div>
           <h3>${esc(p.title)}</h3>
@@ -210,40 +232,36 @@
       </a>`;
   }
 
-  /* ---------- before/after expandable (only for projects with beforeAfter data) ---------- */
-  function workCardWithBeforeAfter(p, tagOverride) {
-    const card = projectCard(p, tagOverride);
-    if (!p.beforeAfter) return card;
-    const ba = p.beforeAfter;
-    const beforeImg = ba.before
-      ? `<img src="${esc(ba.before)}" alt="${esc(p.title)} — before" loading="lazy">`
-      : `<div class="ba-placeholder">Before image needed</div>`;
-    const afterImg = ba.after
-      ? `<img src="${esc(ba.after)}" alt="${esc(p.title)} — after" loading="lazy">`
-      : `<div class="ba-placeholder">After image needed</div>`;
-    return `
-      <div class="work-card-wrap">
-        ${card}
-        <button type="button" class="before-after-toggle" aria-expanded="false">Compare before / after</button>
-        <div class="before-after-panel" hidden>
-          <div class="ba-pane"><span class="ba-label">Before</span>${beforeImg}</div>
-          <div class="ba-pane"><span class="ba-label">After</span>${afterImg}</div>
-        </div>
-      </div>`;
-  }
-
-  /* ---------- homepage work preview (first 3 projects) ---------- */
+  /* ---------- homepage work showcase ---------- */
   function renderWorkPreview() {
     const grid = $("#work-preview-grid");
     if (!grid) return;
-    // Uses each project's `homepageOrder` field to decide what shows on the
-    // homepage preview (and in what order) — independent from the full
-    // work-page order. Projects without homepageOrder are skipped here.
-    const items = cfg.projects
-      .filter(p => p.homepageOrder)
-      .sort((a, b) => a.homepageOrder - b.homepageOrder)
-      .slice(0, 3);
-    grid.innerHTML = items.map((p, i) => projectCard(p, i === 0 ? p.cardLabel : String(i + 1).padStart(2, "0"))).join("\n");
+    const filterBar = $("#work-filters");
+    const categories = ["All", ...new Set(cfg.projects.map(p => p.category))];
+
+    function draw(filter) {
+      const items = filter === "All" ? cfg.projects : cfg.projects.filter(p => p.category === filter);
+      grid.innerHTML = items.map(p => projectCard(p)).join("\n");
+      if (window.applySiteLanguage) window.applySiteLanguage();
+      if (window.observeReveals) window.observeReveals(Array.from(grid.querySelectorAll(".reveal")));
+    }
+
+    if (filterBar) {
+      filterBar.innerHTML = categories.map((category, i) =>
+        `<button type="button" class="filter-chip${i === 0 ? " active" : ""}" data-filter="${esc(category)}" aria-pressed="${i === 0}">${esc(category)}</button>`
+      ).join("");
+      filterBar.addEventListener("click", (event) => {
+        const button = event.target.closest(".filter-chip");
+        if (!button) return;
+        filterBar.querySelectorAll(".filter-chip").forEach(chip => {
+          const active = chip === button;
+          chip.classList.toggle("active", active);
+          chip.setAttribute("aria-pressed", String(active));
+        });
+        draw(button.dataset.filter);
+      });
+    }
+    draw("All");
   }
 
   /* ---------- full work grid + filters (work.html) ---------- */
@@ -255,20 +273,9 @@
       const items = filter && filter !== "All"
         ? cfg.projects.filter(p => p.category === filter)
         : cfg.projects;
-      grid.innerHTML = items.map(p => workCardWithBeforeAfter(p)).join("\n");
+      grid.innerHTML = items.map(p => projectCard(p)).join("\n");
     }
     draw();
-
-    grid.addEventListener("click", (e) => {
-      const btn = e.target.closest(".before-after-toggle");
-      if (!btn) return;
-      e.preventDefault();
-      const panel = btn.nextElementSibling;
-      const open = btn.getAttribute("aria-expanded") === "true";
-      btn.setAttribute("aria-expanded", String(!open));
-      btn.textContent = open ? "Compare before / after" : "Hide comparison";
-      if (panel) panel.hidden = open;
-    });
 
     const filterBar = $("#work-filters");
     if (filterBar) {
@@ -290,11 +297,20 @@
   function renderServicesPreview() {
     const list = $("#services-preview-list");
     if (!list) return;
+    const serviceIcons = [
+      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 3.5 8v8l8.5 5 8.5-5V8L12 3Z"/><path d="m3.5 8 8.5 5 8.5-5M12 13v8"/></svg>`,
+      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4.5h11a3 3 0 0 1 3 3v12H8a3 3 0 0 1-3-3v-12Z"/><path d="M8 19.5a3 3 0 0 1-3-3M9 9h6M9 13h6"/></svg>`,
+      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 8.5 4.5v9L12 21l-8.5-4.5v-9L12 3Z"/><path d="M3.5 7.5 12 12l8.5-4.5M12 12v9"/></svg>`,
+      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><path d="M14 14h6v6h-6z"/></svg>`
+    ];
     list.innerHTML = cfg.services.map((s, i) => `
       <div class="service-row reveal">
         <div class="service-num">${String(i + 1).padStart(2, "0")}</div>
-        <h3>${esc(s.title)}</h3>
-        <p>${esc(s.description)}</p>
+        <h3><span>${esc(s.title)}</span><span class="service-icon" aria-hidden="true">${serviceIcons[i % serviceIcons.length]}</span></h3>
+        <div class="service-description">
+          <p>${esc(s.description)}</p>
+          <ul class="service-deliverables">${s.deliverables.map(item => `<li>${esc(item)}</li>`).join("")}</ul>
+        </div>
         <div class="service-tags">${s.tags.map(t => `<span>${esc(t)}</span>`).join("")}</div>
       </div>`).join("\n");
   }
@@ -349,6 +365,8 @@
     el.querySelector(".avail-badge").innerHTML = `<span class="pulse"></span> ${esc(cfg.personal.availabilityBadge)}`;
     const paras = el.querySelectorAll("p");
     paras[0].innerHTML = `I'm <strong>${esc(cfg.personal.name)}</strong>, ${esc(cfg.personal.teaserBio)}`;
+    if (paras[1]) paras[1].textContent = cfg.personal.longBioExtra;
+    if (paras[2]) paras[2].textContent = cfg.personal.closingLine;
   }
 
   function renderAboutPage() {

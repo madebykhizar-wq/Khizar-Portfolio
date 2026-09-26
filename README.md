@@ -14,6 +14,10 @@ matching `thumbnail` / `cover` field in `config.js` at the new path.
 Project images currently point to external Behance CDN URLs — you can
 leave those as-is or switch any of them to a local file.
 
+The public navigation is a single-page flow: Work, Services, and About
+jump to sections on `index.html`. Every configured project is shown in
+the homepage work grid, with category filters.
+
 ## Folder structure
 
 ```
@@ -21,8 +25,9 @@ index.html / about.html / services.html / work.html   → page shells (don't edi
 css/styles.css      → all visual styling (colors are CSS variables, driven by config.js at runtime)
 js/config.js         ← EDIT THIS FILE for all content changes
 js/render.js         → builds the page from config.js (no edit needed)
-js/main.js            → interactive behavior: nav, dark mode, scroll progress, back-to-top, counters, filters
+js/main.js            → interactive behavior: nav, language/theme controls, scroll progress, counters, filters, GSAP motion
 js/cursor.js          → the custom cursor effect
+js/vendor/            → locally hosted GSAP and ScrollTrigger files
 assets/                → logo, favicon, hero image go here
 projects/<slug>/       → per-project thumbnail.jpg / cover.jpg go here
 icons/, fonts/         → reserved for any icon or local font files you add later
@@ -30,9 +35,24 @@ icons/, fonts/         → reserved for any icon or local font files you add lat
 
 ## Latest changes (this round)
 
-- **Real logo** — your uploaded mark is now in `assets/logo.svg` and
-  shows in the nav next to the wordmark. It automatically recolors
-  for dark mode since it uses `currentColor`.
+- **Updated logo** — the supplied SVG mark is used in the nav and footer.
+- **Single-page navigation** — Work, Services, and About scroll to their
+  homepage sections; the selected-work section includes every project.
+- **WhatsApp button** — moved into the fixed header beside the theme control.
+- **Work thumbnails** — featured desktop card preserves the complete thumbnail;
+  before/after comparison controls have been removed.
+- **LinkedIn** — profile link points to `https://www.linkedin.com/in/madebykhizar/`.
+- **Language switcher** — English, Spanish, French, and German controls
+  translate navigation, section headings, and common interface labels
+  locally. Project names and some long-form copy remain in their source
+  language.
+- **GSAP motion** — local GSAP and ScrollTrigger assets animate the hero
+  and section headings. Animations are disabled for reduced-motion users.
+- **Hero refresh** — the two-line desktop headline highlights its final
+  phrase in green, with service chips, trust copy, and calls to action
+  arranged in a compact layout over a subtle animated grid and wave.
+- **Header and services** — the fixed header has a centered rounded
+  section menu, and service rows use minimal green icons.
 - **Favicon** — generated from your logo mark at all standard sizes
   (16px, 32px, and 180px for iOS home-screen icons). Already wired
   up in both `config.js` and each page's `<head>`.
@@ -50,9 +70,7 @@ icons/, fonts/         → reserved for any icon or local font files you add lat
 - **Gradients & extra motion**, using only your existing palette
   (forest green / paper / ink — no new colors introduced):
   - Buttons now have a subtle gradient + light "shine" sweep on hover.
-  - The headline's accent word ("seriously.") has a slow animated
-    gradient shimmer.
-  - A soft floating gradient blob sits behind the hero.
+  - The refreshed hero uses a slow animated grid and low-opacity wave.
   - Project/service/process cards now fade in with a staggered
     delay instead of all at once, and have a soft colored glow on hover.
   - Nav links get an animated underline on hover/active.
@@ -73,20 +91,12 @@ icons/, fonts/         → reserved for any icon or local font files you add lat
 - **Scroll progress bar** at the very top of the page.
 - **Back-to-top button** (bottom right) — also fixes a bug in the old
   version where "Back to top" didn't actually work.
-- **Active nav highlighting**, generated automatically per page.
+- **Active nav highlighting** as visitors move between homepage sections.
 - **Copy-email button** next to the email address in the contact section.
 - **Animated stat counters** that count up when scrolled into view.
 - **Project filters** on the Work page (by category).
 - **Testimonials section** — hidden automatically until you add
   entries to `config.js`.
-
-## Known limitation carried over from the original site
-
-The contact form does **not** send anywhere — it's front-end only
-(shows "Message received" on submit, but nothing is emailed). Since
-this is a static site with no backend, wire it up to a service like
-Formspree, Getform, or Netlify Forms before relying on it for real
-inquiries.
 
 ## Local preview
 
