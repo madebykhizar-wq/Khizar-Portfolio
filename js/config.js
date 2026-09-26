@@ -455,19 +455,19 @@ window.SITE_CONFIG = {
     pages: {
       home: {
         title: "Khizar Hayat — Brand Identity & Packaging Designer",
-        description: "Khizar Hayat designs brand identity and packaging systems for startups and product businesses. Working with founders and teams internationally."
+        description: "Khizar Hayat is a brand identity and packaging designer helping startups and product businesses build clear, memorable brands."
       },
       about: {
-        title: "About — Khizar Hayat",
-        description: "Khizar Hayat is a brand identity and packaging designer based in Gujranwala, Pakistan, working with founders and product teams internationally."
+        title: "About Khizar Hayat — Brand Identity & Packaging Designer",
+        description: "Learn about Khizar Hayat, a brand identity and packaging designer based in Gujranwala, Pakistan, working with founders internationally."
       },
       services: {
-        title: "Services — Khizar Hayat",
-        description: "Brand identity, brand guidelines, packaging design and brand collateral services by Khizar Hayat."
+        title: "Brand Identity & Packaging Design Services — Khizar Hayat",
+        description: "Explore brand identity, logo systems, packaging design, guidelines and brand collateral services by Khizar Hayat."
       },
       work: {
-        title: "Work — Khizar Hayat",
-        description: "Selected brand identity, packaging and logo design work by Khizar Hayat."
+        title: "Selected Work — Khizar Hayat",
+        description: "Browse selected brand identity, logo and packaging design projects by Khizar Hayat."
       }
     }
   },

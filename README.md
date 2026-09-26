@@ -66,6 +66,12 @@ icons/, fonts/         → reserved for any icon or local font files you add lat
   If the request fails (e.g. no internet, or not yet activated), the
   visitor sees a message asking them to email you directly instead of
   a silent failure.
+- **Turnstile is not enabled yet.** The form currently posts directly
+  from the browser to FormSubmit, and this repository is deployed via
+  GitHub Pages. A browser-only Turnstile check would be bypassable
+  because its token must be verified server-side. Keep the existing
+  form flow until a server-side endpoint and compatible deployment are
+  in place; never put a Turnstile secret in frontend code.
 - **Email address updated** everywhere to `madebykhizar@gmail.com`.
 - **Gradients & extra motion**, using only your existing palette
   (forest green / paper / ink — no new colors introduced):
