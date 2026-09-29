@@ -35,13 +35,30 @@ document.addEventListener('DOMContentLoaded', () => {
   window.observeReveals = (elements) => {
     elements.forEach(el => io.observe(el));
   };
+  document.addEventListener('site-content-updated', () => {
+    window.observeReveals(document.querySelectorAll('.work-grid .reveal:not(.in)'));
+    if (window.applySiteLanguage) window.applySiteLanguage();
+  });
+
+  const brandStrip = document.querySelector('.brand-strip');
+  const brandMarqueeToggle = document.getElementById('brand-marquee-toggle');
+  if (brandStrip && brandMarqueeToggle) {
+    brandMarqueeToggle.addEventListener('click', () => {
+      const paused = brandStrip.classList.toggle('is-paused');
+      brandMarqueeToggle.setAttribute('aria-pressed', String(paused));
+      if (window.applySiteLanguage) window.applySiteLanguage();
+    });
+  }
 
   /* ---------- dark / light mode toggle ---------- */
   const themeToggle = document.getElementById('themeToggle');
   const THEME_KEY = 'khizar-theme';
   function setTheme(mode) {
-    document.documentElement.setAttribute('data-theme', mode);
+    const root = document.documentElement;
+    root.classList.add('theme-switching');
+    root.setAttribute('data-theme', mode);
     if (themeToggle) themeToggle.textContent = mode === 'dark' ? '☀️' : '🌙';
+    requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove('theme-switching')));
     try { localStorage.setItem(THEME_KEY, mode); } catch (e) { /* storage unavailable, ignore */ }
   }
   let savedTheme = 'light';
@@ -99,6 +116,18 @@ document.addEventListener('DOMContentLoaded', () => {
       'How many revisions do I get?': '¿Cuántas revisiones incluye?',
       'Do you work with clients outside Pakistan?': '¿Trabajas con clientes fuera de Pakistán?',
       'How do we get started?': '¿Cómo empezamos?',
+      'Selected clients': 'Clientes seleccionados',
+      'Pause client names': 'Pausar nombres',
+      'Play client names': 'Reproducir nombres',
+      'Chat with Khizar on WhatsApp': 'Habla con Khizar por WhatsApp',
+      'Can you build an identity around my existing logo?': '¿Puedes crear una identidad a partir de mi logotipo actual?',
+      'Yes. We can keep a logo that still fits your business and develop the supporting colours, typography, graphic elements and usage guidelines around it.': 'Sí. Podemos conservar un logotipo que siga representando tu negocio y crear a su alrededor colores, tipografía, elementos gráficos y pautas de uso.',
+      'What do you need from me before starting an identity project?': '¿Qué necesitas antes de empezar un proyecto de identidad?',
+      'A short discussion about your business, audience, goals and preferences gives us a clear starting point. I will share a proposal with the agreed scope before design begins.': 'Una breve conversación sobre tu negocio, público, objetivos y preferencias nos dará un punto de partida. Antes de diseñar, compartiré una propuesta con el alcance acordado.',
+      'Can you design packaging for a product range?': '¿Puedes diseñar envases para una gama de productos?',
+      'Yes. Packaging projects can cover the visual direction and label or packaging layouts for the agreed products. The exact formats, deliverables and print requirements are confirmed in the proposal.': 'Sí. El proyecto puede incluir la dirección visual y los diseños de etiquetas o envases acordados. La propuesta confirmará los formatos, entregables y requisitos de impresión.',
+      'Will the packaging files be ready for my printer?': '¿Los archivos del envase estarán listos para imprenta?',
+      "Print-ready artwork can be included when it is part of the agreed scope. Share your printer's dielines and production specifications so they can be accounted for before final files are prepared.": 'Se pueden incluir artes finales para imprenta si forman parte del alcance acordado. Comparte las plantillas y especificaciones de producción de tu imprenta antes de preparar los archivos finales.',
       'Copy': 'Copiar', 'Copied!': '¡Copiado!', 'Portfolio': 'Portafolio', 'Elsewhere': 'También en',
       'Filter projects': 'Filtrar proyectos', 'Go to contact form': 'Ir al formulario de contacto',
       'Choose language': 'Elegir idioma', 'Toggle dark mode': 'Cambiar modo oscuro', 'Toggle menu': 'Abrir menú',
@@ -148,6 +177,18 @@ document.addEventListener('DOMContentLoaded', () => {
       'How many revisions do I get?': 'Combien de révisions sont incluses ?',
       'Do you work with clients outside Pakistan?': 'Travaillez-vous avec des clients hors du Pakistan ?',
       'How do we get started?': 'Comment démarrer ?',
+      'Selected clients': 'Quelques clients',
+      'Pause client names': 'Mettre en pause',
+      'Play client names': 'Reprendre',
+      'Chat with Khizar on WhatsApp': 'Contacter Khizar sur WhatsApp',
+      'Can you build an identity around my existing logo?': 'Pouvez-vous créer une identité autour de mon logo actuel ?',
+      'Yes. We can keep a logo that still fits your business and develop the supporting colours, typography, graphic elements and usage guidelines around it.': 'Oui. Nous pouvons conserver un logo adapté à votre activité et créer les couleurs, la typographie, les éléments graphiques et les règles d’utilisation qui l’accompagnent.',
+      'What do you need from me before starting an identity project?': 'De quoi avez-vous besoin avant de commencer une identité ?',
+      'A short discussion about your business, audience, goals and preferences gives us a clear starting point. I will share a proposal with the agreed scope before design begins.': 'Un échange sur votre activité, votre public, vos objectifs et vos préférences nous donnera un point de départ clair. Je vous enverrai une proposition avec le périmètre convenu avant de commencer.',
+      'Can you design packaging for a product range?': 'Pouvez-vous concevoir les emballages d’une gamme de produits ?',
+      'Yes. Packaging projects can cover the visual direction and label or packaging layouts for the agreed products. The exact formats, deliverables and print requirements are confirmed in the proposal.': 'Oui. Le projet peut inclure la direction visuelle et les maquettes d’étiquettes ou d’emballages convenues. La proposition précisera les formats, les livrables et les exigences d’impression.',
+      'Will the packaging files be ready for my printer?': 'Les fichiers d’emballage seront-ils prêts pour l’imprimeur ?',
+      "Print-ready artwork can be included when it is part of the agreed scope. Share your printer's dielines and production specifications so they can be accounted for before final files are prepared.": 'Les fichiers prêts à imprimer peuvent être inclus dans le périmètre convenu. Transmettez les gabarits et les spécifications de votre imprimeur avant la préparation des fichiers finaux.',
       'Copy': 'Copier', 'Copied!': 'Copié !', 'Portfolio': 'Portfolio', 'Elsewhere': 'Ailleurs',
       'Filter projects': 'Filtrer les projets', 'Go to contact form': 'Accéder au formulaire',
       'Choose language': 'Choisir la langue', 'Toggle dark mode': 'Changer le mode sombre', 'Toggle menu': 'Ouvrir le menu',
@@ -197,6 +238,18 @@ document.addEventListener('DOMContentLoaded', () => {
       'How many revisions do I get?': 'Wie viele Überarbeitungen sind enthalten?',
       'Do you work with clients outside Pakistan?': 'Arbeitest du mit Kunden außerhalb Pakistans?',
       'How do we get started?': 'Wie starten wir?',
+      'Selected clients': 'Ausgewählte Kunden',
+      'Pause client names': 'Namen anhalten',
+      'Play client names': 'Namen abspielen',
+      'Chat with Khizar on WhatsApp': 'Khizar auf WhatsApp schreiben',
+      'Can you build an identity around my existing logo?': 'Kannst du eine Markenidentität rund um mein bestehendes Logo entwickeln?',
+      'Yes. We can keep a logo that still fits your business and develop the supporting colours, typography, graphic elements and usage guidelines around it.': 'Ja. Ein Logo, das noch zu deinem Unternehmen passt, kann bleiben. Dazu entwickle ich passende Farben, Typografie, Grafikelemente und Anwendungsrichtlinien.',
+      'What do you need from me before starting an identity project?': 'Was brauchst du vor dem Start eines Markenprojekts von mir?',
+      'A short discussion about your business, audience, goals and preferences gives us a clear starting point. I will share a proposal with the agreed scope before design begins.': 'Ein kurzes Gespräch über dein Unternehmen, deine Zielgruppe, Ziele und Vorlieben schafft einen klaren Startpunkt. Vor dem Design erhältst du ein Angebot mit dem vereinbarten Umfang.',
+      'Can you design packaging for a product range?': 'Kannst du Verpackungen für eine Produktreihe gestalten?',
+      'Yes. Packaging projects can cover the visual direction and label or packaging layouts for the agreed products. The exact formats, deliverables and print requirements are confirmed in the proposal.': 'Ja. Das Projekt kann die visuelle Ausrichtung und vereinbarte Etiketten- oder Verpackungslayouts umfassen. Formate, Ergebnisse und Druckanforderungen werden im Angebot festgehalten.',
+      'Will the packaging files be ready for my printer?': 'Sind die Verpackungsdateien für meine Druckerei vorbereitet?',
+      "Print-ready artwork can be included when it is part of the agreed scope. Share your printer's dielines and production specifications so they can be accounted for before final files are prepared.": 'Druckfertige Daten können Teil des vereinbarten Umfangs sein. Sende vor der Fertigstellung die Stanzformen und Produktionsvorgaben deiner Druckerei.',
       'Copy': 'Kopieren', 'Copied!': 'Kopiert!', 'Portfolio': 'Portfolio', 'Elsewhere': 'Weitere Kanäle',
       'Filter projects': 'Projekte filtern', 'Go to contact form': 'Zum Kontaktformular',
       'Choose language': 'Sprache auswählen', 'Toggle dark mode': 'Dunkelmodus wechseln', 'Toggle menu': 'Menü öffnen',
@@ -240,6 +293,12 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
     if (languageSelect) languageSelect.value = activeLanguage;
+    if (brandMarqueeToggle) {
+      const label = brandStrip && brandStrip.classList.contains('is-paused')
+        ? 'Play client names'
+        : 'Pause client names';
+      brandMarqueeToggle.textContent = dictionary[label] || label;
+    }
   }
 
   let savedLanguage = 'en';
@@ -271,38 +330,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ---------- subtle hero parallax (decorative background blob only) ---------- */
-  const heroEl = document.querySelector('.hero');
-  if (heroEl && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const updateParallax = () => {
-      const offset = Math.min(window.scrollY, 600) * 0.12;
-      heroEl.style.setProperty('--parallax-y', offset + 'px');
-    };
-    window.addEventListener('scroll', updateParallax, { passive: true });
-    updateParallax();
-  }
-
-  /* ---------- scroll progress bar ---------- */
-  const progressBar = document.getElementById('scrollProgress');
-  if (progressBar) {
-    const updateProgress = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      progressBar.style.width = pct + '%';
-    };
-    window.addEventListener('scroll', updateProgress, { passive: true });
-    updateProgress();
-  }
-
   /* ---------- back to top floating button ---------- */
   const backToTop = document.getElementById('backToTop');
   if (backToTop) {
-    const toggleVisible = () => {
-      backToTop.classList.toggle('visible', window.scrollY > 480);
-    };
-    window.addEventListener('scroll', toggleVisible, { passive: true });
-    toggleVisible();
+    const topSentinel = document.createElement('span');
+    topSentinel.setAttribute('aria-hidden', 'true');
+    topSentinel.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:1px;pointer-events:none;';
+    document.body.insertBefore(topSentinel, document.body.firstChild);
+    const topObserver = new IntersectionObserver(([entry]) => {
+      backToTop.classList.toggle('visible', !entry.isIntersecting);
+    }, { rootMargin: '480px 0px 0px 0px' });
+    topObserver.observe(topSentinel);
     backToTop.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
@@ -419,6 +457,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---------- GSAP hero and section text motion ---------- */
   const gsap = window.gsap;
+  const heroEl = document.querySelector('.hero');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (gsap && !reducedMotion) {
     if (window.ScrollTrigger) gsap.registerPlugin(window.ScrollTrigger);
@@ -435,6 +474,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (window.ScrollTrigger) {
+      const heroScene = document.querySelector('.hero-depth');
+      if (heroScene) {
+        gsap.to(heroScene, {
+          y: 72,
+          rotationX: -7,
+          scale: 1.08,
+          transformOrigin: '50% 45%',
+          ease: 'none',
+          scrollTrigger: {
+            trigger: heroEl,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 0.8
+          }
+        });
+      }
       gsap.utils.toArray('.section-head').forEach(sectionHeading => {
         gsap.from(sectionHeading, {
           y: 24,

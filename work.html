@@ -94,7 +94,12 @@
   <section>
     <div class="wrap">
       <div id="work-filters"></div>
-      <div class="work-grid full" id="work-full-grid"></div>
+      <div class="work-grid full" id="work-full-grid" aria-busy="true">
+        <p class="sr-only">Loading selected projects</p>
+        <div class="project-skeleton" aria-hidden="true"></div>
+        <div class="project-skeleton" aria-hidden="true"></div>
+        <div class="project-skeleton" aria-hidden="true"></div>
+      </div>
 
       <div class="work-more reveal">
         <a href="#" data-social-link="behance" target="_blank" rel="noopener" class="btn">View full portfolio on Behance <span class="arrow">→</span></a>
@@ -121,6 +126,7 @@
 <button id="backToTop" aria-label="Back to top" type="button">↑</button>
 
 <script src="js/config.js"></script>
+<script src="js/projects-loader.js"></script>
 <script src="js/render.js"></script>
 <script src="js/cursor.js"></script>
 <script src="js/main.js"></script>

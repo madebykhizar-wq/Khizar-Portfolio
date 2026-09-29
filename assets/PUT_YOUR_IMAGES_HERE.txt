@@ -1,7 +1,5 @@
-Your logo (logo.svg) and favicons (favicon-16.png, favicon-32.png,
-favicon-180.png) are already here and wired up in config.js.
+Your logo (logo.svg), favicons, and portrait photo (my-photo.jpg) are
+already in this folder and wired up in js/config.js.
 
-Still needed: your portrait photo for the homepage "About Me" section.
-Add it here (e.g. "assets/my-photo.jpg") and set personal.photo in
-js/config.js to that path — the placeholder box will be replaced
-automatically.
+To replace the portrait, add the new image here and update
+personal.photo in js/config.js to its relative path.

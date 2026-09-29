@@ -16,7 +16,17 @@
   const $ = (sel, ctx) => (ctx || document).querySelector(sel);
   const $all = (sel, ctx) => Array.from((ctx || document).querySelectorAll(sel));
   const esc = (str) => String(str == null ? "" : str)
-    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  const safeUrl = (value, fallback) => {
+    if (!value) return fallback || "";
+    try {
+      const url = new URL(String(value), window.location.href);
+      return url.protocol === "https:" || url.protocol === "http:" ? url.href : fallback || "";
+    } catch {
+      return fallback || "";
+    }
+  };
 
   /* ---------- CSS variables from config.colors / typography ---------- */
   function applyTheme() {
@@ -163,6 +173,11 @@
     footer.innerHTML = `
       <span>© ${esc(cfg.footer.copyrightYear)} ${esc(cfg.footer.copyrightName)}</span>
       ${madeByHtml}
+      <nav class="footer-policies" aria-label="Policies">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="refund-policy.html">Refund policy</a>
+      </nav>
       <span><a href="${backHref}" id="footerBackLink">${backLabel}</a></span>`;
   }
 
@@ -197,36 +212,33 @@
       <div class="hero-chip"><span class="chip-icon">${c.icon}</span><span>${esc(c.label)}</span></div>`).join("");
   }
 
-  /* ---------- marquee ---------- */
-  function renderMarquee() {
-    const el = $("#marquee-track");
-    if (!el) return;
-    const items = cfg.marquee.map(m => `<span class="dot">${esc(m)}</span>`).join("");
-    el.innerHTML = items + items; // duplicated for seamless loop
-  }
-
-  /* ---------- client / brand logo marquee ---------- */
-  function renderClientBrandMarquee() {
-    const el = $("#brand-marquee-track");
+  /* ---------- client names ---------- */
+  function renderClientBrands() {
+    const el = $("#brand-list");
     if (!el || !cfg.clientBrands) return;
-    const items = cfg.clientBrands.map(b => `<span class="brand-chip">${esc(b)}</span>`).join("");
-    el.innerHTML = items + items; // duplicated for seamless loop
+    const names = cfg.clientBrands.map(b => `<li class="brand-chip">${esc(b)}</li>`).join("");
+    el.innerHTML = names;
+    const duplicate = $("#brand-list-duplicate");
+    if (duplicate) duplicate.innerHTML = names;
   }
 
   /* ---------- project card markup ---------- */
   function projectCard(p, tagOverride) {
-    const thumbnail = esc(p.thumbnail);
+    const thumbnail = esc(safeUrl(p.thumbnail));
+    const description = esc(p.description);
+    const destination = esc(safeUrl(p.behanceLink || p.websiteLink || cfg.social.behance, "#"));
     const featuredBackdrop = p.featured
       ? `<img class="work-card-backdrop" src="${thumbnail}" alt="" aria-hidden="true" loading="lazy">`
       : "";
     return `
-      <a class="work-card reveal${p.featured ? " feature" : ""}" href="${esc(p.behanceLink || p.websiteLink || "#")}" target="_blank" rel="noopener">
+      <a class="work-card reveal${p.featured ? " feature" : ""}" href="${destination}" target="_blank" rel="noopener" aria-label="${esc(p.title)}. ${description} Opens the project in a new tab.">
         <span class="work-tag">${esc(tagOverride || p.cardLabel)}</span>
         ${featuredBackdrop}
-        <img src="${thumbnail}" alt="${esc(p.title)}" loading="lazy">
+        <img src="${thumbnail}" alt="${esc(p.title)} project preview" loading="lazy" decoding="async">
         <div class="work-overlay">
-          <div class="cat">${esc(p.category)} — ${esc(p.tag)}</div>
+          <div class="cat">${esc(p.category)} / ${esc(p.tag)}</div>
           <h3>${esc(p.title)}</h3>
+          <p>${description}</p>
           <span class="go">View case study ↗</span>
         </div>
       </a>`;
@@ -235,8 +247,19 @@
   /* ---------- homepage work showcase ---------- */
   function renderWorkPreview() {
     const grid = $("#work-preview-grid");
-    if (!grid) return;
+    if (!grid || window.SITE_PROJECTS_LOADING) return;
     const filterBar = $("#work-filters");
+    grid.setAttribute("aria-busy", "false");
+    if (window.SITE_PROJECTS_ERROR) {
+      grid.innerHTML = `<p class="content-error" role="status">Project work could not be loaded. Please try again later.</p>`;
+      if (filterBar) filterBar.hidden = true;
+      return;
+    }
+    if (filterBar) filterBar.hidden = false;
+    if (!cfg.projects.length) {
+      grid.innerHTML = `<p class="content-error" role="status">Project work is being updated. Please check back soon.</p>`;
+      return;
+    }
     const categories = ["All", ...new Set(cfg.projects.map(p => p.category))];
 
     function draw(filter) {
@@ -267,7 +290,19 @@
   /* ---------- full work grid + filters (work.html) ---------- */
   function renderWorkFull() {
     const grid = $("#work-full-grid");
-    if (!grid) return;
+    if (!grid || window.SITE_PROJECTS_LOADING) return;
+    const filterBar = $("#work-filters");
+    grid.setAttribute("aria-busy", "false");
+    if (window.SITE_PROJECTS_ERROR) {
+      grid.innerHTML = `<p class="content-error" role="status">Project work could not be loaded. Please try again later.</p>`;
+      if (filterBar) filterBar.hidden = true;
+      return;
+    }
+    if (filterBar) filterBar.hidden = false;
+    if (!cfg.projects.length) {
+      grid.innerHTML = `<p class="content-error" role="status">Project work is being updated. Please check back soon.</p>`;
+      return;
+    }
 
     function draw(filter) {
       const items = filter && filter !== "All"
@@ -277,7 +312,6 @@
     }
     draw();
 
-    const filterBar = $("#work-filters");
     if (filterBar) {
       const categories = ["All", ...new Set(cfg.projects.map(p => p.category))];
       filterBar.innerHTML = categories.map((c, i) =>
@@ -434,7 +468,12 @@
     side.innerHTML = `
       ${emailBlock}
       ${websiteBlock}
-      <div class="block"><span>Elsewhere</span><div class="socials">${socialEntries}</div></div>`;
+      <div class="block"><span>Elsewhere</span><div class="socials">${socialEntries}</div></div>
+      ${cfg.social.whatsapp ? `<a class="whatsapp-contact" href="${esc(cfg.social.whatsapp)}" target="_blank" rel="noopener">
+        <img src="${esc(cfg.personal.photo)}" alt="" loading="lazy">
+        <span>Chat with Khizar on WhatsApp</span>
+        <span class="whatsapp-contact-arrow" aria-hidden="true">↗</span>
+      </a>` : ""}`;
   }
 
   /* ---------- testimonials (optional section) ---------- */
@@ -522,6 +561,14 @@
     }
   }
 
+  document.addEventListener("site-projects-ready", () => {
+    if (page !== "home" && page !== "work") return;
+    renderWorkPreview();
+    renderWorkFull();
+    if (window.observeReveals) window.observeReveals($all(".work-grid .reveal:not(.in)"));
+    document.dispatchEvent(new CustomEvent("site-content-updated"));
+  });
+
   /* ---------- run everything ---------- */
   applyTheme();
   applyFonts();
@@ -533,8 +580,7 @@
 
   if (page === "home") {
     renderHero();
-    renderMarquee();
-    renderClientBrandMarquee();
+    renderClientBrands();
     renderWorkPreview();
     renderServicesPreview();
     renderAboutTeaser();

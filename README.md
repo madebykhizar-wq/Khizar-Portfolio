@@ -2,34 +2,58 @@
 
 ## How to edit this site
 
-You should only ever need to touch **one file**: `js/config.js`.
+Most portfolio text and settings live in `js/config.js`. Projects and
+project images can be updated through the authenticated editor at
+`/admin/` after its OAuth service has been configured.
 
 Open it and edit the values — your name, bio, email, social links,
-colors, fonts, services, and every project card. Save, re-upload, done.
-No HTML editing required.
+colors, fonts, services and FAQs. The project editor stores entries in
+`content/projects.json` and uploads images to `assets/projects/`.
 
-To swap images, replace files inside `/assets` (logo, favicon) or
-`/projects/<project-name>/` (thumbnails, covers), then point the
-matching `thumbnail` / `cover` field in `config.js` at the new path.
-Project images currently point to external Behance CDN URLs — you can
-leave those as-is or switch any of them to a local file.
+To edit projects in the editor, sign in, update or add an entry, then
+save it for editorial review. The editor opens a GitHub pull request;
+merge that change into `main` to publish it through the existing site
+deployment. The public project grid reads `content/projects.json`.
 
 The public navigation is a single-page flow: Work, Services, and About
 jump to sections on `index.html`. Every configured project is shown in
 the homepage work grid, with category filters.
+
+## Configure the project editor
+
+The static site cannot safely store a GitHub OAuth client secret. Before
+`/admin/` can sign in, deploy a trusted GitHub OAuth broker and replace
+the example `backend.base_url` in `admin/config.yml` with that broker's
+HTTPS origin. Register the broker's callback URL in a GitHub OAuth App,
+keep its client secret in the broker's server-side environment, and
+restrict authorization to the portfolio repository and trusted editors.
+Never put OAuth secrets, access tokens, or private keys in this repository.
+
+The editor uses the GitHub backend with editorial workflow enabled.
+Editors' project changes are proposed for review instead of publishing
+directly to the live branch. The rest of the site can be previewed locally
+with `python -m http.server 8000`; `/admin/` sign-in requires the deployed
+OAuth broker and GitHub configuration.
+
+Privacy, terms, and refund pages are initial drafts, not legal advice.
+Review them for accuracy and obtain any professional advice you need before
+publishing them as final policies.
 
 ## Folder structure
 
 ```
 index.html / about.html / services.html / work.html   → page shells (don't edit for content changes)
 css/styles.css      → all visual styling (colors are CSS variables, driven by config.js at runtime)
-js/config.js         ← EDIT THIS FILE for all content changes
-js/render.js         → builds the page from config.js (no edit needed)
-js/main.js            → interactive behavior: nav, language/theme controls, scroll progress, counters, filters, GSAP motion
+js/config.js         ← edit site profile, services, FAQs, and design settings
+content/projects.json → project entries managed by the admin editor
+admin/                → GitHub-backed editorial CMS
+js/render.js         → builds the page from config and project content
+js/projects-loader.js → loads project data and reports load errors
+js/main.js            → nav, language/theme controls, scroll progress, counters, filters, motion
 js/cursor.js          → the custom cursor effect
 js/vendor/            → locally hosted GSAP and ScrollTrigger files
 assets/                → logo, favicon, hero image go here
-projects/<slug>/       → per-project thumbnail.jpg / cover.jpg go here
+assets/projects/       → project images uploaded in the editor
 icons/, fonts/         → reserved for any icon or local font files you add later
 ```
 
@@ -48,6 +72,9 @@ icons/, fonts/         → reserved for any icon or local font files you add lat
   language.
 - **GSAP motion** — local GSAP and ScrollTrigger assets animate the hero
   and section headings. Animations are disabled for reduced-motion users.
+- **Homepage motion and proof** — client names move in a single,
+  pausable ticker. Unapproved sample testimonials are removed and the
+  section stays hidden until you add real, approved quotes in `config.js`.
 - **Hero refresh** — the two-line desktop headline highlights its final
   phrase in green, with service chips, trust copy, and calls to action
   arranged in a compact layout over a subtle animated grid and wave.
@@ -81,11 +108,8 @@ icons/, fonts/         → reserved for any icon or local font files you add lat
     delay instead of all at once, and have a soft colored glow on hover.
   - Nav links get an animated underline on hover/active.
 - **New homepage section: photo + about**, right before the contact
-  section — image on the left, short bio on the right. **You still
-  need to add your photo** — drop it in `/assets` and set
-  `personal.photo` in `config.js` to that path (see the note in
-  `/assets`). Until then it shows a placeholder box so the layout
-  still looks right.
+  section — image on the left, short bio on the right. The portrait
+  image is `assets/my-photo.jpg`, configured through `personal.photo`.
 
 
 

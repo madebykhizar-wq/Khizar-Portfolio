@@ -1,9 +1,9 @@
 /* =========================================================
    SITE CONFIG
    ---------------------------------------------------------
-   This is the ONLY file you should need to edit to update
-   the portfolio. Change text here, replace images in
-   /assets and /projects, and the whole site updates itself.
+   Edit this file for profile, service, FAQ, and design settings.
+   Project entries live in content/projects.json and are managed
+   with the authenticated editor under /admin/.
 
    Do NOT edit the .html files for routine content changes —
    they just render whatever is written here.
@@ -164,7 +164,7 @@ window.SITE_CONFIG = {
   // CLIENT / BRAND MARQUEE (homepage — logo-style scrolling strip)
   // ===========================================================
   clientBrands: [
-    "GFI JOJO", "Bioxy SL", "Pakson Intenational", "Synora", "Hyundai", "Suzuki", "Burger Station",
+    "GFI JOJO", "Bioxy SL", "Pakson International", "Synora", "Hyundai", "Suzuki", "Burger Station",
     "Move Energy", "Wheels & Zameen", "Go Petroleum", "Wirsa Restaurant"
   ],
 
@@ -219,183 +219,22 @@ window.SITE_CONFIG = {
     }
   ],
 
-  // ===========================================================
-  // PROJECTS — every project card in the homepage work showcase
-  // is generated from this list. Add a new object to add a
-  // project; delete one to remove it; set featured:true for the
-  // large highlighted card.
-  //
-  // thumbnail / cover can point to a local file (e.g.
-  // "projects/bioxy/thumbnail.jpg") once you add one to the
-  // /projects folder, or stay pointed at an external URL.
-  //
-  // Projects appear in this order in the homepage showcase.
-  // ===========================================================
-  projects: [
-    {
-      title: "Synvora®",
-      category: "Tech / AI",
-      tag: "Brand Guidelines",
-      year: "2026",
-      client: "Synvora",
-      description: "Full brand guideline system for an AI company.",
-      services: ["Brand Guidelines", "Logo Design"],
-      thumbnail: "https://mir-s3-cdn-cf.behance.net/projects/404/6aeedb252601027.Y3JvcCwyODY5LDIyNDQsMCww.jpg",
-      cover: "https://mir-s3-cdn-cf.behance.net/projects/404/6aeedb252601027.Y3JvcCwyODY5LDIyNDQsMCww.jpg",
-      behanceLink: "https://www.behance.net/gallery/252601027/Synvora-AI-Brand-Guidelines",
-      websiteLink: "",
-      featured: true,
-      cardLabel: "Featured",
-    },
-    {
-      title: "Bioxy S.L.",
-      category: "Health & Wellness",
-      tag: "Brand Identity",
-      year: "2026",
-      client: "Bioxy S.L.",
-      description: "Global health & wellness brand identity.",
-      services: ["Brand Identity", "Logo Design"],
-      thumbnail: "https://mir-s3-cdn-cf.behance.net/projects/404/83fbbe247246109.Y3JvcCwyODcwLDIyNDQsMCww.jpg",
-      cover: "https://mir-s3-cdn-cf.behance.net/projects/404/83fbbe247246109.Y3JvcCwyODcwLDIyNDQsMCww.jpg",
-      behanceLink: "https://www.behance.net/gallery/247246109/Bioxy-SL-Global-Health-Wellness-Brand-Identity",
-      websiteLink: "",
-      featured: false,
-      cardLabel: "Identity",
-    },
-    {
-      title: "Logofolio Vol. 1",
-      category: "Logofolio",
-      tag: "Marks & Logotypes",
-      year: "2025",
-      client: "Selected Clients",
-      description: "A collection of selected logo marks and logotypes.",
-      services: ["Logo Design"],
-      thumbnail: "https://mir-s3-cdn-cf.behance.net/projects/404/370f5a247244301.Y3JvcCwxMzk5LDEwOTUsMCww.jpg",
-      cover: "https://mir-s3-cdn-cf.behance.net/projects/404/370f5a247244301.Y3JvcCwxMzk5LDEwOTUsMCww.jpg",
-      behanceLink: "https://www.behance.net/gallery/247244301/Logofolio-Vol1-Selected-Logo-Marks-Logotypes",
-      websiteLink: "",
-      featured: false,
-      cardLabel: "Logofolio"
-    },
-    {
-      title: "Minimal Mark",
-      category: "Leather Goods",
-      tag: "Logo Design",
-      year: "2025",
-      client: "Leather Goods Co.",
-      description: "Minimal logo design for a leather goods brand.",
-      services: ["Logo Design"],
-      thumbnail: "https://mir-s3-cdn-cf.behance.net/projects/404/7bcf93163338087.Y3JvcCwxMDQ5LDgyMSwwLDA.jpg",
-      cover: "https://mir-s3-cdn-cf.behance.net/projects/404/7bcf93163338087.Y3JvcCwxMDQ5LDgyMSwwLDA.jpg",
-      behanceLink: "https://www.behance.net/gallery/163338087/Leather-Goods-Minimal-Logo-Design",
-      websiteLink: "",
-      featured: false,
-      cardLabel: "Logo",
-    },
-    {
-      title: "40+ Social Media Posts",
-      category: "Social Design",
-      tag: "Brand Collateral",
-      year: "2025",
-      client: "Various",
-      description: "A set of 40+ social media post designs.",
-      services: ["Brand Collateral"],
-      thumbnail: "https://mir-s3-cdn-cf.behance.net/projects/404/4d950e247307077.Y3JvcCwzMTk2LDI0OTksMjc2LDA.jpg",
-      cover: "https://mir-s3-cdn-cf.behance.net/projects/404/4d950e247307077.Y3JvcCwzMTk2LDI0OTksMjc2LDA.jpg",
-      behanceLink: "https://www.behance.net/gallery/247307077/40-Social-Media-Posts",
-      websiteLink: "",
-      featured: false,
-      cardLabel: "Collateral"
-    },
-    {
-      title: "Hyundai Gujranwala",
-      category: "Automotive",
-      tag: "Social Ad Design",
-      year: "2024",
-      client: "Hyundai Gujranwala",
-      description: "Social media ad design campaign.",
-      services: ["Brand Collateral"],
-      thumbnail: "https://mir-s3-cdn-cf.behance.net/projects/404/18adc2216177681.Y3JvcCwzMzAxLDI1ODIsMTE1Miww.jpg",
-      cover: "https://mir-s3-cdn-cf.behance.net/projects/404/18adc2216177681.Y3JvcCwzMzAxLDI1ODIsMTE1Miww.jpg",
-      behanceLink: "https://www.behance.net/gallery/216177681/Hyundai-Gujranwala-Social-Media-Ad-Design",
-      websiteLink: "",
-      featured: false,
-      cardLabel: "Campaign"
-    },
-    {
-      title: "Personal Portfolio",
-      category: "Self-Initiated",
-      tag: "Portfolio System",
-      year: "2024",
-      client: "Self-Initiated",
-      description: "A self-initiated personal portfolio project.",
-      services: ["Brand Identity"],
-      thumbnail: "https://mir-s3-cdn-cf.behance.net/projects/404/42b8f5247258565.Y3JvcCw2NDY1LDUwNTYsMCww.jpg",
-      cover: "https://mir-s3-cdn-cf.behance.net/projects/404/42b8f5247258565.Y3JvcCw2NDY1LDUwNTYsMCww.jpg",
-      behanceLink: "https://www.behance.net/gallery/247258565/Personal-Portfolio",
-      websiteLink: "",
-      featured: false,
-      cardLabel: "Self-Initiated"
-    }
-  ],
+  // Project entries are loaded from content/projects.json so they can
+  // be managed through the authenticated GitHub CMS.
+  projects: [],
 
   // ===========================================================
-  // TESTIMONIALS — add objects here to show a testimonials
-  // section. Leave the array empty ([]) to hide the section
-  // entirely.
-  //
-  // The entries below are PLACEHOLDERS built from real client/
-  // brand names already listed in clientBrands — the quote text
-  // itself is not a real client quote yet. Replace each `review`
-  // (and add a `photo` if you have one) with the client's actual
-  // words before publishing. Six entries = two rows of three, so
-  // the 4th card gets the inverted accent style.
+  // TESTIMONIALS — add client-approved quotes to show the section.
+  // Leave empty until you have real quotes and permission to publish.
   // ===========================================================
-  testimonials: [
-    {
-      name: "Brand Team, JOJO",
-      company: "JoJo",
-      role: "Brand Team",
-      review: "Khizar consistently delivered packaging designs that balanced creativity with commercial impact. His attention to detail, fast turnaround, and understanding of FMCG branding made him a valuable part of our product launches."
-    },
-    {
-      name: "Founder, BIOXY",
-      company: "BIOXY",
-      role: "Founder",
-      review: "Khizar transformed our vision into a professional brand identity that truly reflects our values. From the logo to the complete brand system, every detail was thoughtfully crafted and exceeded our expectations."
-    },
-    {
-      name: "Marketing Team, Hyundai Gujranwala",
-      company: "Hyundai Gujranwala",
-      role: "Marketing Team",
-      review: "Working with Khizar was smooth and efficient. His clean, modern design approach helped us create marketing visuals that strengthened our brand presence and connected well with our audience."
-    },
-    {
-      name: "Marketing Team, Suzuki",
-      company: "Suzuki",
-      role: "Marketing Team",
-      review: "Khizar delivered high-quality promotional designs with excellent attention to branding consistency. His creativity and professionalism made every project easy to manage."
-    },
-    {
-      name: "Owner, Burger Station",
-      company: "Burger Station",
-      role: "Owner",
-      review: "Khizar understood exactly what our brand needed. The visual identity and promotional materials he created gave our business a fresh, professional look that customers immediately noticed."
-    },
-    {
-      name: "Founder, Move Energy",
-      company: "Move Energy",
-      role: "Founder",
-      review: "Khizar brought clarity and consistency to our brand identity. His strategic thinking, combined with strong visual design skills, resulted in branding that we're proud to represent."
-    }
-  ],
+  testimonials: [],
 
   // ===========================================================
   // PROCESS (How We'd Work — shown on homepage & services page)
   // ===========================================================
   process: [
     { title: "Discovery", description: "Understanding your business and where the brand falls short." },
-    { title: "Planing",  description: "Direction agreed before a single pixel is designed." },
+    { title: "Planning", description: "Direction agreed before a single pixel is designed." },
     { title: "Design",    description: "Concepts and a focused round of refinement." },
     { title: "Handoff",   description: "Final files and guidelines, ready to use." }
   ],
@@ -431,7 +270,11 @@ window.SITE_CONFIG = {
   // ===========================================================
   faq: [
     { question: "How long does a project take?", answer: "Most logo and identity projects take 2–3 weeks. Packaging and full brand guideline projects usually run 3–5 weeks, depending on scope and revision rounds." },
-    { question: "What's included in a brand identity package?", answer: "A primary logo with secondary marks, a colour and typography system, supporting iconography, and source files in AI, EPS, SVG and PNG — plus guidelines on how to use it all." },
+    { question: "What's included in a brand identity package?", answer: "A primary logo with secondary marks, a colour and typography system, supporting iconography, and source files in AI, EPS, SVG and PNG, plus guidelines on how to use it all." },
+    { question: "Can you build an identity around my existing logo?", answer: "Yes. We can keep a logo that still fits your business and develop the supporting colours, typography, graphic elements and usage guidelines around it." },
+    { question: "What do you need from me before starting an identity project?", answer: "A short discussion about your business, audience, goals and preferences gives us a clear starting point. I will share a proposal with the agreed scope before design begins." },
+    { question: "Can you design packaging for a product range?", answer: "Yes. Packaging projects can cover the visual direction and label or packaging layouts for the agreed products. The exact formats, deliverables and print requirements are confirmed in the proposal." },
+    { question: "Will the packaging files be ready for my printer?", answer: "Print-ready artwork can be included when it is part of the agreed scope. Share your printer's dielines and production specifications so they can be accounted for before final files are prepared." },
     { question: "How many revisions do I get?", answer: "Every package includes a set number of focused revision rounds, agreed before we start. Strategy gets locked in early so revisions stay small and fast, not a redesign from scratch." },
     { question: "Do you work with clients outside Pakistan?", answer: "Yes — most of my clients are based in the US, UK and Middle East. All communication, files and calls are handled remotely." },
     { question: "How do we get started?", answer: "Book a discovery call or send a message through the contact form. We'll talk through your brand, timeline and budget, and I'll follow up with a proposal." }
