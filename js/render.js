@@ -287,6 +287,8 @@
     const duplicate = $("#brand-list-duplicate");
     if (duplicate) duplicate.innerHTML = itemsHtml;
   }
+  window.renderClientBrands = renderClientBrands;
+  document.addEventListener("site-client-brands-ready", renderClientBrands);
 
 
   /* ---------- services marquee (below selected clients) ---------- */

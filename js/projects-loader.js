@@ -70,6 +70,37 @@
     return content.projects;
   }
 
+  // 3. Load client brands from Supabase Cloud (dynamic logos)
+  async function loadClientBrandsFromSupabase() {
+    const sb = config.supabase;
+    if (!sb || !sb.url || !sb.anonKey) return;
+    try {
+      const endpoint = `${sb.url.replace(/\/+$/, '')}/rest/v1/client_brands?select=*&order=sort_order.asc`;
+      const res = await fetch(endpoint, {
+        headers: { 'apikey': sb.anonKey, 'Authorization': `Bearer ${sb.anonKey}` }
+      });
+      if (!res.ok) return;
+      const data = await res.json();
+      if (Array.isArray(data) && data.length) {
+        config.clientBrands = data.map(b => ({
+          name: b.name,
+          sub: b.sub || "",
+          logoImage: b.logo_image_url || "",
+          logo: (b.name || "").toLowerCase().replace(/[^a-z0-9]/g, "")
+        }));
+        if (typeof window.renderClientBrands === "function") {
+          window.renderClientBrands();
+        } else {
+          document.dispatchEvent(new CustomEvent("site-client-brands-ready"));
+        }
+      }
+    } catch(err) {
+      console.warn("Could not load client brands from Supabase:", err.message);
+    }
+  }
+
+  loadClientBrandsFromSupabase();
+
   // Load handler
   loadFromSupabase()
     .then(projects => {
