@@ -845,6 +845,33 @@
             <input type="text" id="pCover" placeholder="Leave blank to use thumbnail URL">
           </div>
 
+          <!-- MULTI-IMAGE CASE STUDY GALLERY -->
+          <div class="form-group" style="background: rgba(255,255,255,0.02); padding: 14px; border-radius: 10px; border: 1px dashed rgba(255,255,255,0.12);">
+            <label style="color:#28a064; font-weight:700;">✦ Case Study Presentation Gallery <span style="font-weight:400;color:var(--text-muted);">(Upload multiple images/slides)</span></label>
+            <div class="upload-zone" id="galleryUploadZone" style="padding:16px;">
+              <input type="file" id="pGalleryFiles" multiple accept="image/png,image/svg+xml,image/jpeg,image/webp,image/gif">
+              <div class="upload-zone-icon" style="font-size:24px;">📚</div>
+              <div class="upload-zone-text" style="font-size:12px;">
+                <strong>Click or drop multiple images here</strong><br>
+                Upload full project presentation slides &amp; mockups at once
+              </div>
+              <div class="upload-progress" id="galleryUploadProgress">
+                <div class="upload-progress-bar" id="galleryUploadProgressBar"></div>
+              </div>
+            </div>
+
+            <!-- Uploaded gallery preview grid -->
+            <div id="galleryPreviewContainer" style="margin-top:12px; display:none;">
+              <div style="font-size:11.5px; font-weight:600; color:#8fa297; margin-bottom:8px;">
+                Active Gallery Slides (<span id="galleryCount">0</span> images) — click ✕ on any image to remove:
+              </div>
+              <div id="galleryItemsGrid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(75px, 1fr)); gap:8px;"></div>
+            </div>
+
+            <div class="upload-or-row"><span>OR paste additional image URLs (one per line)</span></div>
+            <textarea id="pGalleryUrls" rows="2" placeholder="https://... image1&#10;https://... image2" style="font-size:12px;"></textarea>
+          </div>
+
           <div class="form-row">
             <div class="form-group">
               <label for="pBehance">Behance Case Study URL</label>
@@ -1332,6 +1359,95 @@
         if (url) { const el = $('#cLogoUrl'); if (el) el.value = ''; }
       });
 
+      // Multi-image gallery state & rendering
+      let projectGalleryImages = [];
+
+      function renderGalleryPreview() {
+        const container = document.getElementById('galleryPreviewContainer');
+        const grid = document.getElementById('galleryItemsGrid');
+        const countEl = document.getElementById('galleryCount');
+        if (!container || !grid) return;
+
+        if (!projectGalleryImages.length) {
+          container.style.display = 'none';
+          grid.innerHTML = '';
+          if (countEl) countEl.textContent = '0';
+          return;
+        }
+
+        container.style.display = 'block';
+        if (countEl) countEl.textContent = projectGalleryImages.length;
+
+        grid.innerHTML = projectGalleryImages.map((url, i) => `
+          <div style="position:relative; border-radius:8px; overflow:hidden; aspect-ratio:1/1; background:#000; border:1px solid rgba(255,255,255,0.15);">
+            <img src="${url}" alt="Gallery slide ${i+1}" style="width:100%; height:100%; object-fit:cover;">
+            <button type="button" onclick="removeGalleryImage(${i})" style="position:absolute; top:3px; right:3px; background:rgba(0,0,0,0.8); color:#ff6b6b; border:none; border-radius:50%; width:20px; height:20px; font-size:11px; cursor:pointer; display:flex; align-items:center; justify-content:center; line-height:1;" title="Remove slide">✕</button>
+            <span style="position:absolute; bottom:3px; left:4px; font-size:9px; background:rgba(0,0,0,0.7); color:#fff; padding:1px 4px; border-radius:3px;">#${i + 1}</span>
+          </div>
+        `).join('');
+      }
+
+      window.removeGalleryImage = function(index) {
+        projectGalleryImages.splice(index, 1);
+        renderGalleryPreview();
+      };
+
+      function bindMultiUploadZone(fileInputId, zoneId, progressId, progressBarId, onFilesUploaded) {
+        const fileInput = document.getElementById(fileInputId);
+        const zone = document.getElementById(zoneId);
+        const progressWrap = document.getElementById(progressId);
+        const progressBar = document.getElementById(progressBarId);
+        if (!fileInput || !zone) return;
+
+        zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+        zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+        zone.addEventListener('drop', e => {
+          e.preventDefault(); zone.classList.remove('drag-over');
+          if (e.dataTransfer.files.length) handleBatchUpload(Array.from(e.dataTransfer.files));
+        });
+        fileInput.addEventListener('change', () => {
+          if (fileInput.files.length) handleBatchUpload(Array.from(fileInput.files));
+        });
+
+        async function handleBatchUpload(files) {
+          const allowed = ['image/png','image/jpeg','image/svg+xml','image/webp','image/gif'];
+          const validFiles = files.filter(f => allowed.includes(f.type));
+          if (!validFiles.length) {
+            showToast('❌ Please select valid image files (PNG, JPG, WebP, SVG)');
+            return;
+          }
+          if (progressWrap) progressWrap.style.display = 'block';
+          let uploadedUrls = [];
+          for (let i = 0; i < validFiles.length; i++) {
+            const f = validFiles[i];
+            const pct = Math.round(((i + 1) / validFiles.length) * 100);
+            if (progressBar) progressBar.style.width = `${pct}%`;
+            try {
+              const url = await uploadToSupabaseStorage(f, 'uploads');
+              uploadedUrls.push(url);
+            } catch(e) {
+              console.warn('Batch upload item error:', e);
+            }
+          }
+          if (progressWrap) {
+            setTimeout(() => {
+              progressWrap.style.display = 'none';
+              if (progressBar) progressBar.style.width = '0%';
+            }, 600);
+          }
+          if (fileInput) fileInput.value = '';
+          if (uploadedUrls.length) {
+            onFilesUploaded(uploadedUrls);
+            showToast(`✅ Uploaded ${uploadedUrls.length} image(s) to gallery!`);
+          }
+        }
+      }
+
+      bindMultiUploadZone('pGalleryFiles', 'galleryUploadZone', 'galleryUploadProgress', 'galleryUploadProgressBar', newUrls => {
+        projectGalleryImages = [...projectGalleryImages, ...newUrls];
+        renderGalleryPreview();
+      });
+
       // =========================================================
       // TABS
       // =========================================================
@@ -1547,24 +1663,45 @@
           });
           if (!res.ok) throw new Error(`Supabase returned ${res.status}`);
           const data = await res.json();
-          if (Array.isArray(data) && data.length) {
-            projects = data.map(item => ({
-              id: item.id,
-              title: item.title || '',
-              category: item.category || 'Identity',
-              tag: item.tag || 'Brand Identity',
-              year: String(item.year || ''),
-              client: item.client || '',
-              description: item.description || '',
-              services: Array.isArray(item.services) ? item.services : (item.services ? [item.services] : [item.tag]),
-              thumbnail: item.thumbnail || '',
-              cover: item.cover || item.thumbnail || '',
-              behanceLink: item.behance_link || item.behanceLink || '',
-              websiteLink: item.website_link || item.websiteLink || '',
-              featured: Boolean(item.featured),
-              cardLabel: item.card_label || item.cardLabel || (item.featured ? 'Featured' : item.tag),
-              sort_order: item.sort_order || 0
-            }));
+            projects = data.map(item => {
+              let imgList = [];
+              if (Array.isArray(item.images) && item.images.length) {
+                imgList = item.images;
+              } else if (typeof item.cover === 'string' && item.cover.includes('|||')) {
+                imgList = item.cover.split('|||').map(s => s.trim()).filter(Boolean);
+              } else if (typeof item.cover === 'string' && item.cover.startsWith('[')) {
+                try { imgList = JSON.parse(item.cover); } catch(e) {}
+              }
+              if (!imgList.length) {
+                if (item.cover) imgList.push(item.cover);
+                if (item.thumbnail && !imgList.includes(item.thumbnail)) imgList.push(item.thumbnail);
+              }
+              return {
+                id: item.id,
+                title: item.title || '',
+                category: item.category || 'Identity',
+                tag: item.tag || 'Brand Identity',
+                year: String(item.year || ''),
+                client: item.client || '',
+                description: item.description || '',
+                services: Array.isArray(item.services) ? item.services : (item.services ? [item.services] : [item.tag]),
+                thumbnail: item.thumbnail || (imgList[0] || ''),
+                cover: imgList[0] || item.cover || item.thumbnail || '',
+                images: imgList,
+                behanceLink: item.behance_link || item.behanceLink || '',
+                websiteLink: item.website_link || item.websiteLink || '',
+                featured: Boolean(item.featured),
+                cardLabel: item.card_label || item.cardLabel || (item.featured ? 'Featured' : item.tag),
+                sort_order: item.sort_order || 0
+              };
+            });
+
+            // Featured projects sorted to top
+            projects.sort((a, b) => {
+              if (a.featured && !b.featured) return -1;
+              if (!a.featured && b.featured) return 1;
+              return (a.sort_order || 0) - (b.sort_order || 0);
+            });
           }
           updateStatusBadge(true);
           renderStudio();
@@ -1658,15 +1795,16 @@
         // Reset upload zones
         pendingThumbUrl = '';
         pendingCoverUrl = '';
+        projectGalleryImages = [];
         ['thumbUploadResult','coverUploadResult'].forEach(id => {
           const el = document.getElementById(id);
           if (el) el.style.display = 'none';
         });
-        ['thumbUploadProgressBar','coverUploadProgressBar'].forEach(id => {
+        ['thumbUploadProgressBar','coverUploadProgressBar','galleryUploadProgressBar'].forEach(id => {
           const el = document.getElementById(id);
           if (el) el.style.width = '0%';
         });
-        ['thumbUploadProgress','coverUploadProgress'].forEach(id => {
+        ['thumbUploadProgress','coverUploadProgress','galleryUploadProgress'].forEach(id => {
           const el = document.getElementById(id);
           if (el) el.style.display = 'none';
         });
@@ -1687,6 +1825,24 @@
           $('#pCardLabel').value = p.cardLabel || '';
           $('#pWebsite').value = p.websiteLink || '';
           $('#pFeatured').checked = Boolean(p.featured);
+
+          // Populate gallery images
+          if (Array.isArray(p.images) && p.images.length) {
+            projectGalleryImages = [...p.images];
+          } else if (typeof p.cover === 'string' && p.cover.includes('|||')) {
+            projectGalleryImages = p.cover.split('|||').map(s => s.trim()).filter(Boolean);
+          } else if (typeof p.cover === 'string' && p.cover.startsWith('[')) {
+            try { projectGalleryImages = JSON.parse(p.cover).filter(Boolean); } catch(e) {}
+          }
+          if (!projectGalleryImages.length && p.cover) {
+            projectGalleryImages.push(p.cover);
+          }
+          if (p.thumbnail && !projectGalleryImages.includes(p.thumbnail)) {
+            projectGalleryImages.unshift(p.thumbnail);
+          }
+          renderGalleryPreview();
+          if ($('#pGalleryUrls')) $('#pGalleryUrls').value = '';
+
           // Show existing thumbnail in upload preview if it's a Supabase URL
           const thumbPreview = $('#thumbUploadPreview');
           const thumbResult = $('#thumbUploadResult');
@@ -1709,6 +1865,9 @@
           $('#pCardLabel').value = '';
           $('#pWebsite').value = '';
           $('#pFeatured').checked = false;
+          projectGalleryImages = [];
+          renderGalleryPreview();
+          if ($('#pGalleryUrls')) $('#pGalleryUrls').value = '';
         }
         updateLivePreview();
         $('#projectModal').classList.add('active');
@@ -1719,6 +1878,7 @@
         editingIndex = -1;
         pendingThumbUrl = '';
         pendingCoverUrl = '';
+        projectGalleryImages = [];
       }
 
       function updateLivePreview() {
@@ -1772,6 +1932,24 @@
         const servicesArr = rawServices.split(',').map(s => s.trim()).filter(Boolean);
         if (!servicesArr.length) servicesArr.push(tag);
 
+        // Process gallery images (uploaded files + pasted URLs)
+        const pastedGallery = ($('#pGalleryUrls') ? $('#pGalleryUrls').value : '')
+          .split(/[\n,]/)
+          .map(s => s.trim())
+          .filter(Boolean);
+
+        const combinedGallery = [...projectGalleryImages, ...pastedGallery];
+        if (!combinedGallery.length) {
+          if (cover) combinedGallery.push(cover);
+          if (thumbnail && !combinedGallery.includes(thumbnail)) combinedGallery.push(thumbnail);
+        }
+        const uniqueGallery = [...new Set(combinedGallery.filter(Boolean))];
+
+        // Multi images encoded in cover column via ||| delimiter
+        const coverValue = uniqueGallery.length > 1 ? uniqueGallery.join('|||') : (uniqueGallery[0] || cover || thumbnail);
+
+        const sortOrderVal = featured ? 1 : (editingIndex >= 0 ? (projects[editingIndex].sort_order || editingIndex + 2) : (projects.length + 2));
+
         const dbPayload = {
           title,
           category,
@@ -1781,12 +1959,12 @@
           description,
           services: servicesArr,
           thumbnail,
-          cover,
+          cover: coverValue,
           behance_link: behanceLink,
           website_link: websiteLink,
           featured,
           card_label: cardLabel,
-          sort_order: editingIndex >= 0 ? (projects[editingIndex].sort_order || editingIndex + 1) : (projects.length + 1)
+          sort_order: sortOrderVal
         };
 
         const projectObj = {
@@ -1798,7 +1976,8 @@
           description,
           services: servicesArr,
           thumbnail,
-          cover,
+          cover: uniqueGallery[0] || cover || thumbnail,
+          images: uniqueGallery,
           behanceLink,
           websiteLink,
           featured,
@@ -1839,6 +2018,13 @@
           }
           showToast(`Saved locally (Supabase offline)`);
         }
+
+        // Keep featured projects at the top of Studio list
+        projects.sort((a, b) => {
+          if (a.featured && !b.featured) return -1;
+          if (!a.featured && b.featured) return 1;
+          return (a.sort_order || 0) - (b.sort_order || 0);
+        });
 
         closeModal();
         renderStudio();

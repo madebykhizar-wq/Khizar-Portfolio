@@ -40,23 +40,60 @@
     const data = await res.json();
     if (!Array.isArray(data) || !data.length) throw new Error("No projects found in Supabase.");
 
-    return data.map(item => ({
-      id: item.id,
-      title: item.title || "",
-      category: item.category || "Identity",
-      tag: item.tag || "Brand Identity",
-      year: String(item.year || ""),
-      client: item.client || "",
-      description: item.description || "",
-      services: Array.isArray(item.services) ? item.services : (item.services ? [item.services] : [item.tag || "Design"]),
-      thumbnail: item.thumbnail || "",
-      cover: item.cover || item.thumbnail || "",
-      behanceLink: item.behance_link || item.behanceLink || "",
-      websiteLink: item.website_link || item.websiteLink || "",
-      featured: Boolean(item.featured),
-      cardLabel: item.card_label || item.cardLabel || (item.featured ? "Featured" : item.tag || "Project"),
-      sortOrder: item.sort_order || 0
-    }));
+    function parseImages(item) {
+      let list = [];
+      if (Array.isArray(item.images) && item.images.length) {
+        list = item.images.filter(isValidUrlOrPath);
+      } else if (typeof item.cover === "string" && item.cover.startsWith("[")) {
+        try {
+          const parsed = JSON.parse(item.cover);
+          if (Array.isArray(parsed)) list = parsed.filter(isValidUrlOrPath);
+        } catch(e) {}
+      } else if (typeof item.cover === "string" && item.cover.includes("|||")) {
+        list = item.cover.split("|||").map(s => s.trim()).filter(isValidUrlOrPath);
+      }
+
+      if (!list.length) {
+        if (isValidUrlOrPath(item.cover)) list.push(item.cover.trim());
+        if (isValidUrlOrPath(item.thumbnail) && !list.includes(item.thumbnail.trim())) {
+          list.push(item.thumbnail.trim());
+        }
+      }
+      return list;
+    }
+
+    const mapped = data.map(item => {
+      const images = parseImages(item);
+      const primaryThumb = item.thumbnail || (images[0] || "");
+      const primaryCover = (images[0] || item.cover || primaryThumb);
+      return {
+        id: item.id,
+        title: item.title || "",
+        category: item.category || "Identity",
+        tag: item.tag || "Brand Identity",
+        year: String(item.year || ""),
+        client: item.client || "",
+        description: item.description || "",
+        services: Array.isArray(item.services) ? item.services : (item.services ? [item.services] : [item.tag || "Design"]),
+        thumbnail: primaryThumb,
+        cover: primaryCover,
+        images: images.length ? images : [primaryCover].filter(Boolean),
+        behanceLink: item.behance_link || item.behanceLink || "",
+        websiteLink: item.website_link || item.websiteLink || "",
+        featured: Boolean(item.featured),
+        cardLabel: item.card_label || item.cardLabel || (item.featured ? "Featured" : item.tag || "Project"),
+        sortOrder: Number(item.sort_order) || 0
+      };
+    });
+
+    // FEATURED ALWAYS AT TOP OF WEBSITE
+    mapped.sort((a, b) => {
+      if (a.featured && !b.featured) return -1;
+      if (!a.featured && b.featured) return 1;
+      return (a.sortOrder || 0) - (b.sortOrder || 0);
+    });
+
+    return mapped;
   }
 
   // 2. Fallback to local content/projects.json if offline or Supabase fails
@@ -67,7 +104,28 @@
     if (!content || !Array.isArray(content.projects)) {
       throw new TypeError("Project content must include a projects array.");
     }
-    return content.projects;
+    const mapped = content.projects.map(p => {
+      let images = Array.isArray(p.images) ? p.images.filter(isValidUrlOrPath) : [];
+      if (!images.length) {
+        if (isValidUrlOrPath(p.cover)) images.push(p.cover);
+        if (isValidUrlOrPath(p.thumbnail) && !images.includes(p.thumbnail)) images.push(p.thumbnail);
+      }
+      return {
+        ...p,
+        images: images.length ? images : [p.cover || p.thumbnail].filter(Boolean),
+        featured: Boolean(p.featured),
+        sortOrder: Number(p.sortOrder || p.sort_order) || 0
+      };
+    });
+
+    // FEATURED ALWAYS AT TOP OF WEBSITE
+    mapped.sort((a, b) => {
+      if (a.featured && !b.featured) return -1;
+      if (!a.featured && b.featured) return 1;
+      return (a.sortOrder || 0) - (b.sortOrder || 0);
+    });
+
+    return mapped;
   }
 
   // 3. Load client brands from Supabase Cloud (dynamic logos)

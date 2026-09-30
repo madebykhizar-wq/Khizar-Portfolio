@@ -1,22 +1,27 @@
 {
   "projects": [
     {
-      "title": "Bioxy S.L.",
-      "category": "Health & Wellness",
-      "tag": "Brand Identity",
+      "title": "Sonex Nonstick Post Design",
+      "category": "Social Design",
+      "tag": "Cookware & Kitchenware",
       "year": "2026",
-      "client": "Bioxy S.L.",
-      "description": "Global health & wellness brand identity.",
+      "client": "Sonex Nonstick",
+      "description": "High-impact social media campaign and cookware showcase design.",
       "services": [
-        "Brand Identity",
-        "Logo Design"
+        "Brand Collateral",
+        "Poster Design",
+        "Social Design"
       ],
-      "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/83fbbe247246109.Y3JvcCwyODcwLDIyNDQsMCww.jpg",
-      "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/83fbbe247246109.Y3JvcCwyODcwLDIyNDQsMCww.jpg",
-      "behanceLink": "https://www.behance.net/gallery/247246109/Bioxy-SL-Global-Health-Wellness-Brand-Identity",
+      "thumbnail": "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1790767555106-lxv5c5.jpg",
+      "cover": "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1790767625666-76l64g.jpg",
+      "images": [
+        "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1790767555106-lxv5c5.jpg",
+        "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1790767625666-76l64g.jpg"
+      ],
+      "behanceLink": "",
       "websiteLink": "",
       "featured": true,
-      "cardLabel": "Identity"
+      "cardLabel": "Featured"
     },
     {
       "title": "Synvora®",
@@ -31,10 +36,34 @@
       ],
       "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/6aeedb252601027.Y3JvcCwyODY5LDIyNDQsMCww.jpg",
       "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/6aeedb252601027.Y3JvcCwyODY5LDIyNDQsMCww.jpg",
+      "images": [
+        "https://mir-s3-cdn-cf.behance.net/projects/404/6aeedb252601027.Y3JvcCwyODY5LDIyNDQsMCww.jpg"
+      ],
       "behanceLink": "https://www.behance.net/gallery/252601027/Synvora-AI-Brand-Guidelines",
       "websiteLink": "",
       "featured": true,
       "cardLabel": "Featured"
+    },
+    {
+      "title": "Bioxy S.L.",
+      "category": "Health & Wellness",
+      "tag": "Brand Identity",
+      "year": "2026",
+      "client": "Bioxy S.L.",
+      "description": "Global health & wellness brand identity.",
+      "services": [
+        "Brand Identity",
+        "Logo Design"
+      ],
+      "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/83fbbe247246109.Y3JvcCwyODcwLDIyNDQsMCww.jpg",
+      "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/83fbbe247246109.Y3JvcCwyODcwLDIyNDQsMCww.jpg",
+      "images": [
+        "https://mir-s3-cdn-cf.behance.net/projects/404/83fbbe247246109.Y3JvcCwyODcwLDIyNDQsMCww.jpg"
+      ],
+      "behanceLink": "https://www.behance.net/gallery/247246109/Bioxy-SL-Global-Health-Wellness-Brand-Identity",
+      "websiteLink": "",
+      "featured": true,
+      "cardLabel": "Identity"
     },
     {
       "title": "Logofolio Vol. 1",
@@ -48,6 +77,9 @@
       ],
       "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/370f5a247244301.Y3JvcCwxMzk5LDEwOTUsMCww.jpg",
       "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/370f5a247244301.Y3JvcCwxMzk5LDEwOTUsMCww.jpg",
+      "images": [
+        "https://mir-s3-cdn-cf.behance.net/projects/404/370f5a247244301.Y3JvcCwxMzk5LDEwOTUsMCww.jpg"
+      ],
       "behanceLink": "https://www.behance.net/gallery/247244301/Logofolio-Vol1-Selected-Logo-Marks-Logotypes",
       "websiteLink": "",
       "featured": false,
@@ -65,23 +97,29 @@
       ],
       "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/7bcf93163338087.Y3JvcCwxMDQ5LDgyMSwwLDA.jpg",
       "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/7bcf93163338087.Y3JvcCwxMDQ5LDgyMSwwLDA.jpg",
+      "images": [
+        "https://mir-s3-cdn-cf.behance.net/projects/404/7bcf93163338087.Y3JvcCwxMDQ5LDgyMSwwLDA.jpg"
+      ],
       "behanceLink": "https://www.behance.net/gallery/163338087/Leather-Goods-Minimal-Logo-Design",
       "websiteLink": "",
       "featured": false,
-      "cardLabel": "Logo"
+      "cardLabel": "Identity"
     },
     {
       "title": "40+ Social Media Posts",
       "category": "Social Design",
-      "tag": "Brand Collateral",
+      "tag": "Campaign Design",
       "year": "2025",
-      "client": "Various",
-      "description": "A set of 40+ social media post designs.",
+      "client": "Various Brands",
+      "description": "A curated collection of social media graphics and promotional campaign designs.",
       "services": [
         "Brand Collateral"
       ],
       "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/4d950e247307077.Y3JvcCwzMTk2LDI0OTksMjc2LDA.jpg",
       "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/4d950e247307077.Y3JvcCwzMTk2LDI0OTksMjc2LDA.jpg",
+      "images": [
+        "https://mir-s3-cdn-cf.behance.net/projects/404/4d950e247307077.Y3JvcCwzMTk2LDI0OTksMjc2LDA.jpg"
+      ],
       "behanceLink": "https://www.behance.net/gallery/247307077/40-Social-Media-Posts",
       "websiteLink": "",
       "featured": false,
@@ -99,6 +137,9 @@
       ],
       "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/18adc2216177681.Y3JvcCwzMzAxLDI1ODIsMTE1Miww.jpg",
       "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/18adc2216177681.Y3JvcCwzMzAxLDI1ODIsMTE1Miww.jpg",
+      "images": [
+        "https://mir-s3-cdn-cf.behance.net/projects/404/18adc2216177681.Y3JvcCwzMzAxLDI1ODIsMTE1Miww.jpg"
+      ],
       "behanceLink": "https://www.behance.net/gallery/216177681/Hyundai-Gujranwala-Social-Media-Ad-Design",
       "websiteLink": "",
       "featured": false,
@@ -116,28 +157,13 @@
       ],
       "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/42b8f5247258565.Y3JvcCw2NDY1LDUwNTYsMCww.jpg",
       "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/42b8f5247258565.Y3JvcCw2NDY1LDUwNTYsMCww.jpg",
+      "images": [
+        "https://mir-s3-cdn-cf.behance.net/projects/404/42b8f5247258565.Y3JvcCw2NDY1LDUwNTYsMCww.jpg"
+      ],
       "behanceLink": "https://www.behance.net/gallery/247258565/Personal-Portfolio",
       "websiteLink": "",
       "featured": false,
       "cardLabel": "Self-Initiated"
-    },
-    {
-      "title": "Sonex Nonstick Post Design",
-      "category": "Social Design",
-      "tag": "sonex,  cookware",
-      "year": "2026",
-      "client": "Sonex Nonstick",
-      "description": "othersss",
-      "services": [
-        "brand guidnelines",
-        "poster design"
-      ],
-      "thumbnail": "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1790767555106-lxv5c5.jpg",
-      "cover": "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1790767625666-76l64g.jpg",
-      "behanceLink": "",
-      "websiteLink": "",
-      "featured": true,
-      "cardLabel": "sonex,  cookware"
     }
   ]
 }

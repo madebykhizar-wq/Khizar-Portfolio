@@ -196,17 +196,28 @@
     if (!el) return;
 
     const badge = $("#hero-badge");
-    badge.querySelector("span:last-child").textContent = cfg.hero.badge || cfg.personal.availabilityBadge;
+    if (badge) {
+      const target = badge.querySelector(".live-text") || badge.querySelector("span:last-child");
+      if (target) target.textContent = cfg.hero.badge || cfg.personal.availabilityBadge || "Available for Brand & Packaging Systems";
+    }
 
-    el.querySelector("h1").innerHTML = cfg.hero.headline;
-    el.querySelector(".hero-side p").innerHTML = cfg.personal.shortBio;
+    const titleEl = el.querySelector(".hero-master-title") || el.querySelector("h1");
+    if (titleEl && cfg.hero.headline) {
+      titleEl.innerHTML = cfg.hero.headline;
+    }
+
+    const bioEl = el.querySelector(".hero-description") || el.querySelector(".hero-side p");
+    if (bioEl && cfg.personal.shortBio) bioEl.innerHTML = cfg.personal.shortBio;
 
     const cta = el.querySelector(".hero-cta");
-    cta.href = cfg.cta.link;
-    cta.querySelector(".btn-text").textContent = cfg.cta.text;
-    if (/^https?:\/\//i.test(cfg.cta.link)) {
-      cta.target = "_blank";
-      cta.rel = "noopener";
+    if (cta) {
+      cta.href = cfg.cta.link;
+      const btnText = cta.querySelector(".btn-text");
+      if (btnText) btnText.textContent = cfg.cta.text;
+      if (/^https?:\/\//i.test(cfg.cta.link)) {
+        cta.target = "_blank";
+        cta.rel = "noopener";
+      }
     }
 
     const HERO_ICONS = {
@@ -217,8 +228,11 @@
     };
 
     const chips = (cfg.hero.chips || []).map(c => ({ icon: HERO_ICONS[c.icon] || "", label: c.label }));
-    $("#hero-chips").innerHTML = chips.map(c => `
-      <div class="hero-chip"><span class="chip-icon">${c.icon}</span><span>${esc(c.label)}</span></div>`).join("");
+    const chipsEl = $("#hero-chips");
+    if (chipsEl) {
+      chipsEl.innerHTML = chips.map(c => `
+        <div class="hero-chip"><span class="chip-icon">${c.icon}</span><span>${esc(c.label)}</span></div>`).join("");
+    }
   }
 
   const CLIENT_LOGOS = {
@@ -301,12 +315,12 @@
   function projectCard(p, tagOverride) {
     const thumbnail = esc(safeUrl(p.thumbnail));
     const description = esc(p.description);
-    const destination = esc(safeUrl(p.behanceLink || p.websiteLink || cfg.social.behance, "#"));
+    const pId = esc(String(p.id || p.title));
     const featuredBackdrop = p.featured
       ? `<img class="work-card-backdrop" src="${thumbnail}" alt="" aria-hidden="true" loading="lazy">`
       : "";
     return `
-      <a class="work-card reveal${p.featured ? " feature" : ""}" href="${destination}" target="_blank" rel="noopener" aria-label="${esc(p.title)}. ${description} Opens the project in a new tab.">
+      <article class="work-card reveal${p.featured ? " feature" : ""}" data-project-id="${pId}" role="button" tabindex="0" aria-haspopup="dialog" aria-label="${esc(p.title)}. ${description} Click to view project case study.">
         <span class="work-tag">${esc(tagOverride || p.cardLabel)}</span>
         ${featuredBackdrop}
         <img src="${thumbnail}" alt="${esc(p.title)} project preview" loading="lazy" decoding="async">
@@ -314,9 +328,168 @@
           <div class="cat">${esc(p.category)} / ${esc(p.tag)}</div>
           <h3>${esc(p.title)}</h3>
           <p>${description}</p>
-          <span class="go">View case study ↗</span>
+          <span class="go">Open Case Study ✦</span>
         </div>
-      </a>`;
+      </article>`;
+  }
+
+  /* ---------- Case Study Modal ---------- */
+  function ensureCaseStudyModal() {
+    let modal = $("#caseStudyModal");
+    if (modal) return modal;
+
+    modal = document.createElement("div");
+    modal.id = "caseStudyModal";
+    modal.className = "case-study-modal";
+    modal.setAttribute("role", "dialog");
+    modal.setAttribute("aria-modal", "true");
+    modal.setAttribute("aria-hidden", "true");
+
+    modal.innerHTML = `
+      <div class="cs-modal-backdrop" id="csBackdrop"></div>
+      <div class="cs-modal-container" role="document">
+        <div class="cs-modal-header">
+          <div class="cs-header-left">
+            <span class="cs-badge" id="csBadge">Identity</span>
+            <span class="cs-year" id="csYear">2026</span>
+          </div>
+          <button type="button" class="cs-close-btn" id="csCloseBtn" aria-label="Close case study">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+
+        <div class="cs-modal-content">
+          <div class="cs-intro">
+            <h2 class="cs-title" id="csTitle">Project Title</h2>
+            <p class="cs-desc" id="csDesc">Project description goes here.</p>
+            <div class="cs-meta-row">
+              <div class="cs-meta-col">
+                <span class="cs-label">Client</span>
+                <span class="cs-val" id="csClient">Client Name</span>
+              </div>
+              <div class="cs-meta-col">
+                <span class="cs-label">Discipline / Services</span>
+                <div class="cs-services-list" id="csServicesList"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cs-gallery" id="csGallery">
+            <!-- Full case study images stacked cleanly -->
+          </div>
+
+          <div class="cs-bottom-bar">
+            <div class="cs-cta-group">
+              <a id="csBehanceBtn" href="#" target="_blank" rel="noopener" class="btn solid cs-behance-link">
+                <span>View Full Case Study on Behance</span>
+                <span class="arrow">↗</span>
+              </a>
+              <a id="csWebsiteBtn" href="#" target="_blank" rel="noopener" class="btn outline cs-website-link" style="display:none;">
+                <span>Visit Live Website</span>
+                <span class="arrow">↗</span>
+              </a>
+            </div>
+            <button type="button" class="cs-back-link" id="csCloseBottomBtn">
+              ← Return to Projects
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    const close = () => closeCaseStudyModal();
+    $("#csCloseBtn", modal).addEventListener("click", close);
+    $("#csCloseBottomBtn", modal).addEventListener("click", close);
+    $("#csBackdrop", modal).addEventListener("click", close);
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal.classList.contains("is-open")) {
+        close();
+      }
+    });
+
+    return modal;
+  }
+
+  function openCaseStudyModal(p) {
+    if (!p) return;
+    const modal = ensureCaseStudyModal();
+    $("#csBadge", modal).textContent = `${p.category || 'Identity'} · ${p.tag || 'Brand'}`;
+    $("#csYear", modal).textContent = p.year || new Date().getFullYear();
+    $("#csTitle", modal).textContent = p.title || '';
+    $("#csDesc", modal).textContent = p.description || '';
+    $("#csClient", modal).textContent = p.client || 'Studio Client';
+
+    const services = Array.isArray(p.services) ? p.services : [p.tag || 'Design'];
+    $("#csServicesList", modal).innerHTML = services.map(s => `<span class="cs-service-pill">✦ ${esc(s)}</span>`).join("");
+
+    const gallery = $("#csGallery", modal);
+    const images = Array.isArray(p.images) && p.images.length ? p.images : [p.cover || p.thumbnail].filter(Boolean);
+
+    gallery.innerHTML = images.map((img, i) => `
+      <figure class="cs-image-card">
+        <img src="${esc(safeUrl(img))}" alt="${esc(p.title)} presentation slide ${i + 1}" loading="lazy" decoding="async">
+      </figure>
+    `).join("");
+
+    const behanceBtn = $("#csBehanceBtn", modal);
+    if (p.behanceLink) {
+      behanceBtn.href = safeUrl(p.behanceLink);
+      behanceBtn.style.display = "inline-flex";
+    } else if (cfg.social && cfg.social.behance) {
+      behanceBtn.href = safeUrl(cfg.social.behance);
+      behanceBtn.style.display = "inline-flex";
+    } else {
+      behanceBtn.style.display = "none";
+    }
+
+    const websiteBtn = $("#csWebsiteBtn", modal);
+    if (p.websiteLink) {
+      websiteBtn.href = safeUrl(p.websiteLink);
+      websiteBtn.style.display = "inline-flex";
+    } else {
+      websiteBtn.style.display = "none";
+    }
+
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+    const container = modal.querySelector(".cs-modal-container");
+    if (container) container.scrollTop = 0;
+  }
+
+  function closeCaseStudyModal() {
+    const modal = $("#caseStudyModal");
+    if (!modal) return;
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+  }
+
+  function bindGridInteraction(grid) {
+    if (!grid || grid.dataset.boundClicks) return;
+    grid.dataset.boundClicks = "true";
+
+    grid.addEventListener("click", (event) => {
+      const card = event.target.closest(".work-card");
+      if (!card) return;
+      event.preventDefault();
+      const pId = card.dataset.projectId;
+      const project = cfg.projects.find(p => String(p.id || p.title) === pId) || cfg.projects[0];
+      if (project) openCaseStudyModal(project);
+    });
+
+    grid.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        const card = event.target.closest(".work-card");
+        if (card) {
+          event.preventDefault();
+          card.click();
+        }
+      }
+    });
   }
 
   /* ---------- homepage work showcase ---------- */
@@ -343,6 +516,8 @@
       if (window.applySiteLanguage) window.applySiteLanguage();
       if (window.observeReveals) window.observeReveals(Array.from(grid.querySelectorAll(".reveal")));
     }
+
+    bindGridInteraction(grid);
 
     if (filterBar) {
       filterBar.innerHTML = categories.map((category, i) =>
@@ -385,6 +560,8 @@
         : cfg.projects;
       grid.innerHTML = items.map(p => projectCard(p)).join("\n");
     }
+
+    bindGridInteraction(grid);
     draw();
 
     if (filterBar) {
