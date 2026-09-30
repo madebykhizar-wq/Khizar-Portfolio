@@ -292,82 +292,108 @@ html[data-theme="dark"] .navlinks .nav-actions a.whatsapp-nav{color:var(--accent
 
 /* ---- client-name marquee ---- */
 .brand-strip{
-  padding:30px 0 34px; overflow:hidden;
+  padding:42px 0 46px; overflow:hidden;
+  position:relative;
 }
-.brand-marquee-heading{text-align:center; color:var(--text-soft); font-size:12px; margin-bottom:18px;}
+.brand-marquee-heading{
+  text-align:center; color:var(--text-soft);
+  font-family:'Inter', sans-serif;
+  font-size:11px; font-weight:600;
+  letter-spacing:0.18em; text-transform:uppercase;
+  margin-bottom:28px;
+  opacity:0.85;
+}
 .marquee-toggle{
-  display:block; margin:0 auto 18px; padding:6px 12px; border:1px solid var(--border);
-  border-radius:999px; background:var(--white); color:var(--ink); font:500 11px 'Inter',sans-serif;
-  cursor:pointer;
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
 }
-.marquee-toggle:hover{border-color:var(--accent-text); color:var(--accent-text);}
+.marquee-toggle:focus-visible{
+  position:static; width:auto; height:auto; margin:0 auto 16px;
+  padding:6px 14px; clip:auto; display:block;
+  border:1px solid var(--border); border-radius:999px;
+  background:var(--white); color:var(--ink); font:500 11px 'Inter',sans-serif;
+}
 .brand-strip.is-paused .brand-marquee-track{animation-play-state:paused;}
 .brand-marquee{position:relative; overflow:hidden;}
 .brand-marquee::before,.brand-marquee::after{
-  content:""; position:absolute; z-index:1; inset:0 auto 0 0; width:clamp(28px,8vw,120px);
+  content:""; position:absolute; z-index:2; inset:0 auto 0 0; width:clamp(40px,12vw,140px);
   background:linear-gradient(90deg,var(--white),transparent); pointer-events:none;
 }
 .brand-marquee::after{inset:0 0 0 auto; transform:rotate(180deg);}
-.brand-marquee-track{display:flex; width:max-content; animation:scroll 42s linear infinite;}
+html[data-theme="dark"] .brand-marquee::before{background:linear-gradient(90deg,var(--color-dark,#0B1F17),transparent);}
+html[data-theme="dark"] .brand-marquee::after{background:linear-gradient(90deg,var(--color-dark,#0B1F17),transparent);}
+
+.brand-marquee-track{display:flex; width:max-content; animation:scroll 38s linear infinite; align-items:center;}
 .brand-marquee:hover .brand-marquee-track,.brand-marquee:focus-within .brand-marquee-track{animation-play-state:paused;}
-.brand-list{display:flex; align-items:center; flex:none; gap:18px; list-style:none; padding:0 9px;}
+
+.brand-list{
+  display:flex; align-items:center; flex:none;
+  gap:clamp(44px,6vw,84px);
+  list-style:none; padding:10px 42px;
+}
 .brand-chip{
-  display:inline-flex; align-items:center;
-  font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:clamp(17px,2vw,24px);
-  letter-spacing:-.02em; color:var(--ink); padding:11px 24px;
-  border-left:1px solid var(--border); white-space:nowrap;
-  transition:color .2s var(--ease);
+  display:inline-flex; align-items:center; justify-content:center;
+  background:transparent; border:none; padding:0; margin:0; flex:none;
+  opacity:0.75;
+  transition:opacity .25s var(--ease), transform .25s var(--ease);
 }
-.brand-chip:hover{color:var(--accent-text);}
-.brand-chip.brand-chip-with-logo{
-  display:inline-flex; align-items:center; gap:13px;
-  padding:10px 20px; border-radius:999px;
-  background:var(--paper); border:1px solid var(--border);
-  transition:all .22s var(--ease); border-left:1px solid var(--border);
-}
-.brand-chip.brand-chip-with-logo:hover{
-  border-color:var(--accent); background:var(--white);
-  transform:translateY(-2px); box-shadow:var(--shadow-sm);
-}
-.brand-chip-svg{
-  width:26px; height:20px; flex:none;
-  color:var(--accent);
-  transition:transform .22s var(--ease), color .22s var(--ease);
+.brand-chip:hover{
+  opacity:1;
+  transform:translateY(-2px);
 }
 .brand-chip-img{
-  /* Real PNG/SVG logo uploaded by user — displayed clean in original colors */
-  height:28px; width:auto; max-width:84px; flex:none;
-  object-fit:contain; object-position:center;
+  /* Standalone clean brand logo */
+  height:clamp(32px,3.8vw,46px);
+  width:auto;
+  max-width:140px;
+  object-fit:contain;
+  object-position:center;
   display:block;
-  transition:transform .22s var(--ease);
+  transition:transform .25s var(--ease);
 }
-.brand-chip.brand-chip-with-logo:hover .brand-chip-img{
-  transform:scale(1.06);
+.brand-chip:hover .brand-chip-img{
+  transform:scale(1.08);
 }
-.brand-chip.brand-chip-with-logo:hover .brand-chip-svg{
-  transform:scale(1.1); color:var(--ink);
+.brand-chip-svg-wrap{
+  display:inline-flex; align-items:center; justify-content:center;
+  color:var(--ink);
 }
-.brand-chip-text{
-  display:flex; flex-direction:column; align-items:flex-start; line-height:1.15;
+.brand-chip-svg-wrap svg{
+  height:clamp(26px,3vw,34px);
+  width:auto;
+  max-width:80px;
+  display:block;
+  transition:transform .25s var(--ease);
 }
-.brand-chip-name{
-  font-family:'Bricolage Grotesque', sans-serif; font-weight:700;
-  font-size:clamp(15px,1.6vw,19px); letter-spacing:-.01em; color:var(--ink);
+.brand-chip:hover .brand-chip-svg-wrap svg{
+  transform:scale(1.08);
 }
-.brand-chip-sub{
-  font-family:'Inter', sans-serif; font-size:10px; font-weight:600;
-  letter-spacing:.05em; text-transform:uppercase; color:var(--text-soft);
+.brand-chip-wordmark{
+  font-family:'Bricolage Grotesque', sans-serif;
+  font-weight:700;
+  font-size:clamp(17px,2vw,22px);
+  letter-spacing:-.02em;
+  color:var(--ink);
+  white-space:nowrap;
+  transition:color .2s var(--ease);
 }
+.brand-chip:hover .brand-chip-wordmark{
+  color:var(--accent-text);
+}
+
 @media (max-width: 860px){
-  .brand-strip{padding:24px 0;}
-  .brand-chip{font-size:17px; padding:8px 16px;}
-  .brand-chip.brand-chip-with-logo{padding:8px 15px; gap:10px;}
-  .brand-chip-svg{width:22px; height:18px;}
-  .brand-chip-name{font-size:15px;}
-  .brand-chip-sub{font-size:9px;}
-  .brand-marquee-track{animation-duration:32s;}
+  .brand-strip{padding:30px 0 34px;}
+  .brand-marquee-heading{margin-bottom:20px; font-size:10.5px;}
+  .brand-list{gap:clamp(32px,5vw,52px); padding:6px 20px;}
+  .brand-chip-img{height:30px; max-width:110px;}
+  .brand-chip-wordmark{font-size:16px;}
+  .brand-marquee-track{animation-duration:28s;}
 }
-@media (prefers-reduced-motion:reduce){.brand-marquee-track{animation:none; width:100%; flex-wrap:wrap; justify-content:center;}.brand-list-duplicate{display:none;}.brand-marquee::before,.brand-marquee::after{display:none;}}
+@media (prefers-reduced-motion:reduce){
+  .brand-marquee-track{animation:none; width:100%; flex-wrap:wrap; justify-content:center;}
+  .brand-list-duplicate{display:none;}
+  .brand-marquee::before,.brand-marquee::after{display:none;}
+}
 
 /* ---- Services Marquee Strip (scrolling ticker below selected clients) ---- */
 .services-marquee-strip{

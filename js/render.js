@@ -241,46 +241,33 @@
     if (!el || !cfg.clientBrands) return;
     const itemsHtml = cfg.clientBrands.map(b => {
       if (typeof b === "string") {
-        return `<li class="brand-chip"><span class="brand-chip-name">${esc(b)}</span></li>`;
+        return `<li class="brand-chip brand-chip-text" title="${esc(b)}"><span class="brand-chip-wordmark">${esc(b)}</span></li>`;
       }
 
-      const subHtml = b.sub ? `<span class="brand-chip-sub">${esc(b.sub)}</span>` : "";
-
-      // Priority 1: Real image file (PNG / SVG) provided via "logoImage"
+      // 1. Priority 1: Real uploaded logo image -> Show JUST the logo cleanly!
       if (b.logoImage && b.logoImage.trim()) {
-        return `<li class="brand-chip brand-chip-with-logo">
+        return `<li class="brand-chip brand-chip-logo" title="${esc(b.name)}">
           <img
             src="${esc(b.logoImage)}"
-            alt="${esc(b.name)} logo"
+            alt="${esc(b.name)}"
             class="brand-chip-img"
             loading="lazy"
-            onerror="this.style.display='none'"
+            onerror="this.parentElement.innerHTML='<span class=\\'brand-chip-wordmark\\'>${esc(b.name)}</span>'"
           >
-          <div class="brand-chip-text">
-            <span class="brand-chip-name">${esc(b.name)}</span>
-            ${subHtml}
-          </div>
         </li>`;
       }
 
-      // Priority 2: Built-in SVG icon key (e.g. "hyundai", "suzuki")
+      // 2. Priority 2: Built-in SVG emblem
       const svgIcon = CLIENT_LOGOS[b.logo] || "";
       if (svgIcon) {
-        return `<li class="brand-chip brand-chip-with-logo">
-          ${svgIcon}
-          <div class="brand-chip-text">
-            <span class="brand-chip-name">${esc(b.name)}</span>
-            ${subHtml}
-          </div>
+        return `<li class="brand-chip brand-chip-logo" title="${esc(b.name)}">
+          <span class="brand-chip-svg-wrap" aria-label="${esc(b.name)}">${svgIcon}</span>
         </li>`;
       }
 
-      // Priority 3: No icon at all — clean name-only pill
-      return `<li class="brand-chip brand-chip-with-logo brand-chip-name-only">
-        <div class="brand-chip-text">
-          <span class="brand-chip-name">${esc(b.name)}</span>
-          ${subHtml}
-        </div>
+      // 3. Priority 3: Clean typographic brand name (wordmark)
+      return `<li class="brand-chip brand-chip-text" title="${esc(b.name)}">
+        <span class="brand-chip-wordmark">${esc(b.name)}</span>
       </li>`;
     }).join("");
     el.innerHTML = itemsHtml;
