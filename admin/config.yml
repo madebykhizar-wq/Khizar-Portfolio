@@ -1,0 +1,39 @@
+backend:
+  name: github
+  repo: madebykhizar-wq/Khizar-Portfolio
+  branch: main
+  base_url: https://YOUR-OAUTH-SERVICE.example.com
+  auth_endpoint: auth
+publish_mode: editorial_workflow
+media_folder: assets/projects
+public_folder: /assets/projects
+collections:
+  - name: portfolio
+    label: Portfolio content
+    files:
+      - name: projects
+        label: Projects
+        file: content/projects.json
+        format: json
+        fields:
+          - name: projects
+            label: Projects
+            widget: list
+            summary: "{{fields.title}} | {{fields.year}}"
+            fields:
+              - { name: title, label: Project name, widget: string }
+              - { name: category, label: Category, widget: string }
+              - { name: tag, label: Service label, widget: string }
+              - { name: year, label: Year, widget: string }
+              - { name: client, label: Client, widget: string }
+              - { name: description, label: Description, widget: text }
+              - name: services
+                label: Services
+                widget: list
+                field: { name: service, label: Service, widget: string }
+              - { name: thumbnail, label: Project image, widget: image }
+              - { name: cover, label: Cover image, widget: image }
+              - { name: behanceLink, label: Case study URL, widget: string, required: false }
+              - { name: websiteLink, label: Website URL, widget: string, required: false }
+              - { name: featured, label: Highlight this project, widget: boolean, default: false }
+              - { name: cardLabel, label: Card label, widget: string }

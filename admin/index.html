@@ -1,0 +1,2003 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portfolio Studio — Made by Khizar | Project Manager</title>
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
+  <link rel="icon" type="image/png" sizes="48x48" href="../assets/favicon-48.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #09140f;
+      --card-bg: #10211a;
+      --card-border: rgba(255, 255, 255, 0.08);
+      --accent: #1E7A4C;
+      --accent-light: #28a064;
+      --text: #F0F4F2;
+      --text-muted: #8FA297;
+      --danger: #d9534f;
+      --warning: #f0ad4e;
+      --r-md: 10px;
+      --r-lg: 16px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      line-height: 1.5;
+    }
+    header {
+      background: rgba(16, 33, 26, 0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--card-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .wrap {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 16px 24px;
+    }
+    .nav-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .brand-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+    }
+    .brand-title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: 19px;
+      color: #FFF;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .badge {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      background: rgba(30, 122, 76, 0.25);
+      color: var(--accent-light);
+      border: 1px solid rgba(40, 160, 100, 0.3);
+      border-radius: 999px;
+      padding: 2px 9px;
+      letter-spacing: 0.02em;
+    }
+    .actions-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 9px 15px;
+      border-radius: var(--r-md);
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      color: var(--text);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .btn.primary {
+      background: var(--accent);
+      border-color: var(--accent-light);
+      color: #FFF;
+    }
+    .btn.primary:hover {
+      background: var(--accent-light);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(30, 122, 76, 0.4);
+    }
+    .btn.danger {
+      color: var(--danger);
+      border-color: rgba(217, 83, 79, 0.3);
+    }
+    .btn.danger:hover {
+      background: rgba(217, 83, 79, 0.15);
+    }
+    .btn.icon-only {
+      padding: 8px 10px;
+    }
+    main {
+      flex: 1;
+      padding: 28px 0 60px;
+    }
+    .studio-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .studio-title h1 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #FFF;
+    }
+    .studio-title p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .search-filter-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--card-bg);
+      padding: 10px 14px;
+      border-radius: var(--r-lg);
+      border: 1px solid var(--card-border);
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .search-filter-row input, .search-filter-row select {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--card-border);
+      border-radius: var(--r-md);
+      color: var(--text);
+      font-size: 13px;
+      padding: 8px 12px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-filter-row input:focus, .search-filter-row select:focus {
+      border-color: var(--accent-light);
+    }
+    .search-input {
+      flex: 1;
+      min-width: 200px;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+    }
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .project-card:hover {
+      border-color: rgba(40, 160, 100, 0.4);
+      transform: translateY(-2px);
+    }
+    .project-thumb-wrap {
+      position: relative;
+      aspect-ratio: 16/10;
+      background: #000;
+      overflow: hidden;
+    }
+    .project-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    .project-card:hover .project-thumb {
+      transform: scale(1.03);
+    }
+    .featured-tag {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--accent);
+      color: #FFF;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: 999px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+    .card-label-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      color: #E0EAE4;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .project-body {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .project-meta {
+      font-size: 11.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-light);
+      margin-bottom: 6px;
+    }
+    .project-title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 19px;
+      font-weight: 700;
+      color: #FFF;
+      margin-bottom: 6px;
+    }
+    .project-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin-bottom: 14px;
+      flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .project-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--card-border);
+      padding-top: 14px;
+      margin-top: auto;
+    }
+    .order-btns {
+      display: flex;
+      gap: 5px;
+    }
+    .action-btns {
+      display: flex;
+      gap: 6px;
+    }
+    /* Modal styles */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    .modal-backdrop.active {
+      display: flex;
+    }
+    .modal {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--r-lg);
+      width: 100%;
+      max-width: 900px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      overflow: hidden;
+    }
+    .modal-head {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-head h2 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 20px;
+      color: #FFF;
+    }
+    .close-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 24px;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .close-btn:hover { color: #FFF; }
+    .modal-body {
+      padding: 24px;
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 24px;
+    }
+    @media (max-width: 820px) {
+      .modal-body { grid-template-columns: 1fr; }
+    }
+    .form-col {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .form-group label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .form-group input, .form-group textarea, .form-group select {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--card-border);
+      border-radius: var(--r-md);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+      padding: 10px 12px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      border-color: var(--accent-light);
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+    }
+    .checkbox-group input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+    .checkbox-group label {
+      text-transform: none;
+      font-size: 13.5px;
+      color: #FFF;
+      cursor: pointer;
+    }
+    .preview-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .preview-heading {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-light);
+    }
+    .live-preview-box {
+      background: #000;
+      border: 1px solid var(--card-border);
+      border-radius: var(--r-md);
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+    .modal-foot {
+      padding: 16px 24px;
+      border-top: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--accent);
+      color: #FFF;
+      padding: 12px 20px;
+      border-radius: var(--r-md);
+      font-size: 13.5px;
+      font-weight: 600;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      z-index: 2000;
+      display: none;
+      animation: fadeIn 0.2s ease;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    /* ---- Tabs ---- */
+    .studio-tabs {
+      display: flex; gap: 4px; margin-bottom: 24px;
+      border-bottom: 1px solid var(--card-border); padding-bottom: 0;
+    }
+    .tab-btn {
+      background: none; border: none; color: var(--text-muted); cursor: pointer;
+      font-family: 'Inter', sans-serif; font-size: 13.5px; font-weight: 600;
+      padding: 10px 18px; border-radius: 8px 8px 0 0; border-bottom: 2px solid transparent;
+      transition: all 0.18s; letter-spacing: 0.01em;
+    }
+    .tab-btn:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+    .tab-btn.active { color: var(--accent-light); border-bottom-color: var(--accent-light); background: rgba(40,160,100,0.08); }
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; }
+
+    /* ---- Upload Zone ---- */
+    .upload-zone {
+      border: 2px dashed rgba(40,160,100,0.4);
+      border-radius: var(--r-md);
+      padding: 22px 16px; text-align: center; cursor: pointer;
+      transition: all 0.2s; position: relative; overflow: hidden;
+      background: rgba(30,122,76,0.06);
+    }
+    .upload-zone:hover, .upload-zone.drag-over {
+      border-color: var(--accent-light); background: rgba(40,160,100,0.12);
+    }
+    .upload-zone input[type="file"] {
+      position: absolute; inset: 0; opacity: 0; cursor: pointer; font-size: 0;
+      width: 100%; height: 100%;
+    }
+    .upload-zone-icon { font-size: 26px; margin-bottom: 6px; }
+    .upload-zone-text { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
+    .upload-zone-text strong { color: var(--accent-light); }
+    .upload-progress {
+      margin-top: 8px; height: 4px; background: rgba(255,255,255,0.1);
+      border-radius: 2px; overflow: hidden; display: none;
+    }
+    .upload-progress-bar {
+      height: 100%; background: var(--accent-light); width: 0%;
+      transition: width 0.3s ease; border-radius: 2px;
+    }
+    .upload-result {
+      margin-top: 10px; display: none;
+    }
+    .upload-result img {
+      width: 100%; max-height: 120px; object-fit: contain;
+      border-radius: 6px; border: 1px solid var(--card-border);
+    }
+    .upload-or-row {
+      display: flex; align-items: center; gap: 10px; margin: 10px 0;
+    }
+    .upload-or-row::before, .upload-or-row::after {
+      content: ''; flex: 1; height: 1px; background: var(--card-border);
+    }
+    .upload-or-row span { font-size: 11px; color: var(--text-muted); white-space: nowrap; }
+
+    /* ---- Client Logo Cards ---- */
+    .clients-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px;
+    }
+    .client-card {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: var(--r-lg); padding: 18px 16px; display: flex;
+      flex-direction: column; gap: 12px;
+    }
+    .client-card-logo {
+      height: 56px; display: flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.04); border-radius: 8px;
+      border: 1px solid var(--card-border); overflow: hidden;
+    }
+    .client-card-logo img {
+      max-height: 44px; max-width: 100%; object-fit: contain; filter: brightness(0) invert(1);
+    }
+    .client-card-logo .no-logo {
+      font-size: 12px; color: var(--text-muted); text-align: center;
+      padding: 4px 8px;
+    }
+    .client-card-info h4 {
+      font-family: 'Bricolage Grotesque', sans-serif; font-size: 15px; font-weight: 700;
+      color: var(--text); margin: 0;
+    }
+    .client-card-info p {
+      font-size: 11px; color: var(--text-muted); text-transform: uppercase;
+      letter-spacing: 0.05em; margin: 2px 0 0;
+    }
+    .client-card-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .client-card-actions .btn { font-size: 12px; padding: 6px 11px; }
+    .client-upload-zone {
+      border: 1.5px dashed rgba(40,160,100,0.35); border-radius: 8px;
+      padding: 10px 8px; text-align: center; cursor: pointer;
+      transition: all 0.2s; position: relative; background: rgba(30,122,76,0.05);
+    }
+    .client-upload-zone:hover { border-color: var(--accent-light); background: rgba(40,160,100,0.1); }
+    .client-upload-zone input[type="file"] {
+      position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
+    }
+    .client-upload-zone span { font-size: 12px; color: var(--text-muted); }
+    .clients-actions-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px; margin-bottom: 20px;
+    }
+    .clients-actions-bar h1 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; font-weight: 700; }
+    .clients-actions-bar p { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+    .upload-spinner {
+      display: inline-block; width: 14px; height: 14px;
+      border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff;
+      border-radius: 50%; animation: spin 0.7s linear infinite; vertical-align: middle;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ---- Supabase Storage Banner ---- */
+    .storage-setup-banner {
+      background: rgba(240,173,78,0.12); border: 1px solid rgba(240,173,78,0.35);
+      border-radius: var(--r-md); padding: 14px 18px; margin-bottom: 20px;
+      font-size: 13px; color: #f0e2b0; display: none;
+    }
+    .storage-setup-banner a { color: #f0ad4e; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="wrap">
+      <div class="nav-row">
+        <div class="brand-area">
+          <img src="../assets/logo.svg" alt="Made by Khizar" class="brand-logo">
+          <div class="brand-title">
+            Made by Khizar
+            <span class="badge">Portfolio Studio</span>
+          </div>
+        </div>
+        <div class="actions-bar">
+          <button class="btn" id="githubSyncBtn" type="button">⚙️ GitHub Sync</button>
+          <button class="btn" id="copyJsonBtn" type="button">📋 Copy JSON</button>
+          <button class="btn primary" id="downloadJsonBtn" type="button">📥 Download projects.json</button>
+          <a href="../index.html#work" target="_blank" class="btn" rel="noopener">👁️ View Live Portfolio ↗</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+
+      <!-- STATUS ALERT -->
+      <div class="status-alert" id="statusAlert" style="padding:14px 18px;background:rgba(30,122,76,0.15);border:1px solid rgba(40,160,100,0.3);border-radius:10px;color:#E2ECE6;font-size:13px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:12px;">
+        <span>✨ <strong>Welcome to Portfolio Studio!</strong> Manage your projects and client logos from anywhere.</span>
+        <button class="btn" id="addProjectTopBtn" type="button">+ Add New Project</button>
+      </div>
+
+      <!-- STORAGE SETUP NOTICE -->
+      <div class="storage-setup-banner" id="storageBanner">
+        ⚠️ <strong>Image Upload Setup Needed:</strong> To upload images from Studio, create a public Supabase Storage bucket named <code style="background:rgba(0,0,0,0.3);padding:1px 5px;border-radius:3px;">site-assets</code>.
+        <a href="https://supabase.com/dashboard/project/ahmmjhubfwhazewptrad/storage/buckets" target="_blank" rel="noopener">Open Supabase Storage →</a>
+        (New Bucket → name: <strong>site-assets</strong> → Public ✓)
+      </div>
+
+      <!-- TABS -->
+      <div class="studio-tabs">
+        <button class="tab-btn active" data-tab="tab-projects" type="button">📁 Projects</button>
+        <button class="tab-btn" data-tab="tab-clients" type="button">🏢 Client Logos</button>
+      </div>
+
+      <!-- TAB: PROJECTS -->
+      <div class="tab-pane active" id="tab-projects">
+        <div class="studio-header">
+          <div class="studio-title">
+            <h1>Projects Manager</h1>
+            <p id="projectCountText">Loading portfolio projects...</p>
+          </div>
+          <div class="actions-bar">
+            <button class="btn primary" id="addProjectBtn" type="button">+ Add New Project</button>
+          </div>
+        </div>
+
+        <div class="search-filter-row">
+          <input type="text" id="searchInput" class="search-input" placeholder="Search by title, client or tag...">
+          <select id="categoryFilter">
+            <option value="All">All Categories</option>
+          </select>
+          <button type="button" class="btn" id="resetDataBtn" title="Reload from Supabase">↺ Reload</button>
+        </div>
+
+        <div class="projects-grid" id="projectsGrid"></div>
+      </div>
+
+      <!-- TAB: CLIENT LOGOS -->
+      <div class="tab-pane" id="tab-clients">
+        <div class="clients-actions-bar">
+          <div>
+            <h1>Client Logos</h1>
+            <p id="clientCountText">Manage logos for your selected clients strip</p>
+          </div>
+          <button class="btn primary" type="button" id="addClientBtn">+ Add Client</button>
+        </div>
+
+        <div class="clients-grid" id="clientsGrid">
+          <div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-muted)">
+            Loading clients...
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ADD CLIENT MODAL -->
+  <div class="modal-backdrop" id="clientModal">
+    <div class="modal" style="max-width:480px;">
+      <div class="modal-head">
+        <h2 id="clientModalTitle">Add Client</h2>
+        <button type="button" class="close-btn" id="closeClientModalBtn">&times;</button>
+      </div>
+      <div class="modal-body" style="grid-template-columns:1fr;">
+        <div class="form-col">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cName">Client Name *</label>
+              <input type="text" id="cName" placeholder="e.g. Hyundai" required>
+            </div>
+            <div class="form-group">
+              <label for="cSub">Sub-label (optional)</label>
+              <input type="text" id="cSub" placeholder="e.g. Gujranwala">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Logo Image</label>
+            <div class="upload-zone" id="clientUploadZone">
+              <input type="file" id="clientLogoFile" accept="image/png,image/svg+xml,image/jpeg,image/webp">
+              <div class="upload-zone-icon">🖼️</div>
+              <div class="upload-zone-text">
+                <strong>Click or drag &amp; drop</strong><br>
+                PNG, SVG, JPG · Max 200KB · Auto-compressed
+              </div>
+              <div class="upload-progress" id="clientUploadProgress">
+                <div class="upload-progress-bar" id="clientUploadProgressBar"></div>
+              </div>
+            </div>
+            <div class="upload-result" id="clientUploadResult">
+              <img id="clientUploadPreview" src="" alt="Logo preview">
+              <button type="button" class="btn" style="margin-top:6px;font-size:11px;" id="clearClientLogoBtn">✕ Remove</button>
+            </div>
+            <div class="upload-or-row"><span>OR paste URL</span></div>
+            <input type="text" id="cLogoUrl" placeholder="https://... or leave blank if uploaded above">
+          </div>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn" id="cancelClientModalBtn">Cancel</button>
+        <button type="button" class="btn primary" id="saveClientBtn">Save Client</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADD / EDIT MODAL -->
+  <div class="modal-backdrop" id="projectModal">
+    <div class="modal">
+      <div class="modal-head">
+        <h2 id="modalTitle">Add New Project</h2>
+        <button type="button" class="close-btn" id="closeModalBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-col">
+          <div class="form-group">
+            <label for="pTitle">Project Title *</label>
+            <input type="text" id="pTitle" placeholder="e.g. Synvora®" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="pCategory">Category *</label>
+              <input type="text" id="pCategory" placeholder="e.g. Tech / AI, Packaging, Health..." required list="categoryList">
+              <datalist id="categoryList">
+                <option value="Tech / AI">
+                <option value="Health & Wellness">
+                <option value="Logofolio">
+                <option value="Packaging Design">
+                <option value="Brand Identity">
+                <option value="Leather Goods">
+                <option value="Social Design">
+                <option value="Automotive">
+                <option value="Self-Initiated">
+              </datalist>
+            </div>
+            <div class="form-group">
+              <label for="pTag">Service / Tag *</label>
+              <input type="text" id="pTag" placeholder="e.g. Brand Guidelines" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="pClient">Client Name *</label>
+              <input type="text" id="pClient" placeholder="e.g. Synvora Inc." required>
+            </div>
+            <div class="form-group">
+              <label for="pYear">Year *</label>
+              <input type="text" id="pYear" placeholder="2026" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="pDesc">Short Description *</label>
+            <textarea id="pDesc" rows="2" placeholder="Full brand guideline system for an AI company..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="pServices">Services (comma separated) *</label>
+            <input type="text" id="pServices" placeholder="Brand Guidelines, Logo Design" required>
+          </div>
+
+          <div class="form-group">
+            <label>Project Thumbnail *</label>
+            <div class="upload-zone" id="thumbUploadZone">
+              <input type="file" id="pThumbFile" accept="image/png,image/svg+xml,image/jpeg,image/webp,image/gif">
+              <div class="upload-zone-icon">📷</div>
+              <div class="upload-zone-text">
+                <strong>Click or drag &amp; drop image</strong><br>
+                PNG, JPG, SVG · Max 200KB · Auto-compressed &amp; uploaded to cloud
+              </div>
+              <div class="upload-progress" id="thumbUploadProgress">
+                <div class="upload-progress-bar" id="thumbUploadProgressBar"></div>
+              </div>
+            </div>
+            <div class="upload-result" id="thumbUploadResult">
+              <img id="thumbUploadPreview" src="" alt="Thumbnail preview">
+              <button type="button" class="btn" style="margin-top:6px;font-size:11px;" id="clearThumbBtn">✕ Clear uploaded image</button>
+            </div>
+            <div class="upload-or-row"><span>OR paste existing URL (Behance, etc.)</span></div>
+            <input type="text" id="pThumbnail" placeholder="https://mir-s3-cdn-cf.behance.net/...">
+          </div>
+
+          <div class="form-group">
+            <label>Cover Image <span style="font-weight:400;color:var(--text-muted)">(optional — defaults to thumbnail)</span></label>
+            <div class="upload-zone" id="coverUploadZone">
+              <input type="file" id="pCoverFile" accept="image/png,image/svg+xml,image/jpeg,image/webp,image/gif">
+              <div class="upload-zone-icon">🖼️</div>
+              <div class="upload-zone-text" style="font-size:12px;">
+                <strong>Upload cover image</strong> or leave blank to use thumbnail
+              </div>
+              <div class="upload-progress" id="coverUploadProgress">
+                <div class="upload-progress-bar" id="coverUploadProgressBar"></div>
+              </div>
+            </div>
+            <div class="upload-result" id="coverUploadResult">
+              <img id="coverUploadPreview" src="" alt="Cover preview">
+              <button type="button" class="btn" style="margin-top:6px;font-size:11px;" id="clearCoverBtn">✕ Clear</button>
+            </div>
+            <div class="upload-or-row"><span>OR paste cover URL</span></div>
+            <input type="text" id="pCover" placeholder="Leave blank to use thumbnail URL">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="pBehance">Behance Case Study URL</label>
+              <input type="url" id="pBehance" placeholder="https://www.behance.net/gallery/...">
+            </div>
+            <div class="form-group">
+              <label for="pCardLabel">Card Label Badge</label>
+              <input type="text" id="pCardLabel" placeholder="e.g. Featured, Identity, Logofolio">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="pWebsite">Website Link (Optional)</label>
+            <input type="url" id="pWebsite" placeholder="https://...">
+          </div>
+
+          <div class="checkbox-group">
+            <input type="checkbox" id="pFeatured">
+            <label for="pFeatured">⭐ Highlight as Featured Project (shows featured backdrop &amp; badge)</label>
+          </div>
+        </div>
+
+        <!-- LIVE PREVIEW COL -->
+        <div class="preview-col">
+          <div class="preview-heading">Live Preview Card</div>
+          <div class="live-preview-box" id="previewBox">
+            <div style="aspect-ratio: 16/10; position: relative; background: #111;">
+              <img id="prevImg" src="" alt="" style="width:100%; height:100%; object-fit:cover; display:block;">
+              <span id="prevBadge" style="position:absolute; top:8px; left:8px; background:rgba(0,0,0,0.7); color:#FFF; font-size:10px; font-weight:700; padding:3px 8px; border-radius:999px;">Badge</span>
+              <span id="prevFeatured" style="position:absolute; top:8px; right:8px; background:#1E7A4C; color:#FFF; font-size:10px; font-weight:700; padding:3px 8px; border-radius:999px; display:none;">Featured</span>
+            </div>
+            <div style="padding:14px;">
+              <div id="prevCat" style="font-size:10.5px; font-weight:700; color:#28a064; text-transform:uppercase;">Category / Tag</div>
+              <h3 id="prevTitle" style="font-size:16px; font-weight:700; margin:4px 0; color:#FFF; font-family:'Bricolage Grotesque', sans-serif;">Project Title</h3>
+              <p id="prevDesc" style="font-size:12px; color:#8FA297; line-height:1.4;">Description will appear here.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn" id="cancelModalBtn">Cancel</button>
+        <button type="button" class="btn primary" id="saveProjectBtn">Save Project</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GITHUB SYNC MODAL -->
+  <div class="modal-backdrop" id="githubModal">
+    <div class="modal" style="max-width: 580px;">
+      <div class="modal-head">
+        <h2>GitHub Direct Sync</h2>
+        <button type="button" class="close-btn" id="closeGithubModalBtn">&times;</button>
+      </div>
+      <div class="modal-body" style="grid-template-columns: 1fr;">
+        <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.5;">
+          Directly commit and publish your updated <code>content/projects.json</code> to your GitHub repository without any terminal or command line!
+        </p>
+        <div class="form-group">
+          <label for="ghRepo">GitHub Repository</label>
+          <input type="text" id="ghRepo" value="madebykhizar-wq/Khizar-Portfolio">
+        </div>
+        <div class="form-group">
+          <label for="ghBranch">Branch</label>
+          <input type="text" id="ghBranch" value="main">
+        </div>
+        <div class="form-group">
+          <label for="ghToken">Personal Access Token (Classic / Fine-grained with repo write)</label>
+          <input type="password" id="ghToken" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+          <small style="color: var(--text-muted); font-size: 11.5px; margin-top: 4px;">
+            Token is saved strictly in your local browser's storage and never uploaded anywhere else.
+          </small>
+        </div>
+        <div id="ghSyncStatus" style="font-size: 13px; font-weight: 600; display: none;"></div>
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn" id="cancelGithubModalBtn">Close</button>
+        <button type="button" class="btn primary" id="executeGithubPushBtn">🚀 Push to Live Site</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast">Changes saved!</div>
+
+  <script>
+    (function() {
+      const STORAGE_KEY = 'khizar_portfolio_studio_projects';
+      const GITHUB_TOKEN_KEY = 'khizar_gh_token';
+      const GITHUB_REPO_KEY = 'khizar_gh_repo';
+      const GITHUB_BRANCH_KEY = 'khizar_gh_branch';
+
+      const SUPABASE_CONFIG = {
+        url: 'https://ahmmjhubfwhazewptrad.supabase.co',
+        anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFobW1qaHViZndoYXpld3B0cmFkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA2OTA2MjAsImV4cCI6MjEwNjI2NjYyMH0.HE07tBLITbk_jSIpejeDolsLEb94_u9SsI6TGijIm0I'
+      };
+
+      const DEFAULT_PROJECTS = [
+        {
+          id: "29b77758-a629-4d60-ac2a-2bda0b80df34",
+          title: "Synvora®",
+          category: "Tech / AI",
+          tag: "Brand Guidelines",
+          year: "2026",
+          client: "Synvora",
+          description: "Full brand guideline system for an AI company.",
+          services: ["Brand Guidelines", "Logo Design"],
+          thumbnail: "https://mir-s3-cdn-cf.behance.net/projects/404/6aeedb252601027.Y3JvcCwyODY5LDIyNDQsMCww.jpg",
+          cover: "https://mir-s3-cdn-cf.behance.net/projects/404/6aeedb252601027.Y3JvcCwyODY5LDIyNDQsMCww.jpg",
+          behanceLink: "https://www.behance.net/gallery/252601027/Synvora-AI-Brand-Guidelines",
+          websiteLink: "",
+          featured: true,
+          cardLabel: "Featured",
+          sort_order: 1
+        },
+        {
+          id: "b8c2edb8-acdf-48d6-94d9-2b26b940bcbf",
+          title: "Bioxy S.L.",
+          category: "Health & Wellness",
+          tag: "Brand Identity",
+          year: "2026",
+          client: "Bioxy S.L.",
+          description: "Global health & wellness brand identity.",
+          services: ["Brand Identity", "Logo Design"],
+          thumbnail: "https://mir-s3-cdn-cf.behance.net/projects/404/83fbbe247246109.Y3JvcCwyODcwLDIyNDQsMCww.jpg",
+          cover: "https://mir-s3-cdn-cf.behance.net/projects/404/83fbbe247246109.Y3JvcCwyODcwLDIyNDQsMCww.jpg",
+          behanceLink: "https://www.behance.net/gallery/247246109/Bioxy-SL-Global-Health-Wellness-Brand-Identity",
+          websiteLink: "",
+          featured: false,
+          cardLabel: "Identity",
+          sort_order: 2
+        },
+        {
+          id: "5b15a862-aede-4ef3-b594-e9242fc6320d",
+          title: "Logofolio Vol. 1",
+          category: "Logofolio",
+          tag: "Marks & Logotypes",
+          year: "2025",
+          client: "Selected Clients",
+          description: "A collection of selected logo marks and logotypes.",
+          services: ["Logo Design"],
+          thumbnail: "https://mir-s3-cdn-cf.behance.net/projects/404/370f5a247244301.Y3JvcCwxMzk5LDEwOTUsMCww.jpg",
+          cover: "https://mir-s3-cdn-cf.behance.net/projects/404/370f5a247244301.Y3JvcCwxMzk5LDEwOTUsMCww.jpg",
+          behanceLink: "https://www.behance.net/gallery/247244301/Logofolio-Vol1-Selected-Logo-Marks-Logotypes",
+          websiteLink: "",
+          featured: false,
+          cardLabel: "Logofolio",
+          sort_order: 3
+        },
+        {
+          id: "d22eb30d-d17c-4e77-aec8-69bae0d236da",
+          title: "Minimal Mark",
+          category: "Leather Goods",
+          tag: "Logo Design",
+          year: "2025",
+          client: "Leather Goods Co.",
+          description: "Minimal logo design for a leather goods brand.",
+          services: ["Logo Design"],
+          thumbnail: "https://mir-s3-cdn-cf.behance.net/projects/404/7bcf93163338087.Y3JvcCwxMDQ5LDgyMSwwLDA.jpg",
+          cover: "https://mir-s3-cdn-cf.behance.net/projects/404/7bcf93163338087.Y3JvcCwxMDQ5LDgyMSwwLDA.jpg",
+          behanceLink: "https://www.behance.net/gallery/163338087/Leather-Goods-Minimal-Logo-Design",
+          websiteLink: "",
+          featured: false,
+          cardLabel: "Logo",
+          sort_order: 4
+        },
+        {
+          id: "434a2a04-6533-4a95-8738-5a90c069b5b0",
+          title: "40+ Social Media Posts",
+          category: "Social Design",
+          tag: "Brand Collateral",
+          year: "2025",
+          client: "Various",
+          description: "A set of 40+ social media post designs.",
+          services: ["Brand Collateral"],
+          thumbnail: "https://mir-s3-cdn-cf.behance.net/projects/404/4d950e247307077.Y3JvcCwzMTk2LDI0OTksMjc2LDA.jpg",
+          cover: "https://mir-s3-cdn-cf.behance.net/projects/404/4d950e247307077.Y3JvcCwzMTk2LDI0OTksMjc2LDA.jpg",
+          behanceLink: "https://www.behance.net/gallery/247307077/40-Social-Media-Posts",
+          websiteLink: "",
+          featured: false,
+          cardLabel: "Collateral",
+          sort_order: 5
+        },
+        {
+          id: "47430c6e-c29c-467f-a5cd-9837be877bce",
+          title: "Hyundai Gujranwala",
+          category: "Automotive",
+          tag: "Social Ad Design",
+          year: "2024",
+          client: "Hyundai Gujranwala",
+          description: "Social media ad design campaign.",
+          services: ["Brand Collateral"],
+          thumbnail: "https://mir-s3-cdn-cf.behance.net/projects/404/18adc2216177681.Y3JvcCwzMzAxLDI1ODIsMTE1Miww.jpg",
+          cover: "https://mir-s3-cdn-cf.behance.net/projects/404/18adc2216177681.Y3JvcCwzMzAxLDI1ODIsMTE1Miww.jpg",
+          behanceLink: "https://www.behance.net/gallery/216177681/Hyundai-Gujranwala-Social-Media-Ad-Design",
+          websiteLink: "",
+          featured: false,
+          cardLabel: "Campaign",
+          sort_order: 6
+        },
+        {
+          id: "0ee4a2b7-8486-4045-a15a-eeb4cca7e7d6",
+          title: "Personal Portfolio",
+          category: "Self-Initiated",
+          tag: "Portfolio System",
+          year: "2024",
+          client: "Self-Initiated",
+          description: "A self-initiated personal portfolio project.",
+          services: ["Brand Identity"],
+          thumbnail: "https://mir-s3-cdn-cf.behance.net/projects/404/42b8f5247258565.Y3JvcCw2NDY1LDUwNTYsMCww.jpg",
+          cover: "https://mir-s3-cdn-cf.behance.net/projects/404/42b8f5247258565.Y3JvcCw2NDY1LDUwNTYsMCww.jpg",
+          behanceLink: "https://www.behance.net/gallery/247258565/Personal-Portfolio",
+          websiteLink: "",
+          featured: false,
+          cardLabel: "Self-Initiated",
+          sort_order: 7
+        }
+      ];
+
+      function safeGetStorage(key) {
+        try {
+          return (typeof window !== 'undefined' && window.localStorage) ? localStorage.getItem(key) : null;
+        } catch(e) {
+          return null;
+        }
+      }
+
+      function safeSetStorage(key, value) {
+        try {
+          if (typeof window !== 'undefined' && window.localStorage) localStorage.setItem(key, value);
+        } catch(e) {}
+      }
+
+      function safeRemoveStorage(key) {
+        try {
+          if (typeof window !== 'undefined' && window.localStorage) localStorage.removeItem(key);
+        } catch(e) {}
+      }
+
+      let projects = [...DEFAULT_PROJECTS];
+      let editingIndex = -1;
+      let isSupabaseConnected = false;
+      let clientBrands = [];
+      let editingClientId = null;
+      let pendingThumbUrl = '';
+      let pendingCoverUrl = '';
+      let pendingClientLogoUrl = '';
+      let storageReady = false;
+
+      const $ = sel => document.querySelector(sel);
+      const $all = sel => Array.from(document.querySelectorAll(sel));
+
+      // =========================================================
+      // SUPABASE STORAGE — Image Upload & Compression
+      // =========================================================
+
+      async function compressImage(file, maxBytes = 200 * 1024) {
+        if (file.type === 'image/svg+xml') {
+          if (file.size > 400 * 1024) throw new Error('SVG too large (max 400KB). Optimize it first.');
+          return file;
+        }
+        if (file.size <= maxBytes) return file;
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          const objUrl = URL.createObjectURL(file);
+          img.onload = () => {
+            URL.revokeObjectURL(objUrl);
+            const canvas = document.createElement('canvas');
+            let { width, height } = img;
+            const MAX_DIM = 1600;
+            if (width > MAX_DIM || height > MAX_DIM) {
+              const r = Math.min(MAX_DIM / width, MAX_DIM / height);
+              width = Math.round(width * r); height = Math.round(height * r);
+            }
+            canvas.width = width; canvas.height = height;
+            canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+            let quality = 0.88;
+            const tryNext = () => {
+              canvas.toBlob(blob => {
+                if (!blob) { reject(new Error('Compression failed')); return; }
+                if (blob.size <= maxBytes || quality < 0.25) {
+                  resolve(new File([blob], file.name.replace(/\.[^.]+$/, '.jpg'), { type: 'image/jpeg' }));
+                } else { quality -= 0.1; tryNext(); }
+              }, 'image/jpeg', quality);
+            };
+            tryNext();
+          };
+          img.onerror = () => { URL.revokeObjectURL(objUrl); reject(new Error('Could not load image')); };
+          img.src = objUrl;
+        });
+      }
+
+      async function checkStorageBucket() {
+        try {
+          const res = await fetch(`${SUPABASE_CONFIG.url}/storage/v1/bucket/site-assets`, {
+            headers: { 'apikey': SUPABASE_CONFIG.anonKey, 'Authorization': `Bearer ${SUPABASE_CONFIG.anonKey}` }
+          });
+          storageReady = res.ok;
+          const banner = $('#storageBanner');
+          if (banner) banner.style.display = storageReady ? 'none' : 'block';
+        } catch(e) {
+          storageReady = false;
+          const banner = $('#storageBanner');
+          if (banner) banner.style.display = 'block';
+        }
+      }
+
+      async function uploadToSupabaseStorage(file, folder = 'uploads', progressBarEl = null, progressWrapEl = null) {
+        if (!storageReady) throw new Error('Supabase Storage bucket "site-assets" is not set up yet. See the yellow banner above.');
+        const compressed = await compressImage(file, 200 * 1024);
+        const ext = compressed.name.split('.').pop().toLowerCase();
+        const uniqueName = `${folder}/${Date.now()}-${Math.random().toString(36).slice(2,8)}.${ext}`;
+        if (progressWrapEl) { progressWrapEl.style.display = 'block'; }
+        if (progressBarEl) { progressBarEl.style.width = '30%'; }
+        const res = await fetch(`${SUPABASE_CONFIG.url}/storage/v1/object/site-assets/${uniqueName}`, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_CONFIG.anonKey,
+            'Authorization': `Bearer ${SUPABASE_CONFIG.anonKey}`,
+            'Content-Type': compressed.type,
+            'x-upsert': 'true'
+          },
+          body: compressed
+        });
+        if (progressBarEl) progressBarEl.style.width = '90%';
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          throw new Error(err.error || err.message || `Upload failed (HTTP ${res.status})`);
+        }
+        if (progressBarEl) progressBarEl.style.width = '100%';
+        return `${SUPABASE_CONFIG.url}/storage/v1/object/public/site-assets/${uniqueName}`;
+      }
+
+      function bindUploadZone(fileInputId, zoneId, progressId, progressBarId, resultId, previewId, clearBtnId, onUrlReady) {
+        const fileInput = document.getElementById(fileInputId);
+        const zone = document.getElementById(zoneId);
+        const progressWrap = document.getElementById(progressId);
+        const progressBar = document.getElementById(progressBarId);
+        const resultEl = document.getElementById(resultId);
+        const previewEl = document.getElementById(previewId);
+        const clearBtn = document.getElementById(clearBtnId);
+        if (!fileInput || !zone) return;
+
+        // Drag over visual
+        zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+        zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+        zone.addEventListener('drop', e => {
+          e.preventDefault(); zone.classList.remove('drag-over');
+          if (e.dataTransfer.files.length) handleFileUpload(e.dataTransfer.files[0]);
+        });
+        fileInput.addEventListener('change', () => { if (fileInput.files.length) handleFileUpload(fileInput.files[0]); });
+
+        async function handleFileUpload(file) {
+          const allowed = ['image/png','image/jpeg','image/svg+xml','image/webp','image/gif'];
+          if (!allowed.includes(file.type)) { showToast('❌ Only PNG, JPG, SVG, WebP images allowed'); return; }
+          if (progressWrap) progressWrap.style.display = 'block';
+          if (progressBar) progressBar.style.width = '10%';
+          try {
+            const url = await uploadToSupabaseStorage(file, 'uploads', progressBar, progressWrap);
+            if (previewEl) { previewEl.src = url; }
+            if (resultEl) resultEl.style.display = 'block';
+            if (progressWrap) setTimeout(() => { progressWrap.style.display = 'none'; if(progressBar) progressBar.style.width = '0%'; }, 600);
+            onUrlReady(url);
+            showToast('✅ Image uploaded to cloud!');
+          } catch(err) {
+            if (progressWrap) progressWrap.style.display = 'none';
+            if (progressBar) progressBar.style.width = '0%';
+            showToast(`❌ Upload failed: ${err.message}`);
+          }
+        }
+
+        if (clearBtn) {
+          clearBtn.addEventListener('click', () => {
+            if (fileInput) { fileInput.value = ''; }
+            if (previewEl) previewEl.src = '';
+            if (resultEl) resultEl.style.display = 'none';
+            onUrlReady('');
+          });
+        }
+      }
+
+      // Bind upload zones for thumbnail, cover, and client logo
+      bindUploadZone('pThumbFile','thumbUploadZone','thumbUploadProgress','thumbUploadProgressBar','thumbUploadResult','thumbUploadPreview','clearThumbBtn', url => {
+        pendingThumbUrl = url;
+        if (url) { const el = $('#pThumbnail'); if (el) el.value = ''; updateLivePreview(); }
+      });
+      bindUploadZone('pCoverFile','coverUploadZone','coverUploadProgress','coverUploadProgressBar','coverUploadResult','coverUploadPreview','clearCoverBtn', url => {
+        pendingCoverUrl = url;
+        if (url) { const el = $('#pCover'); if (el) el.value = ''; }
+      });
+      bindUploadZone('clientLogoFile','clientUploadZone','clientUploadProgress','clientUploadProgressBar','clientUploadResult','clientUploadPreview','clearClientLogoBtn', url => {
+        pendingClientLogoUrl = url;
+        if (url) { const el = $('#cLogoUrl'); if (el) el.value = ''; }
+      });
+
+      // =========================================================
+      // TABS
+      // =========================================================
+      $all('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          $all('.tab-btn').forEach(b => b.classList.remove('active'));
+          $all('.tab-pane').forEach(p => p.classList.remove('active'));
+          btn.classList.add('active');
+          const target = document.getElementById(btn.dataset.tab);
+          if (target) target.classList.add('active');
+          if (btn.dataset.tab === 'tab-clients') loadClientBrands();
+        });
+      });
+
+      // =========================================================
+      // CLIENT BRANDS — Supabase CRUD
+      // =========================================================
+      const DEFAULT_CLIENTS = [
+        { name: 'Hyundai', sub: 'Gujranwala', logo_image_url: '', sort_order: 1 },
+        { name: 'Suzuki', sub: 'Motors', logo_image_url: '', sort_order: 2 },
+        { name: 'Go Petroleum', sub: 'Oil & Energy', logo_image_url: '', sort_order: 3 },
+        { name: 'Pakson Boss', sub: 'International', logo_image_url: '', sort_order: 4 },
+        { name: 'GFI JOJO', sub: 'Food Industries', logo_image_url: '', sort_order: 5 },
+        { name: 'Bioxy S.L.', sub: 'Health & Wellness', logo_image_url: '', sort_order: 6 },
+        { name: 'Synvora®', sub: 'Tech & AI', logo_image_url: '', sort_order: 7 },
+        { name: 'Burger Station', sub: 'Food & Dining', logo_image_url: '', sort_order: 8 },
+        { name: 'Move Energy', sub: 'Beverages', logo_image_url: '', sort_order: 9 },
+        { name: 'Wheels & Zameen', sub: 'Auto & Property', logo_image_url: '', sort_order: 10 },
+        { name: 'Wirsa Restaurant', sub: 'Authentic Dining', logo_image_url: '', sort_order: 11 }
+      ];
+
+      async function loadClientBrands() {
+        const countEl = $('#clientCountText');
+        if (countEl) countEl.textContent = 'Loading from Supabase...';
+        try {
+          const res = await fetch(`${SUPABASE_CONFIG.url}/rest/v1/client_brands?select=*&order=sort_order.asc`, {
+            headers: { 'apikey': SUPABASE_CONFIG.anonKey, 'Authorization': `Bearer ${SUPABASE_CONFIG.anonKey}` }
+          });
+          if (!res.ok) throw new Error(`Supabase ${res.status}`);
+          const data = await res.json();
+          if (Array.isArray(data) && data.length) {
+            clientBrands = data;
+          } else {
+            // Table might not exist yet — show defaults
+            clientBrands = DEFAULT_CLIENTS.map((c, i) => ({ ...c, id: `local-${i}` }));
+            if (countEl) countEl.textContent = '⚠️ Run SQL setup to enable client logos cloud sync (see below)';
+          }
+          renderClientBrands();
+        } catch(err) {
+          clientBrands = DEFAULT_CLIENTS.map((c, i) => ({ ...c, id: `local-${i}` }));
+          renderClientBrands();
+          if (countEl) countEl.textContent = '⚠️ Client brands table not found — run the SQL setup';
+        }
+      }
+
+      function renderClientBrands() {
+        const grid = $('#clientsGrid');
+        const countEl = $('#clientCountText');
+        if (!grid) return;
+        if (countEl && clientBrands.length) countEl.textContent = `${clientBrands.length} clients in selected clients strip`;
+        grid.innerHTML = clientBrands.map((c, idx) => {
+          const logoHtml = c.logo_image_url
+            ? `<img src="${c.logo_image_url}" alt="${c.name}" onerror="this.style.display='none'">`
+            : `<span class="no-logo">No logo yet</span>`;
+          return `
+          <div class="client-card">
+            <div class="client-card-logo">${logoHtml}</div>
+            <div class="client-card-info">
+              <h4>${c.name}</h4>
+              <p>${c.sub || ''}</p>
+            </div>
+            <div class="client-card-actions">
+              <button class="btn" type="button" onclick="window.clientEdit('${c.id}')">✏️ Edit</button>
+              <button class="btn danger" type="button" onclick="window.clientDelete('${c.id}')">🗑️</button>
+            </div>
+          </div>`;
+        }).join('');
+      }
+
+      window.clientEdit = (id) => {
+        const c = clientBrands.find(x => String(x.id) === String(id));
+        if (!c) return;
+        editingClientId = id;
+        pendingClientLogoUrl = c.logo_image_url || '';
+        $('#clientModalTitle').textContent = 'Edit Client';
+        $('#cName').value = c.name || '';
+        $('#cSub').value = c.sub || '';
+        $('#cLogoUrl').value = '';
+        const previewEl = $('#clientUploadPreview');
+        const resultEl = $('#clientUploadResult');
+        if (previewEl && c.logo_image_url) { previewEl.src = c.logo_image_url; }
+        if (resultEl) resultEl.style.display = c.logo_image_url ? 'block' : 'none';
+        $('#clientModal').classList.add('active');
+      };
+
+      window.clientDelete = async (id) => {
+        const c = clientBrands.find(x => String(x.id) === String(id));
+        if (!c) return;
+        if (!confirm(`Delete "${c.name}"?`)) return;
+        if (typeof c.id === 'string' && c.id.startsWith('local-')) {
+          clientBrands = clientBrands.filter(x => String(x.id) !== String(id));
+          renderClientBrands(); showToast('Removed (local mode)'); return;
+        }
+        try {
+          await fetch(`${SUPABASE_CONFIG.url}/rest/v1/client_brands?id=eq.${id}`, {
+            method: 'DELETE', headers: getSupabaseHeaders()
+          });
+          clientBrands = clientBrands.filter(x => String(x.id) !== String(id));
+          renderClientBrands(); showToast('Client deleted!');
+        } catch(e) { showToast('❌ Delete failed'); }
+      };
+
+      function openClientModal() {
+        editingClientId = null; pendingClientLogoUrl = '';
+        $('#clientModalTitle').textContent = 'Add Client';
+        $('#cName').value = ''; $('#cSub').value = ''; $('#cLogoUrl').value = '';
+        const resultEl = $('#clientUploadResult');
+        if (resultEl) resultEl.style.display = 'none';
+        $('#clientModal').classList.add('active');
+      }
+      function closeClientModal() { $('#clientModal').classList.remove('active'); editingClientId = null; }
+
+      async function saveClient() {
+        const name = $('#cName').value.trim();
+        if (!name) { alert('Client name is required'); return; }
+        const sub = $('#cSub').value.trim();
+        const urlInput = $('#cLogoUrl').value.trim();
+        const logoUrl = pendingClientLogoUrl || urlInput;
+        const payload = { name, sub, logo_image_url: logoUrl, sort_order: editingClientId ? undefined : (clientBrands.length + 1) };
+
+        try {
+          if (editingClientId && !String(editingClientId).startsWith('local-')) {
+            const res = await fetch(`${SUPABASE_CONFIG.url}/rest/v1/client_brands?id=eq.${editingClientId}`, {
+              method: 'PATCH', headers: getSupabaseHeaders(), body: JSON.stringify(payload)
+            });
+            if (!res.ok) throw new Error(`Update failed (${res.status})`);
+            const idx = clientBrands.findIndex(x => String(x.id) === String(editingClientId));
+            if (idx >= 0) clientBrands[idx] = { ...clientBrands[idx], ...payload };
+            showToast(`✅ Updated "${name}"!`);
+          } else {
+            const res = await fetch(`${SUPABASE_CONFIG.url}/rest/v1/client_brands`, {
+              method: 'POST', headers: getSupabaseHeaders(), body: JSON.stringify(payload)
+            });
+            if (!res.ok) throw new Error(`Insert failed (${res.status})`);
+            const inserted = await res.json();
+            clientBrands.push({ ...payload, id: inserted[0]?.id || `local-${Date.now()}` });
+            showToast(`✅ Added "${name}" to Supabase!`);
+          }
+        } catch(e) {
+          // Local fallback
+          if (editingClientId) {
+            const idx = clientBrands.findIndex(x => String(x.id) === String(editingClientId));
+            if (idx >= 0) clientBrands[idx] = { ...clientBrands[idx], ...payload };
+          } else {
+            clientBrands.push({ ...payload, id: `local-${Date.now()}` });
+          }
+          showToast(`Saved locally (Supabase table may not exist yet)`);
+        }
+        closeClientModal();
+        renderClientBrands();
+      }
+
+      // Client modal event listeners
+      $('#addClientBtn').addEventListener('click', openClientModal);
+      $('#closeClientModalBtn').addEventListener('click', closeClientModal);
+      $('#cancelClientModalBtn').addEventListener('click', closeClientModal);
+      $('#saveClientBtn').addEventListener('click', saveClient);
+
+      function getSupabaseHeaders() {
+        return {
+          'apikey': SUPABASE_CONFIG.anonKey,
+          'Authorization': `Bearer ${SUPABASE_CONFIG.anonKey}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=representation'
+        };
+      }
+
+      function showToast(msg) {
+        const toast = $('#toast');
+        if (!toast) return;
+        toast.textContent = msg;
+        toast.style.display = 'block';
+        setTimeout(() => { toast.style.display = 'none'; }, 3000);
+      }
+
+      function updateStatusBadge(connected) {
+        isSupabaseConnected = connected;
+        const alertEl = $('#statusAlert');
+        if (!alertEl) return;
+        if (connected) {
+          alertEl.innerHTML = `<span>🟢 <strong>Supabase Cloud Connected!</strong> Projects save instantly to your live cloud database and sync directly with your website.</span>
+          <button class="btn" id="addProjectTopBtn" type="button">+ Add New Project</button>`;
+          const btn = $('#addProjectTopBtn');
+          if (btn) btn.addEventListener('click', () => openModal(false));
+        } else {
+          alertEl.innerHTML = `<span>⚡ <strong>Offline / Local Mode:</strong> Connected to local storage. Any edits will save and can be exported as projects.json.</span>
+          <button class="btn" id="addProjectTopBtn" type="button">+ Add New Project</button>`;
+          const btn = $('#addProjectTopBtn');
+          if (btn) btn.addEventListener('click', () => openModal(false));
+        }
+      }
+
+      // Load projects directly from Supabase
+      async function loadProjects() {
+        const countEl = $('#projectCountText');
+        if (countEl) countEl.textContent = 'Syncing with Supabase Cloud...';
+        try {
+          const res = await fetch(`${SUPABASE_CONFIG.url}/rest/v1/projects?select=*&order=sort_order.asc,created_at.desc`, {
+            headers: {
+              'apikey': SUPABASE_CONFIG.anonKey,
+              'Authorization': `Bearer ${SUPABASE_CONFIG.anonKey}`
+            }
+          });
+          if (!res.ok) throw new Error(`Supabase returned ${res.status}`);
+          const data = await res.json();
+          if (Array.isArray(data) && data.length) {
+            projects = data.map(item => ({
+              id: item.id,
+              title: item.title || '',
+              category: item.category || 'Identity',
+              tag: item.tag || 'Brand Identity',
+              year: String(item.year || ''),
+              client: item.client || '',
+              description: item.description || '',
+              services: Array.isArray(item.services) ? item.services : (item.services ? [item.services] : [item.tag]),
+              thumbnail: item.thumbnail || '',
+              cover: item.cover || item.thumbnail || '',
+              behanceLink: item.behance_link || item.behanceLink || '',
+              websiteLink: item.website_link || item.websiteLink || '',
+              featured: Boolean(item.featured),
+              cardLabel: item.card_label || item.cardLabel || (item.featured ? 'Featured' : item.tag),
+              sort_order: item.sort_order || 0
+            }));
+          }
+          updateStatusBadge(true);
+          renderStudio();
+        } catch(err) {
+          console.warn('Could not load from Supabase, checking local cache:', err);
+          updateStatusBadge(false);
+          const saved = safeGetStorage(STORAGE_KEY);
+          if (saved) {
+            try {
+              const parsed = JSON.parse(saved);
+              if (Array.isArray(parsed) && parsed.length) {
+                projects = parsed;
+              }
+            } catch(e) {}
+          }
+          renderStudio();
+        }
+      }
+
+      function saveLocal() {
+        safeSetStorage(STORAGE_KEY, JSON.stringify(projects));
+      }
+
+      function renderStudio() {
+        saveLocal();
+        const grid = $('#projectsGrid');
+        if (!grid) return;
+        const filterEl = $('#categoryFilter');
+        const filterCat = filterEl ? filterEl.value : 'All';
+        const searchInput = $('#searchInput');
+        const search = (searchInput ? searchInput.value : '').toLowerCase().trim();
+
+        // Update categories dropdown
+        const allCats = ['All', ...new Set(projects.map(p => p.category).filter(Boolean))];
+        const currentCatVal = filterEl ? filterEl.value : 'All';
+        if (filterEl) {
+          filterEl.innerHTML = allCats.map(c => `<option value="${c}" ${c === currentCatVal ? 'selected' : ''}>${c}</option>`).join('');
+        }
+        $('#categoryFilter').innerHTML = allCats.map(c => `<option value="${c}" ${c === currentCatVal ? 'selected' : ''}>${c}</option>`).join('');
+
+        const filtered = projects.filter((p, i) => {
+          p.__index = i;
+          if (filterCat !== 'All' && p.category !== filterCat) return false;
+          if (search) {
+            const haystack = `${p.title} ${p.client} ${p.category} ${p.tag} ${p.description}`.toLowerCase();
+            if (!haystack.includes(search)) return false;
+          }
+          return true;
+        });
+
+        $('#projectCountText').textContent = `${projects.length} total projects in portfolio (${filtered.length} visible)`;
+
+        if (!filtered.length) {
+          grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 48px 0; color: var(--text-muted);">No projects found matching your search.</div>`;
+          return;
+        }
+
+        grid.innerHTML = filtered.map(p => {
+          const idx = p.__index;
+          return `
+            <div class="project-card">
+              <div class="project-thumb-wrap">
+                <img src="${p.thumbnail || '../assets/logo.svg'}" alt="${p.title}" class="project-thumb" loading="lazy" onerror="this.src='../assets/logo.svg'">
+                <span class="card-label-tag">${p.cardLabel || p.tag || 'Project'}</span>
+                ${p.featured ? `<span class="featured-tag">⭐ Featured</span>` : ''}
+              </div>
+              <div class="project-body">
+                <div class="project-meta">${p.category} · ${p.tag} · ${p.year}</div>
+                <h3 class="project-title">${p.title}</h3>
+                <p class="project-desc">${p.description || ''}</p>
+                <div class="project-footer">
+                  <div class="order-btns">
+                    <button type="button" class="btn icon-only" onclick="window.studioMoveUp(${idx})" title="Move up" ${idx === 0 ? 'disabled' : ''}>▲</button>
+                    <button type="button" class="btn icon-only" onclick="window.studioMoveDown(${idx})" title="Move down" ${idx === projects.length - 1 ? 'disabled' : ''}>▼</button>
+                  </div>
+                  <div class="action-btns">
+                    <button type="button" class="btn" onclick="window.studioEdit(${idx})">✏️ Edit</button>
+                    <button type="button" class="btn" onclick="window.studioDuplicate(${idx})" title="Duplicate project">📋</button>
+                    <button type="button" class="btn danger" onclick="window.studioDelete(${idx})" title="Delete project">🗑️</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // Modal Handlers
+      function openModal(isEdit = false, index = -1) {
+        editingIndex = index;
+        // Reset upload zones
+        pendingThumbUrl = '';
+        pendingCoverUrl = '';
+        ['thumbUploadResult','coverUploadResult'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.style.display = 'none';
+        });
+        ['thumbUploadProgressBar','coverUploadProgressBar'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.style.width = '0%';
+        });
+        ['thumbUploadProgress','coverUploadProgress'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.style.display = 'none';
+        });
+
+        $('#modalTitle').textContent = isEdit ? 'Edit Project' : 'Add New Project';
+        if (isEdit && projects[index]) {
+          const p = projects[index];
+          $('#pTitle').value = p.title || '';
+          $('#pCategory').value = p.category || '';
+          $('#pTag').value = p.tag || '';
+          $('#pClient').value = p.client || '';
+          $('#pYear').value = p.year || '';
+          $('#pDesc').value = p.description || '';
+          $('#pServices').value = Array.isArray(p.services) ? p.services.join(', ') : (p.services || '');
+          $('#pThumbnail').value = p.thumbnail || '';
+          $('#pCover').value = p.cover || '';
+          $('#pBehance').value = p.behanceLink || '';
+          $('#pCardLabel').value = p.cardLabel || '';
+          $('#pWebsite').value = p.websiteLink || '';
+          $('#pFeatured').checked = Boolean(p.featured);
+          // Show existing thumbnail in upload preview if it's a Supabase URL
+          const thumbPreview = $('#thumbUploadPreview');
+          const thumbResult = $('#thumbUploadResult');
+          if (thumbPreview && p.thumbnail && p.thumbnail.includes('supabase')) {
+            thumbPreview.src = p.thumbnail;
+            if (thumbResult) thumbResult.style.display = 'block';
+            pendingThumbUrl = p.thumbnail;
+          }
+        } else {
+          $('#pTitle').value = '';
+          $('#pCategory').value = '';
+          $('#pTag').value = '';
+          $('#pClient').value = '';
+          $('#pYear').value = new Date().getFullYear();
+          $('#pDesc').value = '';
+          $('#pServices').value = '';
+          $('#pThumbnail').value = '';
+          $('#pCover').value = '';
+          $('#pBehance').value = '';
+          $('#pCardLabel').value = '';
+          $('#pWebsite').value = '';
+          $('#pFeatured').checked = false;
+        }
+        updateLivePreview();
+        $('#projectModal').classList.add('active');
+      }
+
+      function closeModal() {
+        $('#projectModal').classList.remove('active');
+        editingIndex = -1;
+        pendingThumbUrl = '';
+        pendingCoverUrl = '';
+      }
+
+      function updateLivePreview() {
+        const title = $('#pTitle').value || 'Project Title';
+        const cat = $('#pCategory').value || 'Category';
+        const tag = $('#pTag').value || 'Tag';
+        const desc = $('#pDesc').value || 'Project description snippet will appear here...';
+        const label = $('#pCardLabel').value || tag;
+        // Use uploaded URL first, then text input
+        const thumb = pendingThumbUrl || ($('#pThumbnail') ? $('#pThumbnail').value : '') || '../assets/logo.svg';
+        const feat = $('#pFeatured').checked;
+
+        $('#prevTitle').textContent = title;
+        $('#prevCat').textContent = `${cat} / ${tag}`;
+        $('#prevDesc').textContent = desc;
+        $('#prevBadge').textContent = label;
+        $('#prevImg').src = thumb;
+        $('#prevFeatured').style.display = feat ? 'inline-block' : 'none';
+      }
+
+      ['pTitle', 'pCategory', 'pTag', 'pDesc', 'pCardLabel', 'pThumbnail', 'pFeatured'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.addEventListener('input', updateLivePreview);
+          el.addEventListener('change', updateLivePreview);
+        }
+      });
+
+      async function saveProjectFromModal() {
+        const title = $('#pTitle').value.trim();
+        const category = $('#pCategory').value.trim();
+        const tag = $('#pTag').value.trim();
+        const client = $('#pClient').value.trim();
+        const year = $('#pYear').value.trim() || String(new Date().getFullYear());
+        const description = $('#pDesc').value.trim();
+        const rawServices = $('#pServices').value.trim();
+        // Use uploaded URL (from Supabase Storage) OR pasted URL
+        const thumbnail = pendingThumbUrl || ($('#pThumbnail') ? $('#pThumbnail').value.trim() : '');
+        let cover = pendingCoverUrl || ($('#pCover') ? $('#pCover').value.trim() : '');
+        if (!cover) cover = thumbnail;
+        const behanceLink = $('#pBehance').value.trim();
+        const websiteLink = $('#pWebsite').value.trim();
+        const cardLabel = $('#pCardLabel').value.trim() || tag || 'Project';
+        const featured = $('#pFeatured').checked;
+
+        if (!title || !category || !tag || !client || !description || !thumbnail) {
+          alert('Please fill in all required fields (Title, Category, Service/Tag, Client, Description, and a Thumbnail — either upload one or paste a URL).');
+          return;
+        }
+
+        const servicesArr = rawServices.split(',').map(s => s.trim()).filter(Boolean);
+        if (!servicesArr.length) servicesArr.push(tag);
+
+        const dbPayload = {
+          title,
+          category,
+          tag,
+          year,
+          client,
+          description,
+          services: servicesArr,
+          thumbnail,
+          cover,
+          behance_link: behanceLink,
+          website_link: websiteLink,
+          featured,
+          card_label: cardLabel,
+          sort_order: editingIndex >= 0 ? (projects[editingIndex].sort_order || editingIndex + 1) : (projects.length + 1)
+        };
+
+        const projectObj = {
+          title,
+          category,
+          tag,
+          year,
+          client,
+          description,
+          services: servicesArr,
+          thumbnail,
+          cover,
+          behanceLink,
+          websiteLink,
+          featured,
+          cardLabel,
+          sort_order: dbPayload.sort_order
+        };
+
+        // Save to Supabase Cloud
+        try {
+          if (editingIndex >= 0 && projects[editingIndex].id) {
+            const id = projects[editingIndex].id;
+            const res = await fetch(`${SUPABASE_CONFIG.url}/rest/v1/projects?id=eq.${id}`, {
+              method: 'PATCH',
+              headers: getSupabaseHeaders(),
+              body: JSON.stringify(dbPayload)
+            });
+            if (!res.ok) throw new Error(`Supabase update failed (${res.status})`);
+            projects[editingIndex] = { ...projectObj, id };
+            showToast(`Updated "${title}" in Supabase!`);
+          } else {
+            const res = await fetch(`${SUPABASE_CONFIG.url}/rest/v1/projects`, {
+              method: 'POST',
+              headers: getSupabaseHeaders(),
+              body: JSON.stringify(dbPayload)
+            });
+            if (!res.ok) throw new Error(`Supabase insert failed (${res.status})`);
+            const inserted = await res.json();
+            const newId = inserted[0]?.id;
+            projects.unshift({ ...projectObj, id: newId });
+            showToast(`Added "${title}" to Supabase & Live site!`);
+          }
+        } catch(err) {
+          console.error('Supabase save error:', err);
+          if (editingIndex >= 0) {
+            projects[editingIndex] = projectObj;
+          } else {
+            projects.unshift(projectObj);
+          }
+          showToast(`Saved locally (Supabase offline)`);
+        }
+
+        closeModal();
+        renderStudio();
+      }
+
+      // Global window helpers for inline handlers
+      window.studioEdit = idx => openModal(true, idx);
+
+      window.studioDuplicate = async idx => {
+        const orig = projects[idx];
+        const clone = JSON.parse(JSON.stringify(orig));
+        delete clone.id;
+        clone.title = `${orig.title} (Copy)`;
+
+        const dbPayload = {
+          title: clone.title,
+          category: clone.category,
+          tag: clone.tag,
+          year: clone.year,
+          client: clone.client,
+          description: clone.description,
+          services: clone.services,
+          thumbnail: clone.thumbnail,
+          cover: clone.cover,
+          behance_link: clone.behanceLink || '',
+          website_link: clone.websiteLink || '',
+          featured: clone.featured,
+          card_label: clone.cardLabel,
+          sort_order: (orig.sort_order || 0) + 1
+        };
+
+        try {
+          const res = await fetch(`${SUPABASE_CONFIG.url}/rest/v1/projects`, {
+            method: 'POST',
+            headers: getSupabaseHeaders(),
+            body: JSON.stringify(dbPayload)
+          });
+          if (res.ok) {
+            const inserted = await res.json();
+            clone.id = inserted[0]?.id;
+          }
+        } catch(e) {
+          console.warn('Supabase duplicate error:', e);
+        }
+
+        projects.splice(idx + 1, 0, clone);
+        showToast('Project duplicated in Supabase!');
+        renderStudio();
+      };
+
+      window.studioDelete = async idx => {
+        const p = projects[idx];
+        if (!confirm(`Are you sure you want to delete "${p.title}"?`)) return;
+
+        if (p.id) {
+          try {
+            await fetch(`${SUPABASE_CONFIG.url}/rest/v1/projects?id=eq.${p.id}`, {
+              method: 'DELETE',
+              headers: getSupabaseHeaders()
+            });
+          } catch(err) {
+            console.warn('Supabase delete error:', err);
+          }
+        }
+
+        projects.splice(idx, 1);
+        showToast('Project deleted from Supabase.');
+        renderStudio();
+      };
+
+      window.studioMoveUp = async idx => {
+        if (idx <= 0) return;
+        const item = projects.splice(idx, 1)[0];
+        projects.splice(idx - 1, 0, item);
+        renderStudio();
+
+        // Update sort_order in Supabase
+        projects.forEach(async (p, i) => {
+          p.sort_order = i + 1;
+          if (p.id) {
+            try {
+              await fetch(`${SUPABASE_CONFIG.url}/rest/v1/projects?id=eq.${p.id}`, {
+                method: 'PATCH',
+                headers: getSupabaseHeaders(),
+                body: JSON.stringify({ sort_order: i + 1 })
+              });
+            } catch(e) {}
+          }
+        });
+      };
+
+      window.studioMoveDown = async idx => {
+        if (idx >= projects.length - 1) return;
+        const item = projects.splice(idx, 1)[0];
+        projects.splice(idx + 1, 0, item);
+        renderStudio();
+
+        // Update sort_order in Supabase
+        projects.forEach(async (p, i) => {
+          p.sort_order = i + 1;
+          if (p.id) {
+            try {
+              await fetch(`${SUPABASE_CONFIG.url}/rest/v1/projects?id=eq.${p.id}`, {
+                method: 'PATCH',
+                headers: getSupabaseHeaders(),
+                body: JSON.stringify({ sort_order: i + 1 })
+              });
+            } catch(e) {}
+          }
+        });
+      };
+
+      // Download projects.json (Local backup)
+      function downloadJson() {
+        const cleanList = projects.map(p => ({
+          title: p.title,
+          category: p.category,
+          tag: p.tag,
+          year: p.year,
+          client: p.client,
+          description: p.description,
+          services: p.services,
+          thumbnail: p.thumbnail,
+          cover: p.cover,
+          behanceLink: p.behanceLink || '',
+          websiteLink: p.websiteLink || '',
+          featured: Boolean(p.featured),
+          cardLabel: p.cardLabel
+        }));
+        const payload = JSON.stringify({ projects: cleanList }, null, 2);
+        const blob = new Blob([payload], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'projects.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast('Downloaded projects.json backup!');
+      }
+
+      function copyJson() {
+        const cleanList = projects.map(p => ({
+          title: p.title,
+          category: p.category,
+          tag: p.tag,
+          year: p.year,
+          client: p.client,
+          description: p.description,
+          services: p.services,
+          thumbnail: p.thumbnail,
+          cover: p.cover,
+          behanceLink: p.behanceLink || '',
+          websiteLink: p.websiteLink || '',
+          featured: Boolean(p.featured),
+          cardLabel: p.cardLabel
+        }));
+        const payload = JSON.stringify({ projects: cleanList }, null, 2);
+        navigator.clipboard.writeText(payload).then(() => {
+          showToast('Copied JSON to clipboard!');
+        }).catch(() => {
+          alert('Could not copy automatically. Download projects.json instead.');
+        });
+      }
+
+      function resetData() {
+        if (confirm('Reload projects from Supabase database?')) {
+          localStorage.removeItem(STORAGE_KEY);
+          loadProjects();
+          showToast('Reloaded from Supabase');
+        }
+      }
+
+      // GitHub Sync Logic
+      function openGithubModal() {
+        $('#ghRepo').value = localStorage.getItem(GITHUB_REPO_KEY) || 'madebykhizar-wq/Khizar-Portfolio';
+        $('#ghBranch').value = localStorage.getItem(GITHUB_BRANCH_KEY) || 'main';
+        $('#ghToken').value = localStorage.getItem(GITHUB_TOKEN_KEY) || '';
+        $('#ghSyncStatus').style.display = 'none';
+        $('#githubModal').classList.add('active');
+      }
+
+      function closeGithubModal() {
+        $('#githubModal').classList.remove('active');
+      }
+
+      async function executeGithubPush() {
+        const repo = $('#ghRepo').value.trim();
+        const branch = $('#ghBranch').value.trim();
+        const token = $('#ghToken').value.trim();
+        const statusEl = $('#ghSyncStatus');
+
+        if (!repo || !token) {
+          alert('Please enter your GitHub Repository and a Personal Access Token.');
+          return;
+        }
+
+        localStorage.setItem(GITHUB_REPO_KEY, repo);
+        localStorage.setItem(GITHUB_BRANCH_KEY, branch);
+        localStorage.setItem(GITHUB_TOKEN_KEY, token);
+
+        statusEl.style.display = 'block';
+        statusEl.style.color = '#f0ad4e';
+        statusEl.textContent = 'Connecting to GitHub API...';
+
+        const filePath = 'content/projects.json';
+        const apiUrl = `https://api.github.com/repos/${repo}/contents/${filePath}?ref=${branch}`;
+
+        try {
+          let sha = null;
+          const getRes = await fetch(apiUrl, {
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Accept': 'application/vnd.github+json'
+            }
+          });
+
+          if (getRes.ok) {
+            const fileData = await getRes.json();
+            sha = fileData.sha;
+          }
+
+          const cleanList = projects.map(p => ({
+            title: p.title,
+            category: p.category,
+            tag: p.tag,
+            year: p.year,
+            client: p.client,
+            description: p.description,
+            services: p.services,
+            thumbnail: p.thumbnail,
+            cover: p.cover,
+            behanceLink: p.behanceLink || '',
+            websiteLink: p.websiteLink || '',
+            featured: Boolean(p.featured),
+            cardLabel: p.cardLabel
+          }));
+          const jsonString = JSON.stringify({ projects: cleanList }, null, 2);
+          const base64Content = btoa(unescape(encodeURIComponent(jsonString)));
+
+          const commitRes = await fetch(`https://api.github.com/repos/${repo}/contents/${filePath}`, {
+            method: 'PUT',
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Accept': 'application/vnd.github+json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              message: `Update portfolio projects (${projects.length} items) via Portfolio Studio [skip ci]`,
+              content: base64Content,
+              branch: branch,
+              sha: sha || undefined
+            })
+          });
+
+          if (!commitRes.ok) {
+            const errData = await commitRes.json();
+            throw new Error(errData.message || 'GitHub commit failed');
+          }
+
+          statusEl.style.color = '#28a064';
+          statusEl.textContent = '✅ Successfully committed to GitHub!';
+          showToast('Pushed to GitHub main branch!');
+        } catch(err) {
+          statusEl.style.color = '#d9534f';
+          statusEl.textContent = `❌ Error: ${err.message}`;
+        }
+      }
+
+      // Event Listeners
+      $('#addProjectBtn').addEventListener('click', () => openModal(false));
+      const topBtn = $('#addProjectTopBtn');
+      if (topBtn) topBtn.addEventListener('click', () => openModal(false));
+      $('#closeModalBtn').addEventListener('click', closeModal);
+      $('#cancelModalBtn').addEventListener('click', closeModal);
+      $('#saveProjectBtn').addEventListener('click', saveProjectFromModal);
+
+      $('#downloadJsonBtn').addEventListener('click', downloadJson);
+      $('#copyJsonBtn').addEventListener('click', copyJson);
+      $('#resetDataBtn').addEventListener('click', resetData);
+
+      $('#githubSyncBtn').addEventListener('click', openGithubModal);
+      $('#closeGithubModalBtn').addEventListener('click', closeGithubModal);
+      $('#cancelGithubModalBtn').addEventListener('click', closeGithubModal);
+      $('#executeGithubPushBtn').addEventListener('click', executeGithubPush);
+
+      $('#searchInput').addEventListener('input', renderStudio);
+      $('#categoryFilter').addEventListener('change', renderStudio);
+
+      // Initialize
+      renderStudio();
+      loadProjects();
+      checkStorageBucket();
+    })();
+  </script>
+</body>
+</html>

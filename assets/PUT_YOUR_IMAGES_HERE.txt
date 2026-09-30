@@ -1,0 +1,5 @@
+Your logo (logo.svg), favicons, and portrait photo (my-photo.jpg) are
+already in this folder and wired up in js/config.js.
+
+To replace the portrait, add the new image here and update
+personal.photo in js/config.js to its relative path.

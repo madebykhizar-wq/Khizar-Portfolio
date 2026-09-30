@@ -1,0 +1,7 @@
+Create one subfolder per project (e.g. /projects/bioxy/) and put its
+thumbnail.jpg and cover.jpg inside. Then point that project's
+"thumbnail" / "cover" fields in /js/config.js at the new paths, e.g.
+"projects/bioxy/thumbnail.jpg".
+
+Projects currently use external Behance image URLs, so this step is
+optional — only do it for projects you want to host locally instead.
