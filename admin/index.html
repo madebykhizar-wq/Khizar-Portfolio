@@ -1707,8 +1707,8 @@
               'Authorization': `Bearer ${SUPABASE_CONFIG.anonKey}`
             }
           });
-          if (!res.ok) throw new Error(`Supabase returned ${res.status}`);
           const data = await res.json();
+          if (Array.isArray(data) && data.length) {
             projects = data.map(item => {
               let imgList = [];
               if (Array.isArray(item.images) && item.images.length) {
