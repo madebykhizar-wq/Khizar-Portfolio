@@ -1,109 +1,125 @@
 {
   "projects": [
-  {
-    "title": "Synvora®",
-    "category": "Tech / AI",
-    "tag": "Brand Guidelines",
-    "year": "2026",
-    "client": "Synvora",
-    "description": "Full brand guideline system for an AI company.",
-    "services": ["Brand Guidelines", "Logo Design"],
-    "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/6aeedb252601027.Y3JvcCwyODY5LDIyNDQsMCww.jpg",
-    "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/6aeedb252601027.Y3JvcCwyODY5LDIyNDQsMCww.jpg",
-    "behanceLink": "https://www.behance.net/gallery/252601027/Synvora-AI-Brand-Guidelines",
-    "websiteLink": "",
-    "featured": true,
-    "cardLabel": "Featured"
-  },
-  {
-    "title": "Bioxy S.L.",
-    "category": "Health & Wellness",
-    "tag": "Brand Identity",
-    "year": "2026",
-    "client": "Bioxy S.L.",
-    "description": "Global health & wellness brand identity.",
-    "services": ["Brand Identity", "Logo Design"],
-    "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/83fbbe247246109.Y3JvcCwyODcwLDIyNDQsMCww.jpg",
-    "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/83fbbe247246109.Y3JvcCwyODcwLDIyNDQsMCww.jpg",
-    "behanceLink": "https://www.behance.net/gallery/247246109/Bioxy-SL-Global-Health-Wellness-Brand-Identity",
-    "websiteLink": "",
-    "featured": false,
-    "cardLabel": "Identity"
-  },
-  {
-    "title": "Logofolio Vol. 1",
-    "category": "Logofolio",
-    "tag": "Marks & Logotypes",
-    "year": "2025",
-    "client": "Selected Clients",
-    "description": "A collection of selected logo marks and logotypes.",
-    "services": ["Logo Design"],
-    "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/370f5a247244301.Y3JvcCwxMzk5LDEwOTUsMCww.jpg",
-    "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/370f5a247244301.Y3JvcCwxMzk5LDEwOTUsMCww.jpg",
-    "behanceLink": "https://www.behance.net/gallery/247244301/Logofolio-Vol1-Selected-Logo-Marks-Logotypes",
-    "websiteLink": "",
-    "featured": false,
-    "cardLabel": "Logofolio"
-  },
-  {
-    "title": "Minimal Mark",
-    "category": "Leather Goods",
-    "tag": "Logo Design",
-    "year": "2025",
-    "client": "Leather Goods Co.",
-    "description": "Minimal logo design for a leather goods brand.",
-    "services": ["Logo Design"],
-    "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/7bcf93163338087.Y3JvcCwxMDQ5LDgyMSwwLDA.jpg",
-    "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/7bcf93163338087.Y3JvcCwxMDQ5LDgyMSwwLDA.jpg",
-    "behanceLink": "https://www.behance.net/gallery/163338087/Leather-Goods-Minimal-Logo-Design",
-    "websiteLink": "",
-    "featured": false,
-    "cardLabel": "Logo"
-  },
-  {
-    "title": "40+ Social Media Posts",
-    "category": "Social Design",
-    "tag": "Brand Collateral",
-    "year": "2025",
-    "client": "Various",
-    "description": "A set of 40+ social media post designs.",
-    "services": ["Brand Collateral"],
-    "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/4d950e247307077.Y3JvcCwzMTk2LDI0OTksMjc2LDA.jpg",
-    "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/4d950e247307077.Y3JvcCwzMTk2LDI0OTksMjc2LDA.jpg",
-    "behanceLink": "https://www.behance.net/gallery/247307077/40-Social-Media-Posts",
-    "websiteLink": "",
-    "featured": false,
-    "cardLabel": "Collateral"
-  },
-  {
-    "title": "Hyundai Gujranwala",
-    "category": "Automotive",
-    "tag": "Social Ad Design",
-    "year": "2024",
-    "client": "Hyundai Gujranwala",
-    "description": "Social media ad design campaign.",
-    "services": ["Brand Collateral"],
-    "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/18adc2216177681.Y3JvcCwzMzAxLDI1ODIsMTE1Miww.jpg",
-    "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/18adc2216177681.Y3JvcCwzMzAxLDI1ODIsMTE1Miww.jpg",
-    "behanceLink": "https://www.behance.net/gallery/216177681/Hyundai-Gujranwala-Social-Media-Ad-Design",
-    "websiteLink": "",
-    "featured": false,
-    "cardLabel": "Campaign"
-  },
-  {
-    "title": "Personal Portfolio",
-    "category": "Self-Initiated",
-    "tag": "Portfolio System",
-    "year": "2024",
-    "client": "Self-Initiated",
-    "description": "A self-initiated personal portfolio project.",
-    "services": ["Brand Identity"],
-    "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/42b8f5247258565.Y3JvcCw2NDY1LDUwNTYsMCww.jpg",
-    "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/42b8f5247258565.Y3JvcCw2NDY1LDUwNTYsMCww.jpg",
-    "behanceLink": "https://www.behance.net/gallery/247258565/Personal-Portfolio",
-    "websiteLink": "",
-    "featured": false,
-    "cardLabel": "Self-Initiated"
-  }
+    {
+      "title": "Bioxy S.L.",
+      "category": "Health & Wellness",
+      "tag": "Brand Identity",
+      "year": "2026",
+      "client": "Bioxy S.L.",
+      "description": "Global health & wellness brand identity.",
+      "services": [
+        "Brand Identity",
+        "Logo Design"
+      ],
+      "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/83fbbe247246109.Y3JvcCwyODcwLDIyNDQsMCww.jpg",
+      "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/83fbbe247246109.Y3JvcCwyODcwLDIyNDQsMCww.jpg",
+      "behanceLink": "https://www.behance.net/gallery/247246109/Bioxy-SL-Global-Health-Wellness-Brand-Identity",
+      "websiteLink": "",
+      "featured": true,
+      "cardLabel": "Identity"
+    },
+    {
+      "title": "Synvora®",
+      "category": "Tech / AI",
+      "tag": "Brand Guidelines",
+      "year": "2026",
+      "client": "Synvora",
+      "description": "Full brand guideline system for an AI company.",
+      "services": [
+        "Brand Guidelines",
+        "Logo Design"
+      ],
+      "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/6aeedb252601027.Y3JvcCwyODY5LDIyNDQsMCww.jpg",
+      "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/6aeedb252601027.Y3JvcCwyODY5LDIyNDQsMCww.jpg",
+      "behanceLink": "https://www.behance.net/gallery/252601027/Synvora-AI-Brand-Guidelines",
+      "websiteLink": "",
+      "featured": true,
+      "cardLabel": "Featured"
+    },
+    {
+      "title": "Logofolio Vol. 1",
+      "category": "Logofolio",
+      "tag": "Marks & Logotypes",
+      "year": "2025",
+      "client": "Selected Clients",
+      "description": "A collection of selected logo marks and logotypes.",
+      "services": [
+        "Logo Design"
+      ],
+      "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/370f5a247244301.Y3JvcCwxMzk5LDEwOTUsMCww.jpg",
+      "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/370f5a247244301.Y3JvcCwxMzk5LDEwOTUsMCww.jpg",
+      "behanceLink": "https://www.behance.net/gallery/247244301/Logofolio-Vol1-Selected-Logo-Marks-Logotypes",
+      "websiteLink": "",
+      "featured": false,
+      "cardLabel": "Logofolio"
+    },
+    {
+      "title": "Minimal Mark",
+      "category": "Leather Goods",
+      "tag": "Logo Design",
+      "year": "2025",
+      "client": "Leather Goods Co.",
+      "description": "Minimal logo design for a leather goods brand.",
+      "services": [
+        "Logo Design"
+      ],
+      "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/7bcf93163338087.Y3JvcCwxMDQ5LDgyMSwwLDA.jpg",
+      "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/7bcf93163338087.Y3JvcCwxMDQ5LDgyMSwwLDA.jpg",
+      "behanceLink": "https://www.behance.net/gallery/163338087/Leather-Goods-Minimal-Logo-Design",
+      "websiteLink": "",
+      "featured": false,
+      "cardLabel": "Logo"
+    },
+    {
+      "title": "40+ Social Media Posts",
+      "category": "Social Design",
+      "tag": "Brand Collateral",
+      "year": "2025",
+      "client": "Various",
+      "description": "A set of 40+ social media post designs.",
+      "services": [
+        "Brand Collateral"
+      ],
+      "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/4d950e247307077.Y3JvcCwzMTk2LDI0OTksMjc2LDA.jpg",
+      "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/4d950e247307077.Y3JvcCwzMTk2LDI0OTksMjc2LDA.jpg",
+      "behanceLink": "https://www.behance.net/gallery/247307077/40-Social-Media-Posts",
+      "websiteLink": "",
+      "featured": false,
+      "cardLabel": "Collateral"
+    },
+    {
+      "title": "Hyundai Gujranwala",
+      "category": "Automotive",
+      "tag": "Social Ad Design",
+      "year": "2024",
+      "client": "Hyundai Gujranwala",
+      "description": "Social media ad design campaign.",
+      "services": [
+        "Brand Collateral"
+      ],
+      "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/18adc2216177681.Y3JvcCwzMzAxLDI1ODIsMTE1Miww.jpg",
+      "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/18adc2216177681.Y3JvcCwzMzAxLDI1ODIsMTE1Miww.jpg",
+      "behanceLink": "https://www.behance.net/gallery/216177681/Hyundai-Gujranwala-Social-Media-Ad-Design",
+      "websiteLink": "",
+      "featured": false,
+      "cardLabel": "Campaign"
+    },
+    {
+      "title": "Personal Portfolio",
+      "category": "Self-Initiated",
+      "tag": "Portfolio System",
+      "year": "2024",
+      "client": "Self-Initiated",
+      "description": "A self-initiated personal portfolio project.",
+      "services": [
+        "Brand Identity"
+      ],
+      "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/42b8f5247258565.Y3JvcCw2NDY1LDUwNTYsMCww.jpg",
+      "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/42b8f5247258565.Y3JvcCw2NDY1LDUwNTYsMCww.jpg",
+      "behanceLink": "https://www.behance.net/gallery/247258565/Personal-Portfolio",
+      "websiteLink": "",
+      "featured": false,
+      "cardLabel": "Self-Initiated"
+    }
   ]
 }
