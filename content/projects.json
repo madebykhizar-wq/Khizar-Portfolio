@@ -120,6 +120,24 @@
       "websiteLink": "",
       "featured": false,
       "cardLabel": "Self-Initiated"
+    },
+    {
+      "title": "Sonex Nonstick Post Design",
+      "category": "Social Design",
+      "tag": "sonex,  cookware",
+      "year": "2026",
+      "client": "Sonex Nonstick",
+      "description": "othersss",
+      "services": [
+        "brand guidnelines",
+        "poster design"
+      ],
+      "thumbnail": "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1790767555106-lxv5c5.jpg",
+      "cover": "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1790767625666-76l64g.jpg",
+      "behanceLink": "",
+      "websiteLink": "",
+      "featured": true,
+      "cardLabel": "sonex,  cookware"
     }
   ]
 }
