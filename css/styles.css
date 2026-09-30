@@ -335,20 +335,14 @@ html[data-theme="dark"] .navlinks .nav-actions a.whatsapp-nav{color:var(--accent
   transition:transform .22s var(--ease), color .22s var(--ease);
 }
 .brand-chip-img{
-  /* Real PNG/SVG logo uploaded by user */
-  height:28px; width:auto; max-width:72px; flex:none;
+  /* Real PNG/SVG logo uploaded by user — displayed clean in original colors */
+  height:28px; width:auto; max-width:84px; flex:none;
   object-fit:contain; object-position:center;
-  /* Keep colours correct: black logos on light bg, filter for dark mode */
-  filter:saturate(0) brightness(0.15);
-  transition:filter .22s var(--ease), transform .22s var(--ease), opacity .22s var(--ease);
-  opacity:0.85;
-}
-html[data-theme="dark"] .brand-chip-img{
-  filter:saturate(0) brightness(5) contrast(0.8);
-  opacity:0.7;
+  display:block;
+  transition:transform .22s var(--ease);
 }
 .brand-chip.brand-chip-with-logo:hover .brand-chip-img{
-  filter:none; opacity:1; transform:scale(1.06);
+  transform:scale(1.06);
 }
 .brand-chip.brand-chip-with-logo:hover .brand-chip-svg{
   transform:scale(1.1); color:var(--ink);

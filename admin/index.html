@@ -519,7 +519,7 @@
       border: 1px solid var(--card-border); overflow: hidden;
     }
     .client-card-logo img {
-      max-height: 44px; max-width: 100%; object-fit: contain; filter: brightness(0) invert(1);
+      max-height: 44px; max-width: 100%; object-fit: contain;
     }
     .client-card-logo .no-logo {
       font-size: 12px; color: var(--text-muted); text-align: center;
@@ -641,10 +641,12 @@
       </div>
 
       <!-- STORAGE SETUP NOTICE -->
-      <div class="storage-setup-banner" id="storageBanner">
-        ⚠️ <strong>Image Upload Setup Needed:</strong> To upload images from Studio, create a public Supabase Storage bucket named <code style="background:rgba(0,0,0,0.3);padding:1px 5px;border-radius:3px;">site-assets</code>.
-        <a href="https://supabase.com/dashboard/project/ahmmjhubfwhazewptrad/storage/buckets" target="_blank" rel="noopener">Open Supabase Storage →</a>
-        (New Bucket → name: <strong>site-assets</strong> → Public ✓)
+      <div class="storage-setup-banner" id="storageBanner" style="display:none; align-items:center; justify-content:space-between; gap:12px;">
+        <div style="flex:1;">
+          ⚠️ <strong>Image Upload Setup:</strong> If image uploads fail, ensure a public Supabase Storage bucket named <code style="background:rgba(0,0,0,0.3);padding:1px 5px;border-radius:3px;">site-assets</code> exists.
+          <a href="https://supabase.com/dashboard/project/ahmmjhubfwhazewptrad/storage/buckets" target="_blank" rel="noopener">Open Supabase Storage →</a>
+        </div>
+        <button type="button" id="closeStorageBannerBtn" style="background:none; border:none; color:#f0ad4e; font-size:18px; font-weight:700; cursor:pointer; padding:2px 8px; line-height:1;" title="Dismiss notice">✕</button>
       </div>
 
       <!-- TABS -->
@@ -1207,19 +1209,25 @@
       }
 
       async function checkStorageBucket() {
-        try {
-          const res = await fetch(`${SUPABASE_CONFIG.url}/storage/v1/object/public/site-assets/.check`, {
-            method: 'HEAD'
-          });
-          // In Supabase, if the bucket exists, a public object HEAD returns 404 (file missing) or 200.
-          // If the bucket does NOT exist at all, Supabase returns 400 with NoSuchBucket.
-          if (res.status === 400) {
-            storageReady = false;
-          } else {
-            storageReady = true;
-          }
+        if (safeGetStorage('khizar_storage_banner_dismissed') === '1') {
+          storageReady = true;
           const banner = $('#storageBanner');
-          if (banner) banner.style.display = storageReady ? 'none' : 'block';
+          if (banner) banner.style.display = 'none';
+          return;
+        }
+        try {
+          const res = await fetch(`${SUPABASE_CONFIG.url}/storage/v1/object/public/site-assets/.check`);
+          const text = await res.text();
+          if (text.includes('NoSuchBucket')) {
+            storageReady = false;
+            const banner = $('#storageBanner');
+            if (banner) banner.style.display = 'flex';
+          } else {
+            // Bucket exists and is working
+            storageReady = true;
+            const banner = $('#storageBanner');
+            if (banner) banner.style.display = 'none';
+          }
         } catch(e) {
           storageReady = true;
           const banner = $('#storageBanner');
@@ -1255,6 +1263,7 @@
           throw new Error(errMsg);
         }
         storageReady = true;
+        safeSetStorage('khizar_storage_banner_dismissed', '1');
         const banner = $('#storageBanner');
         if (banner) banner.style.display = 'none';
         if (progressBarEl) progressBarEl.style.width = '100%';
@@ -2119,6 +2128,15 @@
 
       const logoutBtn = $('#logoutBtn');
       if (logoutBtn) logoutBtn.addEventListener('click', lockStudio);
+
+      const closeStorageBtn = $('#closeStorageBannerBtn');
+      if (closeStorageBtn) {
+        closeStorageBtn.addEventListener('click', () => {
+          const banner = $('#storageBanner');
+          if (banner) banner.style.display = 'none';
+          safeSetStorage('khizar_storage_banner_dismissed', '1');
+        });
+      }
 
       $('#searchInput').addEventListener('input', renderStudio);
       $('#categoryFilter').addEventListener('change', renderStudio);
