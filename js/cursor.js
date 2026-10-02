@@ -40,7 +40,7 @@
       setTimeout(() => cursor.classList.remove('click'), 350);
     }, { passive: true });
 
-    // Hide while the pointer is outside the window
+    // Hide while the pointer is outside the window, unless a modal is open
     document.addEventListener('mouseleave', () => {
       if (!document.body.classList.contains('modal-open')) {
         cursor.classList.add('hidden');
