@@ -41,8 +41,31 @@
     }, { passive: true });
 
     // Hide while the pointer is outside the window
-    document.addEventListener('mouseleave', () => cursor.classList.add('hidden'));
-    document.addEventListener('mouseenter', () => cursor.classList.remove('hidden'));
+    document.addEventListener('mouseleave', () => {
+      if (!document.body.classList.contains('modal-open')) {
+        cursor.classList.add('hidden');
+      }
+    });
+    document.addEventListener('mouseenter', () => {
+      if (!document.body.classList.contains('modal-open')) {
+        cursor.classList.remove('hidden');
+      }
+    });
+
+    // Keep the custom cursor visible while a case-study modal is open.
+    const syncCursorVisibility = () => {
+      if (document.body.classList.contains('modal-open')) {
+        cursor.classList.remove('hidden');
+        cursor.style.opacity = '1';
+      }
+    };
+
+    document.addEventListener('click', syncCursorVisibility, { passive: true });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        setTimeout(syncCursorVisibility, 0);
+      }
+    }, { passive: true });
 
     // Grow slightly over interactive elements with passive event listeners
     const hoverTargets = 'a, button, input, textarea, select, .work-card, .btn, .brand-chip, .services-pill';
