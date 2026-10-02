@@ -381,6 +381,177 @@
     .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
       border-color: var(--accent-light);
     }
+    .case-study-editor {
+      padding: 16px;
+      border: 1px solid rgba(40,160,100,0.28);
+      border-radius: var(--r-md);
+      background: rgba(30,122,76,0.045);
+    }
+    .case-study-editor-head,
+    .case-study-section-head,
+    .case-study-upload-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .case-study-editor-head { margin-bottom: 12px; }
+    .case-study-editor-head strong { color: var(--accent-light); font-size: 13px; }
+    .case-study-editor-help,
+    .case-study-upload-status {
+      color: var(--text-muted);
+      font-size: 11.5px;
+    }
+    .case-study-sections { display: flex; flex-direction: column; gap: 12px; }
+    .case-study-section {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 14px;
+      background: rgba(0,0,0,0.18);
+      border: 1px solid var(--card-border);
+      border-radius: var(--r-md);
+    }
+    .case-study-layout {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 9px;
+      padding: 12px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 8px;
+      background: rgba(255,255,255,.025);
+    }
+    .case-study-layout legend {
+      padding: 0 6px;
+      color: var(--accent-light);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .case-study-layout label { min-width: 0; }
+    .case-study-layout input:not([type="checkbox"]),
+    .case-study-layout select {
+      width: 100%;
+      min-height: 36px;
+      background: rgba(0,0,0,.35);
+      border: 1px solid var(--card-border);
+      border-radius: 7px;
+      color: var(--text);
+      font: 12px 'Inter', sans-serif;
+      padding: 7px 8px;
+    }
+    .case-study-inline-check {
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center;
+      gap: 8px !important;
+      padding: 8px 0;
+      text-transform: none !important;
+    }
+    .case-study-inline-check input { accent-color: var(--accent-light); }
+    .case-study-testimonial {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 14px;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      background: rgba(0,0,0,.16);
+    }
+    .case-study-testimonial label {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .035em;
+    }
+    .case-study-testimonial input,
+    .case-study-testimonial textarea {
+      width: 100%;
+      background: rgba(0,0,0,.35);
+      border: 1px solid var(--card-border);
+      border-radius: 7px;
+      color: var(--text);
+      font: 13px 'Inter', sans-serif;
+      padding: 9px 10px;
+    }
+    .case-study-related-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 7px;
+      max-height: 180px;
+      overflow-y: auto;
+      padding: 10px;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+    }
+    .case-study-related-options label {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 8px;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+    .case-study-related-options input { accent-color: var(--accent-light); }
+    .case-study-section-head strong { font-size: 12px; color: #fff; }
+    .case-study-section-actions { display: flex; gap: 5px; }
+    .case-study-section-actions .btn { padding: 5px 8px; font-size: 11px; }
+    .case-study-section label {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .035em;
+    }
+    .case-study-section input[type="text"],
+    .case-study-section textarea {
+      width: 100%;
+      background: rgba(0,0,0,.35);
+      border: 1px solid var(--card-border);
+      border-radius: 7px;
+      color: var(--text);
+      font: 13px 'Inter', sans-serif;
+      padding: 9px 10px;
+      resize: vertical;
+    }
+    .case-study-section input[type="file"] { display: none; }
+    .case-study-upload-button { cursor: pointer; }
+    .case-study-image-preview {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+      gap: 7px;
+    }
+    .case-study-image-preview figure {
+      position: relative;
+      margin: 0;
+      aspect-ratio: 1;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+      border-radius: 7px;
+      background: #000;
+    }
+    .case-study-image-preview img { width: 100%; height: 100%; object-fit: cover; }
+    .case-study-image-preview button {
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      width: 21px;
+      height: 21px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(0,0,0,.82);
+      color: #fff;
+      cursor: pointer;
+    }
     .form-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -875,6 +1046,44 @@
             <textarea id="pGalleryUrls" rows="2" placeholder="https://... image1&#10;https://... image2" style="font-size:12px;"></textarea>
           </div>
 
+          <div class="form-group case-study-editor">
+            <div class="case-study-editor-head">
+              <strong>✦ Editorial Case Study</strong>
+              <button type="button" class="btn" id="addCaseStudySectionBtn">+ Add section</button>
+            </div>
+            <p class="case-study-editor-help">Build a long-form project story with ordered text, image, and video sections. Upload media or add its URL.</p>
+            <label for="caseStudyIntro">Opening copy (separate paragraphs with a blank line)</label>
+            <textarea id="caseStudyIntro" rows="5" placeholder="Write the opening copy shown beside the project title and metadata."></textarea>
+            <div class="case-study-sections" id="caseStudySections"></div>
+            <div class="case-study-testimonial">
+              <strong style="font-size:12px;color:var(--accent-light);">Client testimonial (optional)</strong>
+              <label for="caseStudyTestimonialQuote">Quote</label>
+              <textarea id="caseStudyTestimonialQuote" rows="4" placeholder="Add an approved client quote."></textarea>
+              <div class="form-row">
+                <label for="caseStudyTestimonialName">Client name
+                  <input id="caseStudyTestimonialName" type="text" placeholder="Client name">
+                </label>
+                <label for="caseStudyTestimonialRole">Role / company
+                  <input id="caseStudyTestimonialRole" type="text" placeholder="Co-founder, Company">
+                </label>
+              </div>
+              <label for="caseStudyTestimonialImageUrl">Client photo URL
+                <input id="caseStudyTestimonialImageUrl" type="url" placeholder="https://...">
+              </label>
+              <div class="case-study-upload-row">
+                <label class="btn case-study-upload-button">Upload client photo
+                  <input type="file" id="caseStudyTestimonialImageFile" accept="image/png,image/jpeg,image/webp">
+                </label>
+                <span id="caseStudyTestimonialImageStatus" class="case-study-upload-status" aria-live="polite"></span>
+              </div>
+            </div>
+            <div class="case-study-testimonial">
+              <strong style="font-size:12px;color:var(--accent-light);">Related projects</strong>
+              <p class="case-study-editor-help">Choose which projects to recommend at the end. If none are selected, matching disciplines are suggested automatically.</p>
+              <div id="caseStudyRelatedOptions" class="case-study-related-options"></div>
+            </div>
+          </div>
+
           <div class="form-row">
             <div class="form-group">
               <label for="pBehance">Behance Case Study URL</label>
@@ -1228,11 +1437,72 @@
         } catch(e) {}
       }
 
+      function escapeMarkup(value) {
+        return String(value == null ? '' : value).replace(/[&<>"']/g, character => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;'
+        })[character]);
+      }
+
+      function normalizeCaseStudy(value) {
+        if (!value || typeof value !== 'object') return null;
+        const rawSections = Array.isArray(value.sections) ? value.sections : [];
+        const validColor = color => typeof color === 'string' && /^#[\da-f]{6}$/i.test(color) ? color : '';
+        const sections = rawSections.map(section => {
+          if (!section || typeof section !== 'object') return null;
+          const layout = section.layout && typeof section.layout === 'object' ? section.layout : {};
+          const columns = Number(layout.columns);
+          return {
+            heading: typeof section.heading === 'string' ? section.heading : '',
+            body: typeof section.body === 'string' ? section.body : '',
+            images: Array.isArray(section.images) ? section.images.filter(url => typeof url === 'string' && url.trim()) : [],
+            videos: Array.isArray(section.videos) ? section.videos.filter(url => typeof url === 'string' && url.trim()) : [],
+            layout: {
+              alignment: ['left', 'center', 'right'].includes(layout.alignment) ? layout.alignment : 'left',
+              fontFamily: ['Inter', 'Bricolage Grotesque', 'Playfair Display'].includes(layout.fontFamily) ? layout.fontFamily : 'Inter',
+              fontSize: [16, 18, 20, 24, 32].includes(Number(layout.fontSize)) ? Number(layout.fontSize) : 18,
+              bold: Boolean(layout.bold),
+              color: validColor(layout.color) || '#b5c2ba',
+              backgroundColor: validColor(layout.backgroundColor),
+              columns: [1, 2, 3].includes(columns) ? columns : 1,
+              imageFit: ['contain', 'cover'].includes(layout.imageFit) ? layout.imageFit : 'contain',
+              gap: Number.isFinite(Number(layout.gap)) ? Math.min(48, Math.max(0, Number(layout.gap))) : 20
+            }
+          };
+        }).filter(section => section && (section.heading || section.body || section.images.length || section.videos.length));
+        const intro = typeof value.intro === 'string' ? value.intro.trim() : '';
+        const testimonial = value.testimonial && typeof value.testimonial === 'object' ? {
+          quote: typeof value.testimonial.quote === 'string' ? value.testimonial.quote.trim() : '',
+          name: typeof value.testimonial.name === 'string' ? value.testimonial.name.trim() : '',
+          role: typeof value.testimonial.role === 'string' ? value.testimonial.role.trim() : '',
+          image: typeof value.testimonial.image === 'string' ? value.testimonial.image.trim() : ''
+        } : null;
+        const relatedProjects = Array.isArray(value.relatedProjects)
+          ? value.relatedProjects.filter(title => typeof title === 'string' && title.trim())
+          : [];
+        return intro || sections.length || testimonial?.quote || relatedProjects.length
+          ? {
+              ...(intro ? { intro } : {}),
+              ...(sections.length ? { sections } : {}),
+              ...(testimonial?.quote ? { testimonial } : {}),
+              ...(relatedProjects.length ? { relatedProjects } : {})
+            }
+          : null;
+      }
+
       let projects = [...DEFAULT_PROJECTS];
       let editingIndex = -1;
       let isSupabaseConnected = false;
       let clientBrands = [];
       let editingClientId = null;
+      let caseStudySections = [];
+      let caseStudyIntro = '';
+      let caseStudyTestimonial = { quote: '', name: '', role: '', image: '' };
+      let caseStudyRelatedProjects = [];
+      let caseStudyUploadInProgress = false;
       let pendingThumbUrl = '';
       let pendingCoverUrl = '';
       let pendingClientLogoUrl = '';
@@ -1309,8 +1579,10 @@
       }
 
       async function uploadToSupabaseStorage(file, folder = 'uploads', progressBarEl = null, progressWrapEl = null) {
-        const compressed = await compressImage(file, 200 * 1024);
-        const ext = compressed.name.split('.').pop().toLowerCase();
+        const fileToUpload = file.type.startsWith('video/')
+          ? file
+          : await compressImage(file, 200 * 1024);
+        const ext = fileToUpload.name.split('.').pop().toLowerCase();
         const uniqueName = `${folder}/${Date.now()}-${Math.random().toString(36).slice(2,8)}.${ext}`;
         if (progressWrapEl) { progressWrapEl.style.display = 'block'; }
         if (progressBarEl) { progressBarEl.style.width = '30%'; }
@@ -1319,10 +1591,10 @@
           headers: {
             'apikey': SUPABASE_CONFIG.anonKey,
             'Authorization': `Bearer ${SUPABASE_CONFIG.anonKey}`,
-            'Content-Type': compressed.type,
+            'Content-Type': fileToUpload.type,
             'x-upsert': 'true'
           },
-          body: compressed
+          body: fileToUpload
         });
         if (progressBarEl) progressBarEl.style.width = '90%';
         if (!res.ok) {
@@ -1492,6 +1764,294 @@
       bindMultiUploadZone('pGalleryFiles', 'galleryUploadZone', 'galleryUploadProgress', 'galleryUploadProgressBar', newUrls => {
         projectGalleryImages = [...projectGalleryImages, ...newUrls];
         renderGalleryPreview();
+      });
+
+      function readCaseStudySections() {
+        const container = $('#caseStudySections');
+        if (!container) return caseStudySections;
+        return Array.from(container.querySelectorAll('.case-study-section')).map(section => ({
+          heading: section.querySelector('[data-case-study-heading]').value.trim(),
+          body: section.querySelector('[data-case-study-body]').value.trim(),
+          images: section.querySelector('[data-case-study-images]').value
+            .split(/\r?\n/)
+            .map(url => url.trim())
+            .filter(Boolean),
+          videos: section.querySelector('[data-case-study-videos]').value
+            .split(/\r?\n/)
+            .map(url => url.trim())
+            .filter(Boolean),
+          layout: {
+            alignment: section.querySelector('[data-case-study-alignment]').value,
+            fontFamily: section.querySelector('[data-case-study-font]').value,
+            fontSize: Number(section.querySelector('[data-case-study-font-size]').value),
+            bold: section.querySelector('[data-case-study-bold]').checked,
+            color: section.querySelector('[data-case-study-color]').value,
+            backgroundColor: section.querySelector('[data-case-study-background]').value.trim(),
+            columns: Number(section.querySelector('[data-case-study-columns]').value),
+            imageFit: section.querySelector('[data-case-study-fit]').value,
+            gap: Number(section.querySelector('[data-case-study-gap]').value)
+          }
+        })).map(section => normalizeCaseStudy({ sections: [section] })?.sections[0] || section);
+      }
+
+      function renderCaseStudySections() {
+        const container = $('#caseStudySections');
+        if (!container) return;
+        container.innerHTML = caseStudySections.map((section, sectionIndex) => {
+          const images = Array.isArray(section.images) ? section.images : [];
+          const videos = Array.isArray(section.videos) ? section.videos : [];
+          const layout = section.layout || {};
+          return `
+            <section class="case-study-section" data-section-index="${sectionIndex}">
+              <div class="case-study-section-head">
+                <strong>Section ${sectionIndex + 1}</strong>
+                <div class="case-study-section-actions">
+                  <button type="button" class="btn" data-case-study-move="-1" aria-label="Move section up" ${sectionIndex === 0 ? 'disabled' : ''}>↑</button>
+                  <button type="button" class="btn" data-case-study-move="1" aria-label="Move section down" ${sectionIndex === caseStudySections.length - 1 ? 'disabled' : ''}>↓</button>
+                  <button type="button" class="btn danger" data-case-study-remove-section aria-label="Remove section">Remove</button>
+                </div>
+              </div>
+              <label>Section heading
+                <input type="text" data-case-study-heading value="${escapeMarkup(section.heading || '')}" placeholder="e.g. Building a distinctive shelf presence">
+              </label>
+              <label>Section text
+                <textarea data-case-study-body rows="3" placeholder="Add the story, strategy, or context for this part of the project.">${escapeMarkup(section.body || '')}</textarea>
+              </label>
+              <label>Image URLs (one per line)
+                <textarea data-case-study-images rows="2" placeholder="https://...">${escapeMarkup(images.join('\n'))}</textarea>
+              </label>
+              <fieldset class="case-study-layout">
+                <legend>Text and slide appearance</legend>
+                <label>Text alignment
+                  <select data-case-study-alignment>
+                    ${['left', 'center', 'right'].map(value => `<option value="${value}" ${layout.alignment === value ? 'selected' : ''}>${value}</option>`).join('')}
+                  </select>
+                </label>
+                <label>Font family
+                  <select data-case-study-font>
+                    ${['Inter', 'Bricolage Grotesque', 'Playfair Display'].map(value => `<option value="${value}" ${layout.fontFamily === value ? 'selected' : ''}>${value}</option>`).join('')}
+                  </select>
+                </label>
+                <label>Text size
+                  <select data-case-study-font-size>
+                    ${[16, 18, 20, 24, 32].map(value => `<option value="${value}" ${Number(layout.fontSize || 18) === value ? 'selected' : ''}>${value}px</option>`).join('')}
+                  </select>
+                </label>
+                <label>Text color
+                  <input type="color" data-case-study-color value="${escapeMarkup(/^#[\da-f]{6}$/i.test(layout.color || '') ? layout.color : '#b5c2ba')}">
+                </label>
+                <label>Section background (hex or transparent)
+                  <input type="text" data-case-study-background value="${escapeMarkup(layout.backgroundColor || '')}" placeholder="transparent or #0b1f17">
+                </label>
+                <label>Images per row
+                  <select data-case-study-columns>
+                    ${[1, 2, 3].map(value => `<option value="${value}" ${Number(layout.columns || 1) === value ? 'selected' : ''}>${value === 1 ? 'Full width' : `${value} columns`}</option>`).join('')}
+                  </select>
+                </label>
+                <label>Image fit
+                  <select data-case-study-fit>
+                    <option value="contain" ${layout.imageFit !== 'cover' ? 'selected' : ''}>Fit full image</option>
+                    <option value="cover" ${layout.imageFit === 'cover' ? 'selected' : ''}>Fill / crop</option>
+                  </select>
+                </label>
+                <label>Image spacing
+                  <input type="range" data-case-study-gap min="0" max="48" step="2" value="${Number.isFinite(Number(layout.gap)) ? Number(layout.gap) : 20}">
+                </label>
+                <label class="case-study-inline-check">
+                  <input type="checkbox" data-case-study-bold ${layout.bold ? 'checked' : ''}>
+                  Bold text
+                </label>
+              </fieldset>
+              <div class="case-study-upload-row">
+                <label class="btn case-study-upload-button">Upload section images
+                  <input type="file" data-case-study-upload multiple accept="image/png,image/svg+xml,image/jpeg,image/webp,image/gif">
+                </label>
+                <span data-case-study-upload-status="image" class="case-study-upload-status" aria-live="polite"></span>
+              </div>
+              <label>Video URLs (one per line, MP4 or WebM; uploaded videos must be under 5 MB each)
+                <textarea data-case-study-videos rows="2" placeholder="https://...">${escapeMarkup(videos.join('\n'))}</textarea>
+              </label>
+              <div class="case-study-upload-row">
+                <label class="btn case-study-upload-button">Upload videos (under 5 MB each)
+                  <input type="file" data-case-study-video-upload multiple accept="video/mp4,video/webm">
+                </label>
+                <span data-case-study-upload-status="video" class="case-study-upload-status" aria-live="polite"></span>
+              </div>
+              ${images.length ? `<div class="case-study-image-preview">${images.map((url, imageIndex) => `
+                <figure>
+                  <img src="${escapeMarkup(url)}" alt="Section ${sectionIndex + 1} image ${imageIndex + 1}" loading="lazy">
+                  <button type="button" data-case-study-remove-image="${imageIndex}" aria-label="Remove image ${imageIndex + 1}">×</button>
+                </figure>`).join('')}</div>` : ''}
+              ${videos.length ? `<div class="case-study-image-preview">${videos.map((url, videoIndex) => `
+                <figure>
+                  <video src="${escapeMarkup(url)}" aria-label="Section ${sectionIndex + 1} video ${videoIndex + 1}" controls preload="metadata"></video>
+                  <button type="button" data-case-study-remove-video="${videoIndex}" aria-label="Remove video ${videoIndex + 1}">×</button>
+                </figure>`).join('')}</div>` : ''}
+            </section>`;
+        }).join('');
+      }
+
+      function renderCaseStudyRelatedProjects(currentTitle) {
+        const container = $('#caseStudyRelatedOptions');
+        if (!container) return;
+        const available = projects.filter(project => project.title && project.title !== currentTitle);
+        container.innerHTML = available.length
+          ? available.map(project => `
+            <label>
+              <input type="checkbox" data-related-project-title="${escapeMarkup(project.title)}" ${caseStudyRelatedProjects.includes(project.title) ? 'checked' : ''}>
+              ${escapeMarkup(project.title)}
+            </label>`).join('')
+          : '<span class="case-study-editor-help">Save additional projects to enable manual recommendations.</span>';
+      }
+
+      function readCaseStudyRelatedProjects() {
+        return Array.from($('#caseStudyRelatedOptions').querySelectorAll('[data-related-project-title]:checked'))
+          .map(input => input.dataset.relatedProjectTitle);
+      }
+
+      function readCaseStudyTestimonial() {
+        return {
+          quote: $('#caseStudyTestimonialQuote').value.trim(),
+          name: $('#caseStudyTestimonialName').value.trim(),
+          role: $('#caseStudyTestimonialRole').value.trim(),
+          image: $('#caseStudyTestimonialImageUrl').value.trim()
+        };
+      }
+
+      $('#caseStudyTestimonialImageFile').addEventListener('change', async event => {
+        const file = event.target.files[0];
+        if (!file) return;
+        const status = $('#caseStudyTestimonialImageStatus');
+        if (!['image/png', 'image/jpeg', 'image/webp'].includes(file.type)) {
+          showToast('Choose a PNG, JPG, or WebP client photo.');
+          event.target.value = '';
+          return;
+        }
+        status.textContent = 'Uploading client photo…';
+        event.target.disabled = true;
+        try {
+          const url = await uploadToSupabaseStorage(file, 'uploads');
+          $('#caseStudyTestimonialImageUrl').value = url;
+          status.textContent = 'Client photo uploaded.';
+          showToast('Client photo uploaded.');
+        } catch (error) {
+          console.error('Client testimonial photo upload failed:', error);
+          status.textContent = `Upload failed: ${error.message}`;
+          showToast(`Client photo upload failed: ${error.message}`);
+        } finally {
+          event.target.disabled = false;
+          event.target.value = '';
+        }
+      });
+
+      $('#caseStudyRelatedOptions').addEventListener('change', () => {
+        caseStudyRelatedProjects = readCaseStudyRelatedProjects();
+      });
+
+      $('#addCaseStudySectionBtn').addEventListener('click', () => {
+        if (caseStudyUploadInProgress) {
+          showToast('Please wait for the current case-study image upload to finish.');
+          return;
+        }
+        caseStudySections = readCaseStudySections();
+        caseStudySections.push({ heading: '', body: '', images: [] });
+        renderCaseStudySections();
+        const headings = $('#caseStudySections').querySelectorAll('[data-case-study-heading]');
+        if (headings.length) headings[headings.length - 1].focus();
+      });
+
+      $('#caseStudySections').addEventListener('input', () => {
+        caseStudySections = readCaseStudySections();
+      });
+      $('#caseStudySections').addEventListener('change', () => {
+        caseStudySections = readCaseStudySections();
+      });
+      $('#caseStudyIntro').addEventListener('input', event => {
+        caseStudyIntro = event.target.value;
+      });
+
+      $('#caseStudySections').addEventListener('click', event => {
+        if (caseStudyUploadInProgress) {
+          showToast('Please wait for the current case-study image upload to finish.');
+          return;
+        }
+        const button = event.target.closest('button');
+        if (!button) return;
+        const sectionElement = button.closest('.case-study-section');
+        if (!sectionElement) return;
+        caseStudySections = readCaseStudySections();
+        const sectionIndex = Number(sectionElement.dataset.sectionIndex);
+        if (button.hasAttribute('data-case-study-remove-section')) {
+          caseStudySections.splice(sectionIndex, 1);
+        } else if (button.hasAttribute('data-case-study-move')) {
+          const nextIndex = sectionIndex + Number(button.dataset.caseStudyMove);
+          if (nextIndex < 0 || nextIndex >= caseStudySections.length) return;
+          const [section] = caseStudySections.splice(sectionIndex, 1);
+          caseStudySections.splice(nextIndex, 0, section);
+        } else if (button.hasAttribute('data-case-study-remove-image')) {
+          const imageIndex = Number(button.dataset.caseStudyRemoveImage);
+          caseStudySections[sectionIndex].images.splice(imageIndex, 1);
+        } else if (button.hasAttribute('data-case-study-remove-video')) {
+          const videoIndex = Number(button.dataset.caseStudyRemoveVideo);
+          caseStudySections[sectionIndex].videos.splice(videoIndex, 1);
+        } else {
+          return;
+        }
+        renderCaseStudySections();
+      });
+
+      $('#caseStudySections').addEventListener('change', async event => {
+        const input = event.target;
+        if ((!input.matches('[data-case-study-upload]') && !input.matches('[data-case-study-video-upload]')) || !input.files.length) return;
+        const sectionElement = input.closest('.case-study-section');
+        const sectionIndex = Number(sectionElement.dataset.sectionIndex);
+        const files = Array.from(input.files);
+        const isVideoUpload = input.matches('[data-case-study-video-upload]');
+        const uploadKind = isVideoUpload ? 'video' : 'image';
+        const status = sectionElement.querySelector(`[data-case-study-upload-status="${uploadKind}"]`);
+        const allowedTypes = isVideoUpload
+          ? ['video/mp4', 'video/webm']
+          : ['image/png', 'image/jpeg', 'image/svg+xml', 'image/webp', 'image/gif'];
+        const validFiles = files.filter(file => allowedTypes.includes(file.type) &&
+          (!isVideoUpload || file.size < 5 * 1000 * 1000));
+        const failures = [];
+        const uploadedUrls = [];
+        if (caseStudyUploadInProgress) {
+          showToast('Please wait for the current case-study image upload to finish.');
+          return;
+        }
+        caseStudyUploadInProgress = true;
+        input.disabled = true;
+        if (status) status.textContent = `Uploading ${validFiles.length} ${uploadKind}(s)…`;
+        if (validFiles.length !== files.length) {
+          failures.push(isVideoUpload
+            ? 'Videos must be MP4/WebM and smaller than 5 MB (5,000,000 bytes) each.'
+            : 'Some files had unsupported image formats.');
+        }
+        for (const file of validFiles) {
+          try {
+            uploadedUrls.push(await uploadToSupabaseStorage(file, 'uploads'));
+          } catch (error) {
+            console.error('Case-study image upload failed:', error);
+            failures.push(`${file.name}: ${error.message}`);
+          }
+        }
+        caseStudyUploadInProgress = false;
+        input.value = '';
+        caseStudySections = readCaseStudySections();
+        if (caseStudySections[sectionIndex] && uploadedUrls.length) {
+          caseStudySections[sectionIndex][isVideoUpload ? 'videos' : 'images'].push(...uploadedUrls);
+        }
+        renderCaseStudySections();
+        const updatedSection = $('#caseStudySections').querySelector(`[data-section-index="${sectionIndex}"]`);
+        const updatedStatus = updatedSection && updatedSection.querySelector(`[data-case-study-upload-status="${uploadKind}"]`);
+        if (updatedStatus) {
+          updatedStatus.textContent = failures.length
+            ? `Uploaded ${uploadedUrls.length}; ${failures.join(' ')}`
+            : `Uploaded ${uploadedUrls.length} ${uploadKind}(s).`;
+        }
+        if (uploadedUrls.length) showToast(`Uploaded ${uploadedUrls.length} case-study ${uploadKind}(s).`);
+        if (failures.length) showToast(`Some case-study ${uploadKind}s could not be uploaded: ${failures.join(' ')}`);
       });
 
       // =========================================================
@@ -1696,6 +2256,53 @@
         }
       }
 
+      async function loadEditorialCaseStudies() {
+        const caseStudies = new Map();
+        const cached = safeGetStorage(STORAGE_KEY);
+        if (cached) {
+          try {
+            const parsed = JSON.parse(cached);
+            if (Array.isArray(parsed)) {
+              parsed.forEach(project => {
+                const caseStudy = normalizeCaseStudy(project.caseStudy);
+                if (typeof project.title === 'string' && caseStudy) {
+                  caseStudies.set(project.title.trim().toLowerCase(), {
+                    caseStudy,
+                    thumbnail: typeof project.thumbnail === 'string' ? project.thumbnail : '',
+                    cover: typeof project.cover === 'string' ? project.cover : '',
+                    images: Array.isArray(project.images) ? project.images.filter(url => typeof url === 'string' && url.trim()) : []
+                  });
+                }
+              });
+            }
+          } catch (error) {
+            console.warn('Could not read cached case-study sections:', error.message);
+          }
+        }
+        try {
+          const response = await fetch('../content/projects.json');
+          if (!response.ok) throw new Error(`Editorial content request failed (${response.status}).`);
+          const content = await response.json();
+          if (!content || !Array.isArray(content.projects)) {
+            throw new TypeError('Editorial content must include a projects array.');
+          }
+          content.projects.forEach(project => {
+            const caseStudy = normalizeCaseStudy(project.caseStudy);
+            if (typeof project.title === 'string' && caseStudy) {
+              caseStudies.set(project.title.trim().toLowerCase(), {
+                caseStudy,
+                thumbnail: typeof project.thumbnail === 'string' ? project.thumbnail : '',
+                cover: typeof project.cover === 'string' ? project.cover : '',
+                images: Array.isArray(project.images) ? project.images.filter(url => typeof url === 'string' && url.trim()) : []
+              });
+            }
+          });
+        } catch (error) {
+          console.warn('Could not load published case-study sections:', error.message);
+        }
+        return caseStudies;
+      }
+
       // Load projects directly from Supabase
       async function loadProjects() {
         const countEl = $('#projectCountText');
@@ -1709,6 +2316,7 @@
           });
           const data = await res.json();
           if (Array.isArray(data) && data.length) {
+            const editorialCaseStudies = await loadEditorialCaseStudies();
             projects = data.map(item => {
               let imgList = [];
               if (Array.isArray(item.images) && item.images.length) {
@@ -1722,6 +2330,10 @@
                 if (item.cover) imgList.push(item.cover);
                 if (item.thumbnail && !imgList.includes(item.thumbnail)) imgList.push(item.thumbnail);
               }
+              const editorial = editorialCaseStudies.get(String(item.title || '').trim().toLowerCase());
+              const projectImages = editorial && editorial.caseStudy && editorial.images.length
+                ? editorial.images
+                : imgList;
               return {
                 id: item.id,
                 title: item.title || '',
@@ -1731,11 +2343,18 @@
                 client: item.client || '',
                 description: item.description || '',
                 services: Array.isArray(item.services) ? item.services : (item.services ? [item.services] : [item.tag]),
-                thumbnail: item.thumbnail || (imgList[0] || ''),
-                cover: imgList[0] || item.cover || item.thumbnail || '',
-                images: imgList,
+                thumbnail: editorial && editorial.caseStudy && editorial.thumbnail
+                  ? editorial.thumbnail
+                  : item.thumbnail || (projectImages[0] || ''),
+                cover: editorial && editorial.caseStudy && editorial.cover
+                  ? editorial.cover
+                  : projectImages[0] || item.cover || item.thumbnail || '',
+                images: projectImages,
                 behanceLink: item.behance_link || item.behanceLink || '',
                 websiteLink: item.website_link || item.websiteLink || '',
+                caseStudy: normalizeCaseStudy(item.case_study || item.caseStudy) ||
+                  (editorial && editorial.caseStudy) ||
+                  null,
                 featured: Boolean(item.featured),
                 cardLabel: item.card_label || item.cardLabel || (item.featured ? 'Featured' : item.tag),
                 sort_order: item.sort_order || 0
@@ -1842,6 +2461,7 @@
         pendingThumbUrl = '';
         pendingCoverUrl = '';
         projectGalleryImages = [];
+        caseStudySections = [];
         ['thumbUploadResult','coverUploadResult'].forEach(id => {
           const el = document.getElementById(id);
           if (el) el.style.display = 'none';
@@ -1858,6 +2478,7 @@
         $('#modalTitle').textContent = isEdit ? 'Edit Project' : 'Add New Project';
         if (isEdit && projects[index]) {
           const p = projects[index];
+          const editorial = normalizeCaseStudy(p.caseStudy);
           $('#pTitle').value = p.title || '';
           $('#pCategory').value = p.category || '';
           $('#pTag').value = p.tag || '';
@@ -1871,6 +2492,18 @@
           $('#pCardLabel').value = p.cardLabel || '';
           $('#pWebsite').value = p.websiteLink || '';
           $('#pFeatured').checked = Boolean(p.featured);
+          caseStudyIntro = editorial?.intro || '';
+          $('#caseStudyIntro').value = caseStudyIntro;
+          caseStudySections = editorial?.sections || [];
+          caseStudyTestimonial = editorial?.testimonial || { quote: '', name: '', role: '', image: '' };
+          caseStudyRelatedProjects = editorial?.relatedProjects || [];
+          $('#caseStudyTestimonialQuote').value = caseStudyTestimonial.quote;
+          $('#caseStudyTestimonialName').value = caseStudyTestimonial.name;
+          $('#caseStudyTestimonialRole').value = caseStudyTestimonial.role;
+          $('#caseStudyTestimonialImageUrl').value = caseStudyTestimonial.image;
+          $('#caseStudyTestimonialImageStatus').textContent = '';
+          renderCaseStudyRelatedProjects(p.title);
+          renderCaseStudySections();
 
           // Populate gallery images
           if (Array.isArray(p.images) && p.images.length) {
@@ -1912,6 +2545,18 @@
           $('#pWebsite').value = '';
           $('#pFeatured').checked = false;
           projectGalleryImages = [];
+          caseStudyIntro = '';
+          $('#caseStudyIntro').value = '';
+          caseStudyTestimonial = { quote: '', name: '', role: '', image: '' };
+          caseStudyRelatedProjects = [];
+          $('#caseStudyTestimonialQuote').value = '';
+          $('#caseStudyTestimonialName').value = '';
+          $('#caseStudyTestimonialRole').value = '';
+          $('#caseStudyTestimonialImageUrl').value = '';
+          $('#caseStudyTestimonialImageStatus').textContent = '';
+          renderCaseStudyRelatedProjects('');
+          caseStudySections = [];
+          renderCaseStudySections();
           renderGalleryPreview();
           if ($('#pGalleryUrls')) $('#pGalleryUrls').value = '';
         }
@@ -1925,6 +2570,10 @@
         pendingThumbUrl = '';
         pendingCoverUrl = '';
         projectGalleryImages = [];
+        caseStudyIntro = '';
+        caseStudyTestimonial = { quote: '', name: '', role: '', image: '' };
+        caseStudyRelatedProjects = [];
+        caseStudySections = [];
       }
 
       function updateLivePreview() {
@@ -1969,6 +2618,10 @@
         const websiteLink = $('#pWebsite').value.trim();
         const cardLabel = $('#pCardLabel').value.trim() || tag || 'Project';
         const featured = $('#pFeatured').checked;
+        caseStudyIntro = $('#caseStudyIntro').value.trim();
+        caseStudySections = readCaseStudySections();
+        caseStudyTestimonial = readCaseStudyTestimonial();
+        caseStudyRelatedProjects = readCaseStudyRelatedProjects();
 
         if (!title || !category || !tag || !client || !description || !thumbnail) {
           alert('Please fill in all required fields (Title, Category, Service/Tag, Client, Description, and a Thumbnail — either upload one or paste a URL).');
@@ -2026,6 +2679,14 @@
           images: uniqueGallery,
           behanceLink,
           websiteLink,
+          caseStudy: caseStudyIntro || caseStudySections.length || caseStudyTestimonial.quote || caseStudyRelatedProjects.length
+            ? {
+                ...(caseStudyIntro ? { intro: caseStudyIntro } : {}),
+                ...(caseStudySections.length ? { sections: caseStudySections } : {}),
+                ...(caseStudyTestimonial.quote ? { testimonial: caseStudyTestimonial } : {}),
+                ...(caseStudyRelatedProjects.length ? { relatedProjects: caseStudyRelatedProjects } : {})
+              }
+            : null,
           featured,
           cardLabel,
           sort_order: dbPayload.sort_order
@@ -2042,7 +2703,9 @@
             });
             if (!res.ok) throw new Error(`Supabase update failed (${res.status})`);
             projects[editingIndex] = { ...projectObj, id };
-            showToast(`Updated "${title}" in Supabase!`);
+            showToast(caseStudyIntro || caseStudySections.length || caseStudyTestimonial.quote || caseStudyRelatedProjects.length
+              ? `Updated "${title}" in Supabase. Sync projects.json to publish case-study sections.`
+              : `Updated "${title}" in Supabase!`);
           } else {
             const res = await fetch(`${SUPABASE_CONFIG.url}/rest/v1/projects`, {
               method: 'POST',
@@ -2053,7 +2716,9 @@
             const inserted = await res.json();
             const newId = inserted[0]?.id;
             projects.unshift({ ...projectObj, id: newId });
-            showToast(`Added "${title}" to Supabase & Live site!`);
+            showToast(caseStudyIntro || caseStudySections.length || caseStudyTestimonial.quote || caseStudyRelatedProjects.length
+              ? `Added "${title}" to Supabase. Sync projects.json to publish case-study sections.`
+              : `Added "${title}" to Supabase & Live site!`);
           }
         } catch(err) {
           console.error('Supabase save error:', err);
@@ -2183,23 +2848,29 @@
         });
       };
 
+      function serializeProjectContent(project) {
+        return {
+          title: project.title,
+          category: project.category,
+          tag: project.tag,
+          year: project.year,
+          client: project.client,
+          description: project.description,
+          services: project.services,
+          thumbnail: project.thumbnail,
+          cover: project.cover,
+          images: Array.isArray(project.images) ? project.images : [project.cover || project.thumbnail].filter(Boolean),
+          behanceLink: project.behanceLink || '',
+          websiteLink: project.websiteLink || '',
+          caseStudy: normalizeCaseStudy(project.caseStudy),
+          featured: Boolean(project.featured),
+          cardLabel: project.cardLabel
+        };
+      }
+
       // Download projects.json (Local backup)
       function downloadJson() {
-        const cleanList = projects.map(p => ({
-          title: p.title,
-          category: p.category,
-          tag: p.tag,
-          year: p.year,
-          client: p.client,
-          description: p.description,
-          services: p.services,
-          thumbnail: p.thumbnail,
-          cover: p.cover,
-          behanceLink: p.behanceLink || '',
-          websiteLink: p.websiteLink || '',
-          featured: Boolean(p.featured),
-          cardLabel: p.cardLabel
-        }));
+        const cleanList = projects.map(serializeProjectContent);
         const payload = JSON.stringify({ projects: cleanList }, null, 2);
         const blob = new Blob([payload], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
@@ -2214,21 +2885,7 @@
       }
 
       function copyJson() {
-        const cleanList = projects.map(p => ({
-          title: p.title,
-          category: p.category,
-          tag: p.tag,
-          year: p.year,
-          client: p.client,
-          description: p.description,
-          services: p.services,
-          thumbnail: p.thumbnail,
-          cover: p.cover,
-          behanceLink: p.behanceLink || '',
-          websiteLink: p.websiteLink || '',
-          featured: Boolean(p.featured),
-          cardLabel: p.cardLabel
-        }));
+        const cleanList = projects.map(serializeProjectContent);
         const payload = JSON.stringify({ projects: cleanList }, null, 2);
         navigator.clipboard.writeText(payload).then(() => {
           showToast('Copied JSON to clipboard!');
@@ -2294,21 +2951,7 @@
             sha = fileData.sha;
           }
 
-          const cleanList = projects.map(p => ({
-            title: p.title,
-            category: p.category,
-            tag: p.tag,
-            year: p.year,
-            client: p.client,
-            description: p.description,
-            services: p.services,
-            thumbnail: p.thumbnail,
-            cover: p.cover,
-            behanceLink: p.behanceLink || '',
-            websiteLink: p.websiteLink || '',
-            featured: Boolean(p.featured),
-            cardLabel: p.cardLabel
-          }));
+          const cleanList = projects.map(serializeProjectContent);
           const jsonString = JSON.stringify({ projects: cleanList }, null, 2);
           const base64Content = btoa(unescape(encodeURIComponent(jsonString)));
 

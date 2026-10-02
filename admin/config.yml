@@ -35,5 +35,57 @@ collections:
               - { name: cover, label: Cover image, widget: image }
               - { name: behanceLink, label: Case study URL, widget: string, required: false }
               - { name: websiteLink, label: Website URL, widget: string, required: false }
+              - name: caseStudy
+                label: Editorial case study
+                widget: object
+                required: false
+                fields:
+                  - { name: intro, label: Opening copy, widget: text, required: false }
+                  - name: sections
+                    label: Story sections
+                    widget: list
+                    required: false
+                    summary: "{{fields.heading}}"
+                    fields:
+                      - { name: heading, label: Heading, widget: string, required: false }
+                      - { name: body, label: Text, widget: text, required: false }
+                      - name: videos
+                        label: Video URLs
+                        widget: list
+                        required: false
+                        field: { name: video, label: MP4 or WebM URL, widget: string }
+                      - name: images
+                        label: Section images
+                        widget: list
+                        required: false
+                        field: { name: image, label: Image, widget: image }
+                      - name: layout
+                        label: Section layout
+                        widget: object
+                        required: false
+                        fields:
+                          - { name: alignment, label: Text alignment, widget: select, options: [left, center, right], default: left }
+                          - { name: fontFamily, label: Font family, widget: select, options: ["Inter", "Bricolage Grotesque", "Playfair Display"], default: Inter }
+                          - { name: fontSize, label: Text size in pixels, widget: number, value_type: int, min: 16, max: 32, default: 18 }
+                          - { name: bold, label: Bold text, widget: boolean, default: false }
+                          - { name: color, label: Text color, widget: string, default: "#b5c2ba" }
+                          - { name: backgroundColor, label: Section background hex color, widget: string, required: false }
+                          - { name: columns, label: Images per row, widget: select, options: [1, 2, 3], default: 1 }
+                          - { name: imageFit, label: Image fit, widget: select, options: [contain, cover], default: contain }
+                          - { name: gap, label: Image spacing in pixels, widget: number, value_type: int, min: 0, max: 48, default: 20 }
+                  - name: testimonial
+                    label: Client testimonial
+                    widget: object
+                    required: false
+                    fields:
+                      - { name: quote, label: Approved client quote, widget: text, required: false }
+                      - { name: name, label: Client name, widget: string, required: false }
+                      - { name: role, label: Role and company, widget: string, required: false }
+                      - { name: image, label: Client photo, widget: image, required: false }
+                  - name: relatedProjects
+                    label: Related project titles
+                    widget: list
+                    required: false
+                    field: { name: title, label: Project title, widget: string }
               - { name: featured, label: Highlight this project, widget: boolean, default: false }
               - { name: cardLabel, label: Card label, widget: string }

@@ -55,11 +55,54 @@
         "Brand Identity",
         "Logo Design"
       ],
-      "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/83fbbe247246109.Y3JvcCwyODcwLDIyNDQsMCww.jpg",
-      "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/83fbbe247246109.Y3JvcCwyODcwLDIyNDQsMCww.jpg",
+      "thumbnail": "/assets/projects/bioxy/front.jpg",
+      "cover": "/assets/projects/bioxy/front.jpg",
       "images": [
-        "https://mir-s3-cdn-cf.behance.net/projects/404/83fbbe247246109.Y3JvcCwyODcwLDIyNDQsMCww.jpg"
+        "/assets/projects/bioxy/front.jpg"
       ],
+      "caseStudy": {
+        "intro": "Bioxy is a wellness identity built around vitality and connection. Four radiating forms meet at a central point, bringing energy, cellular connection and a subtle cross into one distinctive mark inspired by BIO and OXY.\n\nA deep ocean blue foundation is balanced with aqua mist, seafoam green, pebble gray and white. Paired with Montserrat typography, the system carries a calm, contemporary identity across digital and printed touchpoints.",
+        "sections": [
+          {
+            "heading": "A mark shaped around vitality",
+            "body": "The Bioxy symbol brings four radiating forms together around a central point. The presentation connects that movement to oxygen, energy and vitality, while the negative space suggests a subtle cross. It gives the identity a distinctive mark with a story drawn from the BIO and OXY in the name.",
+            "images": [
+              "/assets/projects/bioxy/1.jpg",
+              "/assets/projects/bioxy/2.jpg",
+              "/assets/projects/bioxy/3.jpg",
+              "/assets/projects/bioxy/4.jpg"
+            ]
+          },
+          {
+            "heading": "A clear, flexible visual system",
+            "body": "The symbol pairs with a custom BIOXY wordmark and a typography system using Montserrat. Deep Ocean Blue anchors the palette, with Aqua Mist and Seafoam Green bringing a lighter wellness feel. Pebble Gray, white and Midnight Slate round out the colors, and alternate logo treatments keep the identity legible on light and dark backgrounds.",
+            "images": [
+              "/assets/projects/bioxy/5.jpg",
+              "/assets/projects/bioxy/6.jpg",
+              "/assets/projects/bioxy/7.jpg",
+              "/assets/projects/bioxy/8.jpg"
+            ]
+          },
+          {
+            "heading": "A consistent identity across touchpoints",
+            "body": "The presentation explores the identity in wellness-led imagery, an app icon and a social profile. Across these digital mockups, the same symbol, wordmark and blue-led palette create a connected brand presence at different sizes.",
+            "images": [
+              "/assets/projects/bioxy/9.jpg",
+              "/assets/projects/bioxy/10.jpg",
+              "/assets/projects/bioxy/11.jpg"
+            ]
+          },
+          {
+            "heading": "From social concepts to stationery",
+            "body": "Social post concepts and business card mockups extend the system into everyday brand communications. Together, the applications show how the core identity can carry through both screen-based and printed materials.",
+            "images": [
+              "/assets/projects/bioxy/12.jpg",
+              "/assets/projects/bioxy/13.jpg",
+              "/assets/projects/bioxy/back.jpg"
+            ]
+          }
+        ]
+      },
       "behanceLink": "https://www.behance.net/gallery/247246109/Bioxy-SL-Global-Health-Wellness-Brand-Identity",
       "websiteLink": "",
       "featured": true,

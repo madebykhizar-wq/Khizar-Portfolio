@@ -78,10 +78,14 @@ document.addEventListener('DOMContentLoaded', () => {
     es: {
       'Work': 'Proyectos', 'Services': 'Servicios', 'About me': 'Sobre mí',
       'Start a Project': 'Iniciar un proyecto', 'Selected Work': 'Proyectos destacados',
-      'Helping Brands Look Premium,': 'Ayudando a las marcas a verse premium,',
-      'Clear &': 'claras y',
-      'Memorable.': 'memorables.',
-      'Book a Free Discovery Call': 'Reserva una llamada gratuita',
+      'BRAND IDENTITY + PACKAGING': 'IDENTIDAD DE MARCA + PACKAGING',
+      'Brand Identity &': 'Identidad de marca y',
+      'Packaging for': 'packaging para',
+      'Consumer Brands.': 'marcas de consumo.',
+      'I build brands that stand out on the shelf.': 'Creo marcas que destacan en el estante.',
+      'Strategy, identity, packaging — all working together.': 'Estrategia, identidad y packaging: todo en armonía.',
+      'View Selected Work': 'Ver proyectos seleccionados',
+      '6+ years in brand, FMCG & packaging design': 'Más de 6 años diseñando marcas, productos FMCG y packaging',
       'Trusted by 25+ brands worldwide': 'Más de 25 marcas confían en mi trabajo',
       'Packaging Design': 'Diseño de packaging',
       'Visual Systems': 'Sistemas visuales',
@@ -95,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'A clear process,': 'Un proceso claro,', 'start to finish.': 'de principio a fin.',
       'What Clients Say': 'Lo que dicen los clientes', 'Kind words from': 'Buenas palabras de',
       'past collaborators.': 'quienes ya colaboraron.',
-      'Questions, answered.': 'Resolvemos tus dudas.', 'Everything you\'d want to know before reaching out.': 'Todo lo que necesitas saber antes de escribirme.',
+      'Questions I get a lot': 'Preguntas frecuentes',
       'Start a Project': 'Iniciar un proyecto', 'Your name': 'Tu nombre', 'Email': 'Correo electrónico',
       'What are you looking for?': '¿Qué necesitas?', 'Project details': 'Detalles del proyecto',
       'Send message': 'Enviar mensaje', 'Message received →': 'Mensaje recibido →',
@@ -141,10 +145,14 @@ document.addEventListener('DOMContentLoaded', () => {
     fr: {
       'Work': 'Projets', 'Services': 'Services', 'About me': 'À propos',
       'Start a Project': 'Démarrer un projet', 'Selected Work': 'Projets choisis',
-      'Helping Brands Look Premium,': 'Aider les marques à paraître haut de gamme,',
-      'Clear &': 'claires et',
-      'Memorable.': 'mémorables.',
-      'Book a Free Discovery Call': 'Réserver un appel découverte gratuit',
+      'BRAND IDENTITY + PACKAGING': 'IDENTITÉ DE MARQUE + PACKAGING',
+      'Brand Identity &': 'Identité de marque et',
+      'Packaging for': 'packaging pour',
+      'Consumer Brands.': 'les marques grand public.',
+      'I build brands that stand out on the shelf.': 'Je crée des marques qui se démarquent en rayon.',
+      'Strategy, identity, packaging — all working together.': 'Stratégie, identité et packaging — en parfaite harmonie.',
+      'View Selected Work': 'Voir une sélection de projets',
+      '6+ years in brand, FMCG & packaging design': 'Plus de 6 ans en identité de marque, produits de grande consommation et packaging',
       'Trusted by 25+ brands worldwide': 'Plus de 25 marques nous font confiance',
       'Packaging Design': 'Design d’emballage',
       'Visual Systems': 'Systèmes visuels',
@@ -158,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'A clear process,': 'Un processus clair,', 'start to finish.': 'du début à la fin.',
       'What Clients Say': 'Témoignages', 'Kind words from': 'Quelques mots de',
       'past collaborators.': 'mes anciens partenaires.',
-      'Questions, answered.': 'Vos questions, nos réponses.', 'Everything you\'d want to know before reaching out.': 'Tout ce qu’il faut savoir avant de me contacter.',
+      'Questions I get a lot': 'Les questions qu’on me pose souvent',
       'Your name': 'Votre nom', 'Email': 'E-mail', 'What are you looking for?': 'Quel est votre besoin ?',
       'Project details': 'Détails du projet', 'Send message': 'Envoyer le message',
       'Message received →': 'Message reçu →', 'Message on WhatsApp': 'Me contacter sur WhatsApp',
@@ -202,10 +210,14 @@ document.addEventListener('DOMContentLoaded', () => {
     de: {
       'Work': 'Arbeiten', 'Services': 'Leistungen', 'About me': 'Über mich',
       'Start a Project': 'Projekt starten', 'Selected Work': 'Ausgewählte Arbeiten',
-      'Helping Brands Look Premium,': 'Marken hochwertig wirken lassen,',
-      'Clear &': 'klar und',
-      'Memorable.': 'unvergesslich.',
-      'Book a Free Discovery Call': 'Kostenloses Erstgespräch buchen',
+      'BRAND IDENTITY + PACKAGING': 'MARKENIDENTITÄT + VERPACKUNG',
+      'Brand Identity &': 'Markenidentität und',
+      'Packaging for': 'Verpackung für',
+      'Consumer Brands.': 'Konsumgütermarken.',
+      'I build brands that stand out on the shelf.': 'Ich entwickle Marken, die im Regal auffallen.',
+      'Strategy, identity, packaging — all working together.': 'Strategie, Identität und Verpackung — perfekt aufeinander abgestimmt.',
+      'View Selected Work': 'Ausgewählte Arbeiten ansehen',
+      '6+ years in brand, FMCG & packaging design': 'Über 6 Jahre Erfahrung mit Marken, FMCG und Verpackungsdesign',
       'Trusted by 25+ brands worldwide': 'Mehr als 25 Marken weltweit vertrauen mir',
       'Packaging Design': 'Verpackungsdesign',
       'Visual Systems': 'Visuelle Systeme',
@@ -219,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'A clear process,': 'Ein klarer Ablauf,', 'start to finish.': 'von Anfang bis Ende.',
       'What Clients Say': 'Kundenstimmen', 'Kind words from': 'Nette Worte von',
       'past collaborators.': 'früheren Partnern.',
-      'Questions, answered.': 'Fragen und Antworten.', 'Everything you\'d want to know before reaching out.': 'Alles, was du vor deiner Anfrage wissen möchtest.',
+      'Questions I get a lot': 'Fragen, die mir oft gestellt werden',
       'Your name': 'Dein Name', 'Email': 'E-Mail', 'What are you looking for?': 'Wobei kann ich helfen?',
       'Project details': 'Projektdetails', 'Send message': 'Nachricht senden',
       'Message received →': 'Nachricht erhalten →', 'Message on WhatsApp': 'Nachricht über WhatsApp',
@@ -459,7 +471,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---------- GSAP hero and section text motion (smooth 60-120fps GPU accelerated) ---------- */
   const gsap = window.gsap;
-  const heroEl = document.querySelector('.hero');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (gsap && !reducedMotion) {
     if (window.ScrollTrigger) {
@@ -470,36 +481,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const heading = document.querySelector('.hero h1');
     if (heading) {
-      gsap.timeline({ defaults: { ease: 'power3.out', force3D: true } })
-        .from('.hero-badge', { y: 18, opacity: 0, duration: 0.55 })
-        .from('.hero-chip', { y: 12, opacity: 0, duration: 0.35, stagger: 0.07 }, '-=0.2')
+    gsap.timeline({ defaults: { ease: 'power3.out', force3D: true } })
+      .from('.hero-trust', { y: 12, opacity: 0, duration: 0.4 }, '-=0.2')
+        .from('.hero-chip', { y: 12, opacity: 0, duration: 0.35, stagger: 0.07 }, '-=0.12')
         .from(heading, { y: 42, opacity: 0, duration: 0.8 }, '-=0.18')
         .from('.hero h1 em', { y: 14, opacity: 0, duration: 0.65 }, '-=0.42')
         .from('.hero-side p', { y: 18, opacity: 0, duration: 0.55 }, '-=0.24')
-        .from('.hero-cta', { y: 14, opacity: 0, duration: 0.45, clearProps: 'transform' }, '-=0.2');
+        .from('.hero-cta', { y: 14, opacity: 0, duration: 0.45, stagger: 0.08, clearProps: 'transform' }, '-=0.2')
+        .from('.hero-credibility', { y: 10, opacity: 0, duration: 0.4 }, '-=0.18');
     }
 
     if (window.ScrollTrigger) {
-      const heroScene = document.querySelector('.hero-depth');
-      if (heroScene) {
-        gsap.to(heroScene, {
-          y: 72,
-          rotationX: -7,
-          scale: 1.08,
-          transformOrigin: '50% 45%',
-          ease: 'none',
-          force3D: true,
-          scrollTrigger: {
-            trigger: heroEl,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 0.5,
-            fastScrollEnd: true,
-            anticipatePin: 1
-          }
-        });
-      }
-      gsap.utils.toArray('.section-head').forEach(sectionHeading => {
+      gsap.utils.toArray('.section-head:not(.faq-heading)').forEach(sectionHeading => {
         gsap.from(sectionHeading, {
           y: 24,
           opacity: 0,

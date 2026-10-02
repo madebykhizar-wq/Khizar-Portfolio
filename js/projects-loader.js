@@ -23,6 +23,89 @@
     }
   };
 
+  function normalizeCaseStudy(value) {
+    if (!value || typeof value !== "object") return null;
+    const validColor = color => typeof color === "string" && /^#[\da-f]{6}$/i.test(color) ? color : "";
+    const sections = Array.isArray(value.sections) ? value.sections : [];
+    const normalizedSections = sections.map(section => {
+      if (!section || typeof section !== "object") return null;
+      const layout = section.layout && typeof section.layout === "object" ? section.layout : {};
+      const columns = Number(layout.columns);
+      return {
+        heading: typeof section.heading === "string" ? section.heading : "",
+        body: typeof section.body === "string" ? section.body : "",
+        images: Array.isArray(section.images) ? section.images.filter(isValidUrlOrPath) : [],
+        videos: Array.isArray(section.videos) ? section.videos.filter(isValidUrlOrPath) : [],
+        layout: {
+          alignment: ["left", "center", "right"].includes(layout.alignment) ? layout.alignment : "left",
+          fontFamily: ["Inter", "Bricolage Grotesque", "Playfair Display"].includes(layout.fontFamily) ? layout.fontFamily : "Inter",
+          fontSize: [16, 18, 20, 24, 32].includes(Number(layout.fontSize)) ? Number(layout.fontSize) : 18,
+          bold: Boolean(layout.bold),
+          color: validColor(layout.color) || "#b5c2ba",
+          backgroundColor: validColor(layout.backgroundColor),
+          columns: [1, 2, 3].includes(columns) ? columns : 1,
+          imageFit: ["contain", "cover"].includes(layout.imageFit) ? layout.imageFit : "contain",
+          gap: Number.isFinite(Number(layout.gap)) ? Math.min(48, Math.max(0, Number(layout.gap))) : 20
+        }
+      };
+    }).filter(section => section && (section.heading || section.body || section.images.length || section.videos.length));
+    const intro = typeof value.intro === "string" ? value.intro.trim() : "";
+    const testimonial = value.testimonial && typeof value.testimonial === "object" ? {
+      quote: typeof value.testimonial.quote === "string" ? value.testimonial.quote.trim() : "",
+      name: typeof value.testimonial.name === "string" ? value.testimonial.name.trim() : "",
+      role: typeof value.testimonial.role === "string" ? value.testimonial.role.trim() : "",
+      image: isValidUrlOrPath(value.testimonial.image) ? value.testimonial.image.trim() : ""
+    } : null;
+    const relatedProjects = Array.isArray(value.relatedProjects)
+      ? value.relatedProjects.filter(title => typeof title === "string" && title.trim())
+      : [];
+    return intro || normalizedSections.length || testimonial?.quote || relatedProjects.length
+      ? {
+          ...(intro ? { intro } : {}),
+          ...(normalizedSections.length ? { sections: normalizedSections } : {}),
+          ...(testimonial?.quote ? { testimonial } : {}),
+          ...(relatedProjects.length ? { relatedProjects } : {})
+        }
+      : null;
+  }
+
+  async function attachLocalCaseStudies(projects) {
+    try {
+      const response = await fetch("content/projects.json");
+      if (!response.ok) throw new Error(`Editorial content request failed (${response.status}).`);
+      const content = await response.json();
+      if (!content || !Array.isArray(content.projects)) {
+        throw new TypeError("Editorial content must include a projects array.");
+      }
+      const editorialByTitle = new Map(
+        content.projects
+          .filter(project => project && typeof project.title === "string")
+          .map(project => [project.title.trim().toLowerCase(), {
+            caseStudy: normalizeCaseStudy(project.caseStudy),
+            thumbnail: isValidUrlOrPath(project.thumbnail) ? project.thumbnail.trim() : "",
+            cover: isValidUrlOrPath(project.cover) ? project.cover.trim() : "",
+            images: Array.isArray(project.images) ? project.images.filter(isValidUrlOrPath) : []
+          }])
+          .filter(([, editorial]) => editorial.caseStudy)
+      );
+      return projects.map(project => {
+        const editorial = editorialByTitle.get(String(project.title || "").trim().toLowerCase());
+        return {
+          ...project,
+          ...(editorial && editorial.thumbnail ? { thumbnail: editorial.thumbnail } : {}),
+          ...(editorial && editorial.images.length ? {
+            cover: editorial.cover || editorial.images[0],
+            images: editorial.images
+          } : {}),
+          caseStudy: normalizeCaseStudy(project.caseStudy) || editorial?.caseStudy || null
+        };
+      });
+    } catch (error) {
+      console.warn("Could not load local editorial case-study content:", error.message);
+      return projects;
+    }
+  }
+
   // 1. Try loading live projects from Supabase Database
   async function loadFromSupabase() {
     const sb = config.supabase;
@@ -80,20 +163,23 @@
         images: images.length ? images : [primaryCover].filter(Boolean),
         behanceLink: item.behance_link || item.behanceLink || "",
         websiteLink: item.website_link || item.websiteLink || "",
+        caseStudy: normalizeCaseStudy(item.case_study || item.caseStudy),
         featured: Boolean(item.featured),
         cardLabel: item.card_label || item.cardLabel || (item.featured ? "Featured" : item.tag || "Project"),
         sortOrder: Number(item.sort_order) || 0
       };
     });
 
+    const withEditorialContent = await attachLocalCaseStudies(mapped);
+
     // FEATURED ALWAYS AT TOP OF WEBSITE
-    mapped.sort((a, b) => {
+    withEditorialContent.sort((a, b) => {
       if (a.featured && !b.featured) return -1;
       if (!a.featured && b.featured) return 1;
       return (a.sortOrder || 0) - (b.sortOrder || 0);
     });
 
-    return mapped;
+    return withEditorialContent;
   }
 
   // 2. Fallback to local content/projects.json if offline or Supabase fails
@@ -113,6 +199,7 @@
       return {
         ...p,
         images: images.length ? images : [p.cover || p.thumbnail].filter(Boolean),
+        caseStudy: normalizeCaseStudy(p.caseStudy),
         featured: Boolean(p.featured),
         sortOrder: Number(p.sortOrder || p.sort_order) || 0
       };
