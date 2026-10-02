@@ -65,9 +65,9 @@ window.SITE_CONFIG = {
   typography: {
     headingFont: "'Bricolage Grotesque', sans-serif",
     bodyFont: "'Inter', sans-serif",
-    // kept as an alias to bodyFont — the site now uses only Bricolage Grotesque + Inter
+    // kept as an alias to bodyFont; Playfair Display is used for process-section accents.
     monoFont: "'Inter', sans-serif",
-    googleFontsUrl: "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:wght@400;500;600;700&display=swap"
+    googleFontsUrl: "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,700&display=swap"
   },
 
   // ===========================================================
@@ -97,6 +97,8 @@ window.SITE_CONFIG = {
     // Leave empty until you upload one — a placeholder will show instead.
     photo: "assets/my-photo.jpg",
     photoSectionHeading: "The person behind the brand.",
+    photoSectionHighlight: "behind the brand.",
+    photoSectionBioHighlight: "6+ years",
     photoSectionBio: "I'm Khizar — a brand identity and packaging designer based in Gujranwala, Pakistan. I've spent the last 6+ years helping founders turn undecided brands into confident ones.",
   },
 
@@ -125,9 +127,8 @@ window.SITE_CONFIG = {
   // PRIMARY CTA (used in the hero button)
   // ===========================================================
   cta: {
-    text: "Book a Free Discovery Call",
-    // External links (http/https) automatically open in a new tab.
-    link: "https://calendly.com/khizarhayat/30min"
+    text: "Start a Project",
+    link: "#contact"
   },
 
   // Text shown on the small nav button (top right of every page)
@@ -137,8 +138,9 @@ window.SITE_CONFIG = {
   // HERO SECTION (homepage)
   // ===========================================================
   hero: {
-    eyebrow: "Brand Identity & Packaging Design",
-    headline: "Helping Brands Look Premium,<br>Clear & <em>Memorable.</em>",
+    headline: "Brand Identity &amp; <span class=\"hero-packaging-for\">Packaging for</span><br><em>Consumer Brands.</em>",
+    description: "<strong>I build brands that stand out on the shelf.</strong><br>Strategy, identity, packaging — all working together.",
+    credibility: "6+ years in brand, FMCG & packaging design",
     // Hero-only badge — deliberately separate from personal.availabilityBadge
     // (which still says "Available for Freelance & Full-time" on the About
     // page). Edit this line any time you want to change the trust signal.

@@ -195,11 +195,8 @@
     const el = $("#hero-content");
     if (!el) return;
 
-    const badge = $("#hero-badge");
-    if (badge) {
-      const target = badge.querySelector(".live-text") || badge.querySelector("span:last-child");
-      if (target) target.textContent = cfg.hero.badge || cfg.personal.availabilityBadge || "Available for Brand & Packaging Systems";
-    }
+    const trustText = el.querySelector(".hero-trust-text");
+    if (trustText) trustText.textContent = cfg.hero.badge || "";
 
     const titleEl = el.querySelector(".hero-master-title") || el.querySelector("h1");
     if (titleEl && cfg.hero.headline) {
@@ -207,9 +204,12 @@
     }
 
     const bioEl = el.querySelector(".hero-description") || el.querySelector(".hero-side p");
-    if (bioEl && cfg.personal.shortBio) bioEl.innerHTML = cfg.personal.shortBio;
+    if (bioEl) bioEl.innerHTML = cfg.hero.description || esc(cfg.personal.shortBio || "");
 
-    const cta = el.querySelector(".hero-cta");
+    const credibility = el.querySelector(".hero-credibility");
+    if (credibility) credibility.textContent = cfg.hero.credibility || "";
+
+    const cta = el.querySelector(".hero-project-cta");
     if (cta) {
       cta.href = cfg.cta.link;
       const btnText = cta.querySelector(".btn-text");
@@ -221,12 +221,10 @@
     }
 
     const HERO_ICONS = {
-      star: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"/></svg>`,
+      star: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8-2.8"/></svg>`,
       target: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/></svg>`,
-      calendar: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M8.5 15l2 2 4-4"/></svg>`,
       package: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg>`
     };
-
     const chips = (cfg.hero.chips || []).map(c => ({ icon: HERO_ICONS[c.icon] || "", label: c.label }));
     const chipsEl = $("#hero-chips");
     if (chipsEl) {
@@ -349,10 +347,6 @@
       <div class="cs-modal-backdrop" id="csBackdrop"></div>
       <div class="cs-modal-container" role="document">
         <div class="cs-modal-header">
-          <div class="cs-header-left">
-            <span class="cs-badge" id="csBadge">Identity</span>
-            <span class="cs-year" id="csYear">2026</span>
-          </div>
           <button type="button" class="cs-close-btn" id="csCloseBtn" aria-label="Close case study">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
           </button>
@@ -360,30 +354,43 @@
 
         <div class="cs-modal-content">
           <div class="cs-intro">
-            <h2 class="cs-title" id="csTitle">Project Title</h2>
-            <p class="cs-desc" id="csDesc">Project description goes here.</p>
-            <div class="cs-meta-row">
-              <div class="cs-meta-col">
-                <span class="cs-label">Client</span>
-                <span class="cs-val" id="csClient">Client Name</span>
-              </div>
-              <div class="cs-meta-col">
-                <span class="cs-label">Discipline / Services</span>
-                <div class="cs-services-list" id="csServicesList"></div>
+            <div class="cs-intro-primary">
+              <h2 class="cs-title" id="csTitle">Project Title</h2>
+              <div class="cs-meta-row">
+                <div class="cs-meta-col">
+                  <span class="cs-label">Year</span>
+                  <span class="cs-val" id="csYearMeta">2026</span>
+                </div>
+                <div class="cs-meta-col">
+                  <span class="cs-label">Sector</span>
+                  <span class="cs-val" id="csSector">Brand Identity</span>
+                </div>
+                <div class="cs-meta-col cs-meta-disciplines">
+                  <span class="cs-label">Disciplines</span>
+                  <div class="cs-services-list" id="csServicesList"></div>
+                </div>
               </div>
             </div>
+            <div class="cs-intro-copy" id="csIntroCopy"></div>
           </div>
 
           <div class="cs-gallery" id="csGallery">
             <!-- Full case study images stacked cleanly -->
           </div>
 
+          <div class="cs-story" id="csStory"></div>
+
+          <section class="cs-testimonial" id="csTestimonial" hidden aria-label="Client testimonial"></section>
+          <section class="cs-related" id="csRelated" hidden aria-labelledby="csRelatedTitle">
+            <div class="cs-related-head">
+              <p class="cs-label">Keep exploring</p>
+              <h2 id="csRelatedTitle">Related projects</h2>
+            </div>
+            <div class="cs-related-grid" id="csRelatedGrid"></div>
+          </section>
+
           <div class="cs-bottom-bar">
             <div class="cs-cta-group">
-              <a id="csBehanceBtn" href="#" target="_blank" rel="noopener" class="btn solid cs-behance-link">
-                <span>View Full Case Study on Behance</span>
-                <span class="arrow">↗</span>
-              </a>
               <a id="csWebsiteBtn" href="#" target="_blank" rel="noopener" class="btn outline cs-website-link" style="display:none;">
                 <span>Visit Live Website</span>
                 <span class="arrow">↗</span>
@@ -403,6 +410,14 @@
     $("#csCloseBtn", modal).addEventListener("click", close);
     $("#csCloseBottomBtn", modal).addEventListener("click", close);
     $("#csBackdrop", modal).addEventListener("click", close);
+    $("#csRelatedGrid", modal).addEventListener("click", event => {
+      const relatedCard = event.target.closest("[data-related-project]");
+      if (!relatedCard) return;
+      const nextProject = cfg.projects.find(project =>
+        String(project.id || project.title) === relatedCard.dataset.relatedProject
+      );
+      if (nextProject) openCaseStudyModal(nextProject);
+    });
 
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && modal.classList.contains("is-open")) {
@@ -416,14 +431,20 @@
   function openCaseStudyModal(p) {
     if (!p) return;
     const modal = ensureCaseStudyModal();
-    $("#csBadge", modal).textContent = `${p.category || 'Identity'} · ${p.tag || 'Brand'}`;
-    $("#csYear", modal).textContent = p.year || new Date().getFullYear();
+    const year = p.year || new Date().getFullYear();
+    $("#csYearMeta", modal).textContent = year;
     $("#csTitle", modal).textContent = p.title || '';
-    $("#csDesc", modal).textContent = p.description || '';
-    $("#csClient", modal).textContent = p.client || 'Studio Client';
+    $("#csSector", modal).textContent = p.category || 'Brand Identity';
 
     const services = Array.isArray(p.services) ? p.services : [p.tag || 'Design'];
-    $("#csServicesList", modal).innerHTML = services.map(s => `<span class="cs-service-pill">✦ ${esc(s)}</span>`).join("");
+    $("#csServicesList", modal).innerHTML = services.map(s => `<span class="cs-service-pill">${esc(s)}</span>`).join("");
+    const introCopy = $("#csIntroCopy", modal);
+    const editorialIntro = typeof p.caseStudy?.intro === "string" ? p.caseStudy.intro.trim() : "";
+    const introParagraphs = (editorialIntro || p.description || "")
+      .split(/\r?\n\s*\r?\n/)
+      .map(paragraph => paragraph.trim())
+      .filter(Boolean);
+    introCopy.innerHTML = introParagraphs.map(paragraph => `<p>${esc(paragraph)}</p>`).join("");
 
     const gallery = $("#csGallery", modal);
     const images = Array.isArray(p.images) && p.images.length ? p.images : [p.cover || p.thumbnail].filter(Boolean);
@@ -434,16 +455,94 @@
       </figure>
     `).join("");
 
-    const behanceBtn = $("#csBehanceBtn", modal);
-    if (p.behanceLink) {
-      behanceBtn.href = safeUrl(p.behanceLink);
-      behanceBtn.style.display = "inline-flex";
-    } else if (cfg.social && cfg.social.behance) {
-      behanceBtn.href = safeUrl(cfg.social.behance);
-      behanceBtn.style.display = "inline-flex";
-    } else {
-      behanceBtn.style.display = "none";
-    }
+    const story = $("#csStory", modal);
+    const caseStudySections = Array.isArray(p.caseStudy?.sections) ? p.caseStudy.sections : [];
+    story.innerHTML = caseStudySections.map((section, sectionIndex) => {
+      const heading = typeof section.heading === "string" ? section.heading.trim() : "";
+      const body = typeof section.body === "string" ? section.body.trim() : "";
+      const sectionImages = Array.isArray(section.images)
+        ? section.images.filter(image => typeof image === "string" && image.trim())
+        : [];
+      const sectionVideos = Array.isArray(section.videos)
+        ? section.videos.filter(video => typeof video === "string" && video.trim())
+        : [];
+      const layout = section.layout && typeof section.layout === "object" ? section.layout : {};
+      const alignment = ["left", "center", "right"].includes(layout.alignment) ? layout.alignment : "left";
+      const fontFamily = ["Inter", "Bricolage Grotesque", "Playfair Display"].includes(layout.fontFamily)
+        ? layout.fontFamily
+        : "Inter";
+      const fontSize = [16, 18, 20, 24, 32].includes(Number(layout.fontSize)) ? Number(layout.fontSize) : 18;
+      const textColor = typeof layout.color === "string" && /^#[\da-f]{6}$/i.test(layout.color) ? layout.color : "#b5c2ba";
+      const backgroundColor = typeof layout.backgroundColor === "string" &&
+        /^#[\da-f]{6}$/i.test(layout.backgroundColor) ? layout.backgroundColor : "transparent";
+      const columns = [1, 2, 3].includes(Number(layout.columns)) ? Number(layout.columns) : 1;
+      const imageFit = ["contain", "cover"].includes(layout.imageFit) ? layout.imageFit : "contain";
+      const gap = Number.isFinite(Number(layout.gap)) ? Math.min(48, Math.max(0, Number(layout.gap))) : 20;
+      const media = [
+        ...sectionImages.map((src, index) => ({ type: "image", src, index })),
+        ...sectionVideos.map((src, index) => ({ type: "video", src, index }))
+      ];
+      return `
+        <section class="cs-story-section" style="--cs-section-bg:${backgroundColor};--cs-section-gap:${gap}px" ${heading
+          ? `aria-labelledby="cs-story-heading-${sectionIndex}"`
+          : `aria-label="Case study section ${sectionIndex + 1}"`}>
+          ${heading || body ? `
+            <div class="cs-story-copy" style="text-align:${alignment};font-family:'${fontFamily}',sans-serif;font-size:${fontSize}px;color:${textColor};font-weight:${layout.bold ? 700 : 400}">
+              ${heading ? `<h3 id="cs-story-heading-${sectionIndex}" style="font-family:'${fontFamily}',sans-serif;font-size:${fontSize}px;color:${textColor};font-weight:${layout.bold ? 700 : 500}">${esc(heading)}</h3>` : ""}
+              ${body ? `<p style="font-family:'${fontFamily}',sans-serif;font-size:${fontSize}px;color:${textColor};font-weight:${layout.bold ? 700 : 400}">${esc(body)}</p>` : ""}
+            </div>` : ""}
+          ${media.length ? `
+            <div class="cs-story-images cs-story-images-${columns} cs-story-fit-${imageFit}" style="--cs-media-gap:${gap}px">
+              ${media.map(item => `
+                <figure class="cs-image-card">
+                  ${item.type === "image"
+                    ? `<img src="${esc(safeUrl(item.src))}" alt="${esc(heading || p.title)} - image ${item.index + 1}" loading="lazy" decoding="async">`
+                    : `<video src="${esc(safeUrl(item.src))}" controls playsinline preload="metadata" aria-label="${esc(heading || p.title)} video ${item.index + 1}"></video>`}
+                </figure>`).join("")}
+            </div>` : ""}
+        </section>`;
+    }).join("");
+    story.hidden = caseStudySections.length === 0;
+
+    const testimonial = p.caseStudy?.testimonial;
+    const testimonialSection = $("#csTestimonial", modal);
+    testimonialSection.hidden = !testimonial?.quote;
+    testimonialSection.innerHTML = testimonial?.quote ? `
+      ${testimonial.image ? `<img class="cs-testimonial-avatar" src="${esc(safeUrl(testimonial.image))}" alt="">` : ""}
+      <blockquote>${esc(testimonial.quote)}</blockquote>
+      ${testimonial.name ? `<p class="cs-testimonial-name">${esc(testimonial.name)}</p>` : ""}
+      ${testimonial.role ? `<p class="cs-testimonial-role">${esc(testimonial.role)}</p>` : ""}
+    ` : "";
+
+    const relatedSection = $("#csRelated", modal);
+    const relatedGrid = $("#csRelatedGrid", modal);
+    const explicitRelated = Array.isArray(p.caseStudy?.relatedProjects) ? p.caseStudy.relatedProjects : [];
+    const candidates = (Array.isArray(cfg.projects) ? cfg.projects : [])
+      .filter(candidate => candidate !== p && candidate.title !== p.title);
+    const related = explicitRelated.length
+      ? explicitRelated.map(title => candidates.find(candidate => candidate.title === title)).filter(Boolean)
+      : candidates.map(candidate => {
+          const categoryMatch = candidate.category && candidate.category === p.category ? 2 : 0;
+          const serviceSet = new Set((Array.isArray(p.services) ? p.services : []).map(value => String(value).toLowerCase()));
+          const serviceMatches = (Array.isArray(candidate.services) ? candidate.services : [])
+            .filter(value => serviceSet.has(String(value).toLowerCase())).length;
+          const tagMatch = candidate.tag && candidate.tag === p.tag ? 1 : 0;
+          return { candidate, score: categoryMatch + serviceMatches + tagMatch };
+        }).filter(item => item.score > 0)
+          .sort((a, b) => b.score - a.score)
+          .slice(0, 3)
+          .map(item => item.candidate);
+    relatedGrid.innerHTML = related.map(candidate => `
+      <button type="button" class="cs-related-card" data-related-project="${esc(String(candidate.id || candidate.title))}">
+        <img src="${esc(safeUrl(candidate.thumbnail))}" alt="" loading="lazy">
+        <span class="cs-related-card-copy">
+          <span>${esc(candidate.category || candidate.tag || "Project")}</span>
+          <strong>${esc(candidate.title)}</strong>
+          <span class="cs-related-open">View project <span aria-hidden="true">↗</span></span>
+        </span>
+      </button>
+    `).join("");
+    relatedSection.hidden = related.length === 0;
 
     const websiteBtn = $("#csWebsiteBtn", modal);
     if (p.websiteLink) {
@@ -488,6 +587,7 @@
           event.preventDefault();
           card.click();
         }
+
       }
     });
   }
@@ -584,10 +684,10 @@
     const list = $("#services-preview-list");
     if (!list) return;
     const serviceIcons = [
-      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 3.5 8v8l8.5 5 8.5-5V8L12 3Z"/><path d="m3.5 8 8.5 5 8.5-5M12 13v8"/></svg>`,
-      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4.5h11a3 3 0 0 1 3 3v12H8a3 3 0 0 1-3-3v-12Z"/><path d="M8 19.5a3 3 0 0 1-3-3M9 9h6M9 13h6"/></svg>`,
-      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 8.5 4.5v9L12 21l-8.5-4.5v-9L12 3Z"/><path d="M3.5 7.5 12 12l8.5-4.5M12 12v9"/></svg>`,
-      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><path d="M14 14h6v6h-6z"/></svg>`
+      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3.5 2.35 6.15 6.15 2.35-6.15 2.35L12 20.5l-2.35-6.15L3.5 12l6.15-2.35L12 3.5Z"/><circle cx="12" cy="12" r="1.5"/></svg>`,
+      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.75h8l4 4v12.5H6a2 2 0 0 1-2-2v-12.5a2 2 0 0 1 2-2Z"/><path d="M14 3.75v4h4M8 12h6M8 15.5h5"/><path d="m15 17 1.5 1.5L20 15"/></svg>`,
+      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3.5 8 4.25v8.5L12 20.5l-8-4.25v-8.5L12 3.5Z"/><path d="m4 7.75 8 4.5 8-4.5M12 12.25v8.25M8 5.65l8 4.5"/></svg>`,
+      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><rect x="3.75" y="4" width="16.5" height="16" rx="2"/><path d="M4 9h16"/><rect x="7" y="12" width="4" height="5" rx=".6"/><path d="M14 12.5h3.5M14 15h3.5M14 17.5h2"/></svg>`
     ];
     list.innerHTML = cfg.services.map((s, i) => `
       <div class="service-row reveal">
@@ -782,6 +882,7 @@
     list.innerHTML = cfg.faq.map((item, i) => `
       <div class="faq-item reveal">
         <button type="button" class="faq-question" aria-expanded="false">
+          <span class="faq-number" aria-hidden="true">${String(i + 1).padStart(2, "0")}</span>
           <span>${esc(item.question)}</span>
           <span class="faq-icon">+</span>
         </button>
@@ -799,8 +900,28 @@
       ? `<img src="${esc(cfg.personal.photo)}" alt="${esc(cfg.personal.name)}" loading="lazy">`
       : `<div class="photo-placeholder">Photo needed — a professional three-quarter portrait, plain dark backdrop.<br>Set personal.photo in config.js to "assets/your-photo.jpg"</div>`;
 
-    copy.querySelector("h2").textContent = cfg.personal.photoSectionHeading;
-    copy.querySelector("p").textContent = cfg.personal.photoSectionBio;
+    const heading = esc(cfg.personal.photoSectionHeading || "");
+    const highlight = esc(cfg.personal.photoSectionHighlight || "");
+    copy.querySelector("h2").innerHTML = highlight && heading.includes(highlight)
+      ? heading.replace(highlight, `<br><em>${highlight}</em>`)
+      : heading;
+    const bio = esc(cfg.personal.photoSectionBio || "");
+    const bioHighlight = esc(cfg.personal.photoSectionBioHighlight || "");
+    copy.querySelector(".photo-about-bio").innerHTML = bioHighlight && bio.includes(bioHighlight)
+      ? bio.replace(bioHighlight, `<strong>${bioHighlight}</strong>`)
+      : bio;
+    copy.querySelector(".photo-about-detail").textContent = cfg.personal.longBioExtra || "";
+    copy.querySelector(".photo-about-invite").textContent = cfg.personal.closingLine || "";
+
+    const projectCta = $(".photo-about-cta", copy);
+    if (projectCta) {
+      projectCta.href = cfg.cta.link || "#contact";
+      projectCta.textContent = cfg.navCtaText || "Start a Project";
+      if (/^https?:\/\//i.test(projectCta.href)) {
+        projectCta.target = "_blank";
+        projectCta.rel = "noopener";
+      }
+    }
 
     const socialsRow = $("#photo-about-socials", copy);
     if (socialsRow) {

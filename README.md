@@ -15,6 +15,19 @@ save it for editorial review. The editor opens a GitHub pull request;
 merge that change into `main` to publish it through the existing site
 deployment. The public project grid reads `content/projects.json`.
 
+Projects can also include optional editorial case-study sections with
+headings, text, images, and MP4/WebM videos. Portfolio Studio controls each
+section's text styling, background, image fit, columns, and spacing. Uploaded
+videos must be smaller than 5 MB each. Add only approved client testimonials;
+related projects can be selected manually or suggested automatically. Save
+project details and use GitHub Sync to publish these fields in
+`content/projects.json`. Projects without editorial sections retain their
+current gallery presentation.
+
+Google Analytics is loaded only after a visitor accepts optional analytics
+in the cookie banner. Visitors can reject analytics or reopen Cookie settings
+to change their choice.
+
 The public navigation is a single-page flow: Work, Services, and About
 jump to sections on `index.html`. Every configured project is shown in
 the homepage work grid, with category filters.
