@@ -69,6 +69,38 @@
       : null;
   }
 
+  function getProjectLookupKeys(item) {
+    if (!item) return [];
+    const keys = new Set();
+    const add = (v) => {
+      if (!v) return;
+      const s = String(v).trim().toLowerCase();
+      if (s) {
+        keys.add(s);
+        const cleaned = s.replace(/®|™|©/g, "").replace(/[^a-z0-9]+/g, " ").trim();
+        if (cleaned) keys.add(cleaned);
+        const compact = s.replace(/®|™|©/g, "").replace(/[^a-z0-9]/g, "");
+        if (compact) keys.add(compact);
+      }
+    };
+    add(item.id);
+    add(item.slug);
+    add(item.title);
+    add(item.client);
+    const titleStr = String(item.title || "").toLowerCase();
+    if (titleStr.includes("bioxy")) {
+      add("bioxy");
+      add("bioxy-sl");
+      add("bioxy s.l.");
+    }
+    if (titleStr.includes("synvora")) {
+      add("synvora");
+      add("synvorar");
+      add("synvora®");
+    }
+    return Array.from(keys);
+  }
+
   async function attachLocalCaseStudies(projects) {
     try {
       const response = await fetch("content/projects.json");
@@ -77,27 +109,30 @@
       if (!content || !Array.isArray(content.projects)) {
         throw new TypeError("Editorial content must include a projects array.");
       }
-      const editorialByTitle = new Map(
-        content.projects
-          .filter(project => project && typeof project.title === "string")
-          .map(project => [
-            project.title.trim().toLowerCase(),
-            {
-              ...project,
-              slug: project.slug || project.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""),
-              caseStudy: normalizeCaseStudy(project.caseStudy),
-              thumbnail: isValidUrlOrPath(project.thumbnail) ? project.thumbnail.trim() : "",
-              cover: isValidUrlOrPath(project.cover) ? project.cover.trim() : "",
-              images: Array.isArray(project.images) ? project.images.filter(isValidUrlOrPath) : []
-            }
-          ])
-      );
+      const editorialMap = new Map();
+      content.projects
+        .filter(project => project && typeof project.title === "string")
+        .forEach(project => {
+          const item = {
+            ...project,
+            slug: project.slug || project.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""),
+            caseStudy: normalizeCaseStudy(project.caseStudy),
+            thumbnail: isValidUrlOrPath(project.thumbnail) ? project.thumbnail.trim() : "",
+            cover: isValidUrlOrPath(project.cover) ? project.cover.trim() : "",
+            images: Array.isArray(project.images) ? project.images.filter(isValidUrlOrPath) : []
+          };
+          getProjectLookupKeys(project).forEach(key => editorialMap.set(key, item));
+        });
 
-      const seenTitles = new Set();
       const merged = projects.map(project => {
+        let ed = null;
+        for (const key of getProjectLookupKeys(project)) {
+          if (editorialMap.has(key)) {
+            ed = editorialMap.get(key);
+            break;
+          }
+        }
         const titleKey = String(project.title || "").trim().toLowerCase();
-        seenTitles.add(titleKey);
-        const ed = editorialByTitle.get(titleKey);
         return {
           ...project,
           slug: ed?.slug || project.slug || titleKey.replace(/[^a-z0-9]+/g, "-"),
@@ -106,36 +141,13 @@
           cardLabel: ed?.cardLabel || project.cardLabel,
           description: ed?.description || project.description,
           services: ed?.services || project.services,
-          featured: ed && typeof ed.featured === "boolean" ? ed.featured : project.featured,
-          sortOrder: ed && typeof ed.sortOrder === "number" ? ed.sortOrder : project.sortOrder,
-          ...(ed && ed.thumbnail ? { thumbnail: ed.thumbnail } : {}),
-          ...(ed && ed.images.length ? {
-            cover: ed.cover || ed.images[0],
-            images: ed.images
-          } : {}),
+          featured: typeof project.featured === "boolean" ? project.featured : Boolean(ed?.featured),
+          sortOrder: typeof project.sortOrder === "number" ? project.sortOrder : (Number(project.sort_order) || ed?.sortOrder || 99),
+          thumbnail: project.thumbnail || ed?.thumbnail || (ed?.images && ed.images[0]) || "",
+          cover: (ed && ed.images && ed.images.length) ? (ed.cover || ed.images[0]) : (project.cover || project.thumbnail || ""),
+          images: (ed && ed.images && ed.images.length) ? ed.images : (project.images || [project.cover || project.thumbnail].filter(Boolean)),
           caseStudy: normalizeCaseStudy(project.caseStudy) || ed?.caseStudy || null
         };
-      });
-
-      // Include any local projects that aren't in the remote DB (e.g. Sonex Nonstick)
-      content.projects.forEach(lp => {
-        const titleKey = String(lp.title || "").trim().toLowerCase();
-        if (!seenTitles.has(titleKey)) {
-          seenTitles.add(titleKey);
-          let images = Array.isArray(lp.images) ? lp.images.filter(isValidUrlOrPath) : [];
-          if (!images.length) {
-            if (isValidUrlOrPath(lp.cover)) images.push(lp.cover);
-            if (isValidUrlOrPath(lp.thumbnail) && !images.includes(lp.thumbnail)) images.push(lp.thumbnail);
-          }
-          merged.push({
-            ...lp,
-            slug: lp.slug || titleKey.replace(/[^a-z0-9]+/g, "-"),
-            images: images.length ? images : [lp.cover || lp.thumbnail].filter(Boolean),
-            caseStudy: normalizeCaseStudy(lp.caseStudy),
-            featured: Boolean(lp.featured),
-            sortOrder: Number(lp.sortOrder || lp.sort_order) || 99
-          });
-        }
       });
 
       return merged;

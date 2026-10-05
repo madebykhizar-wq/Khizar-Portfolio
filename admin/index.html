@@ -2256,24 +2256,62 @@
         }
       }
 
+      function getProjectLookupKeys(item) {
+        if (!item) return [];
+        const keys = new Set();
+        const add = (v) => {
+          if (!v) return;
+          const s = String(v).trim().toLowerCase();
+          if (s) {
+            keys.add(s);
+            const cleaned = s.replace(/®|™|©/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+            if (cleaned) keys.add(cleaned);
+            const compact = s.replace(/®|™|©/g, '').replace(/[^a-z0-9]/g, '');
+            if (compact) keys.add(compact);
+          }
+        };
+        add(item.id);
+        add(item.slug);
+        add(item.title);
+        add(item.client);
+        const titleStr = String(item.title || '').toLowerCase();
+        if (titleStr.includes('bioxy')) {
+          add('bioxy');
+          add('bioxy-sl');
+          add('bioxy s.l.');
+        }
+        if (titleStr.includes('synvora')) {
+          add('synvora');
+          add('synvorar');
+          add('synvora®');
+        }
+        return Array.from(keys);
+      }
+
       async function loadEditorialCaseStudies() {
         const caseStudies = new Map();
+        const registerEntry = (project) => {
+          if (!project) return;
+          const caseStudy = normalizeCaseStudy(project.caseStudy);
+          if (caseStudy) {
+            const entry = {
+              id: project.id || '',
+              slug: project.slug || '',
+              caseStudy,
+              thumbnail: typeof project.thumbnail === 'string' ? project.thumbnail : '',
+              cover: typeof project.cover === 'string' ? project.cover : '',
+              images: Array.isArray(project.images) ? project.images.filter(url => typeof url === 'string' && url.trim()) : []
+            };
+            getProjectLookupKeys(project).forEach(k => caseStudies.set(k, entry));
+          }
+        };
+
         const cached = safeGetStorage(STORAGE_KEY);
         if (cached) {
           try {
             const parsed = JSON.parse(cached);
             if (Array.isArray(parsed)) {
-              parsed.forEach(project => {
-                const caseStudy = normalizeCaseStudy(project.caseStudy);
-                if (typeof project.title === 'string' && caseStudy) {
-                  caseStudies.set(project.title.trim().toLowerCase(), {
-                    caseStudy,
-                    thumbnail: typeof project.thumbnail === 'string' ? project.thumbnail : '',
-                    cover: typeof project.cover === 'string' ? project.cover : '',
-                    images: Array.isArray(project.images) ? project.images.filter(url => typeof url === 'string' && url.trim()) : []
-                  });
-                }
-              });
+              parsed.forEach(registerEntry);
             }
           } catch (error) {
             console.warn('Could not read cached case-study sections:', error.message);
@@ -2286,17 +2324,7 @@
           if (!content || !Array.isArray(content.projects)) {
             throw new TypeError('Editorial content must include a projects array.');
           }
-          content.projects.forEach(project => {
-            const caseStudy = normalizeCaseStudy(project.caseStudy);
-            if (typeof project.title === 'string' && caseStudy) {
-              caseStudies.set(project.title.trim().toLowerCase(), {
-                caseStudy,
-                thumbnail: typeof project.thumbnail === 'string' ? project.thumbnail : '',
-                cover: typeof project.cover === 'string' ? project.cover : '',
-                images: Array.isArray(project.images) ? project.images.filter(url => typeof url === 'string' && url.trim()) : []
-              });
-            }
-          });
+          content.projects.forEach(registerEntry);
         } catch (error) {
           console.warn('Could not load published case-study sections:', error.message);
         }
@@ -2330,7 +2358,13 @@
                 if (item.cover) imgList.push(item.cover);
                 if (item.thumbnail && !imgList.includes(item.thumbnail)) imgList.push(item.thumbnail);
               }
-              const editorial = editorialCaseStudies.get(String(item.title || '').trim().toLowerCase());
+              let editorial = null;
+              for (const k of getProjectLookupKeys(item)) {
+                if (editorialCaseStudies.has(k)) {
+                  editorial = editorialCaseStudies.get(k);
+                  break;
+                }
+              }
               const projectImages = editorial && editorial.caseStudy && editorial.images.length
                 ? editorial.images
                 : imgList;
@@ -2343,12 +2377,8 @@
                 client: item.client || '',
                 description: item.description || '',
                 services: Array.isArray(item.services) ? item.services : (item.services ? [item.services] : [item.tag]),
-                thumbnail: editorial && editorial.caseStudy && editorial.thumbnail
-                  ? editorial.thumbnail
-                  : item.thumbnail || (projectImages[0] || ''),
-                cover: editorial && editorial.caseStudy && editorial.cover
-                  ? editorial.cover
-                  : projectImages[0] || item.cover || item.thumbnail || '',
+                thumbnail: item.thumbnail || (editorial && editorial.caseStudy && editorial.thumbnail) || (projectImages[0] || ''),
+                cover: projectImages[0] || item.cover || item.thumbnail || '',
                 images: projectImages,
                 behanceLink: item.behance_link || item.behanceLink || '',
                 websiteLink: item.website_link || item.websiteLink || '',
@@ -2850,6 +2880,8 @@
 
       function serializeProjectContent(project) {
         return {
+          id: project.id || project.slug || '',
+          slug: project.slug || String(project.title || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
           title: project.title,
           category: project.category,
           tag: project.tag,
@@ -2864,7 +2896,8 @@
           websiteLink: project.websiteLink || '',
           caseStudy: normalizeCaseStudy(project.caseStudy),
           featured: Boolean(project.featured),
-          cardLabel: project.cardLabel
+          cardLabel: project.cardLabel,
+          sortOrder: Number(project.sort_order || project.sortOrder) || 1
         };
       }
 

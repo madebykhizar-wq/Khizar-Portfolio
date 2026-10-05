@@ -1,9 +1,9 @@
 {
   "projects": [
     {
-      "id": "bioxy-sl",
+      "id": "b8c2edb8-acdf-48d6-94d9-2b26b940bcbf",
       "slug": "bioxy",
-      "title": "Bioxy S.L.",
+      "title": "BIOXY",
       "category": "Brand Identity",
       "tag": "Health & Wellness",
       "year": "2026",
@@ -84,7 +84,7 @@
       "sortOrder": 1
     },
     {
-      "id": "synvora",
+      "id": "29b77758-a629-4d60-ac2a-2bda0b80df34",
       "slug": "synvora",
       "title": "Synvora®",
       "category": "Brand Identity",
@@ -130,7 +130,7 @@
       "sortOrder": 2
     },
     {
-      "id": "logofolio-vol-1",
+      "id": "5b15a862-aede-4ef3-b594-e9242fc6320d",
       "slug": "logofolio",
       "title": "Logofolio Vol. 1",
       "category": "Logotypes & Marks",
@@ -162,12 +162,12 @@
       },
       "behanceLink": "https://www.behance.net/gallery/247244301/Logofolio-Vol1-Selected-Logo-Marks-Logotypes",
       "websiteLink": "",
-      "featured": true,
+      "featured": false,
       "cardLabel": "Selected Marks",
       "sortOrder": 3
     },
     {
-      "id": "minimal-mark",
+      "id": "d22eb30d-d17c-4e77-aec8-69bae0d236da",
       "slug": "minimal-mark",
       "title": "Minimal Mark",
       "category": "Logotypes & Marks",
@@ -204,46 +204,44 @@
       "sortOrder": 4
     },
     {
-      "id": "sonex-nonstick",
-      "slug": "sonex-nonstick",
-      "title": "Sonex Nonstick Showcase",
+      "id": "434a2a04-6533-4a95-8738-5a90c069b5b0",
+      "slug": "social-graphics",
+      "title": "40+ Social Media Posts",
       "category": "Campaign & Collateral",
-      "tag": "Cookware & Kitchenware",
-      "year": "2026",
-      "client": "Sonex Nonstick",
-      "description": "Commercial marketing campaign and cookware showcase collateral for Sonex Nonstick.",
+      "tag": "Promotional Graphics",
+      "year": "2025",
+      "client": "Various Brands",
+      "description": "Curated collection of promotional social media graphics, product banners, and campaign collateral.",
       "services": [
-        "Commercial Collateral",
-        "Poster Design",
-        "Product Showcase"
+        "Brand Collateral",
+        "Social Graphics",
+        "Campaign Assets"
       ],
-      "thumbnail": "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1790767555106-lxv5c5.jpg",
-      "cover": "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1790767625666-76l64g.jpg",
+      "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/4d950e247307077.Y3JvcCwzMTk2LDI0OTksMjc2LDA.jpg",
+      "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/4d950e247307077.Y3JvcCwzMTk2LDI0OTksMjc2LDA.jpg",
       "images": [
-        "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1790767555106-lxv5c5.jpg",
-        "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1790767625666-76l64g.jpg"
+        "https://mir-s3-cdn-cf.behance.net/projects/404/4d950e247307077.Y3JvcCwzMTk2LDI0OTksMjc2LDA.jpg"
       ],
       "caseStudy": {
-        "intro": "Promotional campaign collateral developed for Sonex Nonstick, highlighting premium cookware finishes and kitchenware product ranges through focused visual hierarchy.",
+        "intro": "A portfolio collection of commercial social media creative executions across food, retail, and corporate sectors.",
         "sections": [
           {
-            "heading": "Product Presentation",
-            "body": "Visual hierarchy, lighting enhancement, and clean typographic framing were used to present cookware lines clearly across digital sales channels and retail collateral.",
+            "heading": "Campaign Variety",
+            "body": "Diverse creative assets demonstrating layout versatility, typographical treatment, and promotional pacing.",
             "images": [
-              "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1790767555106-lxv5c5.jpg",
-              "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1790767625666-76l64g.jpg"
+              "https://mir-s3-cdn-cf.behance.net/projects/404/4d950e247307077.Y3JvcCwzMTk2LDI0OTksMjc2LDA.jpg"
             ]
           }
         ]
       },
-      "behanceLink": "",
+      "behanceLink": "https://www.behance.net/gallery/247307077/40-Social-Media-Posts",
       "websiteLink": "",
       "featured": false,
-      "cardLabel": "Commercial Collateral",
+      "cardLabel": "Campaign Archive",
       "sortOrder": 5
     },
     {
-      "id": "hyundai-gujranwala",
+      "id": "47430c6e-c29c-467f-a5cd-9837be877bce",
       "slug": "hyundai-gujranwala",
       "title": "Hyundai Gujranwala",
       "category": "Campaign & Collateral",
@@ -280,44 +278,7 @@
       "sortOrder": 6
     },
     {
-      "id": "social-media-campaigns",
-      "slug": "social-graphics",
-      "title": "40+ Social Media Posts",
-      "category": "Campaign & Collateral",
-      "tag": "Promotional Graphics",
-      "year": "2025",
-      "client": "Various Brands",
-      "description": "Curated collection of promotional social media graphics, product banners, and campaign collateral.",
-      "services": [
-        "Brand Collateral",
-        "Social Graphics",
-        "Campaign Assets"
-      ],
-      "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/4d950e247307077.Y3JvcCwzMTk2LDI0OTksMjc2LDA.jpg",
-      "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/4d950e247307077.Y3JvcCwzMTk2LDI0OTksMjc2LDA.jpg",
-      "images": [
-        "https://mir-s3-cdn-cf.behance.net/projects/404/4d950e247307077.Y3JvcCwzMTk2LDI0OTksMjc2LDA.jpg"
-      ],
-      "caseStudy": {
-        "intro": "A portfolio collection of commercial social media creative executions across food, retail, and corporate sectors.",
-        "sections": [
-          {
-            "heading": "Campaign Variety",
-            "body": "Diverse creative assets demonstrating layout versatility, typographical treatment, and promotional pacing.",
-            "images": [
-              "https://mir-s3-cdn-cf.behance.net/projects/404/4d950e247307077.Y3JvcCwzMTk2LDI0OTksMjc2LDA.jpg"
-            ]
-          }
-        ]
-      },
-      "behanceLink": "https://www.behance.net/gallery/247307077/40-Social-Media-Posts",
-      "websiteLink": "",
-      "featured": false,
-      "cardLabel": "Campaign Archive",
-      "sortOrder": 7
-    },
-    {
-      "id": "personal-portfolio-exploration",
+      "id": "0ee4a2b7-8486-4045-a15a-eeb4cca7e7d6",
       "slug": "portfolio-exploration",
       "title": "Personal Portfolio",
       "category": "Archive & Self-Initiated",
@@ -350,7 +311,7 @@
       "websiteLink": "",
       "featured": false,
       "cardLabel": "Self-Initiated",
-      "sortOrder": 8
+      "sortOrder": 7
     }
   ]
 }
