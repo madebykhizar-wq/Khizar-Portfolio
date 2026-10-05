@@ -1,21 +1,101 @@
 {
   "projects": [
     {
+      "id": "29b77758-a629-4d60-ac2a-2bda0b80df34",
+      "slug": "synvora",
+      "title": "Synvora®",
+      "category": "Tech / AI",
+      "tag": "Brand Guidelines",
+      "year": "2026",
+      "client": "Synvora",
+      "description": "Full brand guideline system for an AI company.",
+      "services": [
+        "Brand Guidelines",
+        "Logo Design"
+      ],
+      "thumbnail": "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1791200846181-4b8r6y.jpg",
+      "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/6aeedb252601027.Y3JvcCwyODY5LDIyNDQsMCww.jpg",
+      "images": [
+        "https://mir-s3-cdn-cf.behance.net/projects/404/6aeedb252601027.Y3JvcCwyODY5LDIyNDQsMCww.jpg"
+      ],
+      "behanceLink": "https://www.behance.net/gallery/252601027/Synvora-AI-Brand-Guidelines",
+      "websiteLink": "",
+      "caseStudy": {
+        "intro": "Synvora® is an artificial intelligence venture requiring an authoritative, technically precise visual identity system. The brand guidelines establish clear constraints for mark usage, typography hierarchy, digital color palettes, and interface scalability.",
+        "sections": [
+          {
+            "heading": "01 — Mark Architecture & Clear Space",
+            "body": "Engineered on a systematic geometric grid, the Synvora symbol delivers sharp recognition from micro UI elements (16px favicons) to large-scale event graphics. Strict clear-space formulas ensure brand protection across software and marketing collateral.",
+            "images": [
+              "https://mir-s3-cdn-cf.behance.net/projects/404/6aeedb252601027.Y3JvcCwyODY5LDIyNDQsMCww.jpg"
+            ],
+            "videos": [],
+            "layout": {
+              "alignment": "left",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "bold": false,
+              "color": "#b5c2ba",
+              "backgroundColor": "",
+              "columns": 1,
+              "imageFit": "contain",
+              "gap": 20
+            }
+          },
+          {
+            "heading": "02 — Technical Typography & Color Standards",
+            "body": "The brand system specifies dual type scales optimized for digital clarity alongside a systematic color hierarchy: dark graphite canvas, electric cyan data accents, and high-legibility neutrals engineered for screen contrast.",
+            "images": [],
+            "videos": [],
+            "layout": {
+              "alignment": "left",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "bold": false,
+              "color": "#b5c2ba",
+              "backgroundColor": "",
+              "columns": 1,
+              "imageFit": "contain",
+              "gap": 20
+            }
+          },
+          {
+            "heading": "03 — Implementation Rules & Brand Book",
+            "body": "A detailed brand manual provides the company's engineers, designers, and marketing team with explicit dos and don'ts, file formats, and co-branding lockups to maintain brand consistency globally.",
+            "images": [],
+            "videos": [],
+            "layout": {
+              "alignment": "left",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "bold": false,
+              "color": "#b5c2ba",
+              "backgroundColor": "",
+              "columns": 1,
+              "imageFit": "contain",
+              "gap": 20
+            }
+          }
+        ]
+      },
+      "featured": true,
+      "cardLabel": "Featured",
+      "sortOrder": 1
+    },
+    {
       "id": "b8c2edb8-acdf-48d6-94d9-2b26b940bcbf",
       "slug": "bioxy",
       "title": "BIOXY",
-      "category": "Brand Identity",
-      "tag": "Health & Wellness",
+      "category": "Health & Wellness",
+      "tag": "Brand Identity",
       "year": "2026",
       "client": "Bioxy S.L.",
-      "description": "Global health & wellness brand identity system, mark architecture, and packaging concepts.",
+      "description": "Global health & wellness brand identity.",
       "services": [
         "Brand Identity",
-        "Logo Design",
-        "Visual System",
-        "Packaging Concepts"
+        "Logo Design"
       ],
-      "thumbnail": "/assets/projects/bioxy/front.jpg",
+      "thumbnail": "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1791183697742-h1sre2.jpg",
       "cover": "/assets/projects/bioxy/front.jpg",
       "images": [
         "/assets/projects/bioxy/front.jpg",
@@ -34,6 +114,8 @@
         "/assets/projects/bioxy/13.jpg",
         "/assets/projects/bioxy/back.jpg"
       ],
+      "behanceLink": "https://www.behance.net/gallery/247246109/Bioxy-SL-Global-Health-Wellness-Brand-Identity",
+      "websiteLink": "",
       "caseStudy": {
         "intro": "Bioxy is a wellness identity built around vitality and connection. Four radiating forms meet at a central point, bringing energy, cellular connection, and a subtle clinical cross into one distinctive mark inspired by BIO and OXY.\n\nA deep ocean blue foundation is balanced with aqua mist, seafoam green, pebble gray, and white. Paired with Montserrat typography, the system carries a calm, contemporary identity across digital interfaces, packaging, and tactile print touchpoints.",
         "sections": [
@@ -45,7 +127,19 @@
               "/assets/projects/bioxy/2.jpg",
               "/assets/projects/bioxy/3.jpg",
               "/assets/projects/bioxy/4.jpg"
-            ]
+            ],
+            "videos": [],
+            "layout": {
+              "alignment": "left",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "bold": false,
+              "color": "#b5c2ba",
+              "backgroundColor": "",
+              "columns": 1,
+              "imageFit": "contain",
+              "gap": 20
+            }
           },
           {
             "heading": "02 — Typography & Color Architecture",
@@ -55,7 +149,19 @@
               "/assets/projects/bioxy/6.jpg",
               "/assets/projects/bioxy/7.jpg",
               "/assets/projects/bioxy/8.jpg"
-            ]
+            ],
+            "videos": [],
+            "layout": {
+              "alignment": "left",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "bold": false,
+              "color": "#b5c2ba",
+              "backgroundColor": "",
+              "columns": 1,
+              "imageFit": "contain",
+              "gap": 20
+            }
           },
           {
             "heading": "03 — Digital & Interface Applications",
@@ -64,7 +170,19 @@
               "/assets/projects/bioxy/9.jpg",
               "/assets/projects/bioxy/10.jpg",
               "/assets/projects/bioxy/11.jpg"
-            ]
+            ],
+            "videos": [],
+            "layout": {
+              "alignment": "left",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "bold": false,
+              "color": "#b5c2ba",
+              "backgroundColor": "",
+              "columns": 1,
+              "imageFit": "contain",
+              "gap": 20
+            }
           },
           {
             "heading": "04 — Packaging & Print Production",
@@ -73,81 +191,45 @@
               "/assets/projects/bioxy/12.jpg",
               "/assets/projects/bioxy/13.jpg",
               "/assets/projects/bioxy/back.jpg"
-            ]
+            ],
+            "videos": [],
+            "layout": {
+              "alignment": "left",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "bold": false,
+              "color": "#b5c2ba",
+              "backgroundColor": "",
+              "columns": 1,
+              "imageFit": "contain",
+              "gap": 20
+            }
           }
         ]
       },
-      "behanceLink": "https://www.behance.net/gallery/247246109/Bioxy-SL-Global-Health-Wellness-Brand-Identity",
-      "websiteLink": "",
       "featured": true,
-      "cardLabel": "Flagship Identity",
+      "cardLabel": "Identity",
       "sortOrder": 1
     },
     {
-      "id": "29b77758-a629-4d60-ac2a-2bda0b80df34",
-      "slug": "synvora",
-      "title": "Synvora®",
-      "category": "Brand Identity",
-      "tag": "AI & Technology",
-      "year": "2026",
-      "client": "Synvora",
-      "description": "Comprehensive brand guidelines and visual design system for an artificial intelligence technology venture.",
-      "services": [
-        "Brand Identity",
-        "Brand Guidelines",
-        "Design System",
-        "Logo Suite"
-      ],
-      "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/6aeedb252601027.Y3JvcCwyODY5LDIyNDQsMCww.jpg",
-      "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/6aeedb252601027.Y3JvcCwyODY5LDIyNDQsMCww.jpg",
-      "images": [
-        "https://mir-s3-cdn-cf.behance.net/projects/404/6aeedb252601027.Y3JvcCwyODY5LDIyNDQsMCww.jpg"
-      ],
-      "caseStudy": {
-        "intro": "Synvora® is an artificial intelligence venture requiring an authoritative, technically precise visual identity system. The brand guidelines establish clear constraints for mark usage, typography hierarchy, digital color palettes, and interface scalability.",
-        "sections": [
-          {
-            "heading": "01 — Mark Architecture & Clear Space",
-            "body": "Engineered on a systematic geometric grid, the Synvora symbol delivers sharp recognition from micro UI elements (16px favicons) to large-scale event graphics. Strict clear-space formulas ensure brand protection across software and marketing collateral.",
-            "images": [
-              "https://mir-s3-cdn-cf.behance.net/projects/404/6aeedb252601027.Y3JvcCwyODY5LDIyNDQsMCww.jpg"
-            ]
-          },
-          {
-            "heading": "02 — Technical Typography & Color Standards",
-            "body": "The brand system specifies dual type scales optimized for digital clarity alongside a systematic color hierarchy: dark graphite canvas, electric cyan data accents, and high-legibility neutrals engineered for screen contrast."
-          },
-          {
-            "heading": "03 — Implementation Rules & Brand Book",
-            "body": "A detailed brand manual provides the company's engineers, designers, and marketing team with explicit dos and don'ts, file formats, and co-branding lockups to maintain brand consistency globally."
-          }
-        ]
-      },
-      "behanceLink": "https://www.behance.net/gallery/252601027/Synvora-AI-Brand-Guidelines",
-      "websiteLink": "",
-      "featured": true,
-      "cardLabel": "Brand Guidelines",
-      "sortOrder": 2
-    },
-    {
       "id": "5b15a862-aede-4ef3-b594-e9242fc6320d",
-      "slug": "logofolio",
+      "slug": "logofolio-vol-1",
       "title": "Logofolio Vol. 1",
-      "category": "Logotypes & Marks",
-      "tag": "Selected Marks",
+      "category": "Logofolio",
+      "tag": "Marks & Logotypes",
       "year": "2025",
       "client": "Selected Clients",
-      "description": "A curated collection of distinctive logo marks, monograms, and logotypes across diverse industries.",
+      "description": "A collection of selected logo marks and logotypes.",
       "services": [
-        "Logo Design",
-        "Mark Construction",
-        "Custom Lettering"
+        "Logo Design"
       ],
-      "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/370f5a247244301.Y3JvcCwxMzk5LDEwOTUsMCww.jpg",
+      "thumbnail": "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1791201275642-67if6h.jpg",
       "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/370f5a247244301.Y3JvcCwxMzk5LDEwOTUsMCww.jpg",
       "images": [
         "https://mir-s3-cdn-cf.behance.net/projects/404/370f5a247244301.Y3JvcCwxMzk5LDEwOTUsMCww.jpg"
       ],
+      "behanceLink": "https://www.behance.net/gallery/247244301/Logofolio-Vol1-Selected-Logo-Marks-Logotypes",
+      "websiteLink": "",
       "caseStudy": {
         "intro": "Logofolio Vol. 1 gathers selected logo marks, symbols, and logotypes created for independent businesses and consumer brands. Each mark is developed from core geometric principles to achieve immediate recall and effortless scalability.",
         "sections": [
@@ -156,35 +238,45 @@
             "body": "Every mark in this collection was built to solve a specific positioning challenge — balancing geometric simplicity with emotional resonance so the mark remains legible whether embroidered, embossed, or displayed as a 16px digital icon.",
             "images": [
               "https://mir-s3-cdn-cf.behance.net/projects/404/370f5a247244301.Y3JvcCwxMzk5LDEwOTUsMCww.jpg"
-            ]
+            ],
+            "videos": [],
+            "layout": {
+              "alignment": "left",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "bold": false,
+              "color": "#b5c2ba",
+              "backgroundColor": "",
+              "columns": 1,
+              "imageFit": "contain",
+              "gap": 20
+            }
           }
         ]
       },
-      "behanceLink": "https://www.behance.net/gallery/247244301/Logofolio-Vol1-Selected-Logo-Marks-Logotypes",
-      "websiteLink": "",
       "featured": false,
-      "cardLabel": "Selected Marks",
+      "cardLabel": "Logofolio",
       "sortOrder": 3
     },
     {
       "id": "d22eb30d-d17c-4e77-aec8-69bae0d236da",
       "slug": "minimal-mark",
       "title": "Minimal Mark",
-      "category": "Logotypes & Marks",
-      "tag": "Leather Goods Co.",
+      "category": "Leather Goods",
+      "tag": "Logo Design",
       "year": "2025",
       "client": "Leather Goods Co.",
-      "description": "Minimalist geometric logo mark and emblem created for a handcrafted leather goods brand.",
+      "description": "Minimal logo design for a leather goods brand.",
       "services": [
-        "Logo Design",
-        "Emblem Design",
-        "Heat-Stamp Adaptation"
+        "Logo Design"
       ],
       "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/7bcf93163338087.Y3JvcCwxMDQ5LDgyMSwwLDA.jpg",
       "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/7bcf93163338087.Y3JvcCwxMDQ5LDgyMSwwLDA.jpg",
       "images": [
         "https://mir-s3-cdn-cf.behance.net/projects/404/7bcf93163338087.Y3JvcCwxMDQ5LDgyMSwwLDA.jpg"
       ],
+      "behanceLink": "https://www.behance.net/gallery/163338087/Leather-Goods-Minimal-Logo-Design",
+      "websiteLink": "",
       "caseStudy": {
         "intro": "A minimalist mark engineered for high physical durability across leather goods production, including hot foil stamping, debossing, and brass hardware etching.",
         "sections": [
@@ -193,35 +285,45 @@
             "body": "Line weights and corner radiuses were specifically calculated to prevent ink bleed and stamping degradation on raw leather textures and heavyweight cotton packaging.",
             "images": [
               "https://mir-s3-cdn-cf.behance.net/projects/404/7bcf93163338087.Y3JvcCwxMDQ5LDgyMSwwLDA.jpg"
-            ]
+            ],
+            "videos": [],
+            "layout": {
+              "alignment": "left",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "bold": false,
+              "color": "#b5c2ba",
+              "backgroundColor": "",
+              "columns": 1,
+              "imageFit": "contain",
+              "gap": 20
+            }
           }
         ]
       },
-      "behanceLink": "https://www.behance.net/gallery/163338087/Leather-Goods-Minimal-Logo-Design",
-      "websiteLink": "",
       "featured": false,
-      "cardLabel": "Identity Mark",
+      "cardLabel": "Logo",
       "sortOrder": 4
     },
     {
       "id": "434a2a04-6533-4a95-8738-5a90c069b5b0",
-      "slug": "social-graphics",
+      "slug": "40-social-media-posts",
       "title": "40+ Social Media Posts",
-      "category": "Campaign & Collateral",
-      "tag": "Promotional Graphics",
+      "category": "Social Design",
+      "tag": "Brand Collateral",
       "year": "2025",
-      "client": "Various Brands",
-      "description": "Curated collection of promotional social media graphics, product banners, and campaign collateral.",
+      "client": "Various",
+      "description": "A set of 40+ social media post designs.",
       "services": [
-        "Brand Collateral",
-        "Social Graphics",
-        "Campaign Assets"
+        "Brand Collateral"
       ],
       "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/4d950e247307077.Y3JvcCwzMTk2LDI0OTksMjc2LDA.jpg",
       "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/4d950e247307077.Y3JvcCwzMTk2LDI0OTksMjc2LDA.jpg",
       "images": [
         "https://mir-s3-cdn-cf.behance.net/projects/404/4d950e247307077.Y3JvcCwzMTk2LDI0OTksMjc2LDA.jpg"
       ],
+      "behanceLink": "https://www.behance.net/gallery/247307077/40-Social-Media-Posts",
+      "websiteLink": "",
       "caseStudy": {
         "intro": "A portfolio collection of commercial social media creative executions across food, retail, and corporate sectors.",
         "sections": [
@@ -230,35 +332,45 @@
             "body": "Diverse creative assets demonstrating layout versatility, typographical treatment, and promotional pacing.",
             "images": [
               "https://mir-s3-cdn-cf.behance.net/projects/404/4d950e247307077.Y3JvcCwzMTk2LDI0OTksMjc2LDA.jpg"
-            ]
+            ],
+            "videos": [],
+            "layout": {
+              "alignment": "left",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "bold": false,
+              "color": "#b5c2ba",
+              "backgroundColor": "",
+              "columns": 1,
+              "imageFit": "contain",
+              "gap": 20
+            }
           }
         ]
       },
-      "behanceLink": "https://www.behance.net/gallery/247307077/40-Social-Media-Posts",
-      "websiteLink": "",
       "featured": false,
-      "cardLabel": "Campaign Archive",
+      "cardLabel": "Collateral",
       "sortOrder": 5
     },
     {
       "id": "47430c6e-c29c-467f-a5cd-9837be877bce",
       "slug": "hyundai-gujranwala",
       "title": "Hyundai Gujranwala",
-      "category": "Campaign & Collateral",
-      "tag": "Automotive Dealership",
+      "category": "Automotive",
+      "tag": "Social Ad Design",
       "year": "2024",
       "client": "Hyundai Gujranwala",
-      "description": "Digital ad campaign and promotional social media collateral for Hyundai Gujranwala dealership.",
+      "description": "Social media ad design campaign.",
       "services": [
-        "Digital Ad Design",
-        "Campaign Collateral",
-        "Promotional Graphics"
+        "Brand Collateral"
       ],
       "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/18adc2216177681.Y3JvcCwzMzAxLDI1ODIsMTE1Miww.jpg",
       "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/18adc2216177681.Y3JvcCwzMzAxLDI1ODIsMTE1Miww.jpg",
       "images": [
         "https://mir-s3-cdn-cf.behance.net/projects/404/18adc2216177681.Y3JvcCwzMzAxLDI1ODIsMTE1Miww.jpg"
       ],
+      "behanceLink": "https://www.behance.net/gallery/216177681/Hyundai-Gujranwala-Social-Media-Ad-Design",
+      "websiteLink": "",
       "caseStudy": {
         "intro": "Promotional ad campaign designed for Hyundai Gujranwala, aligning dealership sales promotions with corporate vehicle branding guidelines.",
         "sections": [
@@ -267,34 +379,45 @@
             "body": "Structured layout design respecting official automotive brand guidelines while driving localized promotional engagement.",
             "images": [
               "https://mir-s3-cdn-cf.behance.net/projects/404/18adc2216177681.Y3JvcCwzMzAxLDI1ODIsMTE1Miww.jpg"
-            ]
+            ],
+            "videos": [],
+            "layout": {
+              "alignment": "left",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "bold": false,
+              "color": "#b5c2ba",
+              "backgroundColor": "",
+              "columns": 1,
+              "imageFit": "contain",
+              "gap": 20
+            }
           }
         ]
       },
-      "behanceLink": "https://www.behance.net/gallery/216177681/Hyundai-Gujranwala-Social-Media-Ad-Design",
-      "websiteLink": "",
       "featured": false,
-      "cardLabel": "Dealership Campaign",
+      "cardLabel": "Campaign",
       "sortOrder": 6
     },
     {
       "id": "0ee4a2b7-8486-4045-a15a-eeb4cca7e7d6",
-      "slug": "portfolio-exploration",
+      "slug": "personal-portfolio",
       "title": "Personal Portfolio",
-      "category": "Archive & Self-Initiated",
-      "tag": "Design Exploration",
+      "category": "Self-Initiated",
+      "tag": "Portfolio System",
       "year": "2024",
       "client": "Self-Initiated",
-      "description": "Self-initiated visual identity and portfolio presentation exploration.",
+      "description": "A self-initiated personal portfolio project.",
       "services": [
-        "Visual Exploration",
-        "Layout Design"
+        "Brand Identity"
       ],
       "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/42b8f5247258565.Y3JvcCw2NDY1LDUwNTYsMCww.jpg",
       "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/42b8f5247258565.Y3JvcCw2NDY1LDUwNTYsMCww.jpg",
       "images": [
         "https://mir-s3-cdn-cf.behance.net/projects/404/42b8f5247258565.Y3JvcCw2NDY1LDUwNTYsMCww.jpg"
       ],
+      "behanceLink": "https://www.behance.net/gallery/247258565/Personal-Portfolio",
+      "websiteLink": "",
       "caseStudy": {
         "intro": "An archival self-initiated exploration of typographic systems, grid structures, and digital portfolio layouts.",
         "sections": [
@@ -303,12 +426,22 @@
             "body": "Exploratory design exercise testing layout dynamics, dark mode contrasts, and typography pairings.",
             "images": [
               "https://mir-s3-cdn-cf.behance.net/projects/404/42b8f5247258565.Y3JvcCw2NDY1LDUwNTYsMCww.jpg"
-            ]
+            ],
+            "videos": [],
+            "layout": {
+              "alignment": "left",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "bold": false,
+              "color": "#b5c2ba",
+              "backgroundColor": "",
+              "columns": 1,
+              "imageFit": "contain",
+              "gap": 20
+            }
           }
         ]
       },
-      "behanceLink": "https://www.behance.net/gallery/247258565/Personal-Portfolio",
-      "websiteLink": "",
       "featured": false,
       "cardLabel": "Self-Initiated",
       "sortOrder": 7
