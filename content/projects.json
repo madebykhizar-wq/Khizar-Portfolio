@@ -277,10 +277,20 @@
       "services": [
         "Logo Design"
       ],
-      "thumbnail": "https://mir-s3-cdn-cf.behance.net/projects/404/7bcf93163338087.Y3JvcCwxMDQ5LDgyMSwwLDA.jpg",
-      "cover": "https://mir-s3-cdn-cf.behance.net/projects/404/7bcf93163338087.Y3JvcCwxMDQ5LDgyMSwwLDA.jpg",
+      "thumbnail": "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1791201668303-h9k05j.jpg",
+      "cover": "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1791201688347-7a0jpb.jpg",
       "images": [
-        "https://mir-s3-cdn-cf.behance.net/projects/404/7bcf93163338087.Y3JvcCwxMDQ5LDgyMSwwLDA.jpg"
+        "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1791201688347-7a0jpb.jpg",
+        "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1791201689102-qohefr.jpg",
+        "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1791201689955-0c2xjd.jpg",
+        "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1791201690631-vo61qd.jpg",
+        "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1791201691552-h43g6d.jpg",
+        "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1791201692244-75em1p.jpg",
+        "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1791201692748-s8saby.jpg",
+        "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1791201693636-sfymzr.jpg",
+        "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1791201694357-l2g203.jpg",
+        "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1791201695034-ir0dpx.jpg",
+        "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1791201695994-8tq4m8.jpg"
       ],
       "behanceLink": "https://www.behance.net/gallery/163338087/Leather-Goods-Minimal-Logo-Design",
       "websiteLink": "",
@@ -290,9 +300,7 @@
           {
             "heading": "Production-Ready Geometry",
             "body": "Line weights and corner radiuses were specifically calculated to prevent ink bleed and stamping degradation on raw leather textures and heavyweight cotton packaging.",
-            "images": [
-              "https://mir-s3-cdn-cf.behance.net/projects/404/7bcf93163338087.Y3JvcCwxMDQ5LDgyMSwwLDA.jpg"
-            ],
+            "images": [],
             "videos": [],
             "layout": {
               "alignment": "left",
@@ -301,11 +309,21 @@
               "bold": false,
               "color": "#b5c2ba",
               "backgroundColor": "",
-              "columns": 1,
+              "columns": 2,
               "imageFit": "contain",
-              "gap": 20
+              "gap": 12
             }
           }
+        ],
+        "testimonial": {
+          "quote": "Brilliant Work, I'm in love in this brand identity.",
+          "name": "Muhammad Siyam",
+          "role": "STACKS",
+          "image": "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1791201855349-0c2qkj.jpg"
+        },
+        "relatedProjects": [
+          "Logofolio Vol. 1",
+          "Personal Portfolio"
         ]
       },
       "featured": false,
