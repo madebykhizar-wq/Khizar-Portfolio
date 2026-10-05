@@ -80,26 +80,65 @@
       const editorialByTitle = new Map(
         content.projects
           .filter(project => project && typeof project.title === "string")
-          .map(project => [project.title.trim().toLowerCase(), {
-            caseStudy: normalizeCaseStudy(project.caseStudy),
-            thumbnail: isValidUrlOrPath(project.thumbnail) ? project.thumbnail.trim() : "",
-            cover: isValidUrlOrPath(project.cover) ? project.cover.trim() : "",
-            images: Array.isArray(project.images) ? project.images.filter(isValidUrlOrPath) : []
-          }])
-          .filter(([, editorial]) => editorial.caseStudy)
+          .map(project => [
+            project.title.trim().toLowerCase(),
+            {
+              ...project,
+              slug: project.slug || project.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""),
+              caseStudy: normalizeCaseStudy(project.caseStudy),
+              thumbnail: isValidUrlOrPath(project.thumbnail) ? project.thumbnail.trim() : "",
+              cover: isValidUrlOrPath(project.cover) ? project.cover.trim() : "",
+              images: Array.isArray(project.images) ? project.images.filter(isValidUrlOrPath) : []
+            }
+          ])
       );
-      return projects.map(project => {
-        const editorial = editorialByTitle.get(String(project.title || "").trim().toLowerCase());
+
+      const seenTitles = new Set();
+      const merged = projects.map(project => {
+        const titleKey = String(project.title || "").trim().toLowerCase();
+        seenTitles.add(titleKey);
+        const ed = editorialByTitle.get(titleKey);
         return {
           ...project,
-          ...(editorial && editorial.thumbnail ? { thumbnail: editorial.thumbnail } : {}),
-          ...(editorial && editorial.images.length ? {
-            cover: editorial.cover || editorial.images[0],
-            images: editorial.images
+          slug: ed?.slug || project.slug || titleKey.replace(/[^a-z0-9]+/g, "-"),
+          category: ed?.category || project.category,
+          tag: ed?.tag || project.tag,
+          cardLabel: ed?.cardLabel || project.cardLabel,
+          description: ed?.description || project.description,
+          services: ed?.services || project.services,
+          featured: ed && typeof ed.featured === "boolean" ? ed.featured : project.featured,
+          sortOrder: ed && typeof ed.sortOrder === "number" ? ed.sortOrder : project.sortOrder,
+          ...(ed && ed.thumbnail ? { thumbnail: ed.thumbnail } : {}),
+          ...(ed && ed.images.length ? {
+            cover: ed.cover || ed.images[0],
+            images: ed.images
           } : {}),
-          caseStudy: normalizeCaseStudy(project.caseStudy) || editorial?.caseStudy || null
+          caseStudy: normalizeCaseStudy(project.caseStudy) || ed?.caseStudy || null
         };
       });
+
+      // Include any local projects that aren't in the remote DB (e.g. Sonex Nonstick)
+      content.projects.forEach(lp => {
+        const titleKey = String(lp.title || "").trim().toLowerCase();
+        if (!seenTitles.has(titleKey)) {
+          seenTitles.add(titleKey);
+          let images = Array.isArray(lp.images) ? lp.images.filter(isValidUrlOrPath) : [];
+          if (!images.length) {
+            if (isValidUrlOrPath(lp.cover)) images.push(lp.cover);
+            if (isValidUrlOrPath(lp.thumbnail) && !images.includes(lp.thumbnail)) images.push(lp.thumbnail);
+          }
+          merged.push({
+            ...lp,
+            slug: lp.slug || titleKey.replace(/[^a-z0-9]+/g, "-"),
+            images: images.length ? images : [lp.cover || lp.thumbnail].filter(Boolean),
+            caseStudy: normalizeCaseStudy(lp.caseStudy),
+            featured: Boolean(lp.featured),
+            sortOrder: Number(lp.sortOrder || lp.sort_order) || 99
+          });
+        }
+      });
+
+      return merged;
     } catch (error) {
       console.warn("Could not load local editorial case-study content:", error.message);
       return projects;

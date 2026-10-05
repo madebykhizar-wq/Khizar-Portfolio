@@ -19,6 +19,16 @@ document.addEventListener('DOMContentLoaded', () => {
       navToggle.textContent = 'Menu';
       navToggle.setAttribute('aria-expanded', 'false');
     }));
+
+    // Close mobile nav on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+        navLinks.classList.remove('open');
+        navToggle.textContent = 'Menu';
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.focus();
+      }
+    });
   }
 
   /* ---------- scroll-reveal animations ---------- */
@@ -437,17 +447,47 @@ document.addEventListener('DOMContentLoaded', () => {
     const submitBtn = contactForm.querySelector('.btn');
     const originalBtnHtml = submitBtn ? submitBtn.innerHTML : '';
     const destinationEmail = cfg && cfg.personal && cfg.personal.email;
+    const statusBox = document.getElementById('contactFormStatus');
+    const projectInput = document.getElementById('project');
+
+    // Quick service fill chips
+    contactForm.querySelectorAll('.form-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const fillText = chip.getAttribute('data-fill');
+        if (projectInput) {
+          projectInput.value = fillText;
+          projectInput.focus();
+        }
+        contactForm.querySelectorAll('.form-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+      });
+    });
 
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (!destinationEmail) return;
 
+      const nameInput = document.getElementById('name');
+      const emailInput = document.getElementById('email');
+      const name = nameInput ? nameInput.value.trim() : '';
+      const email = emailInput ? emailInput.value.trim() : '';
+
+      if (!name || !email) {
+        if (statusBox) {
+          statusBox.innerHTML = '<div class="form-feedback error">Please provide both your name and a valid email address so I can get back to you.</div>';
+        }
+        if (!name && nameInput) nameInput.focus();
+        else if (!email && emailInput) emailInput.focus();
+        return;
+      }
+
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending...';
+      if (statusBox) statusBox.innerHTML = '';
 
       try {
         const formData = new FormData(contactForm);
-        formData.append('_subject', `New project inquiry from ${formData.get('name') || 'website visitor'}`);
+        formData.append('_subject', `New project inquiry from ${name || 'website visitor'}`);
         formData.append('_template', 'table');
         formData.append('_captcha', 'false');
 
@@ -459,12 +499,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!res.ok) throw new Error('Request failed');
 
         submitBtn.textContent = 'Message received →';
-        submitBtn.style.opacity = 0.7;
+        submitBtn.style.opacity = '0.7';
+        if (statusBox) {
+          statusBox.innerHTML = `<div class="form-feedback success"><strong>Message received!</strong> Thank you${name ? ', ' + name : ''}. I've received your project details and will reply to <strong>${email}</strong> within 24 hours.</div>`;
+        }
         contactForm.reset();
+        contactForm.querySelectorAll('.form-chip').forEach(c => c.classList.remove('active'));
       } catch (err) {
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalBtnHtml;
-        alert(`Something went wrong sending that. Please email me directly at ${destinationEmail}.`);
+        if (statusBox) {
+          statusBox.innerHTML = `<div class="form-feedback error">Could not send automatically. Please email me directly at <a href="mailto:${destinationEmail}">${destinationEmail}</a> or message me on <a href="${cfg.social?.whatsapp || 'https://wa.link/kg29k3'}" target="_blank" rel="noopener">WhatsApp</a>.</div>`;
+        }
       }
     });
   }
@@ -481,14 +527,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const heading = document.querySelector('.hero h1');
     if (heading) {
-    gsap.timeline({ defaults: { ease: 'power3.out', force3D: true } })
-      .from('.hero-trust', { y: 12, opacity: 0, duration: 0.4 }, '-=0.2')
-        .from('.hero-chip', { y: 12, opacity: 0, duration: 0.35, stagger: 0.07 }, '-=0.12')
-        .from(heading, { y: 42, opacity: 0, duration: 0.8 }, '-=0.18')
-        .from('.hero h1 em', { y: 14, opacity: 0, duration: 0.65 }, '-=0.42')
-        .from('.hero-side p', { y: 18, opacity: 0, duration: 0.55 }, '-=0.24')
-        .from('.hero-cta', { y: 14, opacity: 0, duration: 0.45, stagger: 0.08, clearProps: 'transform' }, '-=0.2')
-        .from('.hero-credibility', { y: 10, opacity: 0, duration: 0.4 }, '-=0.18');
+      gsap.timeline({
+        defaults: { ease: 'power3.out', force3D: true },
+        onComplete: () => {
+          document.querySelectorAll('.hero-cta').forEach(btn => {
+            btn.style.opacity = '1';
+            btn.style.visibility = 'visible';
+          });
+        }
+      })
+        .from('.hero-trust', { y: 12, opacity: 0, duration: 0.35, clearProps: 'all' })
+        .from('.hero-chip', { y: 12, opacity: 0, duration: 0.3, stagger: 0.05, clearProps: 'all' }, '-=0.15')
+        .from(heading, { y: 32, opacity: 0, duration: 0.6, clearProps: 'all' }, '-=0.15')
+        .from('.hero h1 em', { y: 14, opacity: 0, duration: 0.5, clearProps: 'all' }, '-=0.35')
+        .from('.hero-side p', { y: 14, opacity: 0, duration: 0.45, clearProps: 'all' }, '-=0.2')
+        .from('.hero-cta', { y: 10, duration: 0.35, stagger: 0.06, clearProps: 'all' }, '-=0.15')
+        .from('.hero-credibility', { y: 10, opacity: 0, duration: 0.35, clearProps: 'all' }, '-=0.15');
     }
 
     if (window.ScrollTrigger) {

@@ -125,6 +125,7 @@
 </head>
 <body data-page="home" id="top">
 
+<a href="#hero-content" class="skip-link">Skip to main content</a>
 <div id="scrollProgress"></div>
 
 <header>
@@ -145,12 +146,12 @@
             <p class="hero-description"></p>
           </div>
           <div class="hero-actions">
-            <a href="#work" class="btn solid hero-cta hero-work-cta">
-              <span class="btn-text">View Selected Work</span>
+            <a href="#contact" class="btn solid hero-cta hero-project-cta">
+              <span class="btn-text">Start a Project</span>
               <span class="arrow-circle"><span class="arrow">→</span></span>
             </a>
-            <a href="#contact" class="btn hero-cta hero-project-cta">
-              <span class="btn-text"></span>
+            <a href="#work" class="btn hero-cta hero-work-cta">
+              <span class="btn-text">View Selected Work</span>
             </a>
           </div>
           <p class="hero-credibility"></p>
@@ -163,7 +164,12 @@
   <section class="brand-strip" aria-labelledby="selected-clients-heading">
     <div class="wrap">
       <h2 class="brand-marquee-heading" id="selected-clients-heading">Selected clients</h2>
-      <ul class="brand-list" id="brand-list" aria-label="Client names"></ul>
+    </div>
+    <div class="brand-marquee" role="region" aria-label="Selected client brands">
+      <div class="brand-marquee-track">
+        <ul class="brand-list" id="brand-list" aria-label="Client names"></ul>
+        <ul class="brand-list brand-list-duplicate" id="brand-list-duplicate" aria-hidden="true"></ul>
+      </div>
     </div>
   </section>
 
@@ -199,12 +205,12 @@
     </div>
   </section>
 
-  <!-- LINKEDIN BRAND PROCESS -->
-  <section id="linkedin-brand-process" class="linkedin-process section-alt">
+  <!-- BRAND & PACKAGING PROCESS -->
+  <section id="brand-process" class="linkedin-process section-alt" aria-labelledby="process-framework-heading">
     <div class="wrap">
       <div class="linkedin-process-head reveal">
-        <h2>Your <em>LinkedIn brand</em>, rebuilt in 4 clear steps.</h2>
-        <p>No guesswork, no vague “branding.” Here is exactly how I turn your profile into something that converts.</p>
+        <h2 id="process-framework-heading">A proven brand &amp; packaging <em>framework.</em></h2>
+        <p>No guesswork, no vague “branding.” Here is exactly how we take your product from undecided concept to shelf-ready market leader.</p>
       </div>
 
       <ol class="linkedin-process-grid">
@@ -214,13 +220,13 @@
             <div class="linkedin-process-icon" aria-hidden="true">
               <svg viewBox="0 0 48 43" fill="none"><circle cx="19" cy="19" r="12.5" stroke="currentColor" stroke-width="1.7"/><path d="m28 28 8 8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="34" cy="31" r="9" fill="var(--accent)"/><path d="m30 31 2.7 2.7 5.5-6" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
-            <h3>Deep-Dive<br>Brand <em>Research</em></h3>
+            <h3>Discovery &amp;<br>Market <em>Strategy</em></h3>
             <div class="linkedin-research-content">
               <ul class="linkedin-process-list">
-                <li><span>Who You Help</span><span class="linkedin-item-icon">⌁</span></li>
-                <li><span>What You Sell</span><span class="linkedin-item-icon">↗</span></li>
-                <li><span>Your Difference</span><span class="linkedin-item-icon">◇</span></li>
-                <li class="is-highlighted"><span>Clear Direction</span><span class="linkedin-item-icon">↗</span></li>
+                <li><span>Market &amp; Category Audit</span><span class="linkedin-item-icon">⌁</span></li>
+                <li><span>Customer &amp; Audience</span><span class="linkedin-item-icon">↗</span></li>
+                <li><span>Brand Differentiation</span><span class="linkedin-item-icon">◇</span></li>
+                <li class="is-highlighted"><span>Clear Strategic Brief</span><span class="linkedin-item-icon">↗</span></li>
               </ul>
               <div class="linkedin-step-rail" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
             </div>
@@ -233,11 +239,11 @@
             <div class="linkedin-process-icon" aria-hidden="true">
               <svg viewBox="0 0 48 43" fill="none"><path d="M7 11a4 4 0 0 1 4-4h25a4 4 0 0 1 4 4v16a4 4 0 0 1-4 4H19l-9 7v-7a4 4 0 0 1-3-4V11Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="35" cy="30" r="9" fill="var(--accent)"/><path d="m31 30 2.7 2.7 5.5-6" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
-            <h3>Story &amp;<br>Message <em>Crafting</em></h3>
+            <h3>Identity &amp;<br>Design <em>System</em></h3>
             <div class="linkedin-message-map">
-              <span>Headline</span><span>About Section</span>
+              <span>Primary Logo</span><span>Color System</span>
               <svg viewBox="0 0 260 86" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0v52q0 12 12 12h96q12 0 12 12t12 0q0-12 12-12h104q12 0 12-12V0" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".32"/></svg>
-              <span>Your Offer</span><span>Clear Message</span>
+              <span>Typography</span><span>Brand Rules</span>
             </div>
           </article>
           <div class="linkedin-process-art linkedin-process-art-bottom" aria-hidden="true"></div>
@@ -248,13 +254,13 @@
             <div class="linkedin-process-icon" aria-hidden="true">
               <svg viewBox="0 0 49 43" fill="none"><circle cx="20" cy="14" r="7" stroke="currentColor" stroke-width="1.7"/><path d="M7 36v-2a13 13 0 0 1 26 0v2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="35" cy="31" r="9" fill="var(--accent)"/><path d="m31 31 2.7 2.7 5.5-6" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
-            <h3>High-Impact<br>Visual <em>Design</em></h3>
+            <h3>Packaging &amp;<br>Shelf <em>Impact</em></h3>
             <div class="linkedin-visual-map">
               <svg viewBox="0 0 260 150" aria-hidden="true"><path d="M20 128Q130 -12 240 128M38 128Q130 10 222 128M57 128Q130 34 203 128M77 128Q130 57 183 128" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4" opacity=".24"/></svg>
-              <span class="linkedin-map-label label-banner">Banner</span>
-              <span class="linkedin-map-label label-visuals">Visuals</span>
-              <span class="linkedin-map-label label-featured">Featured Section</span>
-              <span class="linkedin-map-label label-trust">Instant Trust</span>
+              <span class="linkedin-map-label label-banner">Dielines</span>
+              <span class="linkedin-map-label label-visuals">Materials</span>
+              <span class="linkedin-map-label label-featured">3D Renders</span>
+              <span class="linkedin-map-label label-trust">Shelf Standout</span>
             </div>
           </article>
           <div class="linkedin-process-art linkedin-process-art-bottom" aria-hidden="true"></div>
@@ -265,12 +271,12 @@
             <div class="linkedin-process-icon" aria-hidden="true">
               <svg viewBox="0 0 49 43" fill="none"><path d="M21.5 23.2917C26.4476 23.2917 30.4584 19.2809 30.4584 14.3333C30.4584 9.38578 26.4476 5.375 21.5 5.375C16.5525 5.375 12.5417 9.38578 12.5417 14.3333C12.5417 19.2809 16.5525 23.2917 21.5 23.2917Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M35.8334 37.625C35.8334 33.8235 34.3232 30.1778 31.6352 27.4898C28.9472 24.8017 25.3015 23.2916 21.5 23.2916C17.6986 23.2916 14.0528 24.8017 11.3648 27.4898C8.6768 30.1778 7.16669 33.8235 7.16669 37.625" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="29" y="23" width="20" height="20" rx="10" fill="url(#linkedin-profile-check)"/><path d="m35 33 3 3 6-6" stroke="#FDFDFD" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="linkedin-profile-check" x1="38.9845" y1="23" x2="48.9815" y2="32.7542" gradientUnits="userSpaceOnUse"><stop stop-color="#26AF81"/><stop offset="1" stop-color="#064D36"/></linearGradient></defs></svg>
             </div>
-            <h3>Profile Optimization<br>&amp; <em>Final Build</em></h3>
+            <h3>Print Production<br>&amp; <em>Launch Handoff</em></h3>
             <ul class="linkedin-process-list">
-              <li><span class="linkedin-final-icon">✎</span><span>Every Section Optimized</span></li>
-              <li><span class="linkedin-final-icon">✧</span><span>Fully Assembled</span></li>
-              <li><span class="linkedin-final-icon">↥</span><span>One Profile</span></li>
-              <li><span class="linkedin-final-icon">☑</span><span>Built to Convert</span></li>
+              <li><span class="linkedin-final-icon">✎</span><span>Print-Ready Artwork</span></li>
+              <li><span class="linkedin-final-icon">✧</span><span>Color &amp; Finish Specs</span></li>
+              <li><span class="linkedin-final-icon">↥</span><span>Production Support</span></li>
+              <li><span class="linkedin-final-icon">☑</span><span>Built to Sell</span></li>
             </ul>
           </article>
           <div class="linkedin-process-art linkedin-process-art-bottom" aria-hidden="true"></div>
@@ -372,24 +378,31 @@
       <h2>Tell me about your brand — I'll reply with <em>next steps.</em></h2>
 
       <div class="contact-grid">
-        <form id="contactForm">
+        <form id="contactForm" novalidate>
           <div class="field">
             <label for="name">Your name</label>
-            <input id="name" name="name" type="text" placeholder="Jordan Smith" required>
+            <input id="name" name="name" type="text" placeholder="Jordan Smith" required autocomplete="name">
           </div>
           <div class="field">
             <label for="email">Email</label>
-            <input id="email" name="email" type="email" placeholder="jordan@company.com" required>
+            <input id="email" name="email" type="email" placeholder="jordan@company.com" required autocomplete="email">
           </div>
           <div class="field">
             <label for="project">What are you looking for?</label>
             <input id="project" name="project" type="text" placeholder="Brand identity, packaging, refresh...">
+            <div class="form-quick-chips" aria-label="Suggested services">
+              <button type="button" class="form-chip" data-fill="Brand Identity">Brand Identity</button>
+              <button type="button" class="form-chip" data-fill="Packaging Design">Packaging</button>
+              <button type="button" class="form-chip" data-fill="Brand Guidelines">Guidelines</button>
+              <button type="button" class="form-chip" data-fill="Full Rebrand &amp; Packaging">Full System</button>
+            </div>
           </div>
           <div class="field">
-            <label for="details">Project details</label>
-            <textarea id="details" name="details" rows="3" placeholder="A little about your business and timeline"></textarea>
+            <label for="details">Project details &amp; timeline</label>
+            <textarea id="details" name="details" rows="3" placeholder="A little about your business, expected timeline, and scope"></textarea>
           </div>
           <button type="submit" class="btn">Send message <span class="arrow">→</span></button>
+          <div id="contactFormStatus" class="form-status" aria-live="polite"></div>
         </form>
 
         <div class="contact-side reveal" id="contact-side"></div>

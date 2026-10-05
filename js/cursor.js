@@ -68,15 +68,26 @@
     }, { passive: true });
 
     // Grow slightly over interactive elements with passive event listeners
-    const hoverTargets = 'a, button, input, textarea, select, .work-card, .btn, .brand-chip, .services-pill';
+    const hoverTargets = 'a, button, [role="button"], .work-card, .btn, .brand-chip, .services-pill, .filter-chip, .faq-question, .theme-toggle';
     document.addEventListener('mouseover', (e) => {
-      if (e.target && e.target.closest && e.target.closest(hoverTargets)) {
-        cursor.classList.add('hoverable');
+      if (e.target && e.target.closest) {
+        if (e.target.closest('input, textarea, select')) {
+          cursor.classList.add('hidden');
+        } else if (e.target.closest(hoverTargets)) {
+          cursor.classList.add('hoverable');
+        }
       }
     }, { passive: true });
     document.addEventListener('mouseout', (e) => {
-      if (e.target && e.target.closest && e.target.closest(hoverTargets)) {
-        cursor.classList.remove('hoverable');
+      if (e.target && e.target.closest) {
+        if (e.target.closest('input, textarea, select')) {
+          if (!document.body.classList.contains('modal-open')) {
+            cursor.classList.remove('hidden');
+          }
+        }
+        if (e.target.closest(hoverTargets)) {
+          cursor.classList.remove('hoverable');
+        }
       }
     }, { passive: true });
   });

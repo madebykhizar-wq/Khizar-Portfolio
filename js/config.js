@@ -78,28 +78,24 @@ window.SITE_CONFIG = {
     firstName: "Khizar",
     title: "Brand Identity & Packaging Designer",
     location: "Gujranwala, Pakistan",
-    workingWith: "US · UK · Middle East",
-    focus: "Startups & product businesses",
-    availabilityNote: "Freelance & select retainers",
-    availabilityBadge: "Available for Freelance & Full-time",
-    shortBio: "I design strategic logos, visual identities, and packaging that make your business look professional, memorable, and trusted.",
-    // teaserBio: short version shown on the homepage About teaser
-    teaserBio: "a brand identity and packaging designer helping founders build brands with clarity and confidence.",
-    // longBioIntro is the sentence that follows "I'm <Name>, " on the About page — don't repeat the name here
-    longBioIntro: "a brand identity and packaging designer based in Gujranwala, Pakistan, working with founders internationally.",
-    longBioExtra: "I help startups and product businesses build memorable brands — from first sketch to final files.",
-    closingLine: "If your brand still feels undecided, that's usually where we start.",
+    workingWith: "Pakistan & Worldwide · US · UK · Middle East",
+    focus: "Consumer goods, FMCG & growing brands",
+    availabilityNote: "Freelance & select studio retainers",
+    availabilityBadge: "Available for Projects & Retainers",
+    shortBio: "I design strategic brand identities, logo systems, and packaging that help consumer products look established and perform on the shelf.",
+    teaserBio: "an independent brand identity and packaging designer helping product businesses and founders build coherent, shelf-ready visual systems.",
+    longBioIntro: "a brand identity and packaging designer based in Gujranwala, Pakistan, collaborating with founders and consumer brands worldwide.",
+    longBioExtra: "I help consumer brands, FMCG businesses, and startups build strategic visual systems — from positioning and typography to shelf-ready packaging dielines and production handoff.",
+    closingLine: "If your brand or product packaging needs clarity and shelf standout, that's where we start.",
     email: "madebykhizar@gmail.com",
     phone: "+923420255825",
     whatsapp: "+923420255825",
     website: "madebykhizar.com",
-    // Path to a portrait photo for the homepage photo+about section.
-    // Leave empty until you upload one — a placeholder will show instead.
     photo: "assets/my-photo.jpg",
-    photoSectionHeading: "The person behind the brand.",
-    photoSectionHighlight: "behind the brand.",
+    photoSectionHeading: "The designer behind the work.",
+    photoSectionHighlight: "behind the work.",
     photoSectionBioHighlight: "6+ years",
-    photoSectionBio: "I'm Khizar — a brand identity and packaging designer based in Gujranwala, Pakistan. I've spent the last 6+ years helping founders turn undecided brands into confident ones.",
+    photoSectionBio: "I'm Khizar — an independent brand identity and packaging designer based in Gujranwala, Pakistan. Over the past 6+ years, I have worked with consumer brands, food & FMCG businesses, and startups to turn rough ideas into confident, market-ready brand systems.",
   },
 
   // ===========================================================
@@ -120,11 +116,11 @@ window.SITE_CONFIG = {
   // RESUME
   // ===========================================================
   resume: {
-    url: "assets/khizar-hayat-resume.pdf" // e.g. "assets/khizar-hayat-resume.pdf" — leave empty to hide the button
+    url: "assets/khizar-hayat-resume.pdf"
   },
 
   // ===========================================================
-  // PRIMARY CTA (used in the hero button)
+  // PRIMARY CTA
   // ===========================================================
   cta: {
     text: "Start a Project",
@@ -139,19 +135,13 @@ window.SITE_CONFIG = {
   // ===========================================================
   hero: {
     headline: "Brand Identity &amp; <span class=\"hero-packaging-for\">Packaging for</span><br><em>Consumer Brands.</em>",
-    description: "<strong>I build brands that stand out on the shelf.</strong><br>Strategy, identity, packaging — all working together.",
-    credibility: "6+ years in brand, FMCG & packaging design",
-    // Hero-only badge — deliberately separate from personal.availabilityBadge
-    // (which still says "Available for Freelance & Full-time" on the About
-    // page). Edit this line any time you want to change the trust signal.
-    badge: "Trusted by 25+ brands worldwide",
-    // Service labels shown above the hero headline. Each needs an icon key
-    // (star / target / calendar / package — see ICONS in render.js) and
-    // a label. Add/remove entries freely; the row wraps automatically.
+    description: "<strong>Built for shelf impact, clarity, and real-world scale.</strong><br>Strategic identity systems, packaging, and brand guidelines for growing businesses.",
+    credibility: "Brand Identity · FMCG & Product Packaging · Visual Systems",
+    badge: "Available for new projects & retainers",
     chips: [
       { icon: "target", label: "Brand Identity" },
-      { icon: "package", label: "Packaging Design" },
-      { icon: "star",    label: "Visual Systems" }
+      { icon: "package", label: "Packaging Systems" },
+      { icon: "star",    label: "Design Systems" }
     ]
   },
 
@@ -191,88 +181,87 @@ window.SITE_CONFIG = {
   //
   // ===========================================================
   clientBrands: [
-    { name: "Hyundai",        sub: "Gujranwala",       logo: "hyundai",  logoImage: "" },
-    { name: "Suzuki",         sub: "Motors",            logo: "suzuki",   logoImage: "" },
-    { name: "Go Petroleum",   sub: "Oil & Energy",      logo: "go",       logoImage: "" },
-    { name: "Pakson Boss",    sub: "International",     logo: "boss",     logoImage: "" },
-    { name: "GFI JOJO",      sub: "Food Industries",   logo: "jojo",     logoImage: "" },
-    { name: "Bioxy S.L.",    sub: "Health & Wellness",  logo: "bioxy",    logoImage: "" },
-    { name: "Synvora®",      sub: "Tech & AI",          logo: "synvora",  logoImage: "" },
-    { name: "Burger Station", sub: "Food & Dining",     logo: "burger",   logoImage: "" },
-    { name: "Move Energy",    sub: "Beverages",         logo: "move",     logoImage: "" },
-    { name: "Wheels & Zameen",sub: "Auto & Property",  logo: "wheels",   logoImage: "" },
-    { name: "Wirsa Restaurant",sub: "Authentic Dining", logo: "wirsa",   logoImage: "" }
+    { name: "Hyundai Gujranwala", sub: "Dealership Campaign",       logo: "hyundai",  logoImage: "" },
+    { name: "Pakson Boss",        sub: "Home Appliances Collateral", logo: "boss",     logoImage: "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1790761891734-n9wodf.webp" },
+    { name: "Bioxy S.L.",         sub: "Health & Wellness Identity", logo: "bioxy",    logoImage: "" },
+    { name: "Synvora®",           sub: "AI Brand Guidelines",       logo: "synvora",  logoImage: "" },
+    { name: "Suzuki",             sub: "Promotional Collateral",    logo: "suzuki",   logoImage: "" },
+    { name: "Go Petroleum",       sub: "Energy Retail Collateral",  logo: "go",       logoImage: "" },
+    { name: "GFI JOJO",           sub: "Confectionery Collateral",  logo: "jojo",     logoImage: "" },
+    { name: "Sonex Nonstick",     sub: "Cookware Collateral",       logo: "sonex",    logoImage: "" },
+    { name: "Burger Station",     sub: "Food & Dining Branding",    logo: "burger",   logoImage: "" },
+    { name: "Move Energy",        sub: "Beverage Branding",         logo: "move",     logoImage: "" },
+    { name: "Wirsa Restaurant",   sub: "Authentic Dining Identity", logo: "wirsa",    logoImage: "" }
   ],
 
   // ===========================================================
-  // SERVICES — shown as a short list on the homepage and in full
-  // details in the homepage Services section. Add/remove/edit freely.
+  // SERVICES — shown on homepage and services page
   // ===========================================================
   services: [
     {
-      title: "Logo & Identity",
-      description: "A logo system and visual language built to work everywhere your brand shows up.",
-      tags: ["Logo", "Colour", "Type", "Iconography"],
+      title: "Brand Identity Systems",
+      description: "Coherent logo suites, typography architecture, and color rules engineered to scale across digital and physical touchpoints.",
+      tags: ["Logo Suites", "Typography", "Color System", "Brand Book"],
       deliverables: [
-        "Primary logo + secondary marks & favicon",
-        "Colour palette & typography system",
-        "Supporting iconography & graphic elements",
-        "Source files (AI, EPS, SVG, PNG)"
+        "Primary logo suite + secondary lockups & marks",
+        "Digital & print typography hierarchy specifications",
+        "Color palette with CMYK, Pantone & RGB standards",
+        "Vector master files (AI, EPS, SVG, PDF, PNG)"
       ]
     },
     {
-      title: "Brand Guidelines",
-      description: "A complete brand book so your team never has to guess how the brand should look.",
-      tags: ["Guidelines", "Assets", "Handoff"],
+      title: "Packaging & Label Design",
+      description: "Shelf-ready packaging systems, dieline setups, and product range architecture built for high shelf standout.",
+      tags: ["Dielines", "Shelf Impact", "SKU Architecture", "Print-Ready"],
       deliverables: [
-        "Logo usage rules & clear space guidance",
-        "Colour, type & imagery standards",
-        "Voice & tone notes for brand copy",
-        "Packaged asset library for your team"
+        "Packaging structure & dieline layout setup",
+        "SKU extension & product range architecture",
+        "Label design with finishing specs (emboss, foil, spot UV)",
+        "Production-ready artwork with printer proofing support"
       ]
     },
     {
-      title: "Packaging Design",
-      description: "Shelf-ready packaging systems, built to hold up at production scale.",
-      tags: ["Structure", "Print", "Artwork"],
+      title: "Brand Guidelines & Systems",
+      description: "Authoritative brand manuals that protect your visual equity and ensure your team never compromises design consistency.",
+      tags: ["Brand Manual", "Clear Space", "Asset Library", "Rules"],
       deliverables: [
-        "Packaging structure & dieline setup",
-        "Print-ready artwork per SKU",
-        "Label & material recommendations",
-        "Production-file handoff & proofing support"
+        "Logo construction, clear-space & scale rules",
+        "Acceptable & prohibited brand usage examples",
+        "Imagery, iconography & layout grid standards",
+        "Packaged master asset library ready for team handoff"
       ]
     },
     {
-      title: "Brand Collateral",
-      description: "Social templates and marketing collateral that keep everything on-brand.",
-      tags: ["Social", "Decks", "Templates"],
+      title: "Commercial Collateral & Motion",
+      description: "Marketing campaign assets, promotional launch collateral, and animated logo stings that maintain strict visual consistency.",
+      tags: ["Campaigns", "Motion Stings", "Social Kits", "Collateral"],
       deliverables: [
-        "Social media templates & post kits",
-        "Pitch deck & presentation templates",
-        "Email & document templates",
-        "Editable source files for your team"
+        "Product launch campaign collateral & promotional kits",
+        "Animated brand motion stings & logo reveals",
+        "Digital marketing & social media presentation templates",
+        "Fully layered, editable source files for internal use"
       ]
     }
   ],
 
-  // Project entries are loaded from content/projects.json so they can
-  // be managed through the authenticated GitHub CMS.
+  // Project entries are loaded from content/projects.json
   projects: [],
 
   // ===========================================================
-  // TESTIMONIALS — add client-approved quotes to show the section.
-  // Leave empty until you have real quotes and permission to publish.
+  // TESTIMONIALS — Real client-approved quotes only.
+  // Left empty until authentic quotes are verified and approved.
   // ===========================================================
   testimonials: [],
 
   // ===========================================================
-  // PROCESS (How We'd Work — shown on homepage & services page)
+  // PROCESS (A Proven 5-Step Brand Framework)
   // ===========================================================
   process: [
-    { title: "Discovery", description: "Understanding your business and where the brand falls short." },
-    { title: "Planning", description: "Direction agreed before a single pixel is designed." },
-    { title: "Design",    description: "Concepts and a focused round of refinement." },
-    { title: "Handoff",   description: "Final files and guidelines, ready to use." }
+    { title: "01 Discover", description: "Audit the product category, competitor landscape, and target audience expectations." },
+    { title: "02 Define",   description: "Establish the creative direction, positioning strategy, and visual principles before designing." },
+    { title: "03 Design",   description: "Craft the logo suite, typography hierarchy, and core visual identity system." },
+    { title: "04 Apply",    description: "Translate the identity into shelf-ready packaging dielines, digital interfaces, and touchpoints." },
+    { title: "05 Deliver",  description: "Provide organized production-ready print files, vector packages, and comprehensive guidelines." }
   ],
 
   // ===========================================================

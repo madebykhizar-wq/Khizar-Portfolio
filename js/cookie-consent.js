@@ -1,28 +1,51 @@
 (function () {
   const storageKey = 'mbk-cookie-consent-v1';
+  const cookieName = 'mbk_cookie_consent';
   const analyticsId = 'G-Z4F0DLWNJM';
 
+  // Read saved choice from localStorage or fallback cookie
   function readChoice() {
     try {
-      return localStorage.getItem(storageKey);
+      const ls = localStorage.getItem(storageKey);
+      if (ls === 'accepted' || ls === 'rejected') return ls;
     } catch (error) {
-      console.warn('Cookie preference could not be read:', error);
-      return null;
+      console.warn('Cookie preference could not be read from localStorage:', error);
     }
+
+    try {
+      const match = document.cookie.match(new RegExp('(?:^|;\\s*)' + cookieName + '=([^;]+)'));
+      if (match && (match[1] === 'accepted' || match[1] === 'rejected')) {
+        return match[1];
+      }
+    } catch (error) {
+      console.warn('Cookie preference could not be read from document.cookie:', error);
+    }
+
+    return null;
   }
 
+  // Save choice to both localStorage and document.cookie for cross-browser & mobile persistence
   function saveChoice(choice) {
     try {
       localStorage.setItem(storageKey, choice);
     } catch (error) {
-      console.warn('Cookie preference could not be saved:', error);
+      console.warn('Cookie preference could not be saved to localStorage:', error);
+    }
+
+    try {
+      const maxAge = 365 * 24 * 60 * 60; // 1 year
+      document.cookie = `${cookieName}=${choice};path=/;max-age=${maxAge};SameSite=Lax`;
+    } catch (error) {
+      console.warn('Cookie preference could not be saved to document.cookie:', error);
     }
   }
 
   function loadAnalytics() {
     window[`ga-disable-${analyticsId}`] = false;
     if (window.analyticsLoaded) {
-      window.gtag('consent', 'update', { analytics_storage: 'granted' });
+      if (window.gtag) {
+        window.gtag('consent', 'update', { analytics_storage: 'granted' });
+      }
       return;
     }
     window.analyticsLoaded = true;
@@ -47,49 +70,83 @@
   }
 
   function initialize() {
-    const banner = document.createElement('section');
-    banner.className = 'cookie-consent';
-    banner.setAttribute('aria-label', 'Cookie preferences');
-    banner.setAttribute('aria-live', 'polite');
-    banner.hidden = true;
-    banner.innerHTML = `
-      <div class="cookie-consent-copy">
-        <strong>Your privacy matters</strong>
-        <p>Essential storage keeps your choice. Optional analytics help understand site visits and only load if you accept.</p>
-      </div>
-      <div class="cookie-consent-actions">
-        <button type="button" data-cookie-reject>Reject optional</button>
-        <button type="button" class="cookie-accept" data-cookie-accept>Accept analytics</button>
-      </div>`;
+    let banner = document.querySelector('.cookie-consent');
+    if (!banner) {
+      banner = document.createElement('aside');
+      banner.className = 'cookie-consent is-hidden';
+      banner.setAttribute('aria-label', 'Cookie preferences');
+      banner.setAttribute('aria-live', 'polite');
+      banner.hidden = true;
+      banner.innerHTML = `
+        <div class="cookie-consent-content">
+          <span class="cookie-consent-icon" aria-hidden="true">🍪</span>
+          <p class="cookie-consent-text">
+            We use cookies to analyze site traffic and enhance your experience.
+            <a href="privacy.html" class="cookie-consent-link">Privacy</a>
+          </p>
+        </div>
+        <div class="cookie-consent-actions">
+          <button type="button" class="cookie-btn cookie-btn-reject" data-cookie-reject>Decline</button>
+          <button type="button" class="cookie-btn cookie-btn-accept" data-cookie-accept>Accept</button>
+        </div>`;
+      document.body.appendChild(banner);
+    }
 
-    const settings = document.createElement('button');
-    settings.className = 'cookie-settings-trigger';
-    settings.type = 'button';
-    settings.textContent = 'Cookie settings';
-    settings.setAttribute('aria-label', 'Open cookie settings');
+    function showBanner() {
+      banner.hidden = false;
+      banner.classList.remove('is-hidden', 'is-dismissing');
+      banner.classList.add('is-visible');
+      const acceptBtn = banner.querySelector('[data-cookie-accept]');
+      if (acceptBtn) acceptBtn.focus();
+    }
 
-    document.body.append(banner, settings);
+    function hideBanner(animate) {
+      if (animate) {
+        banner.classList.add('is-dismissing');
+        setTimeout(function () {
+          banner.hidden = true;
+          banner.classList.add('is-hidden');
+          banner.classList.remove('is-visible', 'is-dismissing');
+        }, 240);
+      } else {
+        banner.hidden = true;
+        banner.classList.add('is-hidden');
+        banner.classList.remove('is-visible', 'is-dismissing');
+      }
+    }
 
     const choice = readChoice();
-    if (choice === 'accepted') loadAnalytics();
-    if (choice !== 'accepted' && choice !== 'rejected') banner.hidden = false;
+    if (choice === 'accepted') {
+      loadAnalytics();
+      hideBanner(false);
+    } else if (choice === 'rejected') {
+      hideBanner(false);
+    } else {
+      showBanner();
+    }
 
     banner.querySelector('[data-cookie-accept]').addEventListener('click', function () {
       saveChoice('accepted');
-      banner.hidden = true;
+      hideBanner(true);
       loadAnalytics();
     });
+
     banner.querySelector('[data-cookie-reject]').addEventListener('click', function () {
       saveChoice('rejected');
       window[`ga-disable-${analyticsId}`] = true;
       if (window.gtag) {
         window.gtag('consent', 'update', { analytics_storage: 'denied' });
       }
-      banner.hidden = true;
+      hideBanner(true);
     });
-    settings.addEventListener('click', function () {
-      banner.hidden = false;
-      banner.querySelector('[data-cookie-accept]').focus();
+
+    // Delegate clicks for any 'Cookie settings' button (e.g. in footer or privacy policy)
+    document.addEventListener('click', function (e) {
+      const trigger = e.target.closest('[data-cookie-settings], .cookie-settings-trigger');
+      if (trigger) {
+        e.preventDefault();
+        showBanner();
+      }
     });
   }
 

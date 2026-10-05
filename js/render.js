@@ -186,6 +186,7 @@
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
         <a href="refund-policy.html">Refund policy</a>
+        <button type="button" class="footer-cookie-btn" data-cookie-settings>Cookie settings</button>
       </nav>
       <span><a href="${backHref}" id="footerBackLink">${backLabel}</a></span>`;
   }
@@ -211,12 +212,26 @@
 
     const cta = el.querySelector(".hero-project-cta");
     if (cta) {
-      cta.href = cfg.cta.link;
+      cta.href = cfg.cta?.link || "#contact";
       const btnText = cta.querySelector(".btn-text");
-      if (btnText) btnText.textContent = cfg.cta.text;
-      if (/^https?:\/\//i.test(cfg.cta.link)) {
+      if (btnText) {
+        btnText.textContent = cfg.cta?.text || "Start a Project";
+      } else {
+        cta.innerHTML = `<span class="btn-text">${esc(cfg.cta?.text || "Start a Project")}</span><span class="arrow-circle"><span class="arrow">→</span></span>`;
+      }
+      if (/^https?:\/\//i.test(cta.href)) {
         cta.target = "_blank";
         cta.rel = "noopener";
+      }
+    }
+
+    const workCta = el.querySelector(".hero-work-cta");
+    if (workCta) {
+      const btnText = workCta.querySelector(".btn-text");
+      if (btnText) {
+        if (!btnText.textContent.trim()) btnText.textContent = "View Selected Work";
+      } else if (!workCta.textContent.trim()) {
+        workCta.innerHTML = `<span class="btn-text">View Selected Work</span>`;
       }
     }
 
@@ -247,7 +262,7 @@
     wirsa: `<svg viewBox="0 0 24 20" class="brand-chip-svg" fill="currentColor" aria-hidden="true"><path d="M6 18V9.5a6 6 0 0 1 12 0V18" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 4v5M9.5 18v-7a2.5 2.5 0 0 1 5 0v7" stroke="currentColor" stroke-width="1.4"/></svg>`
   };
 
-  /* ---------- client names with real logos ---------- */
+  /* ---------- client names with real logos or verified typographic wordmarks ---------- */
   function renderClientBrands() {
     const el = $("#brand-list");
     if (!el || !cfg.clientBrands) return;
@@ -269,17 +284,11 @@
         </li>`;
       }
 
-      // 2. Priority 2: Built-in SVG emblem
-      const svgIcon = CLIENT_LOGOS[b.logo] || "";
-      if (svgIcon) {
-        return `<li class="brand-chip brand-chip-logo" title="${esc(b.name)}">
-          <span class="brand-chip-svg-wrap" aria-label="${esc(b.name)}">${svgIcon}</span>
-        </li>`;
-      }
-
-      // 3. Priority 3: Clean typographic brand name (wordmark)
-      return `<li class="brand-chip brand-chip-text" title="${esc(b.name)}">
+      // 2. Verified Typographic Wordmark with Context Subtitle (No fake synthetic SVGs)
+      const subHtml = b.sub ? `<span class="brand-chip-sub">${esc(b.sub)}</span>` : "";
+      return `<li class="brand-chip brand-chip-text" title="${esc(b.name)}${b.sub ? ' — ' + esc(b.sub) : ''}">
         <span class="brand-chip-wordmark">${esc(b.name)}</span>
+        ${subHtml}
       </li>`;
     }).join("");
     el.innerHTML = itemsHtml;
@@ -391,6 +400,10 @@
 
           <div class="cs-bottom-bar">
             <div class="cs-cta-group">
+              <a id="csBehanceBtn" href="#" target="_blank" rel="noopener" class="btn solid cs-behance-link" style="display:none;">
+                <span>View on Behance</span>
+                <span class="arrow">↗</span>
+              </a>
               <a id="csWebsiteBtn" href="#" target="_blank" rel="noopener" class="btn outline cs-website-link" style="display:none;">
                 <span>Visit Live Website</span>
                 <span class="arrow">↗</span>
@@ -428,7 +441,24 @@
     return modal;
   }
 
-  function openCaseStudyModal(p) {
+  function getProjectSlug(p) {
+    if (!p) return "";
+    return p.slug || String(p.id || p.title).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  }
+
+  function findProjectByHash() {
+    const raw = (window.location.hash || "").replace(/^#/, "").trim().toLowerCase();
+    if (!raw || ["work", "top", "contact", "about", "services", "person", "brand-process"].includes(raw)) return null;
+    const cleanSlug = raw.replace(/^project-/, "");
+    return (cfg.projects || []).find(p => {
+      const s = getProjectSlug(p);
+      const titleClean = (p.title || "").toLowerCase().replace(/[^a-z0-9]+/g, "-");
+      const idClean = String(p.id || "").toLowerCase();
+      return s === cleanSlug || s === raw || titleClean === cleanSlug || idClean === cleanSlug;
+    });
+  }
+
+  function openCaseStudyModal(p, updateHash = true) {
     if (!p) return;
     const modal = ensureCaseStudyModal();
     const year = p.year || new Date().getFullYear();
@@ -461,7 +491,7 @@
       const heading = typeof section.heading === "string" ? section.heading.trim() : "";
       const body = typeof section.body === "string" ? section.body.trim() : "";
       const sectionImages = Array.isArray(section.images)
-        ? section.images.filter(image => typeof image === "string" && image.trim())
+        ? section.images.filter(image => typeof image === "string" && image.trim() && !images.includes(image.trim()))
         : [];
       const sectionVideos = Array.isArray(section.videos)
         ? section.videos.filter(video => typeof video === "string" && video.trim())
@@ -544,6 +574,16 @@
     `).join("");
     relatedSection.hidden = related.length === 0;
 
+    const behanceBtn = $("#csBehanceBtn", modal);
+    if (behanceBtn) {
+      if (p.behanceLink) {
+        behanceBtn.href = safeUrl(p.behanceLink);
+        behanceBtn.style.display = "inline-flex";
+      } else {
+        behanceBtn.style.display = "none";
+      }
+    }
+
     const websiteBtn = $("#csWebsiteBtn", modal);
     if (p.websiteLink) {
       websiteBtn.href = safeUrl(p.websiteLink);
@@ -557,14 +597,45 @@
     document.body.classList.add("modal-open");
     const container = modal.querySelector(".cs-modal-container");
     if (container) container.scrollTop = 0;
+
+    if (updateHash) {
+      const slug = getProjectSlug(p);
+      if (slug && window.location.hash !== "#" + slug) {
+        history.pushState({ projectSlug: slug }, "", "#" + slug);
+      }
+    }
   }
 
-  function closeCaseStudyModal() {
+  function closeCaseStudyModal(updateHash = true) {
     const modal = $("#caseStudyModal");
     if (!modal) return;
     modal.classList.remove("is-open");
     modal.setAttribute("aria-hidden", "true");
     document.body.classList.remove("modal-open");
+
+    if (updateHash && window.location.hash) {
+      const currentSlug = (window.location.hash || "").replace(/^#/, "").replace(/^project-/, "");
+      const isProjectHash = (cfg.projects || []).some(p => getProjectSlug(p) === currentSlug);
+      if (isProjectHash) {
+        history.pushState({}, "", window.location.pathname + window.location.search);
+      }
+    }
+  }
+
+  window.addEventListener("popstate", () => {
+    const project = findProjectByHash();
+    if (project) {
+      openCaseStudyModal(project, false);
+    } else {
+      closeCaseStudyModal(false);
+    }
+  });
+
+  function checkInitialHash() {
+    const project = findProjectByHash();
+    if (project) {
+      openCaseStudyModal(project, false);
+    }
   }
 
   function bindGridInteraction(grid) {
@@ -818,6 +889,14 @@
       .join("\n");
 
     side.innerHTML = `
+      <div class="contact-expectations">
+        <h4>What happens next</h4>
+        <ol class="contact-steps-list">
+          <li><strong>Review within 24h:</strong> I personally review your brand scope and timeline.</li>
+          <li><strong>Direct Discussion:</strong> We clarify your exact deliverables and goals.</li>
+          <li><strong>Tailored Proposal:</strong> You receive a clear, fixed-scope proposal before design starts.</li>
+        </ol>
+      </div>
       ${emailBlock}
       ${websiteBlock}
       <div class="block"><span>Elsewhere</span><div class="socials">${socialEntries}</div></div>
@@ -938,6 +1017,7 @@
     if (page !== "home" && page !== "work") return;
     renderWorkPreview();
     renderWorkFull();
+    checkInitialHash();
     if (window.observeReveals) window.observeReveals($all(".work-grid .reveal:not(.in)"));
     document.dispatchEvent(new CustomEvent("site-content-updated"));
   });
