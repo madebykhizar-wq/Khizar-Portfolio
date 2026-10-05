@@ -223,7 +223,7 @@
       "services": [
         "Logo Design"
       ],
-      "thumbnail": "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1791201275642-67if6h.jpg",
+      "thumbnail": "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1791201577363-yyubc9.jpg",
       "cover": "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1791201419452-wdw621.jpg",
       "images": [
         "https://ahmmjhubfwhazewptrad.supabase.co/storage/v1/object/public/site-assets/uploads/1791201419452-wdw621.jpg",
@@ -245,9 +245,7 @@
           {
             "heading": "Form & Rationale",
             "body": "Every mark in this collection was built to solve a specific positioning challenge — balancing geometric simplicity with emotional resonance so the mark remains legible whether embroidered, embossed, or displayed as a 16px digital icon.",
-            "images": [
-              "https://mir-s3-cdn-cf.behance.net/projects/404/370f5a247244301.Y3JvcCwxMzk5LDEwOTUsMCww.jpg"
-            ],
+            "images": [],
             "videos": [],
             "layout": {
               "alignment": "left",
