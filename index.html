@@ -30,8 +30,13 @@
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
 <link rel="apple-touch-icon" href="assets/favicon-180.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;600;700;800&family=Inter:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="css/styles.css">
-<noscript><style>body{opacity:1 !important;}</style></noscript>
+<style>
+body.has-intro{overflow:hidden!important;opacity:1!important;}
+.intro-preloader{position:fixed;top:0;left:0;width:100%;height:100vh;height:100dvh;z-index:9999999;background:#0B1F17;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;overflow:hidden;}
+</style>
+<noscript><style>body{opacity:1 !important;} .intro-preloader{display:none !important;}</style></noscript>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -123,7 +128,20 @@
 }
 </script>
 </head>
-<body data-page="home" id="top">
+<body data-page="home" id="top" class="has-intro">
+
+<!-- INTRO GREETING PRELOADER -->
+<div id="intro-preloader" class="intro-preloader" aria-hidden="false">
+  <div class="intro-content" id="introContent">
+    <div class="intro-word-row">
+      <span class="intro-accent-dot"></span>
+      <div class="intro-word-viewport">
+        <span id="introGreetingText" class="intro-word">Hello</span>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="js/intro-loader.js"></script>
 
 <a href="#hero-content" class="skip-link">Skip to main content</a>
 <div id="scrollProgress"></div>

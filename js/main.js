@@ -525,24 +525,37 @@ document.addEventListener('DOMContentLoaded', () => {
       window.ScrollTrigger.config({ limitCallbacks: true, syncInterval: 120 });
     }
 
-    const heading = document.querySelector('.hero h1');
-    if (heading) {
-      gsap.timeline({
-        defaults: { ease: 'power3.out', force3D: true },
-        onComplete: () => {
-          document.querySelectorAll('.hero-cta').forEach(btn => {
-            btn.style.opacity = '1';
-            btn.style.visibility = 'visible';
-          });
-        }
-      })
-        .from('.hero-trust', { y: 12, opacity: 0, duration: 0.35, clearProps: 'all' })
-        .from('.hero-chip', { y: 12, opacity: 0, duration: 0.3, stagger: 0.05, clearProps: 'all' }, '-=0.15')
-        .from(heading, { y: 32, opacity: 0, duration: 0.6, clearProps: 'all' }, '-=0.15')
-        .from('.hero h1 em', { y: 14, opacity: 0, duration: 0.5, clearProps: 'all' }, '-=0.35')
-        .from('.hero-side p', { y: 14, opacity: 0, duration: 0.45, clearProps: 'all' }, '-=0.2')
-        .from('.hero-cta', { y: 10, duration: 0.35, stagger: 0.06, clearProps: 'all' }, '-=0.15')
-        .from('.hero-credibility', { y: 10, opacity: 0, duration: 0.35, clearProps: 'all' }, '-=0.15');
+    const playHeroAnimation = () => {
+      if (window._heroAnimationPlayed) return;
+      window._heroAnimationPlayed = true;
+      const heading = document.querySelector('.hero h1');
+      if (heading) {
+        gsap.timeline({
+          defaults: { ease: 'power3.out', force3D: true },
+          onComplete: () => {
+            document.querySelectorAll('.hero-cta').forEach(btn => {
+              btn.style.opacity = '1';
+              btn.style.visibility = 'visible';
+            });
+          }
+        })
+          .from('.hero-trust', { y: 12, opacity: 0, duration: 0.35, clearProps: 'all' })
+          .from('.hero-chip', { y: 12, opacity: 0, duration: 0.3, stagger: 0.05, clearProps: 'all' }, '-=0.15')
+          .from(heading, { y: 32, opacity: 0, duration: 0.6, clearProps: 'all' }, '-=0.15')
+          .from('.hero h1 em', { y: 14, opacity: 0, duration: 0.5, clearProps: 'all' }, '-=0.35')
+          .from('.hero-side p', { y: 14, opacity: 0, duration: 0.45, clearProps: 'all' }, '-=0.2')
+          .from('.hero-cta', { y: 10, duration: 0.35, stagger: 0.06, clearProps: 'all' }, '-=0.15')
+          .from('.hero-credibility', { y: 10, opacity: 0, duration: 0.35, clearProps: 'all' }, '-=0.15');
+      }
+    };
+
+    const introPreloader = document.getElementById('intro-preloader');
+    if (introPreloader && !introPreloader.classList.contains('intro-complete')) {
+      document.addEventListener('intro-reveal-start', playHeroAnimation, { once: true });
+      // Safety fallback in case preloader is bypassed
+      setTimeout(playHeroAnimation, 4500);
+    } else {
+      playHeroAnimation();
     }
 
     if (window.ScrollTrigger) {
