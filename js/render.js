@@ -219,6 +219,10 @@
       } else {
         cta.innerHTML = `<span class="btn-text">${esc(cfg.cta?.text || "Start a Project")}</span><span class="arrow-circle"><span class="arrow">→</span></span>`;
       }
+      const arrow = cta.querySelector(".arrow");
+      if (arrow && !arrow.textContent.trim()) {
+        arrow.textContent = "→";
+      }
       if (/^https?:\/\//i.test(cta.href)) {
         cta.target = "_blank";
         cta.rel = "noopener";

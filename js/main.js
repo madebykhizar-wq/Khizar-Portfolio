@@ -354,6 +354,74 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ---------- smooth anchor scrolling (handles #contact, #work, etc.) ---------- */
+  function smoothScrollToTarget(targetId, updateHistory = true) {
+    if (!targetId || targetId === '#') return;
+    const cleanId = targetId.includes('#') ? '#' + targetId.split('#').pop() : '#' + targetId;
+    if (cleanId === '#') return;
+    const targetEl = document.querySelector(cleanId);
+    if (!targetEl) return;
+
+    const nav = document.querySelector('header nav');
+    const navHeight = (nav && nav.offsetHeight) ? nav.offsetHeight : 76;
+    const targetPos = targetEl.getBoundingClientRect().top + window.pageYOffset - (navHeight + 12);
+
+    window.scrollTo({
+      top: Math.max(0, targetPos),
+      behavior: 'smooth'
+    });
+
+    if (updateHistory) {
+      try {
+        history.pushState(null, '', cleanId);
+      } catch (e) {
+        window.location.hash = cleanId;
+      }
+    }
+
+    if (cleanId === '#contact') {
+      setTimeout(() => {
+        const nameInput = document.getElementById('name');
+        if (nameInput) nameInput.focus({ preventScroll: true });
+      }, 550);
+    }
+  }
+
+  document.addEventListener('click', (e) => {
+    const anchor = e.target.closest('a[href*="#"]');
+    if (!anchor) return;
+    const href = anchor.getAttribute('href');
+    if (!href || href === '#') return;
+
+    try {
+      const url = new URL(anchor.href, window.location.href);
+      if (url.pathname === window.location.pathname && url.hash) {
+        const targetEl = document.querySelector(url.hash);
+        if (targetEl) {
+          e.preventDefault();
+          smoothScrollToTarget(url.hash);
+        }
+      }
+    } catch (err) {
+      if (href.startsWith('#')) {
+        const targetEl = document.querySelector(href);
+        if (targetEl) {
+          e.preventDefault();
+          smoothScrollToTarget(href);
+        }
+      }
+    }
+  });
+
+  if (window.location.hash && window.location.hash.length > 1) {
+    const initialTarget = document.querySelector(window.location.hash);
+    if (initialTarget && !window.location.hash.startsWith('#project-')) {
+      setTimeout(() => {
+        smoothScrollToTarget(window.location.hash, false);
+      }, 400);
+    }
+  }
+
   /* ---------- back to top floating button ---------- */
   const backToTop = document.getElementById('backToTop');
   if (backToTop) {
@@ -534,8 +602,9 @@ document.addEventListener('DOMContentLoaded', () => {
           defaults: { ease: 'power3.out', force3D: true },
           onComplete: () => {
             document.querySelectorAll('.hero-cta').forEach(btn => {
-              btn.style.opacity = '1';
-              btn.style.visibility = 'visible';
+              btn.style.opacity = '';
+              btn.style.visibility = '';
+              btn.style.transform = '';
             });
           }
         })
@@ -544,7 +613,7 @@ document.addEventListener('DOMContentLoaded', () => {
           .from(heading, { y: 32, opacity: 0, duration: 0.6, clearProps: 'all' }, '-=0.15')
           .from('.hero h1 em', { y: 14, opacity: 0, duration: 0.5, clearProps: 'all' }, '-=0.35')
           .from('.hero-side p', { y: 14, opacity: 0, duration: 0.45, clearProps: 'all' }, '-=0.2')
-          .from('.hero-cta', { y: 10, duration: 0.35, stagger: 0.06, clearProps: 'all' }, '-=0.15')
+          .from('.hero-cta', { y: 16, opacity: 0, duration: 0.45, stagger: 0.08, clearProps: 'all' }, '-=0.15')
           .from('.hero-credibility', { y: 10, opacity: 0, duration: 0.35, clearProps: 'all' }, '-=0.15');
       }
     };

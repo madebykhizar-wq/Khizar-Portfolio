@@ -15,6 +15,8 @@
     cursor.className = 'cursor';
     document.body.appendChild(cursor);
 
+    cursor.style.zIndex = '10000000';
+
     let mouseX = -100;
     let mouseY = -100;
     let rafPending = false;
@@ -47,13 +49,12 @@
       }
     });
     document.addEventListener('mouseenter', () => {
-      if (!document.body.classList.contains('modal-open')) {
-        cursor.classList.remove('hidden');
-      }
+      cursor.classList.remove('hidden');
     });
 
     // Keep the custom cursor visible while a case-study modal is open.
     const syncCursorVisibility = () => {
+      cursor.style.zIndex = '10000000';
       if (document.body.classList.contains('modal-open')) {
         cursor.classList.remove('hidden');
         cursor.style.opacity = '1';
@@ -61,6 +62,7 @@
     };
 
     document.addEventListener('click', syncCursorVisibility, { passive: true });
+    window.addEventListener('popstate', syncCursorVisibility, { passive: true });
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') {
         setTimeout(syncCursorVisibility, 0);
@@ -68,7 +70,7 @@
     }, { passive: true });
 
     // Grow slightly over interactive elements with passive event listeners
-    const hoverTargets = 'a, button, [role="button"], .work-card, .btn, .brand-chip, .services-pill, .filter-chip, .faq-question, .theme-toggle';
+    const hoverTargets = 'a, button, [role="button"], .work-card, .btn, .brand-chip, .services-pill, .filter-chip, .faq-question, .theme-toggle, .cs-close-btn, .cs-cta-btn, .cs-gallery-item, .cs-related-card, .cs-service-pill';
     document.addEventListener('mouseover', (e) => {
       if (e.target && e.target.closest) {
         if (e.target.closest('input, textarea, select')) {
@@ -81,9 +83,7 @@
     document.addEventListener('mouseout', (e) => {
       if (e.target && e.target.closest) {
         if (e.target.closest('input, textarea, select')) {
-          if (!document.body.classList.contains('modal-open')) {
-            cursor.classList.remove('hidden');
-          }
+          cursor.classList.remove('hidden');
         }
         if (e.target.closest(hoverTargets)) {
           cursor.classList.remove('hoverable');
