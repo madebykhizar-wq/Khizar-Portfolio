@@ -93,7 +93,7 @@ window.SITE_CONFIG = {
     phone: "+923420255825",
     whatsapp: "+923420255825",
     website: "madebykhizar.com",
-    photo: "assets/my-photo.jpg",
+    photo: "assets/my-photo.png",
     photoSectionHeading: "The designer behind the work.",
     photoSectionHighlight: "behind the work.",
     photoSectionBioHighlight: "6+ years",
