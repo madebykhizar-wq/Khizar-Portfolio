@@ -120,49 +120,64 @@
     const nav = $("#site-nav");
     if (!nav) return;
 
-    const wordmark = (() => {
-      const parts = cfg.brand.logoText.split(".");
-      if (parts.length === 1) return esc(parts[0]);
-      return `${esc(parts[0])}<span>.</span>${esc(parts.slice(1).join("."))}`;
-    })();
-    const iconHtml = cfg.brand.logoImage
-      ? `<img src="${esc(cfg.brand.logoImage)}" alt="" class="logo-img">`
-      : "";
-    const revealHtml = cfg.brand.madeBy
-      ? `<span class="logo-reveal">${esc(cfg.brand.madeBy)}</span>`
-      : "";
-    const logoHtml = iconHtml + wordmark + revealHtml;
+    const brandTitle = cfg.brand.logoText || "MadebyKhizar";
+    const brandSubtitle = cfg.brand.subtitle || "Brand & Packaging Studio";
 
     const homeHref = page === "home" ? "#top" : "index.html#top";
     const contactHref = page === "home" ? "#contact" : "index.html#contact";
 
     const links = cfg.nav.map(item => {
-      const isActive = page === "home" ? "" : page === item.key ? " active" : "";
+      const isActive = page === "home" ? (item.key === "work" ? " active" : "") : page === item.key ? " active" : "";
       const href = page === "home" ? item.href : `index.html${item.href}`;
       return `<a href="${esc(href)}" class="${isActive.trim()}">${esc(item.label)}</a>`;
     }).join("\n");
 
+    const logoMarkHtml = cfg.brand.logoImage
+      ? `<img src="${esc(cfg.brand.logoImage)}" alt="${esc(brandTitle)}" class="logo-img">`
+      : `<span class="logo-badge">K</span>`;
+
     nav.innerHTML = `
-      <a href="${homeHref}" class="logo">${logoHtml}</a>
-      <button class="navtoggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">Menu</button>
+      <a href="${homeHref}" class="logo" aria-label="${esc(brandTitle)} - ${esc(brandSubtitle)}">
+        ${logoMarkHtml}
+        <span class="logo-text-group">
+          <span class="logo-title">${esc(brandTitle)}</span>
+          <span class="logo-subtitle">${esc(brandSubtitle)}</span>
+        </span>
+      </a>
+      <button class="navtoggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span class="navtoggle-bar"></span>
+        <span class="navtoggle-bar"></span>
+        <span class="navtoggle-bar"></span>
+      </button>
       <div class="navlinks" id="navLinks">
         <div class="nav-menu" aria-label="Main navigation">${links}</div>
         <div class="nav-actions">
-          <a href="${contactHref}" class="cta">${esc(cfg.navCtaText || "Start a Project")}</a>
-          <label class="language-control">
-            <span class="sr-only">Language</span>
-            <select id="languageSelect" aria-label="Choose language">
-              <option value="en">EN</option>
-              <option value="es">ES</option>
-              <option value="fr">FR</option>
-              <option value="de">DE</option>
-            </select>
-          </label>
-          <a href="#" data-social-link="whatsapp" target="_blank" rel="noopener" class="whatsapp-nav" aria-label="Message on WhatsApp">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.4-1.5-.9-.8-1.5-1.8-1.6-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.2-.6-.4ZM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2Zm0 18.1c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.1 8.1 0 0 1 3.9 12c0-4.5 3.6-8.1 8.1-8.1s8.1 3.6 8.1 8.1-3.6 8.1-8.1 8.1Z"/></svg>
-            <span>WhatsApp</span>
+          <div class="nav-tools-pill">
+            <label class="language-control" title="Choose language">
+              <span class="sr-only">Choose language</span>
+              <select id="languageSelect" aria-label="Choose language">
+                <option value="en">EN</option>
+                <option value="es">ES</option>
+                <option value="fr">FR</option>
+                <option value="de">DE</option>
+              </select>
+              <span class="lang-display" aria-hidden="true">
+                <span id="langCurrentText">EN</span>
+                <span class="lang-chevron">▾</span>
+              </span>
+            </label>
+            <span class="nav-pill-divider" aria-hidden="true"></span>
+            <a href="#" data-social-link="whatsapp" target="_blank" rel="noopener" class="whatsapp-nav" aria-label="Message on WhatsApp">
+              <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.4-1.5-.9-.8-1.5-1.8-1.6-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.2-.6-.4ZM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2Zm0 18.1c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.1 8.1 0 0 1 3.9 12c0-4.5 3.6-8.1 8.1-8.1s8.1 3.6 8.1 8.1-3.6 8.1-8.1 8.1Z"/></svg>
+              <span>WhatsApp</span>
+            </a>
+            <span class="nav-pill-divider" aria-hidden="true"></span>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" type="button">🌙</button>
+          </div>
+          <a href="${contactHref}" class="nav-cta-pill">
+            <span class="nav-cta-text">${esc(cfg.navCtaText || "Start a Project")}</span>
+            <span class="nav-cta-arrow" aria-hidden="true">↗</span>
           </a>
-          <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" type="button">🌙</button>
         </div>
       </div>`;
   }
@@ -199,13 +214,24 @@
     const trustText = el.querySelector(".hero-trust-text");
     if (trustText) trustText.textContent = cfg.hero.badge || "";
 
+    const clockEl = el.querySelector("#pktLiveClock");
+    if (clockEl) {
+      try {
+        clockEl.textContent = `${new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Karachi', hour: 'numeric', minute: '2-digit', hour12: true }).format(new Date())} PKT`;
+      } catch (e) {}
+    }
+
     const titleEl = el.querySelector(".hero-master-title") || el.querySelector("h1");
     if (titleEl && cfg.hero.headline) {
       titleEl.innerHTML = cfg.hero.headline;
     }
 
     const bioEl = el.querySelector(".hero-description") || el.querySelector(".hero-side p");
-    if (bioEl) bioEl.innerHTML = cfg.hero.description || esc(cfg.personal.shortBio || "");
+    if (bioEl) {
+      let desc = cfg.hero.description || esc(cfg.personal.shortBio || "");
+      desc = desc.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+      bioEl.innerHTML = desc;
+    }
 
     const credibility = el.querySelector(".hero-credibility");
     if (credibility) credibility.textContent = cfg.hero.credibility || "";
@@ -240,7 +266,7 @@
     }
 
     const HERO_ICONS = {
-      star: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8-2.8"/></svg>`,
+      star: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.63 5.63l2.83 2.83M15.54 15.54l2.83 2.83M18.37 5.63l-2.83 2.83M5.63 18.37l2.83-2.83"/></svg>`,
       target: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/></svg>`,
       package: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg>`
     };
@@ -883,9 +909,6 @@
     const emailBlock = cfg.personal.email
       ? `<div class="block"><span>Email</span><a href="mailto:${esc(cfg.personal.email)}" id="contactEmailLink">${esc(cfg.personal.email)}</a> <button type="button" id="copyEmailBtn" class="copy-btn" aria-label="Copy email address">Copy</button></div>`
       : "";
-    const websiteBlock = cfg.personal.website
-      ? `<div class="block"><span>Portfolio</span><a href="https://${esc(cfg.personal.website)}" target="_blank" rel="noopener">${esc(cfg.personal.website)}</a></div>`
-      : "";
 
     const socialEntries = Object.entries(cfg.social)
       .filter(([, url]) => url)
@@ -902,7 +925,6 @@
         </ol>
       </div>
       ${emailBlock}
-      ${websiteBlock}
       <div class="block"><span>Elsewhere</span><div class="socials">${socialEntries}</div></div>
       ${cfg.social.whatsapp ? `<a class="whatsapp-contact" href="${esc(cfg.social.whatsapp)}" target="_blank" rel="noopener">
         <img src="${esc(cfg.personal.photo)}" alt="" loading="lazy">

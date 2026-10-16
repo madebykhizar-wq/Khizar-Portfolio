@@ -23,12 +23,14 @@ window.SITE_CONFIG = {
   // BRAND — logo, favicon, site-wide title
   // ===========================================================
   brand: {
-    // Shown in the nav if logoImage is empty. Keep the "." — it's styled by CSS.
+    // Brand name shown in nav
     logoText: "MadebyKhizar",
-    // Real logo mark — used in the nav and footer
+    // Subtitle shown under brand name in nav
+    subtitle: "Brand & Packaging Studio",
+    // Real logo mark — used in the nav, footer, and meta
     logoImage: "assets/logo.svg",
     // Shown on hover over the nav logo, and in the footer next to the logo.
-    madeBy: "KHIZAR HAYAT",
+    madeBy: "MADE BY KHIZAR",
     favicon: "assets/favicon-48.png",
     faviconSvg: "assets/logo.svg",
     favicon96: "assets/favicon-96.png",
@@ -135,7 +137,7 @@ window.SITE_CONFIG = {
   // ===========================================================
   hero: {
     headline: "Brand Identity &amp; <span class=\"hero-packaging-for\">Packaging for</span><br><em>Consumer Brands.</em>",
-    description: "<strong>Built for shelf impact, clarity, and real-world scale.</strong><br>Strategic identity systems, packaging, and brand guidelines for growing businesses.",
+    description: "I build <strong>distinctive brand identities and packaging</strong> that turn consumer brands into market leaders.",
     credibility: "Brand Identity · FMCG & Product Packaging · Visual Systems",
     badge: "Available for new projects & retainers",
     chips: [
@@ -311,7 +313,7 @@ window.SITE_CONFIG = {
   nav: [
     { label: "Work", href: "#work", key: "work" },
     { label: "Services", href: "#services", key: "services" },
-    { label: "About me", href: "#about", key: "about" }
+    { label: "About", href: "#person", key: "about" }
   ],
 
   // ===========================================================
@@ -345,6 +347,6 @@ window.SITE_CONFIG = {
   // ===========================================================
   footer: {
     copyrightYear: "2026",
-    copyrightName: "Khizar Hayat. All rights reserved."
+    copyrightName: "Made by Khizar. All rights reserved."
   }
 };

@@ -10,13 +10,13 @@ document.addEventListener('DOMContentLoaded', () => {
   if (navToggle && navLinks) {
     navToggle.addEventListener('click', () => {
       const open = navLinks.classList.toggle('open');
-      navToggle.textContent = open ? 'Close' : 'Menu';
+      navToggle.classList.toggle('active', open);
       navToggle.setAttribute('aria-expanded', String(open));
       applySiteLanguage(activeLanguage);
     });
     navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
       navLinks.classList.remove('open');
-      navToggle.textContent = 'Menu';
+      navToggle.classList.remove('active');
       navToggle.setAttribute('aria-expanded', 'false');
     }));
 
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && navLinks.classList.contains('open')) {
         navLinks.classList.remove('open');
-        navToggle.textContent = 'Menu';
+        navToggle.classList.remove('active');
         navToggle.setAttribute('aria-expanded', 'false');
         navToggle.focus();
       }
@@ -62,6 +62,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ---------- hero live PKT clock ---------- */
+  const initHeroPktClock = () => {
+    const clock = document.getElementById('pktLiveClock');
+    if (!clock) return;
+
+    const tick = () => {
+      try {
+        const formatter = new Intl.DateTimeFormat('en-US', {
+          timeZone: 'Asia/Karachi',
+          hour: 'numeric',
+          minute: '2-digit',
+          hour12: true
+        });
+        clock.textContent = `${formatter.format(new Date())} PKT`;
+      } catch (err) {
+        const now = new Date();
+        const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+        const pkt = new Date(utc + (3600000 * 5));
+        let h = pkt.getHours();
+        const m = String(pkt.getMinutes()).padStart(2, '0');
+        const ampm = h >= 12 ? 'PM' : 'AM';
+        h = h % 12 || 12;
+        clock.textContent = `${h}:${m} ${ampm} PKT`;
+      }
+    };
+
+    tick();
+    setInterval(tick, 1000);
+  };
+  initHeroPktClock();
+
   /* ---------- dark / light mode toggle ---------- */
   const themeToggle = document.getElementById('themeToggle');
   const THEME_KEY = 'khizar-theme';
@@ -87,6 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const translations = {
     es: {
       'Work': 'Proyectos', 'Services': 'Servicios', 'About me': 'Sobre mí',
+      'Brand & Packaging Studio': 'Estudio de Marca y Packaging',
       'Start a Project': 'Iniciar un proyecto', 'Selected Work': 'Proyectos destacados',
       'BRAND IDENTITY + PACKAGING': 'IDENTIDAD DE MARCA + PACKAGING',
       'Brand Identity &': 'Identidad de marca y',
@@ -154,6 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     fr: {
       'Work': 'Projets', 'Services': 'Services', 'About me': 'À propos',
+      'Brand & Packaging Studio': 'Studio d’Identité et Packaging',
       'Start a Project': 'Démarrer un projet', 'Selected Work': 'Projets choisis',
       'BRAND IDENTITY + PACKAGING': 'IDENTITÉ DE MARQUE + PACKAGING',
       'Brand Identity &': 'Identité de marque et',
@@ -219,6 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     de: {
       'Work': 'Arbeiten', 'Services': 'Leistungen', 'About me': 'Über mich',
+      'Brand & Packaging Studio': 'Studio für Marken- und Verpackungsdesign',
       'Start a Project': 'Projekt starten', 'Selected Work': 'Ausgewählte Arbeiten',
       'BRAND IDENTITY + PACKAGING': 'MARKENIDENTITÄT + VERPACKUNG',
       'Brand Identity &': 'Markenidentität und',
@@ -317,6 +351,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
     if (languageSelect) languageSelect.value = activeLanguage;
+    const langCurrentText = document.getElementById('langCurrentText');
+    if (langCurrentText) langCurrentText.textContent = activeLanguage.toUpperCase();
     if (brandMarqueeToggle) {
       const label = brandStrip && brandStrip.classList.contains('is-paused')
         ? 'Play client names'
