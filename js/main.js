@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         io.unobserve(e.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.05, rootMargin: '0px 0px 50px 0px' });
   revealEls.forEach(el => io.observe(el));
   window.observeReveals = (elements) => {
     elements.forEach(el => io.observe(el));
