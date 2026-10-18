@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Packaging Intelligence | Made by Khizar — AI Packaging Studio OS</title>
+<meta name="description" content="Generate an instant, commercially grounded packaging intelligence brief: target audience, shelf differentiation, primary display panel hierarchy, and print compliance checklist.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://madebykhizar.com/packaging-intelligence.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Packaging Intelligence | Made by Khizar — AI Packaging Studio OS">
+<meta property="og:description" content="Generate an instant packaging intelligence brief: shelf differentiation, PDP hierarchy, and production checklist.">
+<meta property="og:url" content="https://madebykhizar.com/packaging-intelligence.html">
+<meta property="og:site_name" content="Made by Khizar">
+<meta property="og:image" content="https://madebykhizar.com/assets/my-photo.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Packaging Intelligence | Made by Khizar">
+<meta name="twitter:description" content="Generate an instant packaging brief with shelf hierarchy and compliance checklists.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<link rel="stylesheet" href="css/styles.css">
+
+<style>
+  /* --- Dedicated Packaging Intelligence Styles --- */
+  :root {
+    --pi-accent: #28a064;
+    --pi-accent-glow: rgba(40, 160, 100, 0.25);
+    --pi-card-bg: rgba(18, 23, 20, 0.7);
+    --pi-border: rgba(40, 160, 100, 0.22);
+    --pi-border-hover: rgba(40, 160, 100, 0.45);
+  }
+
+  .pi-container {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+  }
+
+  .pi-hero {
+    text-align: center;
+    padding: 60px 0 40px;
+  }
+
+  .pi-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(40, 160, 100, 0.12);
+    border: 1px solid var(--pi-border);
+    color: var(--pi-accent);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .pi-hero h1 {
+    font-size: clamp(32px, 5.5vw, 54px);
+    line-height: 1.1;
+    margin-bottom: 18px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .pi-hero h1 em {
+    font-style: italic;
+    color: var(--pi-accent);
+    font-family: var(--font-heading);
+  }
+
+  .pi-hero p {
+    font-size: clamp(16px, 2vw, 19px);
+    color: var(--text-soft);
+    max-width: 680px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* Form Layout */
+  .pi-form-card {
+    background: var(--pi-card-bg);
+    border: 1px solid var(--pi-border);
+    border-radius: 16px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: clamp(24px, 4vw, 44px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    margin-bottom: 40px;
+    transition: border-color 0.3s ease;
+  }
+
+  .pi-step-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .pi-step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--pi-accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .pi-step-title {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .pi-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .pi-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .pi-field label {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: 0.01em;
+  }
+
+  .pi-field label span.req {
+    color: var(--pi-accent);
+    margin-left: 2px;
+  }
+
+  .pi-input, .pi-select, .pi-textarea {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    padding: 13px 16px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 14.5px;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+  }
+
+  .pi-input:focus, .pi-select:focus, .pi-textarea:focus {
+    outline: none;
+    border-color: var(--pi-accent);
+    box-shadow: 0 0 0 3px var(--pi-accent-glow);
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  .pi-chips-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 6px;
+  }
+
+  .pi-chip {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 12.5px;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.18s ease;
+    color: var(--text-soft);
+  }
+
+  .pi-chip:hover {
+    border-color: var(--pi-accent);
+    color: #fff;
+  }
+
+  .pi-chip.selected {
+    background: rgba(40, 160, 100, 0.2);
+    border-color: var(--pi-accent);
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .pi-btn-submit {
+    width: 100%;
+    background: var(--pi-accent);
+    color: #ffffff;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 16px 28px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 8px 24px rgba(40, 160, 100, 0.3);
+    margin-top: 24px;
+  }
+
+  .pi-btn-submit:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(40, 160, 100, 0.45);
+    background: #2ec078;
+  }
+
+  .pi-btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  /* Loading State */
+  .pi-loading-state {
+    display: none;
+    text-align: center;
+    padding: 60px 20px;
+    background: var(--pi-card-bg);
+    border: 1px solid var(--pi-border);
+    border-radius: 16px;
+    margin-bottom: 40px;
+  }
+
+  .pi-spinner {
+    width: 48px;
+    height: 48px;
+    border: 3px solid rgba(40, 160, 100, 0.2);
+    border-top-color: var(--pi-accent);
+    border-radius: 50%;
+    animation: piSpin 0.9s linear infinite;
+    margin: 0 auto 20px;
+  }
+
+  @keyframes piSpin {
+    to { transform: rotate(360deg); }
+  }
+
+  .pi-loading-msg {
+    font-size: 17px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .pi-loading-sub {
+    font-size: 13.5px;
+    color: var(--text-soft);
+  }
+
+  /* Result Brief View */
+  .pi-result-canvas {
+    display: none;
+    animation: piFadeUp 0.4s ease;
+  }
+
+  @keyframes piFadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .pi-result-header {
+    background: linear-gradient(135deg, rgba(40, 160, 100, 0.15) 0%, rgba(18, 23, 20, 0.9) 100%);
+    border: 1px solid var(--pi-border);
+    border-radius: 16px 16px 0 0;
+    padding: 36px 32px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .pi-result-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .pi-meta-tag {
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    color: var(--text-soft);
+  }
+
+  .pi-section {
+    background: var(--pi-card-bg);
+    border: 1px solid var(--pi-border);
+    border-top: none;
+    padding: 32px;
+  }
+
+  .pi-section:last-of-type {
+    border-radius: 0 0 16px 16px;
+  }
+
+  .pi-section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .pi-hierarchy-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .pi-hierarchy-card {
+    background: rgba(0,0,0,0.4);
+    border-left: 4px solid var(--pi-accent);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-right: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-radius: 0 10px 10px 0;
+    padding: 16px 20px;
+  }
+
+  .pi-checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .pi-checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+  }
+
+  .pi-checklist-item input[type="checkbox"] {
+    margin-top: 3px;
+    accent-color: var(--pi-accent);
+    width: 17px;
+    height: 17px;
+  }
+
+  .pi-disclaimer-box {
+    margin: 24px 0;
+    padding: 18px 22px;
+    border-radius: 10px;
+    background: rgba(240, 173, 78, 0.08);
+    border: 1px solid rgba(240, 173, 78, 0.25);
+    font-size: 13px;
+    color: #e2c08d;
+    line-height: 1.5;
+  }
+
+  .pi-action-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .pi-btn-action {
+    flex: 1;
+    min-width: 180px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .pi-btn-action:hover {
+    background: rgba(255,255,255,0.14);
+    border-color: #fff;
+  }
+
+  .pi-btn-action.primary-cta {
+    background: var(--pi-accent);
+    border-color: var(--pi-accent);
+    color: #fff;
+    box-shadow: 0 4px 18px rgba(40,160,100,0.3);
+  }
+
+  .pi-btn-action.primary-cta:hover {
+    background: #2ec078;
+    transform: translateY(-2px);
+  }
+</style>
+</head>
+<body data-page="packaging-intelligence">
+
+<a href="#pi-main" class="skip-link">Skip to main content</a>
+<div id="scrollProgress"></div>
+
+<header>
+  <nav class="wrap" id="site-nav"></nav>
+</header>
+
+<main id="pi-main">
+  <div class="pi-container">
+    
+    <!-- Hero Header -->
+    <div class="pi-hero">
+      <div class="pi-badge">✦ Studio OS · Public Intelligence Engine</div>
+      <h1>Packaging Strategy <em>Before Production.</em></h1>
+      <p>
+        De-risk your next packaging run before spending tens of thousands on print plates.
+        Generate an instant, commercially grounded packaging brief with shelf differentiation rules, PDP layout hierarchy, and compliance checklists.
+      </p>
+    </div>
+
+    <!-- Guided Intake Form -->
+    <div class="pi-form-card" id="piFormCard">
+      <form id="packagingIntakeForm" novalidate>
+        
+        <!-- Step 1: Product Basics -->
+        <div class="pi-step-header">
+          <div class="pi-step-num">1</div>
+          <div class="pi-step-title">Product &amp; Structural Format</div>
+        </div>
+
+        <div class="pi-grid-2">
+          <div class="pi-field">
+            <label for="pName">Product / Brand Name <span class="req">*</span></label>
+            <input type="text" id="pName" class="pi-input" placeholder="e.g. Synvora Botanical Cold Brew" required>
+          </div>
+          <div class="pi-field">
+            <label for="pCategory">Product Category <span class="req">*</span></label>
+            <input type="text" id="pCategory" class="pi-input" placeholder="e.g. Functional Beverage / RTD" required>
+          </div>
+        </div>
+
+        <div class="pi-field">
+          <label for="pFormat">Physical Packaging Format <span class="req">*</span></label>
+          <select id="pFormat" class="pi-select" required>
+            <option value="" disabled selected>Select structural packaging format...</option>
+            <option value="Glass Bottle with Custom Die-Cut Label">Glass Bottle with Custom Die-Cut Label</option>
+            <option value="Matte Stand-Up Barrier Pouch with Gusset">Matte Stand-Up Barrier Pouch with Gusset</option>
+            <option value="Rigid Paperboard Folding Carton Box">Rigid Paperboard Folding Carton Box</option>
+            <option value="Aluminum Beverage Can with Tactile Varnish">Aluminum Beverage Can with Tactile Varnish</option>
+            <option value="Cosmetic Glass Jar with Outer Unit Box">Cosmetic Glass Jar with Outer Unit Box</option>
+            <option value="Flexible Flow-Wrap Sachet or Bar Wrap">Flexible Flow-Wrap Sachet or Bar Wrap</option>
+            <option value="Corrugated E-Commerce Mailer Box & Tape">Corrugated E-Commerce Mailer Box &amp; Tape</option>
+            <option value="Custom Bespoke Structural Package">Custom Bespoke Structural Package</option>
+          </select>
+        </div>
+
+        <!-- Step 2: Market & Audience -->
+        <div class="pi-step-header" style="margin-top: 36px;">
+          <div class="pi-step-num">2</div>
+          <div class="pi-step-title">Market Positioning &amp; Audience</div>
+        </div>
+
+        <div class="pi-grid-2">
+          <div class="pi-field">
+            <label for="pRegion">Target Geographic Market</label>
+            <select id="pRegion" class="pi-select">
+              <option value="United States / North America (FDA/FTC)" selected>United States / North America (FDA / FTC)</option>
+              <option value="European Union / United Kingdom (EFSA/Trading Standards)">European Union / UK (EFSA / Trading Standards)</option>
+              <option value="Middle East / GCC (GSO / ESMA)">Middle East / GCC (GSO / ESMA)</option>
+              <option value="Global / Multi-Jurisdiction Export">Global / Multi-Jurisdiction Export</option>
+            </select>
+          </div>
+          <div class="pi-field">
+            <label for="pTier">Price Tier &amp; Retail Context</label>
+            <select id="pTier" class="pi-select">
+              <option value="Mass Premium (Specialty retail, Whole Foods, Erewhon)" selected>Mass Premium (Specialty retail, Erewhon, Target)</option>
+              <option value="Luxury / Prestige (High-end department stores, boutique D2C)">Luxury / Prestige (Boutique, luxury gifting, D2C)</option>
+              <option value="Accessible / Mainstream Grocery">Accessible / Mainstream Grocery</option>
+              <option value="Direct-to-Consumer / Subscription Box Focus">Direct-to-Consumer / Digital Native</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="pi-field">
+          <label for="pAudience">Target Audience &amp; Core Buyer Persona <span class="req">*</span></label>
+          <textarea id="pAudience" class="pi-textarea" rows="2" placeholder="e.g. Design-conscious urban millennials seeking restorative evening wellness alternatives without alcohol or artificial sweeteners." required></textarea>
+        </div>
+
+        <!-- Step 3: Claims & Disruption -->
+        <div class="pi-step-header" style="margin-top: 36px;">
+          <div class="pi-step-num">3</div>
+          <div class="pi-step-title">Front-of-Pack Claims &amp; Competition</div>
+        </div>
+
+        <div class="pi-field">
+          <label>Select Key Front-of-Pack Claims (Click chips to toggle or add custom)</label>
+          <div class="pi-chips-group" id="claimsChipsGroup">
+            <button type="button" class="pi-chip" data-claim="Certified Organic">Certified Organic</button>
+            <button type="button" class="pi-chip" data-claim="Zero Added Sugar">Zero Added Sugar</button>
+            <button type="button" class="pi-chip" data-claim="100% Plant-Based">100% Plant-Based</button>
+            <button type="button" class="pi-chip" data-claim="Gluten Free">Gluten Free</button>
+            <button type="button" class="pi-chip" data-claim="FSC Certified Sustainable Pack">FSC Recyclable</button>
+            <button type="button" class="pi-chip" data-claim="Doctor Formulated">Doctor Formulated</button>
+            <button type="button" class="pi-chip" data-claim="Artisanal Small Batch">Small Batch</button>
+            <button type="button" class="pi-chip" data-claim="Fair Trade Sourced">Fair Trade</button>
+          </div>
+          <input type="text" id="pCustomClaims" class="pi-input" style="margin-top: 10px;" placeholder="Add custom claims (comma separated)...">
+        </div>
+
+        <div class="pi-field">
+          <label for="pCompetitors">Key Competitors or Visual Aesthetic Inspiration (Optional)</label>
+          <input type="text" id="pCompetitors" class="pi-input" placeholder="e.g. Kin Euphorics, Aesop, Ghia, Three Spirit">
+        </div>
+
+        <div id="formErrorMessage" style="color:#ff6b6b;font-size:13.5px;font-weight:600;display:none;margin-top:12px;"></div>
+
+        <button type="submit" class="pi-btn-submit" id="generateBriefBtn">
+          <span>Generate Packaging Brief</span>
+          <span style="font-size:18px;">✦</span>
+        </button>
+      </form>
+    </div>
+
+    <!-- Loading State -->
+    <div class="pi-loading-state" id="piLoadingState">
+      <div class="pi-spinner"></div>
+      <div class="pi-loading-msg" id="loadingStageText">Synthesizing shelf dynamics...</div>
+      <div class="pi-loading-sub">Analyzing competitive visual space, calculating PDP hierarchy, and structuring compliance specs.</div>
+    </div>
+
+    <!-- Brief Result Canvas -->
+    <div class="pi-result-canvas" id="piResultCanvas">
+      
+      <!-- Brief Header -->
+      <div class="pi-result-header">
+        <div class="pi-badge" style="margin-bottom:12px;">✦ Generated Packaging Intelligence Brief</div>
+        <h2 id="resProductName" style="font-size:clamp(24px, 4vw, 36px);margin-bottom:8px;"></h2>
+        <div class="pi-result-meta">
+          <span class="pi-meta-tag" id="resCategory"></span>
+          <span class="pi-meta-tag" id="resPackFormat"></span>
+          <span class="pi-meta-tag" id="resMarket"></span>
+          <span class="pi-meta-tag" id="resPriceTier"></span>
+        </div>
+      </div>
+
+      <!-- Section: Executive Summary -->
+      <div class="pi-section">
+        <div class="pi-section-title">📌 Strategic Positioning Thesis</div>
+        <p id="resExecutiveSummary" style="font-size:16px;line-height:1.7;color:var(--ink);"></p>
+      </div>
+
+      <!-- Section: Audience Analysis -->
+      <div class="pi-section">
+        <div class="pi-section-title">🎯 Audience &amp; Purchase Micro-Moments</div>
+        <p><strong style="color:var(--pi-accent);">Target Persona:</strong> <span id="resAudiencePersona"></span></p>
+        <div style="margin-top:16px;">
+          <strong style="font-size:14px;color:#fff;">Key Shelf Purchase Drivers:</strong>
+          <ul id="resPurchaseDrivers" style="margin-top:8px;padding-left:20px;color:var(--text-soft);line-height:1.7;"></ul>
+        </div>
+      </div>
+
+      <!-- Section: Shelf & Material Strategy -->
+      <div class="pi-section">
+        <div class="pi-section-title">📦 Shelf Disruption &amp; Material Strategy</div>
+        <div class="pi-grid-2" style="margin-top:14px;">
+          <div style="background:rgba(0,0,0,0.35);padding:18px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);">
+            <strong style="color:var(--pi-accent);font-size:13.5px;display:block;margin-bottom:6px;">VISUAL DIFFERENTIATION</strong>
+            <p id="resShelfDifferentiation" style="font-size:14px;line-height:1.6;color:var(--text-soft);margin:0;"></p>
+          </div>
+          <div style="background:rgba(0,0,0,0.35);padding:18px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);">
+            <strong style="color:var(--pi-accent);font-size:13.5px;display:block;margin-bottom:6px;">MATERIAL &amp; TACTILE FINISHES</strong>
+            <p id="resMaterialFinish" style="font-size:14px;line-height:1.6;color:var(--text-soft);margin:0;"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section: Primary Display Panel (PDP) Hierarchy -->
+      <div class="pi-section">
+        <div class="pi-section-title">📐 Primary Display Panel (PDP) Visual Hierarchy</div>
+        <p style="font-size:14px;color:var(--text-soft);margin-bottom:12px;">
+          The primary front face must guide the eye sequentially within 1.5 seconds. Recommended structural stack:
+        </p>
+        <div class="pi-hierarchy-stack" id="resHierarchyStack"></div>
+      </div>
+
+      <!-- Section: Mandatory Pack Compliance Checklist -->
+      <div class="pi-section">
+        <div class="pi-section-title">🛡️ Mandatory Pack Compliance Checklist</div>
+        <p style="font-size:14px;color:var(--text-soft);margin-bottom:14px;">
+          Essential regulatory and production requirements for this package format:
+        </p>
+        <ul class="pi-checklist" id="resChecklist"></ul>
+      </div>
+
+      <!-- Section: Technical De-risking -->
+      <div class="pi-section">
+        <div class="pi-section-title">⚙️ Production De-Risking Flags</div>
+        <div id="resTechnicalRisks" style="display:flex;flex-direction:column;gap:12px;"></div>
+      </div>
+
+      <!-- Section: Studio Angle & Booking CTA -->
+      <div class="pi-section">
+        <div class="pi-section-title">✦ Made by Khizar Studio Perspective</div>
+        <p id="resStudioAngle" style="font-size:15px;line-height:1.7;color:var(--ink);font-style:italic;"></p>
+
+        <div class="pi-disclaimer-box" id="resDisclaimer"></div>
+
+        <div class="pi-action-bar">
+          <button type="button" class="pi-btn-action" id="copyBriefBtn">📋 Copy Brief (Markdown)</button>
+          <button type="button" class="pi-btn-action" id="downloadBriefBtn">📥 Download Brief (.txt)</button>
+          <a href="index.html#contact" class="pi-btn-action primary-cta">Book Made by Khizar Studio ↗</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap" id="site-footer"></div>
+</footer>
+
+<button id="backToTop" aria-label="Back to top" type="button">↑</button>
+
+<!-- Shared Site Scripts -->
+<script src="js/config.js"></script>
+<script src="js/render.js"></script>
+<script src="js/cursor.js"></script>
+<script src="js/main.js"></script>
+<script src="js/cookie-consent.js"></script>
+
+<!-- Packaging Intelligence Interactive Controller -->
+<script>
+(function() {
+  const form = document.getElementById('packagingIntakeForm');
+  const submitBtn = document.getElementById('generateBriefBtn');
+  const errorMsg = document.getElementById('formErrorMessage');
+  const loadingState = document.getElementById('piLoadingState');
+  const loadingText = document.getElementById('loadingStageText');
+  const resultCanvas = document.getElementById('piResultCanvas');
+  const formCard = document.getElementById('piFormCard');
+  const chipsGroup = document.getElementById('claimsChipsGroup');
+
+  let activeBriefData = null;
+
+  // Toggle Claims Chips
+  if (chipsGroup) {
+    chipsGroup.addEventListener('click', (e) => {
+      const chip = e.target.closest('.pi-chip');
+      if (chip) {
+        chip.classList.toggle('selected');
+      }
+    });
+  }
+
+  function getSelectedClaims() {
+    const selected = Array.from(chipsGroup.querySelectorAll('.pi-chip.selected')).map(c => c.dataset.claim);
+    const custom = (document.getElementById('pCustomClaims').value || '')
+      .split(',')
+      .map(s => s.trim())
+      .filter(Boolean);
+    return [...new Set([...selected, ...custom])];
+  }
+
+  // Animated loading messages
+  const loadingStages = [
+    'Synthesizing shelf dynamics & competitive context...',
+    'Calculating Primary Display Panel (PDP) visual hierarchy...',
+    'Auditing mandatory compliance & barcode specifications...',
+    'Formulating tactical material & finish recommendations...'
+  ];
+
+  let stageTimer = null;
+  function startLoadingStages() {
+    let index = 0;
+    loadingText.textContent = loadingStages[0];
+    stageTimer = setInterval(() => {
+      index = (index + 1) % loadingStages.length;
+      loadingText.textContent = loadingStages[index];
+    }, 1800);
+  }
+
+  function stopLoadingStages() {
+    if (stageTimer) clearInterval(stageTimer);
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorMsg.style.display = 'none';
+
+    const productName = document.getElementById('pName').value.trim();
+    const category = document.getElementById('pCategory').value.trim();
+    const packFormat = document.getElementById('pFormat').value;
+    const marketRegion = document.getElementById('pRegion').value;
+    const priceTier = document.getElementById('pTier').value;
+    const targetAudience = document.getElementById('pAudience').value.trim();
+    const competitors = document.getElementById('pCompetitors').value.trim();
+    const claims = getSelectedClaims();
+
+    if (!productName || !category || !packFormat || !targetAudience) {
+      errorMsg.textContent = 'Please fill out all required fields marked with an asterisk (*).';
+      errorMsg.style.display = 'block';
+      return;
+    }
+
+    submitBtn.disabled = true;
+    formCard.style.display = 'none';
+    loadingState.style.display = 'block';
+    resultCanvas.style.display = 'none';
+    startLoadingStages();
+
+    try {
+      const res = await fetch('/api/ai/packaging-brief', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          product_name: productName,
+          category,
+          pack_format: packFormat,
+          market_region: marketRegion,
+          price_tier: priceTier,
+          target_audience: targetAudience,
+          key_claims: claims,
+          competitors_or_inspiration: competitors
+        })
+      });
+
+      const data = await res.json();
+      stopLoadingStages();
+      loadingState.style.display = 'none';
+
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || `Server error (${res.status})`);
+      }
+
+      activeBriefData = data.brief;
+      renderBrief(data.brief);
+      resultCanvas.style.display = 'block';
+      resultCanvas.scrollIntoView({ behavior: 'smooth' });
+
+    } catch (err) {
+      stopLoadingStages();
+      loadingState.style.display = 'none';
+      formCard.style.display = 'block';
+      submitBtn.disabled = false;
+      errorMsg.textContent = `❌ ${err.message}. Please try again.`;
+      errorMsg.style.display = 'block';
+    }
+  });
+
+  function renderBrief(b) {
+    document.getElementById('resProductName').textContent = b.product_name;
+    document.getElementById('resCategory').textContent = `Category: ${b.category}`;
+    document.getElementById('resPackFormat').textContent = `Format: ${b.pack_format}`;
+    document.getElementById('resMarket').textContent = `Market: ${b.market_region}`;
+    document.getElementById('resPriceTier').textContent = `Tier: ${b.price_tier}`;
+    document.getElementById('resExecutiveSummary').textContent = b.executive_summary;
+    document.getElementById('resAudiencePersona').textContent = b.audience_analysis?.primary_persona || 'Target consumer';
+
+    // Purchase drivers
+    const driversList = document.getElementById('resPurchaseDrivers');
+    driversList.innerHTML = (b.audience_analysis?.purchase_drivers || [])
+      .map(d => `<li>${escapeHtml(d)}</li>`)
+      .join('');
+
+    // Shelf & finishes
+    document.getElementById('resShelfDifferentiation').textContent = b.shelf_strategy?.visual_differentiation || '';
+    document.getElementById('resMaterialFinish').textContent = b.shelf_strategy?.material_finish_recommendation || '';
+
+    // Hierarchy Stack
+    const hierarchyStack = document.getElementById('resHierarchyStack');
+    hierarchyStack.innerHTML = (b.pdp_hierarchy || []).map(h => `
+      <div class="pi-hierarchy-card">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+          <strong style="color:#fff;font-size:15px;">Level ${h.level}: ${escapeHtml(h.element)}</strong>
+          <span style="font-size:11px;background:rgba(40,160,100,0.2);color:var(--pi-accent);padding:2px 8px;border-radius:4px;font-weight:600;">Priority ${h.level}</span>
+        </div>
+        <p style="font-size:13.5px;color:var(--text-soft);margin:4px 0 2px;">${escapeHtml(h.purpose)}</p>
+        <small style="color:#a0b0a8;font-size:12px;"><strong>Execution:</strong> ${escapeHtml(h.visual_treatment)}</small>
+      </div>
+    `).join('');
+
+    // Checklist
+    const checklist = document.getElementById('resChecklist');
+    checklist.innerHTML = (b.mandatory_pack_checklist || []).map((item, idx) => `
+      <li class="pi-checklist-item">
+        <input type="checkbox" id="check_${idx}">
+        <label for="check_${idx}" style="cursor:pointer;flex:1;">
+          <strong style="color:#fff;font-size:14px;">${escapeHtml(item.item)}</strong>
+          <span style="font-size:11px;color:var(--pi-accent);margin-left:8px;">[${escapeHtml(item.category)}]</span>
+          <p style="font-size:12.5px;color:var(--text-soft);margin:2px 0 0;">${escapeHtml(item.detail)}</p>
+        </label>
+      </li>
+    `).join('');
+
+    // Technical Risks
+    const risksContainer = document.getElementById('resTechnicalRisks');
+    risksContainer.innerHTML = (b.technical_risks_to_resolve || []).map(r => `
+      <div style="background:rgba(0,0,0,0.3);padding:14px 18px;border-radius:8px;border-left:3px solid #f0ad4e;">
+        <strong style="color:#f0ad4e;font-size:13.5px;">⚠️ ${escapeHtml(r.risk)}</strong>
+        <p style="font-size:13px;color:var(--text-soft);margin:4px 0;"><strong>Impact:</strong> ${escapeHtml(r.impact)}</p>
+        <p style="font-size:13px;color:#fff;margin:0;"><strong>Recommendation:</strong> ${escapeHtml(r.recommendation)}</p>
+      </div>
+    `).join('');
+
+    // Studio Angle & Disclaimer
+    document.getElementById('resStudioAngle').textContent = `"${b.studio_creative_angle || ''}"`;
+    document.getElementById('resDisclaimer').textContent = `⚠️ Regulatory & Legal Note: ${b.disclaimer || ''}`;
+  }
+
+  function escapeHtml(str) {
+    return String(str || '').replace(/[&<>"']/g, c => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[c]);
+  }
+
+  // Copy Brief
+  document.getElementById('copyBriefBtn').addEventListener('click', () => {
+    if (!activeBriefData) return;
+    const md = `# Packaging Intelligence Brief: ${activeBriefData.product_name}
+**Category:** ${activeBriefData.category} | **Format:** ${activeBriefData.pack_format}
+**Market:** ${activeBriefData.market_region} | **Price Tier:** ${activeBriefData.price_tier}
+
+## Executive Summary
+${activeBriefData.executive_summary}
+
+## Primary Display Panel Hierarchy
+${(activeBriefData.pdp_hierarchy || []).map(h => `- Level ${h.level}: ${h.element} (${h.visual_treatment})`).join('\n')}
+
+## Shelf Strategy
+- **Differentiation:** ${activeBriefData.shelf_strategy?.visual_differentiation}
+- **Materials & Finishes:** ${activeBriefData.shelf_strategy?.material_finish_recommendation}
+
+## Compliance & Production Checklist
+${(activeBriefData.mandatory_pack_checklist || []).map(c => `[ ] ${c.item} (${c.category}): ${c.detail}`).join('\n')}
+
+---
+${activeBriefData.disclaimer}
+Generated by Made by Khizar Studio (https://madebykhizar.com)`;
+
+    navigator.clipboard.writeText(md).then(() => {
+      alert('✅ Brief copied to clipboard as Markdown!');
+    }).catch(() => {
+      alert('Could not copy automatically. Use the download option.');
+    });
+  });
+
+  // Download Brief
+  document.getElementById('downloadBriefBtn').addEventListener('click', () => {
+    if (!activeBriefData) return;
+    const content = `PACKAGING INTELLIGENCE BRIEF
+======================================================
+Product: ${activeBriefData.product_name}
+Category: ${activeBriefData.category}
+Format: ${activeBriefData.pack_format}
+Market: ${activeBriefData.market_region}
+Price Tier: ${activeBriefData.price_tier}
+
+EXECUTIVE STRATEGY
+------------------------------------------------------
+${activeBriefData.executive_summary}
+
+PRIMARY DISPLAY PANEL (PDP) HIERARCHY
+------------------------------------------------------
+${(activeBriefData.pdp_hierarchy || []).map(h => `Level ${h.level}: ${h.element}\n  Purpose: ${h.purpose}\n  Execution: ${h.visual_treatment}`).join('\n\n')}
+
+SHELF & MATERIAL STRATEGY
+------------------------------------------------------
+Differentiation: ${activeBriefData.shelf_strategy?.visual_differentiation}
+Materials & Finishes: ${activeBriefData.shelf_strategy?.material_finish_recommendation}
+
+COMPLIANCE CHECKLIST
+------------------------------------------------------
+${(activeBriefData.mandatory_pack_checklist || []).map(c => `[ ] ${c.item} [${c.category}]\n    ${c.detail}`).join('\n')}
+
+PRODUCTION DE-RISKING
+------------------------------------------------------
+${(activeBriefData.technical_risks_to_resolve || []).map(r => `Risk: ${r.risk}\nImpact: ${r.impact}\nRecommendation: ${r.recommendation}`).join('\n\n')}
+
+STUDIO PERSPECTIVE
+------------------------------------------------------
+${activeBriefData.studio_creative_angle}
+
+DISCLAIMER
+------------------------------------------------------
+${activeBriefData.disclaimer}
+`;
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${activeBriefData.product_name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-packaging-brief.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+
+})();
+</script>
+</body>
+</html>

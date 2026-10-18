@@ -150,3 +150,18 @@ python3 -m http.server 8000
 ```
 
 then open `http://localhost:8000` in your browser.
+
+## Security & Secret Scanning
+
+To scan the repository locally for exposed credentials, private keys, or tokens before committing, run:
+
+```bash
+npm run scan:secrets
+```
+
+or directly using Node.js:
+
+```bash
+node scripts/scan-secrets.js
+```
+

@@ -128,7 +128,7 @@
 
     const links = cfg.nav.map(item => {
       const isActive = page === "home" ? (item.key === "work" ? " active" : "") : page === item.key ? " active" : "";
-      const href = page === "home" ? item.href : `index.html${item.href}`;
+      const href = item.href.startsWith("#") ? (page === "home" ? item.href : `index.html${item.href}`) : item.href;
       return `<a href="${esc(href)}" class="${isActive.trim()}">${esc(item.label)}</a>`;
     }).join("\n");
 
@@ -198,6 +198,7 @@
       <span>© ${esc(cfg.footer.copyrightYear)} ${esc(cfg.footer.copyrightName)}</span>
       ${madeByHtml}
       <nav class="footer-policies" aria-label="Policies">
+        <a href="packaging-intelligence.html" style="color:var(--accent-text);font-weight:600;">Packaging Intelligence</a>
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
         <a href="refund-policy.html">Refund policy</a>
