@@ -198,7 +198,7 @@
       <span>© ${esc(cfg.footer.copyrightYear)} ${esc(cfg.footer.copyrightName)}</span>
       ${madeByHtml}
       <nav class="footer-policies" aria-label="Policies">
-        <a href="packaging-intelligence.html" style="color:var(--accent-text);font-weight:600;">Packaging Intelligence</a>
+        <a href="packaging-intelligence.html">Packaging Brief</a>
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
         <a href="refund-policy.html">Refund policy</a>

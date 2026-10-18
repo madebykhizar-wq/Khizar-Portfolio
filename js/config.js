@@ -313,7 +313,6 @@ window.SITE_CONFIG = {
   nav: [
     { label: "Work", href: "#work", key: "work" },
     { label: "Services", href: "#services", key: "services" },
-    { label: "Packaging Intelligence", href: "packaging-intelligence.html", key: "packaging-intelligence" },
     { label: "About", href: "#person", key: "about" }
   ],
 
