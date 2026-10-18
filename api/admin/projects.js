@@ -1,5 +1,5 @@
-import { getSupabaseAdmin } from '../utils/supabase-admin.js';
-import { verifyAdmin, sendJson, parseJsonBody } from '../utils/auth.js';
+import { getSupabaseAdmin } from '../_utils/supabase-admin.js';
+import { verifyAdmin, sendJson, parseJsonBody } from '../_utils/auth.js';
 
 /**
  * Privileged Portfolio Projects API Handler

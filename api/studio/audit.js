@@ -1,6 +1,6 @@
-import { getSupabaseAdmin } from '../utils/supabase-admin.js';
-import { verifyStudioAccess } from '../utils/tenant.js';
-import { sendJson } from '../utils/auth.js';
+import { getSupabaseAdmin } from '../_utils/supabase-admin.js';
+import { verifyStudioAccess } from '../_utils/tenant.js';
+import { sendJson } from '../_utils/auth.js';
 
 /**
  * Studio OS — Attributable Audit Log API Handler

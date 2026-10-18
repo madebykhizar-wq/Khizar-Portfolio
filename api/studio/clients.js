@@ -1,7 +1,7 @@
-import { getSupabaseAdmin } from '../utils/supabase-admin.js';
-import { verifyStudioAccess } from '../utils/tenant.js';
-import { sendJson, parseJsonBody } from '../utils/auth.js';
-import { logAuditEvent } from '../utils/audit.js';
+import { getSupabaseAdmin } from '../_utils/supabase-admin.js';
+import { verifyStudioAccess } from '../_utils/tenant.js';
+import { sendJson, parseJsonBody } from '../_utils/auth.js';
+import { logAuditEvent } from '../_utils/audit.js';
 
 /**
  * Studio OS — Clients API Handler

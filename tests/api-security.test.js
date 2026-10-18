@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { verifyAdmin } from '../api/utils/auth.js';
+import { verifyAdmin } from '../api/_utils/auth.js';
 import projectsHandler from '../api/admin/projects.js';
 import clientBrandsHandler from '../api/admin/client-brands.js';
 import uploadHandler from '../api/admin/upload.js';

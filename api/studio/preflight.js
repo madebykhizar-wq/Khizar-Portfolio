@@ -1,7 +1,7 @@
-import { getSupabaseAdmin } from '../utils/supabase-admin.js';
-import { verifyStudioAccess } from '../utils/tenant.js';
-import { sendJson, parseJsonBody } from '../utils/auth.js';
-import { logAuditEvent } from '../utils/audit.js';
+import { getSupabaseAdmin } from '../_utils/supabase-admin.js';
+import { verifyStudioAccess } from '../_utils/tenant.js';
+import { sendJson, parseJsonBody } from '../_utils/auth.js';
+import { logAuditEvent } from '../_utils/audit.js';
 
 const REGULATORY_DISCLAIMER =
   'PREFLIGHT ADVISORY: This automated preflight audit evaluates structural parameters, barcoding standards, and declared packaging specifications. It does not replace independent pre-press RIP trapping, color separation drawdowns, certified legal counsel, or jurisdictional regulatory authority approvals prior to commercial cylinder or die manufacturing.';

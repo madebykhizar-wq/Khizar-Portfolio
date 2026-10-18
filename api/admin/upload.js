@@ -1,6 +1,6 @@
 import crypto from 'node:crypto';
-import { getSupabaseAdmin } from '../utils/supabase-admin.js';
-import { verifyAdmin, sendJson } from '../utils/auth.js';
+import { getSupabaseAdmin } from '../_utils/supabase-admin.js';
+import { verifyAdmin, sendJson } from '../_utils/auth.js';
 
 // Strict Allowlist for Media Formats
 const ALLOWED_MIME_TYPES = new Map([

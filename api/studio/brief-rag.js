@@ -1,7 +1,7 @@
-import { getSupabaseAdmin } from '../utils/supabase-admin.js';
-import { verifyStudioAccess } from '../utils/tenant.js';
-import { sendJson, parseJsonBody } from '../utils/auth.js';
-import { logAuditEvent } from '../utils/audit.js';
+import { getSupabaseAdmin } from '../_utils/supabase-admin.js';
+import { verifyStudioAccess } from '../_utils/tenant.js';
+import { sendJson, parseJsonBody } from '../_utils/auth.js';
+import { logAuditEvent } from '../_utils/audit.js';
 
 const REGULATORY_DISCLAIMER =
   'LEGAL & REGULATORY NOTICE: This packaging design brief and specification matrix is generated for creative, structural, and pre-production scoping purposes only. Final packaging artwork, dielines, barcoding (UPC/EAN/GS1), net quantity declarations, allergen callouts, nutrition facts, and jurisdictional regulatory statements must be independently validated by certified regulatory, legal, and pre-press specialists prior to commercial die-cutting or plate production.';

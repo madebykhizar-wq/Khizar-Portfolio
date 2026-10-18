@@ -1,8 +1,8 @@
 import crypto from 'node:crypto';
-import { getSupabaseAdmin } from '../utils/supabase-admin.js';
-import { verifyStudioAccess } from '../utils/tenant.js';
-import { sendJson, parseJsonBody } from '../utils/auth.js';
-import { logAuditEvent } from '../utils/audit.js';
+import { getSupabaseAdmin } from '../_utils/supabase-admin.js';
+import { verifyStudioAccess } from '../_utils/tenant.js';
+import { sendJson, parseJsonBody } from '../_utils/auth.js';
+import { logAuditEvent } from '../_utils/audit.js';
 
 const PRIVATE_VAULT_BUCKET = 'client-vault';
 const MAX_VAULT_FILE_SIZE = 15 * 1024 * 1024; // 15 MB max for packaging vectors & dielines

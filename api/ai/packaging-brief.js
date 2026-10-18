@@ -1,4 +1,4 @@
-import { sendJson, parseJsonBody } from '../utils/auth.js';
+import { sendJson, parseJsonBody } from '../_utils/auth.js';
 
 // In-memory sliding window rate limiter
 // Limits each IP to 5 requests per 10 minutes
