@@ -13,6 +13,7 @@
 .output/
 .turbo/
 .next/
+public/
 
 # Node.js dependencies and run logs
 node_modules/
