@@ -363,20 +363,21 @@ nav.wrap{
 @keyframes heroGrid{to{background-position:34px 17px;}}
 .hero-trust{display:flex; align-items:center; justify-content:center; gap:8px; margin:0 auto 14px; color:var(--text-soft); font-size:12px; flex-wrap:wrap;}
 .hero-trust .pulse{
-  width:8px; height:8px; border-radius:50%; background:var(--highlight); flex-shrink:0;
-  box-shadow:0 0 0 0 rgba(30,122,76,0.6);
-  animation:dotBlink 1.8s ease-in-out infinite;
+  position:relative; width:8px; height:8px; border-radius:50%; background:var(--highlight); flex-shrink:0;
+}
+.hero-trust .pulse::after{
+  content:""; position:absolute; inset:-3px; border-radius:50%; background:var(--highlight);
+  animation:dotBlink 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+  pointer-events:none;
 }
 @keyframes dotBlink{
-  0%, 100%{
-    opacity:1;
-    transform:scale(1);
-    box-shadow:0 0 0 0 rgba(30,122,76,0.6);
+  0%{
+    opacity:0.75;
+    transform:scale(0.8);
   }
-  50%{
-    opacity:0.3;
-    transform:scale(0.85);
-    box-shadow:0 0 0 5px rgba(30,122,76,0);
+  100%{
+    opacity:0;
+    transform:scale(2.4);
   }
 }
 .hero-trust-sep{opacity:0.4; font-weight:400; user-select:none; margin:0 1px;}
@@ -465,12 +466,11 @@ html[data-theme="dark"] .hero-actions .hero-work-cta{
   position:relative;
 }
 .brand-marquee-heading{
-  text-align:center; color:var(--text-soft);
+  text-align:center; color:#383C36;
   font-family:'Inter', sans-serif;
-  font-size:11px; font-weight:600;
+  font-size:11px; font-weight:700;
   letter-spacing:0.18em; text-transform:uppercase;
   margin-bottom:28px;
-  opacity:0.85;
 }
 .marquee-toggle{
   position:absolute; width:1px; height:1px; padding:0; margin:-1px;
@@ -1022,6 +1022,7 @@ html[data-theme="dark"] .work-tag{background:rgba(11,31,23,.94); color:var(--ink
   border-radius:var(--r-lg);
   padding:20px 22px;
 }
+.contact-expectations h3,
 .contact-expectations h4{
   font-family:'Bricolage Grotesque', sans-serif;
   font-size:15px;
@@ -2313,7 +2314,7 @@ body.has-intro {
   transform: translateY(-100%);
   border-bottom-left-radius: 40vw 120px;
   border-bottom-right-radius: 40vw 120px;
-  transition: transform 0.85s cubic-bezier(0.77, 0, 0.175, 1), border-radius 0.85s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: transform 0.85s cubic-bezier(0.77, 0, 0.175, 1);
   pointer-events: none;
 }
 

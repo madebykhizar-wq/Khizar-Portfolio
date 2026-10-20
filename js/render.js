@@ -309,7 +309,10 @@
             src="${esc(b.logoImage)}"
             alt="${esc(b.name)}"
             class="brand-chip-img"
+            width="120"
+            height="40"
             loading="lazy"
+            decoding="async"
             onerror="this.parentElement.innerHTML='<span class=\\'brand-chip-wordmark\\'>${esc(b.name)}</span>'"
           >
         </li>`;
@@ -357,18 +360,18 @@
     const slug = getProjectSlug(p);
     const projectUrl = `projects/${slug}.html`;
     const featuredBackdrop = p.featured
-      ? `<img class="work-card-backdrop" src="${thumbnail}" alt="" aria-hidden="true" loading="lazy">`
+      ? `<img class="work-card-backdrop" src="${thumbnail}" alt="" aria-hidden="true" loading="lazy" width="800" height="600">`
       : "";
     return `
-      <article class="work-card reveal${p.featured ? " feature" : ""}" data-project-id="${pId}" data-project-slug="${esc(slug)}" role="button" tabindex="0" aria-haspopup="dialog" aria-label="${esc(p.title)}. ${description} Click to view project case study.">
+      <article class="work-card reveal${p.featured ? " feature" : ""}" data-project-id="${pId}" data-project-slug="${esc(slug)}" tabindex="0" aria-haspopup="dialog" aria-label="${esc(p.title)}. ${description} Click to view project case study.">
         <span class="work-tag">${esc(tagOverride || p.cardLabel)}</span>
         ${featuredBackdrop}
-        <img src="${thumbnail}" alt="${esc(p.title)} project preview" loading="lazy" decoding="async">
+        <img src="${thumbnail}" alt="${esc(p.title)} project preview" loading="lazy" decoding="async" width="800" height="600">
         <div class="work-overlay">
           <div class="cat">${esc(p.category)} / ${esc(p.tag)}</div>
           <h3>${esc(p.title)}</h3>
           <p>${description}</p>
-          <a href="${esc(projectUrl)}" class="go" style="text-decoration:none;display:inline-block;">Open Case Study ✦</a>
+          <a href="${esc(projectUrl)}" class="go" style="text-decoration:none;display:inline-block;" aria-label="Open ${esc(p.title)} case study">Open Case Study ✦</a>
         </div>
       </article>`;
   }
@@ -943,7 +946,7 @@
 
     side.innerHTML = `
       <div class="contact-expectations">
-        <h4>What happens next</h4>
+        <h3>What happens next</h3>
         <ol class="contact-steps-list">
           <li><strong>Review within 24h:</strong> I personally review your brand scope and timeline.</li>
           <li><strong>Direct Discussion:</strong> We clarify your exact deliverables and goals.</li>
