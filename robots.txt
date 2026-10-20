@@ -3,4 +3,24 @@ Disallow: /admin/
 Disallow: /api/
 Allow: /
 
+# Search Engine Crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# AI Search Discovery & Answer Engine Crawlers (ChatGPT Search, Perplexity, Apple)
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
 Sitemap: https://madebykhizar.com/sitemap.xml

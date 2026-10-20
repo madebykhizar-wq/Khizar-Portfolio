@@ -354,11 +354,13 @@
     const thumbnail = esc(safeUrl(p.thumbnail));
     const description = esc(p.description);
     const pId = esc(String(p.id || p.title));
+    const slug = getProjectSlug(p);
+    const projectUrl = `projects/${slug}.html`;
     const featuredBackdrop = p.featured
       ? `<img class="work-card-backdrop" src="${thumbnail}" alt="" aria-hidden="true" loading="lazy">`
       : "";
     return `
-      <article class="work-card reveal${p.featured ? " feature" : ""}" data-project-id="${pId}" role="button" tabindex="0" aria-haspopup="dialog" aria-label="${esc(p.title)}. ${description} Click to view project case study.">
+      <article class="work-card reveal${p.featured ? " feature" : ""}" data-project-id="${pId}" data-project-slug="${esc(slug)}" role="button" tabindex="0" aria-haspopup="dialog" aria-label="${esc(p.title)}. ${description} Click to view project case study.">
         <span class="work-tag">${esc(tagOverride || p.cardLabel)}</span>
         ${featuredBackdrop}
         <img src="${thumbnail}" alt="${esc(p.title)} project preview" loading="lazy" decoding="async">
@@ -366,7 +368,7 @@
           <div class="cat">${esc(p.category)} / ${esc(p.tag)}</div>
           <h3>${esc(p.title)}</h3>
           <p>${description}</p>
-          <span class="go">Open Case Study ✦</span>
+          <a href="${esc(projectUrl)}" class="go" style="text-decoration:none;display:inline-block;">Open Case Study ✦</a>
         </div>
       </article>`;
   }
@@ -431,6 +433,10 @@
 
           <div class="cs-bottom-bar">
             <div class="cs-cta-group">
+              <a id="csPageLink" href="#" class="btn outline cs-page-link">
+                <span>View Dedicated Page</span>
+                <span class="arrow">↗</span>
+              </a>
               <a id="csBehanceBtn" href="#" target="_blank" rel="noopener" class="btn solid cs-behance-link" style="display:none;">
                 <span>View on Behance</span>
                 <span class="arrow">↗</span>
@@ -604,6 +610,12 @@
       </button>
     `).join("");
     relatedSection.hidden = related.length === 0;
+
+    const pageLink = $("#csPageLink", modal);
+    if (pageLink) {
+      const slug = getProjectSlug(p);
+      pageLink.href = `projects/${slug}.html`;
+    }
 
     const behanceBtn = $("#csBehanceBtn", modal);
     if (behanceBtn) {
@@ -781,16 +793,25 @@
     }
   }
 
+  /* ---------- service icon vectors (matching studio brand specifications) ---------- */
+  function getServiceIcons(prefix = "svc") {
+    return [
+      /* 1. Brand Identity Systems */
+      `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><defs><mask id="${prefix}-mask-identity"><rect width="24" height="24" fill="white"/><circle cx="17.6" cy="6.4" r="1.35" fill="black"/><circle cx="18" cy="18" r="5.4" fill="black"/></mask></defs><path mask="url(#${prefix}-mask-identity)" d="M 15.6 2.4 C 16.1 2.4 16.6 2.6 17 3 L 21 7 C 21.4 7.4 21.6 7.9 21.6 8.4 L 21.6 10 C 21.6 10.6 21.3 11.2 20.9 11.6 L 12.8 19.7 C 12 20.5 10.8 20.5 10 19.7 L 4.3 14 C 3.5 13.2 3.5 12 4.3 11.2 L 12.4 3.1 C 12.8 2.7 13.4 2.4 14 2.4 Z"/><circle cx="18" cy="18" r="4.2"/></svg>`,
+      /* 2. Packaging & Label Design */
+      `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><defs><mask id="${prefix}-mask-pkg"><rect width="24" height="24" fill="white"/><rect x="13" y="10" width="9" height="13" rx="2.5" fill="black"/></mask></defs><g mask="url(#${prefix}-mask-pkg)"><path d="M 2.4 8.6 L 2.4 16.8 C 2.4 17.5 2.8 18.1 3.4 18.4 L 9.2 21.6 C 9.7 21.9 10.4 21.7 10.4 21 L 10.4 12.6 L 3.4 8.2 C 2.9 7.9 2.4 8.2 2.4 8.6 Z"/><path d="M 2.6 7.8 L 6.6 4.3 C 7.1 3.9 7.8 4 8.1 4.5 L 12.2 10.2 L 3.6 8.5 C 3 8.3 2.5 8 2.6 7.8 Z"/><path d="M 8.8 4.2 L 14.2 6.8 C 14.8 7.1 15 7.8 14.7 8.3 L 10.8 11.6 L 7.8 4.8 C 8 4.4 8.4 4.1 8.8 4.2 Z"/><path d="M 10.8 12.2 L 17.6 8.2 C 18.2 7.8 19 8.2 19 8.8 L 19 15 C 19 15.6 18.6 16.1 18 16.4 L 10.8 20.4 Z"/></g><rect x="14.2" y="13.2" width="6.6" height="8.8" rx="1.8"/><rect x="15.3" y="11" width="4.4" height="2.2" rx="0.7"/></svg>`,
+      /* 3. Brand Guidelines & Systems */
+      `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><defs><mask id="${prefix}-mask-guide"><rect width="24" height="24" fill="white"/><rect x="14.8" y="11" width="4.6" height="1.6" rx="0.8" fill="black" transform="rotate(-6 14.8 11)"/><rect x="14.8" y="14" width="3.4" height="1.6" rx="0.8" fill="black" transform="rotate(-6 14.8 14)"/></mask></defs><path d="M 3.8 6.4 C 3.2 6.2 2.6 6.6 2.6 7.3 L 2.6 17.6 C 2.6 18.2 3 18.7 3.6 18.9 L 10.5 21.4 C 11 21.6 11.6 21.2 11.6 20.6 L 11.6 9.8 C 11.6 9.3 11.1 8.8 10.6 8.6 Z"/><path mask="url(#${prefix}-mask-guide)" d="M 20.2 6.4 C 20.8 6.2 21.4 6.6 21.4 7.3 L 21.4 17.6 C 21.4 18.2 21 18.7 20.4 18.9 L 13.5 21.4 C 13 21.6 12.4 21.2 12.4 20.6 L 12.4 9.8 C 12.4 9.3 12.9 8.8 13.4 8.6 Z"/></svg>`,
+      /* 4. Commercial Collateral & Motion */
+      `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><defs><mask id="${prefix}-mask-motion-a"><rect width="24" height="24" fill="white"/><path d="M 8.2 9.2 C 8.2 8.5 9 8 9.6 8.4 L 13.6 11.2 C 14.2 11.6 14.2 12.4 13.6 12.8 L 9.6 15.6 C 9 16 8.2 15.5 8.2 14.8 Z" fill="black"/><rect x="11.8" y="10" width="11.6" height="11.6" rx="3.6" fill="black"/></mask><mask id="${prefix}-mask-motion-b"><rect width="24" height="24" fill="white"/><path d="M 14.6 19.5 L 17 15.6 C 17.3 15.1 18 15.1 18.3 15.6 L 20.7 19.5 Z" fill="black"/><circle cx="20.3" cy="13.7" r="1.15" fill="black"/></mask></defs><rect x="2.5" y="5.5" width="17.5" height="13.5" rx="3" mask="url(#${prefix}-mask-motion-a)"/><rect x="13.2" y="11.5" width="9.6" height="9.6" rx="2.5" mask="url(#${prefix}-mask-motion-b)"/></svg>`
+    ];
+  }
+
   /* ---------- services preview (home) ---------- */
   function renderServicesPreview() {
     const list = $("#services-preview-list");
     if (!list) return;
-    const serviceIcons = [
-      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3.5 2.35 6.15 6.15 2.35-6.15 2.35L12 20.5l-2.35-6.15L3.5 12l6.15-2.35L12 3.5Z"/><circle cx="12" cy="12" r="1.5"/></svg>`,
-      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.75h8l4 4v12.5H6a2 2 0 0 1-2-2v-12.5a2 2 0 0 1 2-2Z"/><path d="M14 3.75v4h4M8 12h6M8 15.5h5"/><path d="m15 17 1.5 1.5L20 15"/></svg>`,
-      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3.5 8 4.25v8.5L12 20.5l-8-4.25v-8.5L12 3.5Z"/><path d="m4 7.75 8 4.5 8-4.5M12 12.25v8.25M8 5.65l8 4.5"/></svg>`,
-      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><rect x="3.75" y="4" width="16.5" height="16" rx="2"/><path d="M4 9h16"/><rect x="7" y="12" width="4" height="5" rx=".6"/><path d="M14 12.5h3.5M14 15h3.5M14 17.5h2"/></svg>`
-    ];
+    const serviceIcons = getServiceIcons("svc-preview");
     list.innerHTML = cfg.services.map((s, i) => `
       <div class="service-row reveal">
         <div class="service-num">${String(i + 1).padStart(2, "0")}</div>
@@ -807,10 +828,14 @@
   function renderServicesFull() {
     const list = $("#services-detail-list");
     if (!list) return;
+    const serviceIcons = getServiceIcons("svc-full");
     list.innerHTML = cfg.services.map((s, i) => `
       <div class="service-detail reveal">
         <div>
-          <div class="n">${String(i + 1).padStart(2, "0")}</div>
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;">
+            <div class="n" style="margin-bottom:0;">${String(i + 1).padStart(2, "0")}</div>
+            <span class="service-icon" aria-hidden="true">${serviceIcons[i % serviceIcons.length]}</span>
+          </div>
           <h3>${esc(s.title)}</h3>
           <p>${esc(s.description)}</p>
           <div class="service-tags">${s.tags.map(t => `<span>${esc(t)}</span>`).join("")}</div>

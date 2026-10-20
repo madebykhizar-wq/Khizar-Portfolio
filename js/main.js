@@ -48,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('site-content-updated', () => {
     window.observeReveals(document.querySelectorAll('.work-grid .reveal:not(.in)'));
     if (window.applySiteLanguage) window.applySiteLanguage();
+    if (window.ScrollTrigger) window.ScrollTrigger.refresh();
   });
 
   const brandStrip = document.querySelector('.brand-strip');
@@ -474,6 +475,49 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ---------- conversion & engagement event tracking (privacy-compliant GA4) ---------- */
+  function trackEvent(eventName, params = {}) {
+    try {
+      if (typeof window.gtag === 'function' && window.analyticsLoaded) {
+        window.gtag('event', eventName, {
+          page_location: window.location.href,
+          page_title: document.title,
+          ...params
+        });
+      }
+    } catch (e) {
+      // analytics error, suppress silently
+    }
+  }
+  window.trackAnalyticsEvent = trackEvent;
+
+  // Track external engagement clicks (WhatsApp, mailto, Behance)
+  document.addEventListener('click', (e) => {
+    const wa = e.target.closest('a[href*="wa.link"], a[href*="whatsapp.com"], [data-social-link="whatsapp"]');
+    if (wa) {
+      trackEvent('contact_whatsapp_click', {
+        event_category: 'Lead Engagement',
+        event_label: 'WhatsApp Message Link'
+      });
+      return;
+    }
+    const mail = e.target.closest('a[href^="mailto:"]');
+    if (mail) {
+      trackEvent('contact_email_click', {
+        event_category: 'Lead Engagement',
+        event_label: mail.getAttribute('href')
+      });
+      return;
+    }
+    const behance = e.target.closest('a[href*="behance.net"]');
+    if (behance) {
+      trackEvent('portfolio_behance_click', {
+        event_category: 'Portfolio Engagement',
+        event_label: behance.getAttribute('href')
+      });
+    }
+  });
+
   /* ---------- copy email button ---------- */
   const copyEmailBtn = document.getElementById('copyEmailBtn');
   if (copyEmailBtn) {
@@ -484,6 +528,10 @@ document.addEventListener('DOMContentLoaded', () => {
         await navigator.clipboard.writeText(email);
         const original = copyEmailBtn.textContent;
         copyEmailBtn.textContent = 'Copied!';
+        trackEvent('copy_email', {
+          event_category: 'Lead Engagement',
+          event_label: email
+        });
         setTimeout(() => { copyEmailBtn.textContent = original; }, 1800);
       } catch (e) {
         // Clipboard API unavailable — fail silently, the email is still a visible mailto link
@@ -607,6 +655,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (statusBox) {
           statusBox.innerHTML = `<div class="form-feedback success"><strong>Message received!</strong> Thank you${name ? ', ' + name : ''}. I've received your project details and will reply to <strong>${email}</strong> within 24 hours.</div>`;
         }
+        trackEvent('generate_lead', {
+          event_category: 'Inquiry',
+          event_label: projectInput ? projectInput.value : 'General Inquiry',
+          value: 1
+        });
         contactForm.reset();
         contactForm.querySelectorAll('.form-chip').forEach(c => c.classList.remove('active'));
       } catch (err) {
@@ -656,11 +709,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const introPreloader = document.getElementById('intro-preloader');
     if (introPreloader && !introPreloader.classList.contains('intro-complete')) {
-      document.addEventListener('intro-reveal-start', playHeroAnimation, { once: true });
+      document.addEventListener('intro-reveal-start', () => {
+        playHeroAnimation();
+        setTimeout(() => {
+          if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+        }, 300);
+      }, { once: true });
       // Safety fallback in case preloader is bypassed
-      setTimeout(playHeroAnimation, 4500);
+      setTimeout(() => {
+        playHeroAnimation();
+        if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+      }, 4500);
     } else {
       playHeroAnimation();
+      if (window.ScrollTrigger) window.ScrollTrigger.refresh();
     }
 
     if (window.ScrollTrigger) {
@@ -671,8 +733,8 @@ document.addEventListener('DOMContentLoaded', () => {
           duration: 0.7,
           ease: 'power3.out',
           force3D: true,
-          clearProps: 'transform',
-          scrollTrigger: { trigger: sectionHeading, start: 'top 88%', once: true }
+          clearProps: 'all',
+          scrollTrigger: { trigger: sectionHeading, start: 'top 92%', once: true }
         });
       });
     }
