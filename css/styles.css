@@ -652,6 +652,11 @@ section[id]{scroll-margin-top:100px;}
 .section-head{display:flex; flex-direction:column; align-items:center; text-align:center; gap:12px; margin:0 auto 36px; max-width:640px;}
 #work .section-head{margin:0 auto 20px; gap:8px;}
 .section-head h2{font-size:clamp(30px, 3.6vw, 44px);}
+.section-head h2 em,
+.page-header h1 em,
+.faq-section .faq-heading h2 em{
+  color:var(--accent-text); font-family:'Playfair Display', Georgia, serif; font-style:italic; font-weight:700; font-size:1.05em;
+}
 .section-head p{color:var(--text-soft); max-width:420px; font-size:15.5px;}
 .section-alt{background:var(--paper);}
 
@@ -971,9 +976,10 @@ html[data-theme="dark"] .work-tag{background:rgba(11,31,23,.94); color:var(--ink
 /* ============ CONTACT ============ */
 .contact{background:var(--ink-2); color:var(--text-on-dark);}
 .contact > .wrap > .eyebrow{color:var(--text-on-dark); text-align:center; display:block;}
-.contact > .wrap > .eyebrow,.contact > .wrap > h2 em{color:var(--text-on-dark);}
 .contact > .wrap > h2{color:var(--text-on-dark); font-size:clamp(34px,4.6vw,58px); max-width:680px; margin:16px auto 0; text-align:center;}
-.contact > .wrap > h2 em{font-style:normal;}
+.contact > .wrap > h2 em{
+  color:#4EBA86; font-family:'Playfair Display', Georgia, serif; font-style:italic; font-weight:700; font-size:1.05em;
+}
 .contact > .wrap > .cta-center{display:flex; justify-content:center;}
 .contact-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:48px; margin-top:40px;}
 .contact form{display:flex; flex-direction:column; gap:16px;}

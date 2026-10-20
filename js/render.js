@@ -987,14 +987,14 @@
   function renderPageHeader() {
     const map = {
       about: { eyebrow: "About", h1: "Design that gives your brand permission to be confident.", lede: "Who I am, how I work, and who I build brands for." },
-      services: { eyebrow: "Services", h1: "Four ways to work together.", lede: "Pick the right scope for where your business is today." },
+      services: { eyebrow: "Services", h1: "Four ways to <em>work together.</em>", lede: "Pick the right scope for where your business is today." },
       work: { eyebrow: "Selected Work", h1: "Identities built for businesses that mean it.", lede: "Logo systems, guidelines and packaging for founders who mean business." }
     };
     const data = map[page];
     const el = $("#page-header");
     if (!el || !data) return;
     el.querySelector(".eyebrow").textContent = data.eyebrow;
-    el.querySelector("h1").textContent = data.h1;
+    el.querySelector("h1").innerHTML = data.h1;
     el.querySelector(".lede").textContent = data.lede;
   }
 
